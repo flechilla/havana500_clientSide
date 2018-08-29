@@ -7,5 +7,12 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "havana500-webclient": {
+      "tags": []
+    },
+    "havana500-webclient-e2e": {
+      "tags": []
+    }
+  }
 }
