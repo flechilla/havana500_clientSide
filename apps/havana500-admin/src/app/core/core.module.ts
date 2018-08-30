@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { SharedModule } from '@hav500workspace/shared';
 
 @NgModule({
-  imports: [],
+  imports: [SharedModule],
   exports: [],
   declarations: [],
   providers: []

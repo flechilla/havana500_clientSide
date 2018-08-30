@@ -1,27 +1,27 @@
-// This api will come in the next version
+// // This api will come in the next version
 
-import { AuthConfig } from 'angular-oauth2-oidc';
+// import { AuthConfig } from 'angular-oauth2-oidc';
 
-export const authPasswordFlowConfig: AuthConfig = {
-  // Url of the Identity Provider
-  issuer: 'http://localhost:5000',
+// export const authPasswordFlowConfig: AuthConfig = {
+//   // Url of the Identity Provider
+//   issuer: 'http://localhost:5000',
 
-  // URL of the SPA to redirect the user to after login
-  redirectUri: window.location.origin + '/index.html',
+//   // URL of the SPA to redirect the user to after login
+//   redirectUri: window.location.origin + '/index.html',
 
-  // URL of the SPA to redirect the user after silent refresh
-  silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+//   // URL of the SPA to redirect the user after silent refresh
+//   silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
 
-  // The SPA's id. The SPA is registerd with this id at the auth-server
-  clientId: 'angular_client',
+//   // The SPA's id. The SPA is registerd with this id at the auth-server
+//   clientId: 'angular_client',
 
-  dummyClientSecret: 'ANT_Planner_Secret',
+//   dummyClientSecret: 'ANT_Planner_Secret',
 
-  // set the scope for the permissions the client should request
-  // The first three are defined by OIDC. The 4th is a usecase-specific one
-  scope: 'openid profile email',
+//   // set the scope for the permissions the client should request
+//   // The first three are defined by OIDC. The 4th is a usecase-specific one
+//   scope: 'openid profile email',
 
-  showDebugInformation: true,
+//   showDebugInformation: true,
 
-  oidc: false
-};
+//   oidc: false
+// };

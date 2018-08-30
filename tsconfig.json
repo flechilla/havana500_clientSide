@@ -16,6 +16,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@hav500workspace/shared": [
+        "libs/shared/src/index.ts"
+      ]
     }
   },
   "exclude": [

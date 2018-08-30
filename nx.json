@@ -9,16 +9,19 @@
   },
   "projects": {
     "havana500-webclient": {
-      "tags": []
+      "tags": ["webclient"]
     },
     "havana500-webclient-e2e": {
-      "tags": []
+      "tags": ["webclient", "test"]
     },
     "havana500-admin": {
-      "tags": []
+      "tags": ["admin"]
     },
     "havana500-admin-e2e": {
-      "tags": []
+      "tags": ["admin", "test"]
+    },
+    "shared": {
+      "tags": ["shared"]
     }
   }
 }
