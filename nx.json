@@ -13,6 +13,12 @@
     },
     "havana500-webclient-e2e": {
       "tags": []
+    },
+    "havana500-admin": {
+      "tags": []
+    },
+    "havana500-admin-e2e": {
+      "tags": []
     }
   }
 }

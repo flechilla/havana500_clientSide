@@ -1,0 +1,17 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "hav500workspace",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "hav500workspace",
+      "kebab-case"
+    ]
+  }
+}
