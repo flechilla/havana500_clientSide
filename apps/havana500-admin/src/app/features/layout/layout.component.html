@@ -1,0 +1,23 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+
+    <mat-toolbar class="toolbar mat-elevation-z1">
+        <ant-toolbar (toggleSideNav)="snav.toggle()"></ant-toolbar>
+    </mat-toolbar>
+
+    <mat-sidenav-container style="height:100%">
+
+        <!-- <ant-sidenav #sideNav></ant-sidenav> -->
+
+        <mat-sidenav class="sidenav" role="navigation" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="true" fixedTopGap="56">
+            <mat-nav-list>
+                <a class="navigation-item" mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content class="main" role="main">
+            <ant-content></ant-content>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+
+</div>

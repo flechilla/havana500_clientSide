@@ -11,7 +11,7 @@ $carded-header-height-without-toolbar: $carded-header-height - $carded-toolbar-h
 $carded-header-height-without-toolbar-sm: $carded-header-height-sm - $carded-toolbar-height;
 
 // Top bg image
-$top-bg-image: url('assets/images/backgrounds/header-bg.png');
+// $top-bg-image: url('src/assets/images/backgrounds/header-bg.png');
 
 .page-layout {
     position: relative;
@@ -34,7 +34,7 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
             right: 0;
             left: 0;
             height: $carded-header-height;
-            background-image: $top-bg-image;
+            // background-image: $top-bg-image;
             background-size: cover;
 
             @include media-breakpoint-down('sm') {
@@ -336,7 +336,7 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
 
         // Top bg
         > .header {
-            background-image: $top-bg-image;
+            // background-image: $top-bg-image;
             background-size: cover;
         }
 
@@ -446,7 +446,7 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
                         height: $header-height;
                         min-height: $header-height;
                         max-height: $header-height;
-                        background-image: $top-bg-image;
+                        // background-image: $top-bg-image;
                     }
 
                     .center {
