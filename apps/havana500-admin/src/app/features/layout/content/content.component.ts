@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'ant-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.scss']
   // animations : 'fuseAnimations'
 })
 export class ContentComponent implements OnInit, OnDestroy {

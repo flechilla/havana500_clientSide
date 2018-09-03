@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '@hav500workspace/shared';
 import { CommonModule } from '@angular/common';
+import { appRoutes } from './app-routes';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,7 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
 
     NxModule.forRoot(),
-    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabled', enableTracing:false }),
     CoreModule,
     SharedModule,
     LayoutModule
