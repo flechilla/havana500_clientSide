@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ChangeDetectorRef,
+  ViewEncapsulation
+} from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
@@ -10,7 +16,15 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class LayoutComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
 
-  fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
+  fillerNav = [    
+    {
+      id: 'sample',
+      title: 'Sample',
+      type: 'item',
+      icon: 'email',
+      url: '/sample'
+    },
+  ];
 
   private _mobileQueryListener: () => void;
 
