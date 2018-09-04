@@ -44,7 +44,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     LayoutModule,
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['http://localhost:5000/api/'],
+        allowedUrls: ['http://localhost:4167/api/'],
         sendAccessToken: true
       }
     })
