@@ -16,8 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private accountSandbox: AccountSandbox
-  ) {    
-
+  ) {
     this.loginFormErrors = {
       email: {},
       password: {}

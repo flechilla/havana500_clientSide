@@ -41,7 +41,6 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 
     CoreModule,
     SharedModule,
-    // AccountModule,
     LayoutModule,
     OAuthModule.forRoot({
       resourceServer: {

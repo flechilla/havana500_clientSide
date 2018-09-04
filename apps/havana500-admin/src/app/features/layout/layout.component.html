@@ -1,6 +1,6 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+<div class="container" [class.is-mobile]="mobileQuery.matches">
 
-    <mat-toolbar class="toolbar mat-elevation-z1">
+    <mat-toolbar *ngIf="authService.hasValidAccessToken()" class="toolbar mat-elevation-z1">
         <ant-toolbar (toggleSideNav)="snav.toggle()"></ant-toolbar>
     </mat-toolbar>
 
@@ -15,15 +15,15 @@
                         <img class="logo-icon" src="assets/images/logos/fuse.svg">
                         <span class="logo-text">HAVANA 500</span>
                     </div>
-                </div>   
+                </div>
 
                 <ant-nav-vertical-item [item]="nav" *ngFor="let nav of fillerNav"></ant-nav-vertical-item>
-                
+
             </mat-nav-list>
 
         </mat-sidenav>
 
-        <mat-sidenav-content class="main" role="main">
+        <mat-sidenav-content [class.main-content]="authService.hasValidAccessToken()" role="main">
             <ant-content></ant-content>
         </mat-sidenav-content>
 

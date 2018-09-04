@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountRoutingModule } from './account-routing.module';
@@ -12,7 +13,8 @@ import { RegisterComponent } from './smart/register/register.component';
     FormsModule,
     AccountRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    FlexLayoutModule
   ],
   declarations: [LoginComponent, RegisterComponent],
   providers: []
