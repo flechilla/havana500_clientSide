@@ -1,7 +1,7 @@
 <div class="container" [class.is-mobile]="mobileQuery.matches">
 
     <!-- <mat-toolbar  class="toolbar mat-elevation-z1" *ngIf="authService.hasValidAccessToken()"> -->
-    <mat-toolbar class="toolbar mat-elevation-z1">
+    <mat-toolbar class="toolbar mat-elevation-z1" *ngIf="authService.hasValidAccessToken()">
         <ant-toolbar fxFill (toggleSideNav)="snav.toggle()"></ant-toolbar>
     </mat-toolbar>
 
