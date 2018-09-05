@@ -4,7 +4,7 @@
 
 // export const authPasswordFlowConfig: AuthConfig = {
 //   // Url of the Identity Provider
-//   issuer: 'http://localhost:4167',
+//   issuer: 'http://localhost:5000',
 
 //   // URL of the SPA to redirect the user to after login
 //   redirectUri: window.location.origin + '/index.html',
