@@ -8,7 +8,7 @@ const sampleRoutes: Routes = [
   {
     path: '',
     component: SampleComponent,
-    canActivate: [AuthenticatedGuard]
+    // canActivate: [AuthenticatedGuard]
   }
 ];
 
