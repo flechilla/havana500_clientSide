@@ -8,9 +8,10 @@ import { ContentComponent } from './content/content.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavVerticalItemComponent } from './side-nav/nav-item/nav-vertical-item.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, RouterModule],
+  imports: [CommonModule, SharedModule, RouterModule, FlexLayoutModule],
   exports: [
     LayoutComponent,
     AntToolbarComponent,
@@ -21,7 +22,7 @@ import { NavVerticalItemComponent } from './side-nav/nav-item/nav-vertical-item.
     LayoutComponent,
     AntToolbarComponent,
     ContentComponent,
-    NavVerticalItemComponent,
+    NavVerticalItemComponent
   ],
   providers: []
 })
