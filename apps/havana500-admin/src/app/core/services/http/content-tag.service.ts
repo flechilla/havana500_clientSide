@@ -6,7 +6,7 @@ import { BaseCrudService } from '../../../shared/services/base-crud.service';
 import { environment } from '../../../../environments/environment';
 
 @Injectable()
-export class ServiceNameService extends BaseCrudService<ContentTag> {
+export class ContentTagService extends BaseCrudService<ContentTag> {
   constructor(private httpClient: HttpClient) {
     super(environment.apiUrl + 'contentTag', httpClient);
   }
