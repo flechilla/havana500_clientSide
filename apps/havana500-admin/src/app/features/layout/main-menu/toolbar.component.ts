@@ -18,6 +18,10 @@ export class AntToolbarComponent implements OnInit {
 
   @Output()
   public toggleSideNav: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  public closeSideNav: EventEmitter<any> = new EventEmitter();
+
   constructor(private router: Router, public accountSandbox: AccountSandbox) {}
 
   ngOnInit(): void {
@@ -64,6 +68,7 @@ export class AntToolbarComponent implements OnInit {
   }
 
   logout() {
+    this.closeSideNav.emit();
     this.accountSandbox.logout();
   }
 }
