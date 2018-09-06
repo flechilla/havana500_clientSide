@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { AccountSandbox } from '../../../../core/sandboxes/account-sandbox';
 import { antAnimations } from '../../../../shared/utils/animations';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'ant-register',
@@ -20,22 +21,23 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private accountSandbox: AccountSandbox
+    private accountSandbox: AccountSandbox,
+    private oauthService: OAuthService
   ) {
     this.registerFormErrors = {
-      name: {},
+      userName: {},
       email: {},
       password: {},
-      passwordConfirm: {}
+      confirmPassword: {}
     };
   }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      userName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      passwordConfirm: ['', [Validators.required, confirmPassword]]
+      confirmPassword: ['', [Validators.required, confirmPassword]]
     });
 
     this.registerForm.valueChanges.subscribe(() => {
@@ -60,6 +62,11 @@ export class RegisterComponent implements OnInit {
       }
     }
   }
+
+  doRegister() {
+    const toRegister = this.registerForm.value;
+    console.log(toRegister);
+  }
 }
 
 function confirmPassword(control: AbstractControl) {
@@ -68,17 +75,17 @@ function confirmPassword(control: AbstractControl) {
   }
 
   const password = control.parent.get('password');
-  const passwordConfirm = control.parent.get('passwordConfirm');
+  const confirmPassword = control.parent.get('confirmPassword');
 
-  if (!password || !passwordConfirm) {
+  if (!password || !confirmPassword) {
     return;
   }
 
-  if (passwordConfirm.value === '') {
+  if (confirmPassword.value === '') {
     return;
   }
 
-  if (password.value !== passwordConfirm.value) {
+  if (password.value !== confirmPassword.value) {
     return {
       passwordsNotMatch: true
     };
