@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AntDashboardComponent } from './dashboard.component';
-import { ProjectsDashboardService } from '../../core/services/http/dashboard.service';
 import { SharedModule } from '@hav500workspace/shared';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [SharedModule, DashboardRoutingModule, NgxChartsModule],
+  imports: [SharedModule, DashboardRoutingModule],
   declarations: [AntDashboardComponent],
   providers: []
 })
-export class FuseProjectDashboardModule {}
+export class DashboardModule {}
