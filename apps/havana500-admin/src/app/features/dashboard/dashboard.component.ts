@@ -1,9 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import * as shape from 'd3-shape';
-import { DataSource } from '@angular/cdk/collections';
 import { antAnimations } from '../../shared/utils/animations';
 import { ProjectsDashboardService } from '../../core/services/http/dashboard.service';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'ant-dashboard',

@@ -36,6 +36,8 @@
       mat-tab-group {
         height: 100%;
 
+        margin-bottom: 5rem;
+
         .mat-tab-body-wrapper {
           flex-grow: 1;
         }
@@ -53,3 +55,7 @@
     max-width: 250px !important;
   }
 }
+
+// .page-layout {
+//   margin-bottom: 5rem !important;
+// }
