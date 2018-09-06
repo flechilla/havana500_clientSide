@@ -8,12 +8,13 @@ export class KeysPipe implements PipeTransform {
     const keys = [];
     for (const enumMember in value) {
       if (
-        !isNaN(parseInt(enumMember, 10)) &&
+        // !isNaN(parseInt(enumMember, 10)) &&
         value.hasOwnProperty(enumMember)
       ) {
         keys.push({ key: enumMember, value: value[enumMember] });
       }
     }
+
     return keys;
   }
 }
