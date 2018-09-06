@@ -1,0 +1,33 @@
+<div class="container" [class.is-mobile]="mobileQuery.matches">
+
+    <!-- <mat-toolbar  class="toolbar mat-elevation-z1" *ngIf="authService.hasValidAccessToken()"> -->
+    <mat-toolbar class="toolbar mat-elevation-z1" *ngIf="authService.hasValidAccessToken()">
+        <ant-toolbar fxFill (toggleSideNav)="snav.toggle()"></ant-toolbar>
+    </mat-toolbar>
+
+    <mat-sidenav-container style="height:100%">
+        <mat-sidenav class="sidenav nav mat-fuse-dark-700-bg" role="navigation" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+            [fixedInViewport]="true" fixedTopGap="56">
+
+            <mat-nav-list>
+
+                <div class="navbar-header">
+                    <div class="logo">
+                        <img class="logo-icon" src="assets/images/logos/fuse.svg">
+                        <span class="logo-text">HAVANA 500</span>
+                    </div>
+                </div>
+
+                <ant-nav-vertical-item [item]="nav" *ngFor="let nav of fillerNav"></ant-nav-vertical-item>
+
+            </mat-nav-list>
+
+        </mat-sidenav>
+
+        <mat-sidenav-content [class.main-content]="authService.hasValidAccessToken()" role="main">
+            <ant-content></ant-content>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+
+</div>

@@ -2,7 +2,9 @@
 // Fuse
 @import "ant";
 
-// Theming
+// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+// // Theming
 @include mat-core();
 
 // Include theme styles for core and each component used in your app.
