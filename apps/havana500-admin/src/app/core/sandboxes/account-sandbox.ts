@@ -20,7 +20,7 @@ import { APP_USER } from '../configs/configuration-const.config';
 export class AccountSandbox {
   constructor(
     protected store$: Store<fromRoot.State>,
-    protected oauthService: OAuthWrapperService,
+    protected oauthService: OAuthWrapperService
   ) {}
 
   public getLoggedUserObservable(): Observable<User> {
@@ -60,6 +60,10 @@ export class AccountSandbox {
     this.store$.dispatch(new accountActions.DoRegisterAction(form));
   }
 
+  public refreshToken(): void {
+    this.store$.dispatch(new accountActions.DoRefreshTokenAction(null));
+  }
+
   /**
    * Loads the discovery document to configure most properties of this service.
    * The url of the discovery document is infered from the issuer's
@@ -73,5 +77,4 @@ export class AccountSandbox {
   public loadDiscoveryDocument(fullUrl?: string): Promise<Object> {
     return this.oauthService.loadDiscoveryDocument();
   }
-  
 }

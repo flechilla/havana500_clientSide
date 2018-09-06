@@ -16,7 +16,6 @@ import { Observable, from, of } from 'rxjs';
 import {
   map,
   exhaustMap,
-  flatMap,
   mergeMap,
   catchError,
   concatMap
@@ -134,7 +133,7 @@ export class AccountEffects {
     .ofType(actions.DO_REGISTER)
     .pipe(
       map((action: actions.DoRegisterAction) => action.payload),
-      concatMap(state => {
+      exhaustMap(state => {
         return this.accountService.register(state).pipe(
           mergeMap(registered => {
             if (registered) {
