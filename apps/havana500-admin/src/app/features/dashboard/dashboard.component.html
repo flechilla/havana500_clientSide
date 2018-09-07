@@ -9,7 +9,7 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between start">
 
-                <span class="mat-display-1 mb-0 welcome-message" [@animate]="{value:'*',params:{x:'50px'}}">Welcome back,
+                <span class="mat-display-1 mb-0 welcome-message" *antIfOnDom [@animate]="{value:'*',params:{x:'50px'}}">Welcome back,
                     John!
                 </span>
             </div>
@@ -38,7 +38,7 @@
 
                 <mat-tab label="Home">
 
-                    <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" [@animateStagger]="{value:'50'}">
+                    <div class="widget-group p-12" fxLayout="row wrap" *antIfOnDom fxFlex="100" [@animateStagger]="{value:'50'}">
 
                         <!-- WIDGET 1 -->
                         <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
