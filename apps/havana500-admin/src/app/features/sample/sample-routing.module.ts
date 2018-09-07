@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { NgModule } from '@angular/core';
-import { SampleComponent } from './sample.component';
+import { SampleComponent } from './smart/sample.component';
 import { AuthenticatedGuard } from '../../core/route_guards/authenticated.guard';
 
 const sampleRoutes: Routes = [

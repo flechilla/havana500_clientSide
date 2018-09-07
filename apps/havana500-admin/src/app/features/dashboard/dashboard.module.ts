@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { AntDashboardComponent } from './dashboard.component';
+import { AntDashboardComponent } from './smart/dashboard.component';
 import { SharedModule } from '@hav500workspace/shared';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { CommonModule } from '@angular/common';
