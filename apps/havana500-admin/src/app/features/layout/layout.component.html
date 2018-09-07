@@ -1,12 +1,12 @@
 <div class="container" [class.is-mobile]="mobileQuery.matches">
 
     <!-- <mat-toolbar  class="toolbar mat-elevation-z1" *ngIf="authService.hasValidAccessToken()"> -->
-    <mat-toolbar class="toolbar mat-elevation-z1" *ngIf="authService.hasValidAccessToken()">
-        <ant-toolbar fxFill (toggleSideNav)="snav.toggle()"></ant-toolbar>
+    <mat-toolbar class="toolbar mat-elevation-z1 mat-white-500-bg" *ngIf="authService.hasValidAccessToken()">
+        <ant-toolbar fxFill (toggleSideNav)="snav.toggle()" (closeSideNav)="snav.close()"></ant-toolbar>
     </mat-toolbar>
 
     <mat-sidenav-container style="height:100%">
-        <mat-sidenav class="sidenav nav mat-fuse-dark-700-bg" role="navigation" #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+        <mat-sidenav class="sidenav nav mat-fuse-dark-700-bg" role="navigation" #snav [mode]="over"
             [fixedInViewport]="true" fixedTopGap="56">
 
             <mat-nav-list>

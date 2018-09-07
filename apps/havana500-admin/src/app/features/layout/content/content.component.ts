@@ -44,7 +44,7 @@ export class ContentComponent implements OnInit, OnDestroy {
         // this.routeAnimationLeft = !this.routeAnimationLeft;
         //     break;
         // }
-        this.routeAnimationLeft = true;
+        this.routeAnimationFade = true;
       });
   }
 
