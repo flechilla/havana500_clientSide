@@ -19,7 +19,7 @@
     }
   }
 
-  .products-table {
+  .articles-table {
     flex: 1 1 auto;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     overflow: auto;
@@ -28,7 +28,7 @@
       min-height: 64px;
     }
 
-    .product {
+    .article {
       position: relative;
       cursor: pointer;
       height: 84px;
@@ -47,7 +47,7 @@
     .mat-column-image {
       flex: 0 1 84px;
 
-      .product-image {
+      .article-image {
         width: 52px;
         height: 52px;
         border: 1px solid rgba(0, 0, 0, 0.12);

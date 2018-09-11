@@ -1,4 +1,4 @@
-<div id="products" class="page-layout carded fullwidth">
+<div id="articles" class="page-layout carded fullwidth">
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg mat-accent-bg"></div>
@@ -23,12 +23,12 @@
                     <mat-icon class="secondary-text">search</mat-icon>
                 </label>
                 <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
-                    <input id="search" matInput #filter placeholder="Search">
+                    <input id="search" matInput #filter (keyup)="applyFilter($event)" placeholder="Search">
                 </mat-form-field>
             </div>
             <!-- / SEARCH -->
 
-            <button mat-raised-button class="add-product-button mat-white-bg my-12 mt-sm-0">
+            <button mat-raised-button class="add-article-button mat-white-bg my-12 mt-sm-0">
                 <span>ADD NEW PRODUCT</span>
             </button>
 
@@ -38,80 +38,101 @@
         <!-- CONTENT CARD -->
         <div class="content-card mat-white-bg">
 
-            <mat-table class="products-table" #table matSort [@animateStagger]="{value:'50'}">
-                <!-- <mat-table class="products-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"> -->
+            <mat-table class="articles-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}">
+                <!-- <mat-table class="articles-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"> -->
 
                 <!-- ID Column -->
-                <ng-container cdkColumnDef="id">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>ID</mat-header-cell>
-                    <mat-cell *cdkCellDef="let product">
-                        <p class="text-truncate">{{product.id}}</p>
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+                    <mat-cell *matCellDef="let article">
+                        <p class="text-truncate">{{article.Id}}</p>
                     </mat-cell>
                 </ng-container>
 
-                <!-- Image Column -->
-                <ng-container cdkColumnDef="image">
-                    <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
-                    <mat-cell *cdkCellDef="let product">
-                        <img class="product-image" *ngIf="product.images[0]" [alt]="product.name" [src]="product.images[0].url" />
-                        <img *ngIf="!product.images[0]" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+
+                <!-- Title Column -->
+                <ng-container matColumnDef="title">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
+                    <mat-cell *matCellDef="let article">
+                        <p class="text-truncate">{{article.Title}}</p>
                     </mat-cell>
                 </ng-container>
 
-                <!-- Name Column -->
-                <ng-container cdkColumnDef="name">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header>Name</mat-header-cell>
-                    <mat-cell *cdkCellDef="let product">
-                        <p class="text-truncate">{{product.name}}</p>
-                    </mat-cell>
-                </ng-container>
-
-                <!-- Category Column -->
-                <ng-container cdkColumnDef="category">
-                    <mat-header-cell *cdkHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Category</mat-header-cell>
-                    <mat-cell *cdkCellDef="let product" fxHide fxShow.gt-md>
+                <!-- Section Column -->
+                <ng-container matColumnDef="section">
+                    <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Section</mat-header-cell>
+                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-md>
                         <p class="category text-truncate">
-                            {{product.categories[0]}}
+                            {{article.SectionId}}
                         </p>
                     </mat-cell>
                 </ng-container>
 
-                <!-- Price Column -->
-                <ng-container cdkColumnDef="price">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Price</mat-header-cell>
-                    <mat-cell *cdkCellDef="let product" fxHide fxShow.gt-xs>
-                        <p class="price text-truncate">
-                            {{product.priceTaxIncl | currency:'USD':'symbol'}}
-                        </p>
+                <!-- Allow Comments Column -->
+                <ng-container matColumnDef="allowComments">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Allow Comments</mat-header-cell>
+                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-xs>
+                        <mat-icon *ngIf="article.AllowComments" class="active-icon mat-green-600-bg s-16">check</mat-icon>
+                        <mat-icon *ngIf="!article.AllowComments" class="active-icon mat-red-500-bg s-16">close</mat-icon>
                     </mat-cell>
                 </ng-container>
 
-                <!-- Quantity Column -->
-                <ng-container cdkColumnDef="quantity">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Quantity</mat-header-cell>
-                    <mat-cell *cdkCellDef="let product" fxHide fxShow.gt-sm>
+                <!-- Allow Anonymous Comments Column -->
+                <ng-container matColumnDef="allowAnonymousComments">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Allow Anonymous Comments</mat-header-cell>
+                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-xs>
+                        <mat-icon *ngIf="article.AllowAnonymousComments" class="active-icon mat-green-600-bg s-16">check</mat-icon>
+                        <mat-icon *ngIf="!article.AllowAnonymousComments" class="active-icon mat-red-500-bg s-16">close</mat-icon>
+                    </mat-cell>
+                </ng-container>
 
-                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-red-500-bg':product.quantity <= 5, 'mat-amber-500-bg':product.quantity > 5 && product.quantity <= 25,'mat-green-600-bg':product.quantity > 25}">
+                <!-- Approved Comments Count Column -->
+                <ng-container matColumnDef="approvedCommentCount">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Approved Comments</mat-header-cell>
+                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-sm>
+
+                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-red-500-bg':article.ApprovedCommentCount <= 5, 'mat-amber-500-bg':article.ApprovedCommentCount > 5 && article.ApprovedCommentCount <= 25,'mat-green-600-bg':article.ApprovedCommentCount > 25}">
                         </span>
                         <span>
-                            {{product.quantity}}
+                            {{article.ApprovedCommentCount}}
                         </span>
 
                     </mat-cell>
                 </ng-container>
 
-                <!-- Active Column -->
-                <ng-container cdkColumnDef="active">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Active</mat-header-cell>
-                    <mat-cell *cdkCellDef="let product" fxHide fxShow.gt-xs>
-                        <mat-icon *ngIf="product.active" class="active-icon mat-green-600-bg s-16">check</mat-icon>
-                        <mat-icon *ngIf="!product.active" class="active-icon mat-red-500-bg s-16">close</mat-icon>
+                <!-- Not Approved Comments Count Column -->
+                <ng-container matColumnDef="notApprovedCommentCount">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Not Approved Comments</mat-header-cell>
+                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-sm>
+
+                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-green-500-bg':article.NotApprovedCommentCount <= 5, 'mat-amber-500-bg':article.NotApprovedCommentCount > 5 && article.ApprovedCommentCount <= 25,'mat-red-600-bg':article.NotApprovedCommentCount > 25}">
+                        </span>
+                        <span>
+                            {{article.NotApprovedCommentCount}}
+                        </span>
+
                     </mat-cell>
                 </ng-container>
 
-                <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+                <!-- Views Column -->
+                <ng-container matColumnDef="views">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Views</mat-header-cell>
+                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-sm>
 
-                <mat-row *cdkRowDef="let product; columns: displayedColumns;" class="product" matRipple [routerLink]="'/apps/e-commerce/products/'+product.id+'/'+product.handle">
+                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-green-500-bg':article.Views <= 5, 'mat-amber-500-bg':article.Views > 5 && article.ApprovedCommentCount <= 25,'mat-red-600-bg':article.Views > 25}">
+                        </span>
+                        <span>
+                            {{article.Views}}
+                        </span>
+
+                    </mat-cell>
+                </ng-container>
+
+
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+                <mat-row *matRowDef="let article; columns: displayedColumns;" class="article" matRipple [routerLink]="'./+article.id'">
                 </mat-row>
 
             </mat-table>
