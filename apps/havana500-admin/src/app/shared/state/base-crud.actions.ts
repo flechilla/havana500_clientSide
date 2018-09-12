@@ -89,7 +89,7 @@ export class GetByIdAction<T> implements Action {
   /**
    * Creates an instance of GetByIdAction.
    * @param {new () => T} type
-   * @param {{id:any, query:string}} payload Id of the entity to look up and
+   * @param {{id:any, query:string}} payload id of the entity to look up and
    *  the query of the required properties.
    * @memberof GetByIdAction
    */

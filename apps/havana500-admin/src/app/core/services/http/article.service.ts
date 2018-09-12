@@ -8,6 +8,6 @@ import { environment } from '../../../../environments/environment.prod';
 @Injectable()
 export class ArticleService extends BaseCrudService<Article> {
   constructor(private httpClient: HttpClient) {
-    super(environment.apiUrl + 'article', httpClient);
+    super(environment.apiUrl + 'articles', httpClient);
   }
 }

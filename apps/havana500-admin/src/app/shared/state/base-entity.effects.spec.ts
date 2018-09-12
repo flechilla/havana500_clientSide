@@ -65,7 +65,7 @@ describe('Base Effects', () => {
       query: ''
     });
     const completion = new crudActions.GetByIdSuccessAction(TestBaseModel, {
-      Id: 5,
+      id: 5,
       name: 's'
     });
 
@@ -106,12 +106,12 @@ describe('Base Effects', () => {
   it('create model ok', () => {
     const entity: TestBaseModel = {
       name: 'new Entity',
-      Id: 123
+      id: 123
     };
     const action = new crudActions.CreateAction(TestBaseModel, {
       entityToCreate: {
         name: 'new Entity',
-        Id: 456
+        id: 456
       }
     });
     const completion = [
@@ -135,12 +135,12 @@ describe('Base Effects', () => {
   it('create model fail', () => {
     const entity: TestBaseModel = {
       name: 'new Entity',
-      Id: 123
+      id: 123
     };
     const action = new crudActions.CreateAction(TestBaseModel, {
       entityToCreate: {
         name: 'new Entity',
-        Id: 456
+        id: 456
       }
     });
     const completion = [new crudActions.CreateFailAction(TestBaseModel, '456')];
@@ -164,7 +164,7 @@ describe('Base Effects', () => {
     const entity: TestBaseModel = {
       name: 'new Entity',
 
-      Id: 123
+      id: 123
     };
     const action = new crudActions.DeleteAction(TestBaseModel, {
       entityToDelete: entity,
@@ -187,7 +187,7 @@ describe('Base Effects', () => {
     const entity: TestBaseModel = {
       name: 'new Entity',
 
-      Id: 123
+      id: 123
     };
     const action = new crudActions.DeleteAction(TestBaseModel, {
       entityToDelete: entity,
@@ -212,11 +212,11 @@ describe('Base Effects', () => {
     const oldEntity: TestBaseModel = {
       name: 'new Entity',
 
-      Id: 123
+      id: 123
     };
     const newEntity: TestBaseModel = {
       name: 'new Entitu',
-      Id: 123
+      id: 123
     };
     const action = new crudActions.UpdateAction(TestBaseModel, {
       oldEntity: oldEntity,
@@ -241,11 +241,11 @@ describe('Base Effects', () => {
   it('update model fail', () => {
     const oldEntity: TestBaseModel = {
       name: 'new Entity',
-      Id: 123
+      id: 123
     };
     const newEntity: TestBaseModel = {
       name: 'new Entitu',
-      Id: 123
+      id: 123
     };
     const action = new crudActions.UpdateAction(TestBaseModel, {
       oldEntity: oldEntity,

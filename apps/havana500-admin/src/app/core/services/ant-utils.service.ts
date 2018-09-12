@@ -27,7 +27,7 @@ export class AntUtilsService {
 
   trackById(index, element: BaseEntity<any>) {
     // if(element)
-    return element.Id;
+    return element.id;
   } 
 
   entityComparer(x: BaseEntity<number>, y: BaseEntity<number>): boolean {
@@ -40,7 +40,7 @@ export class AntUtilsService {
     if (isNullOrUndefined(y)) {
       return false;
     }
-    return x.Id === y.Id;
+    return x.id === y.id;
   }
 
   listComparer(x: List<any>, y: List<any>): boolean {

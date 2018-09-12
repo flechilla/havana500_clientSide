@@ -35,7 +35,7 @@ export class CreateUpdateArticleComponent implements OnInit {
   protected loadForm() {
     this.form = this.fb.group({
       article: this.fb.group({
-        Id: 0,
+        id: 0,
         SectionId: 0,
         Title: ['', Validators.required],
         Body: ['', Validators.required],

@@ -29,7 +29,7 @@ export function baseReducer<T extends BaseEntity<any>>(
     return {
       ...state,
       entities: state.entities.set(
-        payload.entityToCreate.Id,
+        payload.entityToCreate.id,
         payload.entityToCreate
       )
     };
@@ -40,7 +40,7 @@ export function baseReducer<T extends BaseEntity<any>>(
       ...state,
       entities: state.entities
         .delete(payload.oldId)
-        .set(payload.createdEntity.Id, payload.createdEntity)
+        .set(payload.createdEntity.id, payload.createdEntity)
     };
   }
   if (action.type === actionTypes.CreateFailed) {
@@ -61,7 +61,7 @@ export function baseReducer<T extends BaseEntity<any>>(
     return {
       ...state,
       loading: false,
-      entities: state.entities.set(action.payload.Id, action.payload)
+      entities: state.entities.set(action.payload.id, action.payload)
     };
   }
   if (action.type === actionTypes.GetByIdFailed) {
@@ -74,7 +74,7 @@ export function baseReducer<T extends BaseEntity<any>>(
     return {
       ...state,
       entities: state.entities.set(
-        action.payload.newEntity.Id,
+        action.payload.newEntity.id,
         action.payload.newEntity
       )
     };
@@ -82,20 +82,20 @@ export function baseReducer<T extends BaseEntity<any>>(
   if (action.type === actionTypes.UpdateSuccess) {
     return {
       ...state,
-      entities: state.entities.set(action.payload.Id, action.payload)
+      entities: state.entities.set(action.payload.id, action.payload)
     };
   }
   if (action.type === actionTypes.UpdateFailed) {
     return {
       ...state,
-      entities: state.entities.set(action.payload.Id, action.payload)
+      entities: state.entities.set(action.payload.id, action.payload)
     };
   }
   if (action.type === actionTypes.Delete) {
     const payload = (<crudActions.DeleteAction<T>>action).payload;
     return {
       ...state,
-      entities: state.entities.delete(payload.entityToDelete.Id)
+      entities: state.entities.delete(payload.entityToDelete.id)
     };
   }
   if (action.type === actionTypes.DeleteFailed) {
@@ -103,7 +103,7 @@ export function baseReducer<T extends BaseEntity<any>>(
 
     return {
       ...state,
-      entities: state.entities.set(payload.Id, payload)
+      entities: state.entities.set(payload.id, payload)
     };
   }
   return state;
