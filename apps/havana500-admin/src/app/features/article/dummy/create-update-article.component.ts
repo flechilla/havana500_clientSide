@@ -1,14 +1,18 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Article } from '../../../core/models/article.model';
 import { ArticleService } from '../../../core/services/http/article.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { antAnimations } from '../../../shared/utils/animations';
 
 @Component({
   selector: 'ant-create-update-article',
-  templateUrl: 'create-update-article.component.html'
+  templateUrl: 'create-update-article.component.html',
+  styleUrls: ['create-update-article.component.scss'],
+  animations: antAnimations,
+  encapsulation: ViewEncapsulation.None
 })
 export class CreateUpdateArticleComponent implements OnInit {
   protected form: FormGroup;
@@ -36,16 +40,18 @@ export class CreateUpdateArticleComponent implements OnInit {
     this.form = this.fb.group({
       article: this.fb.group({
         id: 0,
-        SectionId: 0,
-        Title: ['', Validators.required],
-        Body: ['', Validators.required],
-        AllowComments: true,
-        AllowAnonymousComments: false,
-        StartDateUtc: '',
-        EndDateUtc: '',
-        MetaKeywords: '',
-        MetaDescription: '',
-        MetaTitle: ''
+        sectionId: 0,
+        title: ['', Validators.required],
+        body: ['', Validators.required],
+        allowComments: true,
+        allowAnonymousComments: false,
+        startDateUtc: '',
+        endDateUtc: '',
+        metaKeywords: '',
+        metaDescription: '',
+        metaTitle: '',
+        editorWeight: 0,
+        readingTime: 1
       })
     });
   }

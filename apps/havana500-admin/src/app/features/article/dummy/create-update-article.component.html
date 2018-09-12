@@ -9,7 +9,7 @@
         </mat-toolbar-row>
 
         <mat-toolbar-row class="toolbar-bottom py-8 py-sm-16" fxLayout="column" fxLayoutAlign="center center">
-            <div class="contact-name">{{title.value}}</div>
+            <div class="article-title">{{title.value}}</div>
         </mat-toolbar-row>
 
     </mat-toolbar>
@@ -27,25 +27,27 @@
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <input #title name="title" formControlName="Title" placeholder="Title" matInput required>
+                        <input #title name="title" formControlName="title" placeholder="Title" matInput required>
                     </mat-form-field>
                 </div>
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <textarea name="body" formControlName="Body" placeholder="Body of the article..." matInput required></textarea>
+                        <textarea name="body" formControlName="body" placeholder="Body of the article..." matInput
+                            required></textarea>
                     </mat-form-field>
                 </div>
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
-                    <mat-slide-toggle name="allowComments" formControlName="AllowComments" class="mr-24" aria-label="Allow Comments">
+                    <mat-slide-toggle name="allowComments" formControlName="allowComments" class="mr-24" aria-label="Allow Comments">
                         Allow Comments
                     </mat-slide-toggle>
                 </div>
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
-                    <mat-slide-toggle name="allowAnonymousComments" formControlName="AllowAnonymousComments" class="mr-24" aria-label="Allow Anonymous Comments">
+                    <mat-slide-toggle name="allowAnonymousComments" formControlName="allowAnonymousComments" class="mr-24"
+                        aria-label="Allow Anonymous Comments">
                         Allow Anonymous Comments
                     </mat-slide-toggle>
                 </div>
@@ -54,7 +56,8 @@
                     <mat-icon class="mr-12 mt-12 ">calendar</mat-icon>
 
                     <mat-form-field class="mr-sm-24" fxFlex>
-                        <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date" name="start" formControlName="StartDateUtc">
+                        <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date" name="start"
+                            formControlName="startDateUtc">
                         <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
                         <mat-datepicker #startDatePicker></mat-datepicker>
                     </mat-form-field>
@@ -69,7 +72,8 @@
                     <mat-icon class="mr-12 mt-12 ">calendar</mat-icon>
 
                     <mat-form-field class="mr-sm-24" fxFlex>
-                        <input matInput [matDatepicker]="endDatePicker" placeholder="End Date" name="end" formControlName="EndDateUtc">
+                        <input matInput [matDatepicker]="endDatePicker" placeholder="End Date" name="end"
+                            formControlName="endDateUtc">
                         <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
                         <mat-datepicker #endDatePicker></mat-datepicker>
                     </mat-form-field>
@@ -83,21 +87,36 @@
                 <div class="mb-24 " fxLayout="row " fxLayoutAlign="start start ">
                     <mat-icon class="mr-12 mt-12 "></mat-icon>
                     <mat-form-field fxFlex>
-                        <input name="metaKeywords" formControlName="MetaKeywords" matInput placeholder="Meta Keywords">
+                        <input name="metaKeywords" formControlName="metaKeywords" matInput placeholder="Meta Keywords">
                     </mat-form-field>
                 </div>
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <textarea name="metaDescription" formControlName="MetaDescription" placeholder="Meta Description" matInput></textarea>
+                        <textarea name="metaDescription" formControlName="metaDescription" placeholder="Meta Description"
+                            matInput></textarea>
                     </mat-form-field>
                 </div>
 
                 <div class="mb-24 " fxLayout="row " fxLayoutAlign="start start ">
                     <mat-icon class="mr-12 mt-12 "></mat-icon>
                     <mat-form-field fxFlex>
-                        <input name="metaTitle" formControlName="MetaTitle" matInput placeholder="Meta Title">
+                        <input name="metaTitle" formControlName="metaTitle" matInput placeholder="Meta Title">
+                    </mat-form-field>
+                </div>
+
+                <div class="mb-24 " fxLayout="row " fxLayoutAlign="start start ">
+                    <mat-icon class="mr-12 mt-12 "></mat-icon>
+                    <mat-form-field fxFlex>
+                        <input type="number" name="editorWeight" formControlName="editorWeight" matInput placeholder="Editor Weight">
+                    </mat-form-field>
+                </div>
+
+                <div class="mb-24 " fxLayout="row " fxLayoutAlign="start start ">
+                    <mat-icon class="mr-12 mt-12 "></mat-icon>
+                    <mat-form-field fxFlex>
+                        <input type="number" name="readingTime" formControlName="readingTime" matInput placeholder="Reading Time">
                     </mat-form-field>
                 </div>
 
@@ -109,7 +128,7 @@
 
     </div>
 
-    <div mat-dialog-actions class="m-0 p-16 " fxLayout="row " fxLayoutAlign="space-between center ">
+    <div mat-dialog-actions class="m-0 p-16 " fxLayout="row" fxLayoutAlign="flex-end center">
 
         <button mat-raised-button (click)="save()" class="save-button mat-accent" [disabled]="form.invalid" aria-label="SAVE ">
             SAVE
