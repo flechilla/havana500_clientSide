@@ -21,11 +21,30 @@ export class BaseCrudService<T> {
     return this.http.get<T[]>(this.url).pipe(catchError(this.handleError));
   }
 
-  public get(id: any, query: string): Observable<T> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const options = { headers: headers };
+  public get(id: any): Observable<T> {
     return this.http
-      .post<T>(this.url + '/GetWithProperties/' + id, query, options)
+      .get<T>(this.url + '/' + id)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getWithPagAndSort(
+    pageNumber: number,
+    pageSize: number,
+    columnToSort: string,
+    sortDir: string
+  ): Observable<T[]> {
+    return this.http
+      .get<T[]>(
+        this.url +
+          '/getWithPaginationAndFilter?pageNumber=' +
+          pageNumber +
+          '&pageSize=' +
+          pageSize +
+          '&columnNameForSorting=' +
+          columnToSort +
+          '&sortingType=' +
+          sortDir
+      )
       .pipe(catchError(this.handleError));
   }
 
