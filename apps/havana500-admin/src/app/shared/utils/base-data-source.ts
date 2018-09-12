@@ -11,9 +11,15 @@ import { MatSort, MatPaginator } from '@angular/material';
 export class BaseDataSource<T extends BaseEntity<any>> extends DataSource<T> {
   protected data$: BehaviorSubject<T[]>;
 
+  public currentLength = 0;
+
   constructor(protected service: BaseCrudService<T>) {
     super();
     this.data$ = new BehaviorSubject([]);
+
+    this.data$.subscribe(resp => {
+      this.currentLength = resp.length;
+    });
   }
   connect(collectionViewer: CollectionViewer): Observable<T[]> {
     return this.data$.asObservable();
@@ -30,7 +36,7 @@ export class BaseDataSource<T extends BaseEntity<any>> extends DataSource<T> {
     pageSize = 10
   ) {
     this.service
-      .get(columnName, filter)
+      .getWithPagAndSort(pageIndex, pageSize, columnName, sortDirection)
       .pipe(catchError(() => of([])))
       .subscribe((entities: T[]) => this.data$.next(entities));
   }
