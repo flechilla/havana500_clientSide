@@ -12,5 +12,5 @@ export interface HasMedia {
    * @type {number}
    * @memberof HasMedia
    */
-  MediaStorageId: number;
+  mediaStorageId: number;
 }
