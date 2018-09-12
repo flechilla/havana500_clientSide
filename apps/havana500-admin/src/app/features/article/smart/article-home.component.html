@@ -8,7 +8,8 @@
     <div class="center">
 
         <!-- HEADER -->
-        <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-around center">
+        <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+            fxLayoutAlign.gt-xs="space-around center">
 
             <!-- APP TITLE -->
             <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
@@ -23,12 +24,12 @@
                     <mat-icon class="secondary-text">search</mat-icon>
                 </label>
                 <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
-                    <input id="search" matInput #filter  placeholder="Search">
+                    <input id="search" matInput #filter placeholder="Search">
                 </mat-form-field>
             </div>
             <!-- / SEARCH -->
 
-            <button mat-raised-button class="add-article-button mat-white-bg my-12 mt-sm-0">
+            <button (click)="openCreateDialog()" mat-raised-button class="add-article-button mat-white-bg my-12 mt-sm-0">
                 <span>ADD NEW ARTICLE</span>
             </button>
 
@@ -130,14 +131,15 @@
 
 
 
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
 
-                <mat-row *matRowDef="let article; columns: displayedColumns;" class="article" matRipple [routerLink]="'./+article.id'">
+                <mat-row *matRowDef="let article; columns: columnsToDisplay;" class="article" matRipple (click)="openCreateDialog(article)">
                 </mat-row>
 
             </mat-table>
 
-            <mat-paginator #paginator [length]="dataSource.currentLength" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+            <mat-paginator #paginator [length]="dataSource.currentLength" [pageIndex]="0" [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 25, 100]">
                 <!-- <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"> -->
             </mat-paginator>
 
