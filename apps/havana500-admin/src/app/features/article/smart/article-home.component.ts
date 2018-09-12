@@ -31,11 +31,10 @@ import { BaseDataSource } from '../../../shared/utils/base-data-source';
 export class ArticleHomeComponent implements OnInit, AfterViewInit {
   dataSource: BaseDataSource<Article>;
 
-
   displayedColumns = [
     'id',
     'title',
-    'section',
+    // 'section',
     'allowComments',
     'allowAnonymousComments',
     'approvedCommentCount',
@@ -55,7 +54,7 @@ export class ArticleHomeComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource = new BaseDataSource<Article>(this.service);
     this.dataSource.loadData(
-      'Id',
+      'id',
       '',
       this.sort.direction,
       0,

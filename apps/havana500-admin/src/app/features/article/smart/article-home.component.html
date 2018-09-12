@@ -1,4 +1,4 @@
-<div id="articles" class="page-layout carded fullwidth">
+<div id="articles" class="page-layout carded fullwidth articles-home-padded">
 
     <!-- TOP BACKGROUND -->
     <div class="top-bg mat-accent-bg"></div>
@@ -8,28 +8,28 @@
     <div class="center">
 
         <!-- HEADER -->
-        <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+        <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-around center">
 
             <!-- APP TITLE -->
             <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
                 <mat-icon class="logo-icon mr-16" *antIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">shopping_basket</mat-icon>
-                <span class="logo-text h1" *antIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Products</span>
+                <span class="logo-text h1" *antIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Articles</span>
             </div>
             <!-- / APP TITLE -->
 
             <!-- SEARCH -->
-            <div class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+            <div *hidden class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
                 <label for="search" class="mr-8">
                     <mat-icon class="secondary-text">search</mat-icon>
                 </label>
                 <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
-                    <input id="search" matInput #filter (keyup)="applyFilter($event)" placeholder="Search">
+                    <input id="search" matInput #filter  placeholder="Search">
                 </mat-form-field>
             </div>
             <!-- / SEARCH -->
 
             <button mat-raised-button class="add-article-button mat-white-bg my-12 mt-sm-0">
-                <span>ADD NEW PRODUCT</span>
+                <span>ADD NEW ARTICLE</span>
             </button>
 
         </div>
@@ -45,7 +45,7 @@
                 <ng-container matColumnDef="id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
                     <mat-cell *matCellDef="let article">
-                        <p class="text-truncate">{{article.Id}}</p>
+                        <p class="text-truncate">{{article.id}}</p>
                     </mat-cell>
                 </ng-container>
 
@@ -54,7 +54,7 @@
                 <ng-container matColumnDef="title">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
                     <mat-cell *matCellDef="let article">
-                        <p class="text-truncate">{{article.Title}}</p>
+                        <p class="text-truncate">{{article.title}}</p>
                     </mat-cell>
                 </ng-container>
 
@@ -63,7 +63,7 @@
                     <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Section</mat-header-cell>
                     <mat-cell *matCellDef="let article" fxHide fxShow.gt-md>
                         <p class="category text-truncate">
-                            {{article.SectionId}}
+                            {{article.sectionId}}
                         </p>
                     </mat-cell>
                 </ng-container>
@@ -72,8 +72,8 @@
                 <ng-container matColumnDef="allowComments">
                     <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Allow Comments</mat-header-cell>
                     <mat-cell *matCellDef="let article" fxHide fxShow.gt-xs>
-                        <mat-icon *ngIf="article.AllowComments" class="active-icon mat-green-600-bg s-16">check</mat-icon>
-                        <mat-icon *ngIf="!article.AllowComments" class="active-icon mat-red-500-bg s-16">close</mat-icon>
+                        <mat-icon *ngIf="article.allowComments" class="active-icon mat-green-600-bg s-16">check</mat-icon>
+                        <mat-icon *ngIf="!article.allowComments" class="active-icon mat-red-500-bg s-16">close</mat-icon>
                     </mat-cell>
                 </ng-container>
 
@@ -81,8 +81,8 @@
                 <ng-container matColumnDef="allowAnonymousComments">
                     <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Allow Anonymous Comments</mat-header-cell>
                     <mat-cell *matCellDef="let article" fxHide fxShow.gt-xs>
-                        <mat-icon *ngIf="article.AllowAnonymousComments" class="active-icon mat-green-600-bg s-16">check</mat-icon>
-                        <mat-icon *ngIf="!article.AllowAnonymousComments" class="active-icon mat-red-500-bg s-16">close</mat-icon>
+                        <mat-icon *ngIf="article.allowAnonymousComments" class="active-icon mat-green-600-bg s-16">check</mat-icon>
+                        <mat-icon *ngIf="!article.allowAnonymousComments" class="active-icon mat-red-500-bg s-16">close</mat-icon>
                     </mat-cell>
                 </ng-container>
 
@@ -91,10 +91,10 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Approved Comments</mat-header-cell>
                     <mat-cell *matCellDef="let article" fxHide fxShow.gt-sm>
 
-                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-red-500-bg':article.ApprovedCommentCount <= 5, 'mat-amber-500-bg':article.ApprovedCommentCount > 5 && article.ApprovedCommentCount <= 25,'mat-green-600-bg':article.ApprovedCommentCount > 25}">
+                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-red-500-bg':article.approvedCommentCount <= 5, 'mat-amber-500-bg':article.approvedCommentCount > 5 && article.ApprovedCommentCount <= 25,'mat-green-600-bg':article.approvedCommentCount > 25}">
                         </span>
                         <span>
-                            {{article.ApprovedCommentCount}}
+                            {{article.approvedCommentCount}}
                         </span>
 
                     </mat-cell>
@@ -105,10 +105,10 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Not Approved Comments</mat-header-cell>
                     <mat-cell *matCellDef="let article" fxHide fxShow.gt-sm>
 
-                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-green-500-bg':article.NotApprovedCommentCount <= 5, 'mat-amber-500-bg':article.NotApprovedCommentCount > 5 && article.ApprovedCommentCount <= 25,'mat-red-600-bg':article.NotApprovedCommentCount > 25}">
+                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-green-500-bg':article.notApprovedCommentCount <= 5, 'mat-amber-500-bg':article.notApprovedCommentCount > 5 && article.ApprovedCommentCount <= 25,'mat-red-600-bg':article.notApprovedCommentCount > 25}">
                         </span>
                         <span>
-                            {{article.NotApprovedCommentCount}}
+                            {{article.notApprovedCommentCount}}
                         </span>
 
                     </mat-cell>
@@ -119,10 +119,10 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Views</mat-header-cell>
                     <mat-cell *matCellDef="let article" fxHide fxShow.gt-sm>
 
-                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-green-500-bg':article.Views <= 5, 'mat-amber-500-bg':article.Views > 5 && article.ApprovedCommentCount <= 25,'mat-red-600-bg':article.Views > 25}">
+                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-green-500-bg':article.views <= 5, 'mat-amber-500-bg':article.views > 5 && article.views <= 25,'mat-red-600-bg':article.views > 25}">
                         </span>
                         <span>
-                            {{article.Views}}
+                            {{article.views}}
                         </span>
 
                     </mat-cell>
@@ -137,7 +137,7 @@
 
             </mat-table>
 
-            <mat-paginator #paginator [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+            <mat-paginator #paginator [length]="dataSource.currentLength" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
                 <!-- <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"> -->
             </mat-paginator>
 
