@@ -60,6 +60,8 @@ export class ArticleHomeComponent implements OnInit, AfterViewInit {
       0,
       this.paginator.pageSize
     );
+
+    this.dataSource.Data$.subscribe(resp => console.log(resp));
   }
 
   // public applyFilter(event$: Observable<any>) {

@@ -21,6 +21,11 @@ export class BaseDataSource<T extends BaseEntity<any>> extends DataSource<T> {
       this.currentLength = resp.length;
     });
   }
+
+  get Data$(): Observable<T[]> {
+    return this.data$.asObservable();
+  }
+
   connect(collectionViewer: CollectionViewer): Observable<T[]> {
     return this.data$.asObservable();
   }
