@@ -11,7 +11,8 @@ import {
   MatPaginator,
   MatSort,
   MatTableDataSource,
-  MatInput
+  MatInput,
+  MatDialog
 } from '@angular/material';
 import { Observable, BehaviorSubject, from, merge } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
@@ -20,6 +21,8 @@ import { Article } from '../../../core/models/article.model';
 import { ArticleService } from '../../../core/services/http/article.service';
 import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { BaseDataSource } from '../../../shared/utils/base-data-source';
+import { CreateUpdateArticleComponent } from '../dummy/create-update-article.component';
+import { BaseTableContainerComponent } from '../../../shared/components/base-table-container.component';
 
 @Component({
   selector: 'ant-article-home',
@@ -28,72 +31,54 @@ import { BaseDataSource } from '../../../shared/utils/base-data-source';
   animations: [antAnimations]
   // encapsulation: ViewEncapsulation.None
 })
-export class ArticleHomeComponent implements OnInit, AfterViewInit {
-  dataSource: BaseDataSource<Article>;
+export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
+  implements OnInit, AfterViewInit {
+  protected dialogRef: any;
 
-  displayedColumns = [
-    'id',
-    'title',
-    // 'section',
-    'allowComments',
-    'allowAnonymousComments',
-    'approvedCommentCount',
-    'notApprovedCommentCount',
-    'views'
+  constructor(
+    private articleService: ArticleService,
+    protected dialog: MatDialog
+  ) {
+    super(
+      [
+        'id',
+        'title', // 'section',
+        'allowComments',
+        'allowAnonymousComments',
+        'approvedCommentCount',
+        'notApprovedCommentCount',
+        'views'
+      ],
+      articleService
+    );
     // 'amountOfComments'
-  ];
-
-  @ViewChild(MatPaginator)
-  paginator: MatPaginator;
-
-  @ViewChild(MatSort)
-  sort: MatSort;
-
-  constructor(protected service: ArticleService) {}
+  }
 
   ngOnInit() {
-    this.dataSource = new BaseDataSource<Article>(this.service);
-    this.dataSource.loadData(
-      'id',
-      '',
-      this.sort.direction,
-      0,
-      this.paginator.pageSize
-    );
+    super.ngOnInit();
 
     this.dataSource.Data$.subscribe(resp => console.log(resp));
   }
 
-  // public applyFilter(event$: Observable<any>) {
-  //   event$
-  //     .pipe(
-  //       debounceTime(150),
-  //       distinctUntilChanged()
-  //     )
-  //     .subscribe(resp => {
-  //       // if (!this.dataSource) {
-  //       //   return;
-  //       // }
-  //       // this.dataSource.filter = resp.target.value;
-  //       console.log(resp.target.value);
-  //     });
-  // }
-
   ngAfterViewInit(): void {
-    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
-
-    merge(this.sort.sortChange, this.paginator.page).subscribe(() =>
-      this.loadPage()
-    );
+    super.ngAfterViewInit();
   }
 
-  loadPage() {
-    this.dataSource.loadData(
-      this.sort.active,
-      '',
-      this.sort.direction,
-      this.paginator.pageIndex,
-      this.paginator.pageSize
-    );
+  openCreateDialog(articleToEdit?: Article) {
+    this.dialogRef = this.dialog.open(CreateUpdateArticleComponent, {
+      panelClass: 'article-form-dialog',
+      data: articleToEdit ? articleToEdit : null
+    });
+
+    this.dialogRef.afterClosed().subscribe((response: Article) => {
+      if (!response) {
+        return;
+      }
+      if (!articleToEdit) {
+        this.service.create(response).subscribe();
+      } else {
+        this.service.update(response.id, response).subscribe();
+      }
+    });
   }
 }

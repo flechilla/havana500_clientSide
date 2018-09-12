@@ -43,6 +43,10 @@
       justify-content: center;
     }
 
+    .mat-cell:first-of-type {
+      padding-left: 12px;
+    }
+
     .mat-header-cell {
       display: flex;
       justify-content: center;
