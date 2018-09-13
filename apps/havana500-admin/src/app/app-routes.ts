@@ -8,5 +8,9 @@ export const appRoutes: Routes = [
     path: 'dashboard',
     loadChildren: './features/dashboard/dashboard.module#DashboardModule'
   },
+  {
+    path: 'articles',
+    loadChildren: './features/article/article.module#ArticleModule'
+  },
   { path: '**', redirectTo: 'dashboard' }
 ];

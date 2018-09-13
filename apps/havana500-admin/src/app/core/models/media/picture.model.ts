@@ -7,7 +7,7 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Picture
    */
-  MimeType: string;
+  mimeType: string;
 
   /**
    *Gets or sets the picture width
@@ -15,7 +15,7 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    * @type {number}
    * @memberof Picture
    */
-  Width: number;
+  width: number;
 
   /**
    *Gets or sets the picture height
@@ -23,7 +23,7 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    * @type {number}
    * @memberof Picture
    */
-  Height: number;
+  height: number;
 
   /**
    * Gets or sets the SEO friendly filename of the picture
@@ -31,7 +31,7 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Picture
    */
-  SeoFileName: string;
+  seoFileName: string;
 
   /**
    *Gets or sets a value indicating whether the picture is new
@@ -39,7 +39,7 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    * @type {boolean}
    * @memberof Picture
    */
-  IsNew: boolean;
+  isNew: boolean;
 
   /**
    *Gets or sets the value that represent the type of the picture.
@@ -47,7 +47,7 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    * @type {PictureType}
    * @memberof Picture
    */
-  PictureType: PictureType;
+  pictureType: PictureType;
 
   /**
    * Gets or sets the media storage PK
@@ -55,7 +55,7 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    * @type {number}
    * @memberof Picture
    */
-  MediaStorageId: number;
+  mediaStorageId: number;
 
   /**
    *Gets or sets the value that indicate the full path
@@ -64,7 +64,7 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Picture
    */
-  FullPath: string;
+  fullPath: string;
 
   /**
    *Gets or sets the value that indicates the extension
@@ -73,5 +73,5 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Picture
    */
-  PictureExtension: string;
+  pictureExtension: string;
 }

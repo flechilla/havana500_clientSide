@@ -34,14 +34,14 @@
     }
 
     /* General styles */
-    fuse-root {
+    ant-root {
 
-        fuse-navbar-vertical,
-        fuse-navbar-horizontal,
-        fuse-toolbar,
-        fuse-footer,
-        fuse-quick-panel,
-        fuse-theme-options,
+        ant-navbar-vertical,
+        ant-navbar-horizontal,
+        ant-toolbar,
+        ant-footer,
+        ant-quick-panel,
+        ant-theme-options,
         .ps > .ps__rail-x,
         .ps > .ps__rail-y {
             display: none !important;

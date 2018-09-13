@@ -7,7 +7,7 @@ export interface UserContent extends TrackableEntity<number> {
    * @type {string}
    * @memberof UserContent
    */
-  IpAddress: string;
+  ipAddress: string;
 
   /**
    * Gets or sets a value indicating whether the content is approved
@@ -15,5 +15,21 @@ export interface UserContent extends TrackableEntity<number> {
    * @type {boolean}
    * @memberof UserContent
    */
-  IsApproved: boolean;
+  isApproved: boolean;
+
+  /**
+   * Gets or sets the name of the User
+   *
+   * @type {string}
+   * @memberof UserContent
+   */
+  userName: string;
+
+  /**
+   * Gets or sets the email of the User
+   *
+   * @type {string}
+   * @memberof UserContent
+   */
+  userEmail: string;
 }

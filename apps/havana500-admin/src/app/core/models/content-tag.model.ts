@@ -15,7 +15,7 @@ export interface ContentTag extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof ContentTag
    */
-  Name: string;
+  name: string;
 
   /**
    * Gets or sets the value that indicates the amount
@@ -24,5 +24,5 @@ export interface ContentTag extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof ContentTag
    */
-  AmountOfContent: string;
+  amountOfContent: string;
 }

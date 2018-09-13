@@ -1,4 +1,5 @@
 import { AuditableAndTrackableEntity } from '../../shared/models/auditable-trackable-entity.model';
+import { ContentTag } from './content-tag.model';
 
 /**
  * Represents an article of the app.
@@ -17,7 +18,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {number}
    * @memberof Article
    */
-  SectionId: number;
+  sectionId: number;
 
   /**
    * Gets or sets the value that represent the
@@ -26,7 +27,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Article
    */
-  Title: string;
+  title: string;
 
   /**
    * Gets or sets the value that represents
@@ -35,7 +36,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Article
    */
-  Body: string;
+  body: string;
 
   /**
    * Gets or sets a value indicating whether
@@ -44,7 +45,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {boolean}
    * @memberof Article
    */
-  AllowComments: boolean;
+  allowComments: boolean;
 
   /**
    * Gets or sets a value indicating whether
@@ -54,7 +55,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {boolean}
    * @memberof Article
    */
-  AllowAnonymousComments: boolean;
+  allowAnonymousComments: boolean;
 
   /**
    * Gets or sets the total number of approved comments
@@ -62,7 +63,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {number}
    * @memberof Article
    */
-  ApprovedCommentCount: number;
+  approvedCommentCount: number;
 
   /**
    * Gets or sets the total number of not approved comments
@@ -70,7 +71,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {number}
    * @memberof Article
    */
-  NotApprovedCommentCount: number;
+  notApprovedCommentCount: number;
 
   /**
    * Gets or sets the Article start date and time
@@ -78,7 +79,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {Date}
    * @memberof Article
    */
-  StartDateUtc?: Date;
+  startDateUtc?: Date;
 
   /**
    * Gets or sets the Article end date and time
@@ -86,7 +87,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {Date}
    * @memberof Article
    */
-  EndDateUtc?: Date;
+  endDateUtc?: Date;
 
   /**
    * Gets or sets the meta keywords
@@ -94,7 +95,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Article
    */
-  MetaKeywords: string;
+  metaKeywords: string;
 
   /**
    * Gets or sets the meta description
@@ -102,7 +103,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Article
    */
-  MetaDescription: string;
+  metaDescription: string;
 
   /**
    * Gets or sets the meta title
@@ -110,7 +111,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Article
    */
-  MetaTitle: string;
+  metaTitle: string;
 
   /**
    * Gets or sets the value that indicates the amount
@@ -119,7 +120,7 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {number}
    * @memberof Article
    */
-  Views: number;
+  views: number;
 
   /**
    * Gets or sets the value that indicates the amount
@@ -129,5 +130,42 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {number}
    * @memberof Article
    */
-  AmountOfComments: number;
+  amountOfComments: number;
+
+  /**
+   * Gets or sets the value that indicates the weight for the current
+   * Article.!-- This is used for the algorithm to sort the articles.
+   *
+   * @type {number}
+   * @memberof Article
+   */
+  weight: number;
+
+  /**
+   *Gets or sets the value that indicate the initial
+   *weight for the current entity. This value is assigned
+   *by the editor of the article depending on its importance.
+   *
+   * @type {number}
+   * @memberof Article
+   */
+  editorWeight: number;
+
+  /**
+   *Gets or sets the value that indicates
+   *the amount of minutes that takes
+   *to read the article.
+   *
+   * @type {number}
+   * @memberof Article
+   */
+  readingTime: number;
+
+  /**
+   *Gets or sets the Article tags
+   *
+   * @type {ContentTag[]}
+   * @memberof Article
+   */
+  tags: ContentTag[];
 }

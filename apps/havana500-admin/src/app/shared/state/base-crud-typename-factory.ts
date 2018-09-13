@@ -18,15 +18,15 @@ export class BaseCrudActionTypeNameFactory {
   }
 
   get GetById(): string {
-    return `[${this.typeName}] Get By Id`;
+    return `[${this.typeName}] Get By id`;
   }
 
   get GetByIdSuccess(): string {
-    return `[${this.typeName}] Get By Id Success`;
+    return `[${this.typeName}] Get By id Success`;
   }
 
   get GetByIdFailed(): string {
-    return `[${this.typeName}] Get By Id Failed`;
+    return `[${this.typeName}] Get By id Failed`;
   }
 
   get GetAll(): string {

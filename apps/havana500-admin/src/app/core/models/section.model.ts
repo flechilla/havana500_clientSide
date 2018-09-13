@@ -17,7 +17,7 @@ export interface Section extends AuditableAndTrackableEntity<number> {
    * @type {number}
    * @memberof Section
    */
-  ParentSectionId: number;
+  parentSectionId: number;
 
   /**
    *The name of the section
@@ -25,7 +25,16 @@ export interface Section extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Section
    */
-  Name: string;
+  name: string;
+
+  /**
+   *Gets or sets the Description of the current Section.
+   *This is an optional data.
+   *
+   * @type {string}
+   * @memberof Section
+   */
+  description: string;
 
   /**
    *If true indicate that this instance is a root,
@@ -35,7 +44,7 @@ export interface Section extends AuditableAndTrackableEntity<number> {
    * @type {boolean}
    * @memberof Section
    */
-  IsMainSection: boolean;
+  isMainSection: boolean;
 
   /**
    *Gets or sets the value that indicates the
@@ -45,7 +54,7 @@ export interface Section extends AuditableAndTrackableEntity<number> {
    * @type {number}
    * @memberof Section
    */
-  Views: number;
+  views: number;
 
   /**
    *Gets or sets the value that indicates the
@@ -54,5 +63,14 @@ export interface Section extends AuditableAndTrackableEntity<number> {
    * @type {number}
    * @memberof Section
    */
-  AmountOfContent: number;
+  amountOfComments: number;
+
+  /**
+   *Gets or sets the value that indicates the
+   *amount of articles that the section has.
+   *
+   * @type {number}
+   * @memberof Section
+   */
+  amountOfArticles: number;
 }

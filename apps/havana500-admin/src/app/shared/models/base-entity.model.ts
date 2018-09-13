@@ -1,3 +1,3 @@
 export abstract class BaseEntity<Key> {
-  Id: Key;
+  id: Key;
 }

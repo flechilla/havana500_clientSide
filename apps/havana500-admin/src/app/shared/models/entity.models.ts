@@ -1,3 +1,3 @@
 export interface Entity<Key> {
-  Id: Key;
+  id: Key;
 }

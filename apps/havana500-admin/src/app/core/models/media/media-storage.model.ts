@@ -8,5 +8,5 @@ import { Entity } from './../../../shared/models/entity.models';
  * @extends {Entity<number>}
  */
 export interface MediaStorage extends Entity<number> {
-  Data: BinaryType;
+  data: BinaryType;
 }

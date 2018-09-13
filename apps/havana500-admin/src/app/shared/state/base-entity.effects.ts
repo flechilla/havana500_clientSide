@@ -25,8 +25,8 @@ export abstract class BaseEntityEffects<T extends BaseEntity<any>> {
       }),
       mergeMap(payload => {
         if (payload) {
-          return this.baseService.get(payload.id, payload.query).pipe(
-            map(resp => {
+          return this.baseService.get(payload.id).pipe(
+            map((resp: T) => {
               return new crudActions.GetByIdSuccessAction<T>(this.type, resp);
             }),
             catchError(err => {
@@ -49,7 +49,7 @@ export abstract class BaseEntityEffects<T extends BaseEntity<any>> {
         return this.baseService.create(payload.entityToCreate).pipe(
           mergeMap((entityCreated: T) => [
             new crudActions.CreateSuccessAction<T>(this.type, {
-              oldId: payload.entityToCreate.Id,
+              oldId: payload.entityToCreate.id,
               createdEntity: entityCreated
             })
           ]),
@@ -58,7 +58,7 @@ export abstract class BaseEntityEffects<T extends BaseEntity<any>> {
             return of(
               new crudActions.CreateFailAction(
                 this.type,
-                payload.entityToCreate.Id
+                payload.entityToCreate.id
               )
             );
           })
@@ -76,7 +76,7 @@ export abstract class BaseEntityEffects<T extends BaseEntity<any>> {
       map((action: crudActions.UpdateAction<T>) => action.payload),
       concatMap(payload => {
         return this.baseService
-          .update(payload.newEntity.Id, payload.newEntity)
+          .update(payload.newEntity.id, payload.newEntity)
           .pipe(
             map(
               updatedEntity =>
@@ -100,7 +100,7 @@ export abstract class BaseEntityEffects<T extends BaseEntity<any>> {
       ofType(types.Delete),
       map((action: crudActions.DeleteAction<T>) => action.payload),
       mergeMap(payload => {
-        return this.baseService.delete(payload.entityToDelete.Id).pipe(
+        return this.baseService.delete(payload.entityToDelete.id).pipe(
           mergeMap(() => [new crudActions.DeleteSuccessAction(this.type)]),
           catchError(err => {
             return of(

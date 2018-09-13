@@ -7,7 +7,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { KeysPipe } from './pipes/keys.pipe';
 import { AntWidgetToggleDirective } from './components/widget/widget-toggle.directive';
 import { AntWidgetComponent } from './components/widget/widget.component';
-import { IfOnDomDirective } from './directives/fuse-if-on-dom/if-on-dom.directive';
+import { IfOnDomDirective } from './directives/ant-if-on-dom/if-on-dom.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
