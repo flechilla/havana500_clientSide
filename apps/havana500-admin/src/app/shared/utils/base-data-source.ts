@@ -6,6 +6,7 @@ import { BaseCrudService } from '../services/base-crud.service';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { MatSort, MatPaginator } from '@angular/material';
+import { PaginationResult } from '../models/pagination-result.model';
 
 @Injectable()
 export class BaseDataSource<T extends BaseEntity<any>> extends DataSource<T> {
@@ -17,10 +18,6 @@ export class BaseDataSource<T extends BaseEntity<any>> extends DataSource<T> {
     super();
 
     this.data$ = new BehaviorSubject([]);
-
-    this.data$.subscribe(resp => {
-      this.currentLength = resp.length;
-    });
   }
 
   get Data$(): Observable<T[]> {
@@ -35,7 +32,7 @@ export class BaseDataSource<T extends BaseEntity<any>> extends DataSource<T> {
   }
 
   loadData(
-    columnName: string,
+    columnName: string = 'id',
     filter = '',
     sortDirection = 'asc',
     pageIndex = 0,
@@ -43,7 +40,10 @@ export class BaseDataSource<T extends BaseEntity<any>> extends DataSource<T> {
   ) {
     this.service
       .getWithPagAndSort(pageIndex, pageSize, columnName, sortDirection)
-      .pipe(catchError(() => of([])))
-      .subscribe((entities: T[]) => this.data$.next(entities));
+      .pipe(catchError(() => of({ entities: [], length: 0 })))
+      .subscribe((result: PaginationResult<T>) => {
+        this.data$.next(result.entities);
+        this.currentLength = result.length;
+      });
   }
 }
