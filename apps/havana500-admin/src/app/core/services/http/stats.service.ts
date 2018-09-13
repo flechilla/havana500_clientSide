@@ -1,5 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment.prod';
+import { catchError } from 'rxjs/operators';
+import { BaseCrudService } from '../../../shared/services/base-crud.service';
+
+
 
 import {
   ActivatedRouteSnapshot,
@@ -11,16 +15,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class StatsService implements OnInit {
-  private statsUrl = environment.apiUrl + 'stats';
-    
-  
+export class StatsService extends BaseCrudService<number> { 
 
-    constructor(private http: HttpClient){
-    }
-    ngOnInit(){}
+  constructor(private httpClient: HttpClient) {
+    super(environment.apiUrl + 'stats', httpClient);
+  }
 
     getArticleCount(amountOfDays: number) : Observable<number> {
-        return  this.http.get<number>(`${this.statsUrl}/GetTotalNewArticles/?lastDays=${amountOfDays}`);      
+        return  this.http.get<number>(`${this.url}/GetTotalNewArticles/?lastDays=${amountOfDays}`)
+            .pipe(catchError(this.handleError));      
       }
 }
