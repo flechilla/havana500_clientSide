@@ -31,6 +31,22 @@
     .toolbar-bottom {
       height: auto;
     }
+
+    .article-field__size-md {
+      max-width: 10rem;
+    }
+
+    .article-field__size-lg {
+      max-width: 15rem;
+    }
+
+    .article-field__size-xl {
+      max-width: 20rem;
+    }
+
+    .mat-slide-toggle-content {
+      white-space: initial;
+    }
   }
 
   .dialog-content-wrapper {
