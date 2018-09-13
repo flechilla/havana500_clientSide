@@ -23,7 +23,7 @@ export class ProjectsDashboardService implements Resolve<any> {
   ];
 
   _widgets = {
-    widget1: {
+    articlesWidget: {
       ranges: {
         LW: 'Last Week',
         LM: 'Last Month',
@@ -38,29 +38,42 @@ export class ProjectsDashboardService implements Resolve<any> {
           H: 0
         },
         extra: {
-          label: 'Completed',
+          label: 'Activos',
           count: {
-            DY: 6,
-            DT: 7,
-            DTM: '-'
+            LW: 6,
+            LM: 7,
+            H: '-'
           }
         }
       },
       detail:
-        'You can show some detailed information about this widget in here.'
+        'Muesta la cantidad total de Arttículos en el sistema. Los activos son aquellos que su fecha de publicación es anterior a la fecha actual.'
     },
-    widget2: {
-      title: 'Overdue',
+    commentsWidget: {
+      ranges: {
+        LW: 'Last Week',
+        LM: 'Last Month',
+        H: 'Historical'
+      },
+      currentRange: 'LW',
       data: {
-        label: 'TASKS',
-        count: 4,
+        label: 'Total de Comentarios',
+        count: {
+          LW: 0,
+          LM: 0,
+          H: 0
+        },
         extra: {
-          label: "Yesterday's overdue",
-          count: 2
+          label: 'Activos',
+          count: {
+            LW: 6,
+            LM: 7,
+            H: '-'
+          }
         }
       },
       detail:
-        'You can show some detailed information about this widget in here.'
+        'Muesta la cantidad total de Arttículos en el sistema. Los activos son aquellos que su fecha de publicación es anterior a la fecha actual.'
     },
     widget3: {
       title: 'Issues',

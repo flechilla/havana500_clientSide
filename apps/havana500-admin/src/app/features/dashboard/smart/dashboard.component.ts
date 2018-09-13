@@ -135,12 +135,30 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {//TODO: get this values just when the user changes hte range selection
+    //articles widget
     this.statsService.getArticleCount(7).
-      subscribe(r=>this.widgets.widget1.data.count.LW = r);
+      subscribe(r=>this.widgets.articlesWidget.data.count.LW = r);
     this.statsService.getArticleCount(31).
-      subscribe(r=>this.widgets.widget1.data.count.LM = r);
+      subscribe(r=>this.widgets.articlesWidget.data.count.LM = r);
       this.statsService.getArticleCount(1000000).
-      subscribe(r=>this.widgets.widget1.data.count.H = r);
+      subscribe(r=>this.widgets.articlesWidget.data.count.H = r);
+
+      this.statsService.getActiveArticlesCount(7).
+      subscribe(r=>this.widgets.articlesWidget.data.extra.count.LW = r);
+    this.statsService.getActiveArticlesCount(31).
+      subscribe(r=>this.widgets.articlesWidget.data.extra.count.LM = r);
+      this.statsService.getActiveArticlesCount(1000000).
+      subscribe(r=>this.widgets.articlesWidget.data.extra.count.H = r);
+
+      //comments widget
+      this.statsService.getCommentsCount(7).
+      subscribe(r=>this.widgets.commentsWidget.data.count.LW = r);
+    this.statsService.getCommentsCount(31).
+      subscribe(r=>this.widgets.commentsWidget.data.count.LM = r);
+      this.statsService.getCommentsCount(1000000).
+      subscribe(r=>this.widgets.commentsWidget.data.count.H = r);
+
+ 
   }
 
   ngOnDestroy() {}
