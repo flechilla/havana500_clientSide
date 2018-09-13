@@ -1,4 +1,5 @@
 import { AuditableAndTrackableEntity } from '../../shared/models/auditable-trackable-entity.model';
+import { ContentTag } from './content-tag.model';
 
 /**
  * Represents an article of the app.
@@ -159,4 +160,12 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @memberof Article
    */
   readingTime: number;
+
+  /**
+   *Gets or sets the Article tags
+   *
+   * @type {ContentTag[]}
+   * @memberof Article
+   */
+  tags: ContentTag[];
 }
