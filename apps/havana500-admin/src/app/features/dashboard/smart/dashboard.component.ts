@@ -134,24 +134,8 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
     }, 1000);
   }
 
-  ngOnInit() {//TODO: get this values just when the user changes hte range selection
-    //articles widget
-    this.statsService.getArticleCount(7).
-      subscribe(r=>this.widgets.articlesWidget.data.count.LW = r);
-    this.statsService.getArticleCount(31).
-      subscribe(r=>this.widgets.articlesWidget.data.count.LM = r);
-      this.statsService.getArticleCount(1000000).
-      subscribe(r=>this.widgets.articlesWidget.data.count.H = r);
-
-      this.statsService.getActiveArticlesCount(7).
-      subscribe(r=>this.widgets.articlesWidget.data.extra.count.LW = r);
-    this.statsService.getActiveArticlesCount(31).
-      subscribe(r=>this.widgets.articlesWidget.data.extra.count.LM = r);
-      this.statsService.getActiveArticlesCount(1000000).
-      subscribe(r=>this.widgets.articlesWidget.data.extra.count.H = r);
-
-      //comments widget
-      this.statsService.getCommentsCount(7).
+  setCommentWidget(): void {
+    this.statsService.getCommentsCount(7).
       subscribe(r=>this.widgets.commentsWidget.data.count.LW = r);
     this.statsService.getCommentsCount(31).
       subscribe(r=>this.widgets.commentsWidget.data.count.LM = r);
@@ -171,8 +155,27 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
       subscribe(r=>this.widgets.commentsWidget.data.extra.notAproved.count.LM = r);
       this.statsService.getNotApprovedCommentsCount(1000000).
       subscribe(r=>this.widgets.commentsWidget.data.extra.notAproved.count.H = r);
+  }
 
- 
+  setArticlesWdiget(): void{
+    this.statsService.getArticleCount(7).
+    subscribe(r=>this.widgets.articlesWidget.data.count.LW = r);
+  this.statsService.getArticleCount(31).
+    subscribe(r=>this.widgets.articlesWidget.data.count.LM = r);
+    this.statsService.getArticleCount(1000000).
+    subscribe(r=>this.widgets.articlesWidget.data.count.H = r);
+
+    this.statsService.getActiveArticlesCount(7).
+    subscribe(r=>this.widgets.articlesWidget.data.extra.count.LW = r);
+  this.statsService.getActiveArticlesCount(31).
+    subscribe(r=>this.widgets.articlesWidget.data.extra.count.LM = r);
+    this.statsService.getActiveArticlesCount(1000000).
+    subscribe(r=>this.widgets.articlesWidget.data.extra.count.H = r);
+  }
+
+  ngOnInit() {//TODO: get this values just when the user changes hte range selection
+      this.setArticlesWdiget();
+      this.setCommentWidget(); 
   }
 
   ngOnDestroy() {}
