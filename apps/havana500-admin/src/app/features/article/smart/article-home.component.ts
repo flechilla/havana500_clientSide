@@ -23,6 +23,9 @@ import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { BaseDataSource } from '../../../shared/utils/base-data-source';
 import { CreateUpdateArticleComponent } from '../dummy/create-update-article.component';
 import { BaseTableContainerComponent } from '../../../shared/components/base-table-container.component';
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { SectionService } from '../../../core/services/http/section.service';
+import { Section } from '../../../core/models/section.model';
 
 @Component({
   selector: 'ant-article-home',
@@ -35,8 +38,11 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
   implements OnInit, AfterViewInit {
   protected dialogRef: any;
 
+  private sections: Section[];
+
   constructor(
     private articleService: ArticleService,
+    private sectionsService: SectionService,
     protected dialog: MatDialog
   ) {
     super(
@@ -57,7 +63,9 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
   ngOnInit() {
     super.ngOnInit();
 
-    this.dataSource.Data$.subscribe(resp => console.log(resp));
+    this.sectionsService.getAll().subscribe(resp => {
+      this.sections = resp;
+    });
   }
 
   ngAfterViewInit(): void {
@@ -67,7 +75,10 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
   openCreateDialog(articleToEdit?: Article) {
     this.dialogRef = this.dialog.open(CreateUpdateArticleComponent, {
       panelClass: 'article-form-dialog',
-      data: articleToEdit ? articleToEdit : null
+      data: {
+        article: articleToEdit ? articleToEdit : null,
+        sections: this.sections
+      }
     });
 
     this.dialogRef.afterClosed().subscribe((response: Article) => {
