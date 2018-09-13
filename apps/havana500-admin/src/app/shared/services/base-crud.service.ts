@@ -18,7 +18,9 @@ export class BaseCrudService<T> {
   constructor(public url: string, public http: HttpClient) {}
 
   public getAll(): Observable<T[]> {
-    return this.http.get<T[]>(this.url).pipe(catchError(this.handleError));
+    return this.http
+      .get<T[]>(this.url + '/getAll')
+      .pipe(catchError(this.handleError));
   }
 
   public get(id: any): Observable<T> {
