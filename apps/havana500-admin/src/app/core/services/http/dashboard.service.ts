@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../../environments/environment.prod';
+
 import {
   ActivatedRouteSnapshot,
   Resolve,
@@ -9,36 +11,31 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProjectsDashboardService implements Resolve<any> {
+
+ 
+
+
   //#region MockData
   _projects = [
     {
-      name: 'ACME Corp. Backend App'
-    },
-    {
-      name: 'ACME Corp. Frontend App'
-    },
-    {
-      name: 'Creapond'
-    },
-    {
-      name: 'Withinpixels'
+      name: 'Havana 500'
     }
   ];
 
   _widgets = {
     widget1: {
       ranges: {
-        DY: 'Yesterday',
-        DT: 'Today',
-        DTM: 'Tomorrow'
+        LW: 'Last Week',
+        LM: 'Last Month',
+        H: 'Historical'
       },
-      currentRange: 'DT',
+      currentRange: 'LW',
       data: {
-        label: 'DUE TASKS',
+        label: 'Total de Artículos',
         count: {
-          DY: 21,
-          DT: 25,
-          DTM: 19
+          LW: 0,
+          LM: 0,
+          H: 0
         },
         extra: {
           label: 'Completed',
@@ -2017,6 +2014,8 @@ export class ProjectsDashboardService implements Resolve<any> {
   projects: any[];
   widgets: any;
 
+
+
   constructor(private http: HttpClient) {}
 
   /**
@@ -2049,4 +2048,8 @@ export class ProjectsDashboardService implements Resolve<any> {
       resolve(this._widgets);
     });
   }
+
+
+
+ 
 }
