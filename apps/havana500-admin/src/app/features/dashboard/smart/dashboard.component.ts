@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import * as shape from 'd3-shape';
 import { antAnimations } from '../../../shared/utils/animations';
 import { ProjectsDashboardService } from '../../../core/services/http/dashboard.service';
+import { StatsService } from '../../core/services/http/stats.service';
 
 @Component({
   selector: 'ant-dashboard',
@@ -24,7 +25,7 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
 
   dateNow = Date.now();
 
-  constructor(private projectsDashboardService: ProjectsDashboardService) {
+  constructor(private projectsDashboardService: ProjectsDashboardService, private statsService : StatsService) {
     this.projects = this.projectsDashboardService.projects;
 
     this.selectedProject = this.projects[0];
@@ -133,7 +134,14 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
     }, 1000);
   }
 
-  ngOnInit() {}
+  ngOnInit() {//TODO: get this values just when the user changes hte range selection
+    this.statsService.getArticleCount(7).
+      subscribe(r=>this.widgets.widget1.data.count.LW = r);
+    this.statsService.getArticleCount(31).
+      subscribe(r=>this.widgets.widget1.data.count.LM = r);
+      this.statsService.getArticleCount(1000000).
+      subscribe(r=>this.widgets.widget1.data.count.H = r);
+  }
 
   ngOnDestroy() {}
 }
