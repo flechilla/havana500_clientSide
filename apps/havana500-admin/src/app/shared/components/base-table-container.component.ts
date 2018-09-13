@@ -6,6 +6,8 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { BaseDataSource } from '../utils/base-data-source';
 import { Article } from '../../core/models/article.model';
 import { merge } from 'rxjs';
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { BaseResolverService } from '../services/base-resolver.service';
 
 export abstract class BaseTableContainerComponent<T extends BaseEntity<any>>
   implements OnInit, AfterViewInit {
@@ -23,11 +25,12 @@ export abstract class BaseTableContainerComponent<T extends BaseEntity<any>>
 
   ngOnInit() {
     this.dataSource = new BaseDataSource<T>(this.service);
+
     this.dataSource.loadData(
       'id',
       '',
       this.sort.direction,
-      0,
+      this.paginator.pageIndex,
       this.paginator.pageSize
     );
   }

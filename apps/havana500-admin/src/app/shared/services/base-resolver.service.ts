@@ -13,6 +13,8 @@ import { HttpClient } from '@angular/common/http';
 export class BaseResolverService<T extends BaseEntity<any>>
   extends BaseCrudService<T>
   implements Resolve<T[]> {
+  public initialData: T[] = [];
+
   constructor(public url: string, public http: HttpClient) {
     super(url, http);
   }
@@ -20,7 +22,9 @@ export class BaseResolverService<T extends BaseEntity<any>>
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<T[]> {
-    return this.getAll();
+  ): Observable<T[]> | any {
+    return this.getWithPagAndSort(0, 10, 'id', 'asc').subscribe(resp => {
+      this.initialData = resp;
+    });
   }
 }

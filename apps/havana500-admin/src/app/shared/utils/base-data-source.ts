@@ -15,6 +15,7 @@ export class BaseDataSource<T extends BaseEntity<any>> extends DataSource<T> {
 
   constructor(protected service: BaseCrudService<T>) {
     super();
+
     this.data$ = new BehaviorSubject([]);
 
     this.data$.subscribe(resp => {
