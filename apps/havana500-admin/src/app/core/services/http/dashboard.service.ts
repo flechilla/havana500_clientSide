@@ -64,11 +64,21 @@ export class ProjectsDashboardService implements Resolve<any> {
           H: 0
         },
         extra: {
-          label: 'Activos',
-          count: {
-            LW: 6,
-            LM: 7,
-            H: '-'
+          aproved: {
+            label: 'Aprovados',
+            count: {
+              LW: 6,
+              LM: 7,
+              H: '-'
+            }
+          },
+          notAproved: {
+            label: 'No Aprovados',
+            count: {
+              LW: 6,
+              LM: 7,
+              H: '-'
+            }
           }
         }
       },

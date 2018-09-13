@@ -158,6 +158,20 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
       this.statsService.getCommentsCount(1000000).
       subscribe(r=>this.widgets.commentsWidget.data.count.H = r);
 
+      this.statsService.getApprovedCommentsCount(7).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.aproved.count.LW = r);
+    this.statsService.getApprovedCommentsCount(31).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.aproved.count.LM = r);
+      this.statsService.getApprovedCommentsCount(1000000).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.aproved.count.H = r);
+
+      this.statsService.getNotApprovedCommentsCount(7).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.notAproved.count.LW = r);
+    this.statsService.getNotApprovedCommentsCount(31).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.notAproved.count.LM = r);
+      this.statsService.getNotApprovedCommentsCount(1000000).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.notAproved.count.H = r);
+
  
   }
 

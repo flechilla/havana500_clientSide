@@ -35,4 +35,13 @@ export class StatsService extends BaseCrudService<number> {
         return  this.http.get<number>(`${this.url}/GetTotalNewComments/?lastDays=${amountOfDays}`)
             .pipe(catchError(this.handleError));      
       }
+
+      getApprovedCommentsCount(amountOfDays: number) : Observable<number> {
+        return  this.http.get<number>(`${this.url}/GetTotalApprovedComments/?lastDays=${amountOfDays}`)
+            .pipe(catchError(this.handleError));      
+      }
+      getNotApprovedCommentsCount(amountOfDays: number) : Observable<number> {
+        return  this.http.get<number>(`${this.url}/GetTotalNotApprovedComments/?lastDays=${amountOfDays}`)
+            .pipe(catchError(this.handleError));      
+      }
 }
