@@ -7,13 +7,12 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Article } from '../../../core/models/article.model';
-import { ArticleService } from '../../../core/services/http/article.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Article } from '../../../../core/models/article.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { antAnimations } from '../../../shared/utils/animations';
-import { Section } from '../../../core/models/section.model';
+import { Section } from '../../../../core/models/section.model';
 import { Observable } from 'rxjs';
+import { antAnimations } from '../../../../shared/utils/animations';
+import { ArticleExtended } from '../../../../core/models/article-extended';
 
 @Component({
   selector: 'ant-create-update-article',
@@ -28,11 +27,13 @@ export class CreateUpdateArticleComponent implements OnInit {
 
   protected sections: Section[];
 
+  protected article: ArticleExtended;
+
   constructor(
     protected fb: FormBuilder,
     protected dialogRef: MatDialogRef<CreateUpdateArticleComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { article: Article; sections: Section[] }
+    public data: { article$: Observable<ArticleExtended>; sections: Section[] }
   ) {}
 
   ngOnInit() {
@@ -45,12 +46,17 @@ export class CreateUpdateArticleComponent implements OnInit {
     }
     this.sections = this.data.sections;
 
-    if (this.data.article) {
+    if (this.data.article$) {
       this.onEdit = true;
     }
 
     if (this.onEdit) {
-      this.form.get('article').patchValue(this.data.article);
+      this.data.article$.subscribe(art => {
+        console.log(art);
+
+        this.form.get('article').patchValue(art);
+        this.article = art;
+      });
     }
   }
 
