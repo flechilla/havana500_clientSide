@@ -1,0 +1,8 @@
+<div class="labels-bar" fxLayout="row wrap" fxLayoutAlign="space-between start">
+    <div class="label" fxLayout="row" *ngFor="let label of article.tags">
+        <span class="label-text">{{label.name}}</span>
+        <button mat-icon-button>
+            <mat-icon class="label-close-icon" aria-label="Close">close</mat-icon>
+        </button>
+    </div>
+</div>
