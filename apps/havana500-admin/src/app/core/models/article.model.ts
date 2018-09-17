@@ -160,12 +160,4 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @memberof Article
    */
   readingTime: number;
-
-  /**
-   *Gets or sets the Article tags
-   *
-   * @type {ContentTag[]}
-   * @memberof Article
-   */
-  tags: ContentTag[];
 }
