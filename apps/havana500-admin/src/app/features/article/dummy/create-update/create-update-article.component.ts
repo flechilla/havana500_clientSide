@@ -3,16 +3,25 @@ import {
   OnInit,
   Inject,
   ViewEncapsulation,
-  AfterViewInit
+  AfterViewInit,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 
 import { Article } from '../../../../core/models/article.model';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatMenuTrigger
+} from '@angular/material';
 import { Section } from '../../../../core/models/section.model';
 import { Observable } from 'rxjs';
 import { antAnimations } from '../../../../shared/utils/animations';
 import { ArticleExtended } from '../../../../core/models/article-extended';
+import { ContentTag } from '../../../../core/models/content-tag.model';
+import { ContentTagService } from '../../../../core/services/http/content-tag.service';
+import { AntUtilsService } from '../../../../core/services/ant-utils.service';
 
 @Component({
   selector: 'ant-create-update-article',
@@ -22,6 +31,11 @@ import { ArticleExtended } from '../../../../core/models/article-extended';
   encapsulation: ViewEncapsulation.None
 })
 export class CreateUpdateArticleComponent implements OnInit {
+  @ViewChild('tagMenuTrigger')
+  tagMenu: MatMenuTrigger;
+  @ViewChild('tagNameField')
+  tagNameField: ElementRef;
+
   protected form: FormGroup;
   protected onEdit = false;
 
@@ -33,7 +47,9 @@ export class CreateUpdateArticleComponent implements OnInit {
     protected fb: FormBuilder,
     protected dialogRef: MatDialogRef<CreateUpdateArticleComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { article$: Observable<ArticleExtended>; sections: Section[] }
+    public data: { article$: Observable<ArticleExtended>; sections: Section[] },
+    protected contentTagService: ContentTagService,
+    protected utilsService: AntUtilsService
   ) {}
 
   ngOnInit() {
@@ -82,5 +98,40 @@ export class CreateUpdateArticleComponent implements OnInit {
 
   protected save() {
     this.dialogRef.close(this.form.get('article').value);
+  }
+
+  protected addTag(tagForm: NgForm) {
+    const toCreateTag = tagForm.value;
+    toCreateTag.id = this.utilsService.generateUEId();
+
+    this.article.tags.push(toCreateTag);
+
+    this.contentTagService.create(toCreateTag).subscribe(
+      createdTag => {
+        const indexOfOld = this.article.tags.findIndex(
+          tag => tag.id === toCreateTag.id
+        );
+        this.article.tags.splice(indexOfOld, 1, createdTag);
+      },
+      error => {
+        const indexOfOld = this.article.tags.findIndex(
+          tag => tag === toCreateTag
+        );
+        this.article.tags.splice(indexOfOld, 1);
+      }
+    );
+
+    tagForm.resetForm();
+    this.tagMenu.closeMenu();
+  }
+
+  protected onTagMenuOpened() {
+    this.tagNameField.nativeElement.focus();
+  }
+
+  protected deleteArticleTag(id: any) {
+    const index = this.article.tags.findIndex(tag => tag.id === id);
+    const toDelete = this.article.tags.splice(index, 1);
+    // this.
   }
 }
