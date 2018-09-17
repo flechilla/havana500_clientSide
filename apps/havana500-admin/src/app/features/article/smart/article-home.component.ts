@@ -21,7 +21,7 @@ import { Article } from '../../../core/models/article.model';
 import { ArticleService } from '../../../core/services/http/article.service';
 import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { BaseDataSource } from '../../../shared/utils/base-data-source';
-import { CreateUpdateArticleComponent } from '../dummy/create-update-article.component';
+import { CreateUpdateArticleComponent } from '../dummy/create-update/create-update-article.component';
 import { BaseTableContainerComponent } from '../../../shared/components/base-table-container.component';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { SectionService } from '../../../core/services/http/section.service';
@@ -76,7 +76,9 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
     this.dialogRef = this.dialog.open(CreateUpdateArticleComponent, {
       panelClass: 'article-form-dialog',
       data: {
-        article: articleToEdit ? articleToEdit : null,
+        article$: articleToEdit
+          ? this.articleService.getWithTags(articleToEdit.id)
+          : null,
         sections: this.sections
       }
     });
