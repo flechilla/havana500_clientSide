@@ -18,11 +18,7 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
   selectedProject: any;
 
 
-  trendingArticlesH: Article[] = [];
-  trendingArticlesTW: Article[] = [];
-  trendingArticlesTM: Article[] = [];
-  trendingArticlesT: Article[] = [];
-  
+ 
   widgets: any;
   trendingArticlesWidget: any = {};
   widget6: any = {};
