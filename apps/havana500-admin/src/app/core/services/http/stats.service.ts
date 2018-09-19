@@ -13,6 +13,7 @@ import {
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Article } from '../../models/article.model';
 
 @Injectable()
 export class StatsService extends BaseCrudService<number> { 
@@ -42,6 +43,11 @@ export class StatsService extends BaseCrudService<number> {
       }
       getNotApprovedCommentsCount(amountOfDays: number) : Observable<number> {
         return  this.http.get<number>(`${this.url}/GetTotalNotApprovedComments/?lastDays=${amountOfDays}`)
+            .pipe(catchError(this.handleError));      
+      }
+      
+      getTrendingArticles(amountOfDays: number) : Observable<Article> {
+        return  this.http.get<Article>(`${this.url}/GetTrendingArticles/?lastDays=${amountOfDays}`)
             .pipe(catchError(this.handleError));      
       }
 }
