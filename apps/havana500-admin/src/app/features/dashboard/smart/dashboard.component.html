@@ -220,7 +220,7 @@
                         </ant-widget>
                         <!-- / WIDGET 4 -->
 
-                        <!-- WIDGET 5 -->
+                        <!-- TRENDING ARTICLES WIDGET -->
                         <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="row" fxFlex="100">
 
                             <!-- Front -->
@@ -228,52 +228,52 @@
 
                                 <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
 
-                                    <div fxFlex class="py-8 h3">{{widgets.widget5.title}}</div>
+                                    <div fxFlex class="py-8 h3">{{widgets.trendingArticlesWidget.title}}</div>
 
                                     <div fxFlex="0 1 auto" class="py-8" fxLayout="row">
-                                        <button mat-button class="px-16" *ngFor="let range of widgets.widget5.ranges | keys" (click)="widget5.currentRange = range.key"
-                                            [disabled]="widget5.currentRange == range.key">
+                                        <button mat-button class="px-16" *ngFor="let range of widgets.trendingArticlesWidget.ranges | keys" (click)="trendingArticlesWidget.currentRange = range.key"
+                                            [disabled]="trendingArticlesWidget.currentRange == range.key">
                                             {{range.value}}
                                         </button>
                                     </div>
                                 </div>
 
                                 <div fxLayout="row wrap" fxLayoutAlign="start end">
-                                    <div class="h-420 mb-16" fxLayout="row" fxFlex="100" fxFlex.gt-sm="50">
-                                        <ngx-charts-bar-vertical-stacked *antIfOnDom [scheme]="widget5.scheme" [results]="this.widgets.widget5.mainChart[this.widget5.currentRange]"
-                                            [gradient]="widget5.gradient" [xAxis]="widget5.xAxis" [yAxis]="widget5.yAxis" [legend]="widget5.legend"
-                                            [showXAxisLabel]="widget5.showXAxisLabel" [showYAxisLabel]="widget5.showYAxisLabel"
-                                            [xAxisLabel]="widget5.xAxisLabel" [yAxisLabel]="widget5.yAxisLabel" (select)="widget5.onSelect($event)">
+                                    <div class="h-420 mb-16" fxLayout="row" fxFlex="100" fxFlex.gt-sm="100">
+                                        <ngx-charts-bar-vertical-stacked *antIfOnDom [scheme]="trendingArticlesWidget.scheme" [results]="this.widgets.trendingArticlesWidget.mainChart[this.trendingArticlesWidget.currentRange]"
+                                            [gradient]="trendingArticlesWidget.gradient" [xAxis]="trendingArticlesWidget.xAxis" [yAxis]="trendingArticlesWidget.yAxis" [legend]="trendingArticlesWidget.legend"
+                                            [showXAxisLabel]="trendingArticlesWidget.showXAxisLabel" [showYAxisLabel]="trendingArticlesWidget.showYAxisLabel"
+                                            [xAxisLabel]="trendingArticlesWidget.xAxisLabel" [yAxisLabel]="trendingArticlesWidget.yAxisLabel" (select)="trendingArticlesWidget.onSelect($event)">
                                         </ngx-charts-bar-vertical-stacked>
                                     </div>
 
-                                    <div class="mb-16" fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="row" fxLayout="row wrap">
+                                    <!-- <div class="mb-16" fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="row" fxLayout="row wrap">
 
-                                        <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="center" *ngFor="let widget of widgets.widget5.supporting | keys">
+                                        <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="center" *ngFor="let widget of widgets.trendingArticlesWidget.supporting | keys">
 
                                             <div class="px-24">
                                                 <div class="h4 secondary-text">{{widget.value.label}}</div>
                                                 <div class="mat-display-1 m-0">
-                                                    {{widget.value.count[widget5.currentRange]}}
+                                                    {{widget.value.count[trendingArticlesWidget.currentRange]}}
                                                 </div>
                                             </div>
 
                                             <div class="h-64">
-                                                <ngx-charts-area-chart *antIfOnDom [results]="widget.value.chart[widget5.currentRange]" [scheme]="widget5.supporting.scheme"
-                                                    [gradient]="widget5.supporting.gradient" [xAxis]="widget5.supporting.xAxis"
-                                                    [yAxis]="widget5.supporting.yAxis" [legend]="widget5.supporting.legend" [showXAxisLabel]="widget5.supporting.showXAxisLabel"
-                                                    [showYAxisLabel]="widget5.supporting.showYAxisLabel" [xAxisLabel]="widget5.supporting.xAxisLabel"
-                                                    [yAxisLabel]="widget5.supporting.yAxisLabel" [curve]="widget5.supporting.curve">
+                                                <ngx-charts-area-chart *antIfOnDom [results]="widget.value.chart[trendingArticlesWidget.currentRange]" [scheme]="trendingArticlesWidget.supporting.scheme"
+                                                    [gradient]="trendingArticlesWidget.supporting.gradient" [xAxis]="trendingArticlesWidget.supporting.xAxis"
+                                                    [yAxis]="trendingArticlesWidget.supporting.yAxis" [legend]="trendingArticlesWidget.supporting.legend" [showXAxisLabel]="trendingArticlesWidget.supporting.showXAxisLabel"
+                                                    [showYAxisLabel]="trendingArticlesWidget.supporting.showYAxisLabel" [xAxisLabel]="trendingArticlesWidget.supporting.xAxisLabel"
+                                                    [yAxisLabel]="trendingArticlesWidget.supporting.yAxisLabel" [curve]="trendingArticlesWidget.supporting.curve">
                                                 </ngx-charts-area-chart>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <!-- / Front -->
 
                         </ant-widget>
-                        <!-- / WIDGET 5 -->
+                        <!-- / TRENDING ARTICLES WIDGET -->
 
                         <!-- WIDGET 6 -->
                         <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50">

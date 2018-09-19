@@ -46,8 +46,8 @@ export class StatsService extends BaseCrudService<number> {
             .pipe(catchError(this.handleError));      
       }
       
-      getTrendingArticles(amountOfDays: number) : Observable<Article> {
-        return  this.http.get<Article>(`${this.url}/GetTrendingArticles/?lastDays=${amountOfDays}`)
+      getTrendingArticles(amountOfDays: number) : Observable<Article[]> {
+        return  this.http.get<Article[]>(`${this.url}/GetTrendingArticles/?lastDays=${amountOfDays}`)
             .pipe(catchError(this.handleError));      
       }
 }
