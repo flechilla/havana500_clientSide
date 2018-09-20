@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../../environments/environment.prod';
+
 import {
   ActivatedRouteSnapshot,
   Resolve,
@@ -9,61 +11,79 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProjectsDashboardService implements Resolve<any> {
+
+ 
+
+
   //#region MockData
   _projects = [
     {
-      name: 'ACME Corp. Backend App'
-    },
-    {
-      name: 'ACME Corp. Frontend App'
-    },
-    {
-      name: 'Creapond'
-    },
-    {
-      name: 'Withinpixels'
+      name: 'Havana 500'
     }
   ];
 
   _widgets = {
-    widget1: {
+    articlesWidget: {
       ranges: {
-        DY: 'Yesterday',
-        DT: 'Today',
-        DTM: 'Tomorrow'
+        LW: 'Last Week',
+        LM: 'Last Month',
+        H: 'Historical'
       },
-      currentRange: 'DT',
+      currentRange: 'LW',
       data: {
-        label: 'DUE TASKS',
+        label: 'Total de Artículos',
         count: {
-          DY: 21,
-          DT: 25,
-          DTM: 19
+          LW: 0,
+          LM: 0,
+          H: 0
         },
         extra: {
-          label: 'Completed',
+          label: 'Activos',
           count: {
-            DY: 6,
-            DT: 7,
-            DTM: '-'
+            LW: 6,
+            LM: 7,
+            H: '-'
           }
         }
       },
       detail:
-        'You can show some detailed information about this widget in here.'
+        'Muesta la cantidad total de Arttículos en el sistema. Los activos son aquellos que su fecha de publicación es anterior a la fecha actual.'
     },
-    widget2: {
-      title: 'Overdue',
+    commentsWidget: {
+      ranges: {
+        LW: 'Last Week',
+        LM: 'Last Month',
+        H: 'Historical'
+      },
+      currentRange: 'LW',
       data: {
-        label: 'TASKS',
-        count: 4,
+        label: 'Total de Comentarios',
+        count: {
+          LW: 0,
+          LM: 0,
+          H: 0
+        },
         extra: {
-          label: "Yesterday's overdue",
-          count: 2
+          aproved: {
+            label: 'Aprovados',
+            count: {
+              LW: 6,
+              LM: 7,
+              H: '-'
+            }
+          },
+          notAproved: {
+            label: 'No Aprovados',
+            count: {
+              LW: 6,
+              LM: 7,
+              H: '-'
+            }
+          }
         }
       },
       detail:
-        'You can show some detailed information about this widget in here.'
+        'Muesta la cantidad total de Arttículos en el sistema. Los activos son aquellos que su fecha de publicación es anterior a la fecha actual.'
     },
     widget3: {
       title: 'Issues',
@@ -91,301 +111,29 @@ export class ProjectsDashboardService implements Resolve<any> {
       detail:
         'You can show some detailed information about this widget in here.'
     },
-    widget5: {
-      title: 'Github Issues',
+    trendingArticlesWidget: {
+      title: 'Artículos más comentados',
       ranges: {
-        TW: 'This Week',
-        LW: 'Last Week',
-        '2W': '2 Weeks Ago'
+        T: 'Hoy',
+        TW: 'Esta semana',
+        LM: 'Este mes',
+        H: 'Histórico'
       },
       mainChart: {
-        '2W': [
-          {
-            name: 'Mon',
-            series: [
-              {
-                name: 'issues',
-                value: 37
-              },
-              {
-                name: 'closed issues',
-                value: 9
-              }
-            ]
-          },
-          {
-            name: 'Tue',
-            series: [
-              {
-                name: 'issues',
-                value: 32
-              },
-              {
-                name: 'closed issues',
-                value: 12
-              }
-            ]
-          },
-          {
-            name: 'Wed',
-            series: [
-              {
-                name: 'issues',
-                value: 39
-              },
-              {
-                name: 'closed issues',
-                value: 9
-              }
-            ]
-          },
-          {
-            name: 'Thu',
-            series: [
-              {
-                name: 'issues',
-                value: 27
-              },
-              {
-                name: 'closed issues',
-                value: 12
-              }
-            ]
-          },
-          {
-            name: 'Fri',
-            series: [
-              {
-                name: 'issues',
-                value: 18
-              },
-              {
-                name: 'closed issues',
-                value: 7
-              }
-            ]
-          },
-          {
-            name: 'Sat',
-            series: [
-              {
-                name: 'issues',
-                value: 24
-              },
-              {
-                name: 'closed issues',
-                value: 8
-              }
-            ]
-          },
-          {
-            name: 'Sun',
-            series: [
-              {
-                name: 'issues',
-                value: 20
-              },
-              {
-                name: 'closed issues',
-                value: 16
-              }
-            ]
-          }
-        ],
-        LW: [
-          {
-            name: 'Mon',
-            series: [
-              {
-                name: 'issues',
-                value: 37
-              },
-              {
-                name: 'closed issues',
-                value: 12
-              }
-            ]
-          },
-          {
-            name: 'Tue',
-            series: [
-              {
-                name: 'issues',
-                value: 24
-              },
-              {
-                name: 'closed issues',
-                value: 8
-              }
-            ]
-          },
-          {
-            name: 'Wed',
-            series: [
-              {
-                name: 'issues',
-                value: 51
-              },
-              {
-                name: 'closed issues',
-                value: 7
-              }
-            ]
-          },
-          {
-            name: 'Thu',
-            series: [
-              {
-                name: 'issues',
-                value: 31
-              },
-              {
-                name: 'closed issues',
-                value: 13
-              }
-            ]
-          },
-          {
-            name: 'Fri',
-            series: [
-              {
-                name: 'issues',
-                value: 29
-              },
-              {
-                name: 'closed issues',
-                value: 7
-              }
-            ]
-          },
-          {
-            name: 'Sat',
-            series: [
-              {
-                name: 'issues',
-                value: 17
-              },
-              {
-                name: 'closed issues',
-                value: 6
-              }
-            ]
-          },
-          {
-            name: 'Sun',
-            series: [
-              {
-                name: 'issues',
-                value: 31
-              },
-              {
-                name: 'closed issues',
-                value: 10
-              }
-            ]
-          }
-        ],
-        TW: [
-          {
-            name: 'Mon',
-            series: [
-              {
-                name: 'issues',
-                value: 42
-              },
-              {
-                name: 'closed issues',
-                value: 11
-              }
-            ]
-          },
-          {
-            name: 'Tue',
-            series: [
-              {
-                name: 'issues',
-                value: 28
-              },
-              {
-                name: 'closed issues',
-                value: 10
-              }
-            ]
-          },
-          {
-            name: 'Wed',
-            series: [
-              {
-                name: 'issues',
-                value: 43
-              },
-              {
-                name: 'closed issues',
-                value: 8
-              }
-            ]
-          },
-          {
-            name: 'Thu',
-            series: [
-              {
-                name: 'issues',
-                value: 34
-              },
-              {
-                name: 'closed issues',
-                value: 11
-              }
-            ]
-          },
-          {
-            name: 'Fri',
-            series: [
-              {
-                name: 'issues',
-                value: 20
-              },
-              {
-                name: 'closed issues',
-                value: 8
-              }
-            ]
-          },
-          {
-            name: 'Sat',
-            series: [
-              {
-                name: 'issues',
-                value: 25
-              },
-              {
-                name: 'closed issues',
-                value: 10
-              }
-            ]
-          },
-          {
-            name: 'Sun',
-            series: [
-              {
-                name: 'issues',
-                value: 22
-              },
-              {
-                name: 'closed issues',
-                value: 17
-              }
-            ]
-          }
-        ]
+        T: [ ],
+        TW: [],
+        LM: [],
+        H: [ ]
       },
       supporting: {
         created: {
           label: 'CREATED',
           count: {
-            '2W': 48,
-            LW: 46,
-            TW: 54
+            'T': 48,
+            TW: 46,
+            LM: 54,
+            H: 54
+
           },
           chart: {
             '2W': [
@@ -2017,6 +1765,8 @@ export class ProjectsDashboardService implements Resolve<any> {
   projects: any[];
   widgets: any;
 
+
+
   constructor(private http: HttpClient) {}
 
   /**
@@ -2049,4 +1799,8 @@ export class ProjectsDashboardService implements Resolve<any> {
       resolve(this._widgets);
     });
   }
+
+
+
+ 
 }

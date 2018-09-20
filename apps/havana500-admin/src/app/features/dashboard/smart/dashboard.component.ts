@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import * as shape from 'd3-shape';
 import { antAnimations } from '../../../shared/utils/animations';
 import { ProjectsDashboardService } from '../../../core/services/http/dashboard.service';
+import { StatsService } from '../../../core/services/http/stats.service';
+import { List } from 'immutable';
+import { Article } from '../../../core/models/article.model';
 
 @Component({
   selector: 'ant-dashboard',
@@ -14,8 +17,10 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
   projects: any[];
   selectedProject: any;
 
+
+ 
   widgets: any;
-  widget5: any = {};
+  trendingArticlesWidget: any = {};
   widget6: any = {};
   widget7: any = {};
   widget8: any = {};
@@ -24,7 +29,7 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
 
   dateNow = Date.now();
 
-  constructor(private projectsDashboardService: ProjectsDashboardService) {
+  constructor(private projectsDashboardService: ProjectsDashboardService, private statsService : StatsService) {
     this.projects = this.projectsDashboardService.projects;
 
     this.selectedProject = this.projects[0];
@@ -34,16 +39,16 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
     /**
      * Widget 5
      */
-    this.widget5 = {
-      currentRange: 'TW',
+    this.trendingArticlesWidget = {
+      currentRange: 'H',
       xAxis: true,
       yAxis: true,
       gradient: false,
       legend: false,
-      showXAxisLabel: false,
-      xAxisLabel: 'Days',
-      showYAxisLabel: false,
-      yAxisLabel: 'Isues',
+      showXAxisLabel: true,
+      xAxisLabel: 'Titulo',
+      showYAxisLabel: true,
+      yAxisLabel: 'Numero de comentarios',
       scheme: {
         domain: ['#42BFF7', '#C6ECFD', '#C7B42C', '#AAAAAA']
       },
@@ -133,7 +138,151 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
     }, 1000);
   }
 
-  ngOnInit() {}
+  setCommentWidget(): void {
+    this.statsService.getCommentsCount(7).
+      subscribe(r=>this.widgets.commentsWidget.data.count.LW = r);
+    this.statsService.getCommentsCount(31).
+      subscribe(r=>this.widgets.commentsWidget.data.count.LM = r);
+      this.statsService.getCommentsCount(1000000).
+      subscribe(r=>this.widgets.commentsWidget.data.count.H = r);
+
+      this.statsService.getApprovedCommentsCount(7).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.aproved.count.LW = r);
+    this.statsService.getApprovedCommentsCount(31).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.aproved.count.LM = r);
+      this.statsService.getApprovedCommentsCount(1000000).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.aproved.count.H = r);
+
+      this.statsService.getNotApprovedCommentsCount(7).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.notAproved.count.LW = r);
+    this.statsService.getNotApprovedCommentsCount(31).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.notAproved.count.LM = r);
+      this.statsService.getNotApprovedCommentsCount(1000000).
+      subscribe(r=>this.widgets.commentsWidget.data.extra.notAproved.count.H = r);
+  }
+
+  setArticlesWdiget(): void{
+    this.statsService.getArticleCount(7).
+    subscribe(r=>this.widgets.articlesWidget.data.count.LW = r);
+  this.statsService.getArticleCount(31).
+    subscribe(r=>this.widgets.articlesWidget.data.count.LM = r);
+    this.statsService.getArticleCount(1000000).
+    subscribe(r=>this.widgets.articlesWidget.data.count.H = r);
+
+    this.statsService.getActiveArticlesCount(7).
+    subscribe(r=>this.widgets.articlesWidget.data.extra.count.LW = r);
+  this.statsService.getActiveArticlesCount(31).
+    subscribe(r=>this.widgets.articlesWidget.data.extra.count.LM = r);
+    this.statsService.getActiveArticlesCount(1000000).
+    subscribe(r=>this.widgets.articlesWidget.data.extra.count.H = r);
+  }
+  
+
+  setTrendingArticlesWidget(): void{
+   
+    this.statsService.getTrendingArticles(1000000)
+      .subscribe(articles=>
+          articles.forEach(article=>{
+            this.widgets.trendingArticlesWidget.mainChart.H.push(
+              {
+                name : article.title,
+                series:[              
+                  {
+                    name: 'Comentarios',
+                    value: article.amountOfComments
+                  },
+                  {
+                    name: 'Comentarios aprovados',
+                    value: article.approvedCommentCount
+                  },
+                  {
+                    name: 'Comentarios no aprovados',
+                    value: article.notApprovedCommentCount
+                  },
+                ]
+              }
+          );
+        })    
+    );
+    this.statsService.getTrendingArticles(31)
+      .subscribe(articles=>
+          articles.forEach(article=>{
+            this.widgets.trendingArticlesWidget.mainChart.LM.push(
+              {
+                name : article.title,
+                series:[              
+                  {
+                    name: 'Comentarios',
+                    value: article.amountOfComments
+                  },
+                  {
+                    name: 'Comentarios aprovados',
+                    value: article.approvedCommentCount
+                  },
+                  {
+                    name: 'Comentarios no aprovados',
+                    value: article.notApprovedCommentCount
+                  },
+                ]
+              }
+          );
+        })    
+    );
+    this.statsService.getTrendingArticles(7)
+      .subscribe(articles=>
+          articles.forEach(article=>{
+            this.widgets.trendingArticlesWidget.mainChart.TW.push(
+              {
+                name : article.title,
+                series:[              
+                  {
+                    name: 'Comentarios',
+                    value: article.amountOfComments
+                  },
+                  {
+                    name: 'Comentarios aprovados',
+                    value: article.approvedCommentCount
+                  },
+                  {
+                    name: 'Comentarios no aprovados',
+                    value: article.notApprovedCommentCount
+                  },
+                ]
+              }
+          );
+        })    
+    );
+    this.statsService.getTrendingArticles(1)
+      .subscribe(articles=>
+          articles.forEach(article=>{
+            this.widgets.trendingArticlesWidget.mainChart.T.push(
+              {
+                name : article.title,
+                series:[              
+                  {
+                    name: 'Comentarios',
+                    value: article.amountOfComments
+                  },
+                  {
+                    name: 'Comentarios aprovados',
+                    value: article.approvedCommentCount
+                  },
+                  {
+                    name: 'Comentarios no aprovados',
+                    value: article.notApprovedCommentCount
+                  },
+                ]
+              }
+          );
+        })    
+    );
+    }
+
+  ngOnInit() {//TODO: get this values just when the user changes hte range selection
+      this.setArticlesWdiget();
+      this.setCommentWidget(); 
+      this.setTrendingArticlesWidget();
+  }
 
   ngOnDestroy() {}
 }
