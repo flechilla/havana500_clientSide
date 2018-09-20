@@ -187,11 +187,7 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
               {
                 name : article.title,
                 series:[              
-                  {
-                    name: 'Comentarios',
-                    value: article.amountOfComments
-                  },
-                  {
+                 {
                     name: 'Comentarios aprovados',
                     value: article.approvedCommentCount
                   },
@@ -211,11 +207,7 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
               {
                 name : article.title,
                 series:[              
-                  {
-                    name: 'Comentarios',
-                    value: article.amountOfComments
-                  },
-                  {
+                 {
                     name: 'Comentarios aprovados',
                     value: article.approvedCommentCount
                   },
@@ -235,11 +227,7 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
               {
                 name : article.title,
                 series:[              
-                  {
-                    name: 'Comentarios',
-                    value: article.amountOfComments
-                  },
-                  {
+                 {
                     name: 'Comentarios aprovados',
                     value: article.approvedCommentCount
                   },
@@ -259,11 +247,7 @@ export class AntDashboardComponent implements OnInit, OnDestroy {
               {
                 name : article.title,
                 series:[              
-                  {
-                    name: 'Comentarios',
-                    value: article.amountOfComments
-                  },
-                  {
+                 {
                     name: 'Comentarios aprovados',
                     value: article.approvedCommentCount
                   },
