@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class LabelsBarComponent implements OnInit {
   @Input()
-  protected article: ArticleExtended;
+  public article: ArticleExtended;
 
   @Output()
   protected deleteTag: EventEmitter<any> = new EventEmitter();

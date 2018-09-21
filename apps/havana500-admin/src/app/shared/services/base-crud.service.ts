@@ -15,7 +15,10 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class BaseCrudService<T> {
-  constructor(public url: string, public http: HttpClient) {}
+  public url: string;
+  constructor(url: string, public http: HttpClient) {
+    this.url = url;
+  }
 
   public getAll(): Observable<T[]> {
     return this.http

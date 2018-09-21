@@ -48,20 +48,20 @@ export class CreateUpdateArticleComponent implements OnInit {
   @ViewChild('tagName')
   tagName: FormControl;
 
-  protected form: FormGroup;
-  protected onEdit = false;
+  public form: FormGroup;
+  public onEdit = false;
 
-  protected sections: Section[];
+  public sections: Section[];
 
   protected globalTags: ContentTag[];
 
-  protected article: ArticleExtended;
+  public article: ArticleExtended;
 
   filteredTags: Observable<ContentTag[]>;
 
   constructor(
     protected fb: FormBuilder,
-    protected dialogRef: MatDialogRef<CreateUpdateArticleComponent>,
+    public dialogRef: MatDialogRef<CreateUpdateArticleComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: {
       article$: Observable<ArticleExtended>;
@@ -122,13 +122,13 @@ export class CreateUpdateArticleComponent implements OnInit {
     });
   }
 
-  protected save() {
+  public save() {
     const toUpdateOrCreate: Article = this.form.get('article').value;
 
     this.dialogRef.close(toUpdateOrCreate);
   }
 
-  protected addTag(tagForm: NgForm) {
+  public addTag(tagForm: NgForm) {
     if (tagForm.value.name.id) {
       const selectedTag: ContentTag = tagForm.value.name;
       if (
@@ -182,11 +182,11 @@ export class CreateUpdateArticleComponent implements OnInit {
       });
   }
 
-  protected onTagMenuOpened() {
+  public onTagMenuOpened() {
     this.tagNameField.nativeElement.focus();
   }
 
-  protected deleteArticleTag(tagId: any) {
+  public deleteArticleTag(tagId: any) {
     const index = this.article.tags.findIndex(tag => tag.id === tagId);
     const toDelete = this.article.tags[index];
     this.article.tags.splice(index, 1);
@@ -197,7 +197,7 @@ export class CreateUpdateArticleComponent implements OnInit {
       });
   }
 
-  protected displayName(tag: ContentTag): string {
+  public displayName(tag: ContentTag): string {
     if (tag) return tag.name;
   }
 

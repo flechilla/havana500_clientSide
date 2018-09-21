@@ -15,7 +15,7 @@ export class BaseResolverService<T extends BaseEntity<any>>
   implements Resolve<T[]> {
   public initialData: T[] = [];
 
-  constructor(public url: string, public http: HttpClient) {
+  constructor(url: string, public http: HttpClient) {
     super(url, http);
   }
 
