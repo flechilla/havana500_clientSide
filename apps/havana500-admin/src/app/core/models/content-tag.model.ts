@@ -1,4 +1,5 @@
 import { AuditableAndTrackableEntity } from './../../shared/models/auditable-trackable-entity.model';
+import { Entity } from '../../shared/models/entity.models';
 
 /**
  * Represent a tag that can be assigned to any
@@ -8,7 +9,8 @@ import { AuditableAndTrackableEntity } from './../../shared/models/auditable-tra
  * @interface ContentTag
  * @extends {AuditableAndTrackableEntity<number>}
  */
-export interface ContentTag extends AuditableAndTrackableEntity<number> {
+export interface ContentTag extends Entity<number> {
+
   /**
    * Gets or sets the name of the Tag.
    *
@@ -24,5 +26,5 @@ export interface ContentTag extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof ContentTag
    */
-  amountOfContent: string;
+  amountOfContent?: string;
 }
