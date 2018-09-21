@@ -1,3 +1,3 @@
-export interface Entity<Key> {
+export abstract class Entity<Key> {
   id: Key;
 }
