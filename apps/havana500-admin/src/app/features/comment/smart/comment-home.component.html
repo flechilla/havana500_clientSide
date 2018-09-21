@@ -108,7 +108,14 @@
 
                 <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
 
-                
+                <mat-row *matRowDef="let article; columns: columnsToDisplay;" class="article" matRipple (click)="openCreateDialog(article)">
+                </mat-row>
+
+                <mat-paginator #paginator [length]="dataSource.currentLength" [pageIndex]="0" [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+
+            </mat-paginator>
+
 
             </mat-table>
 <!-- 

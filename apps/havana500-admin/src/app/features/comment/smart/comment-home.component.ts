@@ -36,8 +36,8 @@ import { ArticleCommentsInfoService } from '../../../core/services/http/article-
   animations: [antAnimations]
   // encapsulation: ViewEncapsulation.None
 })
-export class CommentHomeComponent
-  implements OnInit {
+export class CommentHomeComponent extends BaseTableContainerComponent<ArticleCommentsInfo>
+  implements OnInit, AfterViewInit {
   protected dialogRef: any;
   protected columnsToDisplay: string[] = ['id', 'title', 'amountOfComments', 'startDateUtc'];  
 
@@ -48,11 +48,17 @@ export class CommentHomeComponent
     private articleCommentsInfoService: ArticleCommentsInfoService,
     protected dialog: MatDialog
   ) {
+    super(['id', 'title', 'amountOfComments', 'startDateUtc'], articleCommentsInfoService)
   }
 
   ngOnInit() {
+    super.ngOnInit();
     this.articleCommentsInfoService.getArticlesWithNewCommentsInfo(5000)
       .subscribe(result => {this.articleCommentsInfos = result; console.log(this.articleCommentsInfos);});
+  }
+
+  ngAfterViewInit(): void {
+    super.ngAfterViewInit();
   }
 
  

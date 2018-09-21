@@ -11,6 +11,7 @@ import { ArticleService } from './services/http/article.service';
 import { CommentService } from './services/http/comment.service';
 import { ContentTagService } from './services/http/content-tag.service';
 import { SectionService } from './services/http/section.service';
+import { ArticleCommentsInfoService } from './services/http/article-comments-info.service';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { SectionService } from './services/http/section.service';
     ArticleService,
     CommentService,
     ContentTagService,
-    SectionService
+    SectionService,
+    ArticleCommentsInfoService
   ]
 })
 export class CoreModule {}
