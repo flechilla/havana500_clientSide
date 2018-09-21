@@ -1,13 +1,20 @@
-<mat-menu #tagMenu="matMenu" [overlapTrigger]="false">
+<mat-menu (click)="$event.stopPropagation()" #tagMenu="matMenu" [overlapTrigger]="false">
 
-    <form class="px-16 py-8" #newTagForm="ngForm" (submit)="addTag(newTagForm)" (click)="$event.stopPropagation()"
-        fxLayout="column" fxLayoutAlign="start end">
+    <form class="px-16 py-8" #newTagForm="ngForm" (click)="$event.stopPropagation();tagAutocompleteTrigger.closePanel();"
+        (submit)="addTag(newTagForm)" fxLayout="row" fxLayoutAlign="space-evenly space-evenly">
 
-        <mat-form-field floatPlaceholder="never" (click)="$event.stopPropagation()" fxFlex>
-            <input matInput ngModel #tagNameField #tagName="ngModel" name="name" placeholder="Tag title" required>
+        <mat-form-field (click)="$event.stopPropagation()" class="main-input__sized" floatPlaceholder="never">
+            <input (click)="$event.stopPropagation()" type="text" matInput ngModel #tagNameField #tagName="ngModel"
+                name="name" placeholder="Tag title" required [matAutocomplete]="auto" #tagAutocompleteTrigger="matAutocompleteTrigger">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName">
+                <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+                    {{tag.name}}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
 
-        <button mat-raised-button class="mat-accent" aria-label="Add Tag" [disabled]="!newTagForm.valid">Add
+        <button style="margin: 1rem;" mat-raised-button (click)="tagAutocompleteTrigger.closePanel()" class="mat-accent"
+            aria-label="Add Tag" [disabled]="!newTagForm.valid">Add
             Tag</button>
     </form>
 
@@ -18,7 +25,7 @@
 
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
 
-            <button mat-icon-button class="" [matMenuTriggerFor]="tagMenu" #tagMenuTrigger="matMenuTrigger"
+            <button [disabled]="!article?.id" mat-icon-button class="" [matMenuTriggerFor]="tagMenu" #tagMenuTrigger="matMenuTrigger"
                 (menuOpened)="onTagMenuOpened()">
                 <mat-icon>label</mat-icon>
             </button>
@@ -63,6 +70,7 @@
                     <mat-form-field fxFlex>
                         <textarea name="body" formControlName="body" placeholder="Body of the article..." matInput
                             required></textarea>
+
                     </mat-form-field>
                 </div>
 

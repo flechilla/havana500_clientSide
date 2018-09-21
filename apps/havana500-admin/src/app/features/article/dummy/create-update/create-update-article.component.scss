@@ -1,5 +1,9 @@
 @import '../../../../core/scss/ant';
 
+.main-input__sized {
+  width: 60%;
+}
+
 .article-form-dialog {
   @include media-breakpoint('xs') {
     width: 100%;
