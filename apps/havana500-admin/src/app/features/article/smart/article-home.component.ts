@@ -26,6 +26,9 @@ import { BaseTableContainerComponent } from '../../../shared/components/base-tab
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { SectionService } from '../../../core/services/http/section.service';
 import { Section } from '../../../core/models/section.model';
+import { ContentTagService } from '../../../core/services/http/content-tag.service';
+import { ContentTag } from '../../../core/models/content-tag.model';
+import { ArticleExtended } from '../../../core/models/article-extended';
 
 @Component({
   selector: 'ant-article-home',
@@ -40,9 +43,12 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
 
   private sections: Section[];
 
+  private globalTags: ContentTag[];
+
   constructor(
     private articleService: ArticleService,
     private sectionsService: SectionService,
+    private contentTagService: ContentTagService,
     protected dialog: MatDialog
   ) {
     super(
@@ -63,8 +69,15 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
   ngOnInit() {
     super.ngOnInit();
 
+    this.sections = [];
+    this.globalTags = [];
+
     this.sectionsService.getAll().subscribe(resp => {
       this.sections = resp;
+    });
+
+    this.contentTagService.getAll().subscribe(resp => {
+      this.globalTags = resp;
     });
   }
 
@@ -72,18 +85,19 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
     super.ngAfterViewInit();
   }
 
-  openCreateDialog(articleToEdit?: Article) {
+  openCreateDialog(articleToEdit?: ArticleExtended) {
     this.dialogRef = this.dialog.open(CreateUpdateArticleComponent, {
       panelClass: 'article-form-dialog',
       data: {
         article$: articleToEdit
           ? this.articleService.getWithTags(articleToEdit.id)
           : null,
-        sections: this.sections
+        sections: this.sections,
+        tags: this.globalTags
       }
     });
 
-    this.dialogRef.afterClosed().subscribe((response: Article) => {
+    this.dialogRef.afterClosed().subscribe((response: ArticleExtended) => {
       if (!response) {
         return;
       }
