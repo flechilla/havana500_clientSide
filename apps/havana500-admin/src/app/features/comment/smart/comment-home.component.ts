@@ -53,7 +53,7 @@ export class CommentHomeComponent extends BaseTableContainerComponent<ArticleCom
 
   ngOnInit() {
     super.ngOnInit();
-    this.articleCommentsInfoService.getArticlesWithNewCommentsInfo(5000)
+    this.articleCommentsInfoService.getWithPagAndSort(1, 30, "id", 'asc')
       .subscribe(result => {this.articleCommentsInfos = result; console.log(this.articleCommentsInfos);});
   }
 
