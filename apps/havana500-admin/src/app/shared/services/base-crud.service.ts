@@ -25,7 +25,7 @@ export class BaseCrudService<T> {
 
   public get(id: any): Observable<T> {
     return this.http
-      .get<T>(this.url + '/' + id)
+      .get<T>(this.url + '/get/' + id)
       .pipe(catchError(this.handleError));
   }
 
@@ -52,19 +52,19 @@ export class BaseCrudService<T> {
 
   public create(resource: T): Observable<T> {
     return this.http
-      .post<T>(this.url, resource)
+      .post<T>(this.url + '/post/', resource)
       .pipe(catchError(this.handleError));
   }
 
   public update(id, resource: T): Observable<T> {
     return this.http
-      .put<T>(this.url + '/' + id, resource)
+      .put<T>(this.url + '/put/' + id, resource)
       .pipe(catchError(this.handleError));
   }
 
   public delete(id) {
     return this.http
-      .delete<T>(this.url + '/' + id)
+      .delete<T>(this.url + '/delete/' + id)
       .pipe(catchError(this.handleError));
   }
 
