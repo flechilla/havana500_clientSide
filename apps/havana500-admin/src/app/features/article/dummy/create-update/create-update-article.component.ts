@@ -4,9 +4,7 @@ import {
   Inject,
   ViewEncapsulation,
   ViewChild,
-  ElementRef,
-  Input
-} from '@angular/core';
+  ElementRef} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -18,9 +16,7 @@ import {
 import {
   MatDialogRef,
   MAT_DIALOG_DATA,
-  MatMenuTrigger,
-  MatInput
-} from '@angular/material';
+  MatMenuTrigger} from '@angular/material';
 import { Section } from '../../../../core/models/section.model';
 import { Observable } from 'rxjs';
 import { antAnimations } from '../../../../shared/utils/animations';
@@ -28,7 +24,6 @@ import { ArticleExtended } from '../../../../core/models/article-extended';
 import { ContentTag } from '../../../../core/models/content-tag.model';
 import { ContentTagService } from '../../../../core/services/http/content-tag.service';
 import { AntUtilsService } from '../../../../core/services/ant-utils.service';
-import { Entity } from '../../../../shared/models/entity.models';
 import { startWith, map } from 'rxjs/operators';
 import { Article } from '../../../../core/models/article.model';
 import { ArticleService } from '../../../../core/services/http/article.service';
@@ -161,10 +156,8 @@ export class CreateUpdateArticleComponent implements OnInit {
         this.optimisticAddTagToArticle(createdTag);
         this.globalTags.push(createdTag);
       },
-      error => {
-        const indexOfOld = this.article.tags.findIndex(
-          tag => tag === toCreateTag
-        );
+      () => {
+        const indexOfOld = this.article.tags.findIndex(tag => tag === toCreateTag);
         this.article.tags.splice(indexOfOld, 1);
       }
     );
@@ -174,12 +167,10 @@ export class CreateUpdateArticleComponent implements OnInit {
     this.article.tags.push(selectedTag);
     this.articleService
       .addTag(this.article.id, selectedTag.id)
-      .subscribe(null, error => {
-        const index = this.article.tags.findIndex(
-          tag => tag.id === selectedTag.id
-        );
-        this.article.tags.splice(index, 1);
-      });
+      .subscribe(null, () => {
+          const index = this.article.tags.findIndex(tag => tag.id === selectedTag.id);
+          this.article.tags.splice(index, 1);
+        });
   }
 
   public onTagMenuOpened() {
@@ -192,9 +183,9 @@ export class CreateUpdateArticleComponent implements OnInit {
     this.article.tags.splice(index, 1);
     this.articleService
       .removeTag(this.article.id, tagId)
-      .subscribe(null, error => {
-        this.article.tags.splice(index, 0, toDelete);
-      });
+      .subscribe(null, () => {
+          this.article.tags.splice(index, 0, toDelete);
+        });
   }
 
   public displayName(tag: ContentTag): string {

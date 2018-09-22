@@ -1,29 +1,17 @@
 import {
   Component,
   OnInit,
-  ViewChild,
-  ElementRef,
-  ViewEncapsulation,
-  Input,
   AfterViewInit
 } from '@angular/core';
 import {
-  MatPaginator,
-  MatSort,
-  MatTableDataSource,
-  MatInput,
+ 
   MatDialog
 } from '@angular/material';
-import { Observable, BehaviorSubject, from, merge } from 'rxjs';
-import { DataSource } from '@angular/cdk/table';
 import { antAnimations } from '../../../shared/utils/animations';
 import { Article } from '../../../core/models/article.model';
 import { ArticleService } from '../../../core/services/http/article.service';
-import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
-import { BaseDataSource } from '../../../shared/utils/base-data-source';
 import { CreateUpdateArticleComponent } from '../dummy/create-update/create-update-article.component';
 import { BaseTableContainerComponent } from '../../../shared/components/base-table-container.component';
-import { ActivatedRouteSnapshot } from '@angular/router';
 import { SectionService } from '../../../core/services/http/section.service';
 import { Section } from '../../../core/models/section.model';
 import { ContentTagService } from '../../../core/services/http/content-tag.service';
