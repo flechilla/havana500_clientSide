@@ -1,10 +1,42 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '@hav500workspace/shared';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { OAuthWrapperService } from './services/oauth-wrapper.service';
+import { AuthenticatedGuard } from './route_guards/authenticated.guard';
+import { AntUtilsService } from './services/ant-utils.service';
+import { AccountSandbox } from './sandboxes/account-sandbox';
+import { ProjectsDashboardService } from './services/http/dashboard.service';
+import { ArticleService } from './services/http/article.service';
+import { CommentService } from './services/http/comment.service';
+import { ContentTagService } from './services/http/content-tag.service';
+import { SectionService } from './services/http/section.service';
 
 @NgModule({
-  imports: [SharedModule],
+  imports: [],
   exports: [],
   declarations: [],
-  providers: []
+  providers: [
+    AuthService,
+    OAuthWrapperService,
+    AuthenticatedGuard,
+    AntUtilsService,
+    AccountSandbox,
+    ProjectsDashboardService,
+    AntUtilsService,
+    ArticleService,
+    CommentService,
+    ContentTagService,
+    SectionService
+  ]
 })
-export class CoreModule {}
+export class CoreModule {
+  /* make sure CoreModule is imported only by one NgModule the AppModule */
+  constructor(
+    @Optional()
+    @SkipSelf()
+    parentModule: CoreModule
+  ) {
+    if (parentModule) {
+      throw new Error('CoreModule is already loaded. Import only in AppModule');
+    }
+  }
+}
