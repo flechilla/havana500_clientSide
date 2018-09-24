@@ -267,5 +267,5 @@
     },
     "defaultCollection": "@nrwl/schematics"
   },
-  "defaultProject": "havana500-webclient"
+  "defaultProject": "havana500-admin"
 }
