@@ -67,11 +67,16 @@
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
-                    <mat-form-field fxFlex>
+                    <!-- <mat-form-field fxFlex>
                         <textarea name="body" formControlName="body" placeholder="Body of the article..." matInput
                             required></textarea>
 
-                    </mat-form-field>
+                    </mat-form-field> -->
+                    <div>
+                        <label class="unmaterial-label" for="description">Body:</label>
+                        <quill-editor name="body" placeholder="Body*" formControlName="body" required></quill-editor>
+                    </div>
+
                 </div>
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
