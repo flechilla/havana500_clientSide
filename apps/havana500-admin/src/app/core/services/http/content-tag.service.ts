@@ -8,6 +8,6 @@ import { environment } from '../../../../environments/environment';
 @Injectable()
 export class ContentTagService extends BaseCrudService<ContentTag> {
   constructor(private httpClient: HttpClient) {
-    super(environment.apiUrl + 'contentTag', httpClient);
+    super(environment.apiUrl + 'tag', httpClient);
   }
 }

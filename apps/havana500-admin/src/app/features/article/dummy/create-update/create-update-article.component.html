@@ -1,15 +1,49 @@
+<mat-menu (click)="$event.stopPropagation()" #tagMenu="matMenu" [overlapTrigger]="false">
+
+    <form class="px-16 py-8" #newTagForm="ngForm" (click)="$event.stopPropagation();tagAutocompleteTrigger.closePanel();"
+        (submit)="addTag(newTagForm)" fxLayout="row" fxLayoutAlign="space-evenly space-evenly">
+
+        <mat-form-field (click)="$event.stopPropagation()" class="main-input__sized" floatPlaceholder="never">
+            <input (click)="$event.stopPropagation()" type="text" matInput ngModel #tagNameField #tagName="ngModel"
+                name="name" placeholder="Tag title" required [matAutocomplete]="auto" #tagAutocompleteTrigger="matAutocompleteTrigger">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName">
+                <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+                    {{tag.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <button style="margin: 1rem;" mat-raised-button (click)="tagAutocompleteTrigger.closePanel()" class="mat-accent"
+            aria-label="Add Tag" [disabled]="!newTagForm.valid">Add
+            Tag</button>
+    </form>
+
+</mat-menu>
+
 <div class="dialog-content-wrapper">
     <mat-toolbar color="warn" matDialogTitle class="mat-accent m-0">
 
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="title dialog-title">{{!onEdit?"Create Article":"Edit Article"}}</span>
+
+            <button [disabled]="!article?.id" mat-icon-button class="" [matMenuTriggerFor]="tagMenu" #tagMenuTrigger="matMenuTrigger"
+                (menuOpened)="onTagMenuOpened()">
+                <mat-icon>label</mat-icon>
+            </button>
+
+            <span tabindex="-1" class="title dialog-title">{{!onEdit?"Create Article":"Edit Article"}}</span>
+
             <button mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
+
         </mat-toolbar-row>
 
-        <mat-toolbar-row class="toolbar-bottom py-8 py-sm-16" fxLayout="column" fxLayoutAlign="center center">
+        <mat-toolbar-row class=" py-8 py-sm-16" fxLayout="column" fxLayoutAlign="center center">
             <div class="article-title">{{title.value}}</div>
+        </mat-toolbar-row>
+
+        <mat-toolbar-row class="toolbar-bottom mat-accent-900-bg">
+            <ant-labels-bar [article]="article" (deleteTag)="deleteArticleTag($event)"></ant-labels-bar>
         </mat-toolbar-row>
 
     </mat-toolbar>
@@ -33,10 +67,16 @@
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
-                    <mat-form-field fxFlex>
+                    <!-- <mat-form-field fxFlex>
                         <textarea name="body" formControlName="body" placeholder="Body of the article..." matInput
                             required></textarea>
-                    </mat-form-field>
+
+                    </mat-form-field> -->
+                    <div>
+                        <label class="unmaterial-label" for="description">Body:</label>
+                        <quill-editor name="body" placeholder="Body*" formControlName="body" required></quill-editor>
+                    </div>
+
                 </div>
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">

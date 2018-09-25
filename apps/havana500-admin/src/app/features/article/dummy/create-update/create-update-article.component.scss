@@ -1,4 +1,8 @@
-@import './../../../core/scss/ant';
+@import '../../../../core/scss/ant';
+
+.main-input__sized {
+  width: 60%;
+}
 
 .article-form-dialog {
   @include media-breakpoint('xs') {
@@ -53,5 +57,9 @@
     max-height: 85vh;
     display: flex;
     flex-direction: column;
+  }
+
+  .unmaterial-label {
+    font: 500 13px/20px Roboto, 'Helvetica Neue', sans-serif;
   }
 }

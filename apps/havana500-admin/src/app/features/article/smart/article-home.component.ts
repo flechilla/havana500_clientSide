@@ -1,31 +1,22 @@
 import {
   Component,
   OnInit,
-  ViewChild,
-  ElementRef,
-  ViewEncapsulation,
-  Input,
   AfterViewInit
 } from '@angular/core';
 import {
-  MatPaginator,
-  MatSort,
-  MatTableDataSource,
-  MatInput,
+ 
   MatDialog
 } from '@angular/material';
-import { Observable, BehaviorSubject, from, merge } from 'rxjs';
-import { DataSource } from '@angular/cdk/table';
 import { antAnimations } from '../../../shared/utils/animations';
 import { Article } from '../../../core/models/article.model';
 import { ArticleService } from '../../../core/services/http/article.service';
-import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
-import { BaseDataSource } from '../../../shared/utils/base-data-source';
-import { CreateUpdateArticleComponent } from '../dummy/create-update-article.component';
+import { CreateUpdateArticleComponent } from '../dummy/create-update/create-update-article.component';
 import { BaseTableContainerComponent } from '../../../shared/components/base-table-container.component';
-import { ActivatedRouteSnapshot } from '@angular/router';
 import { SectionService } from '../../../core/services/http/section.service';
 import { Section } from '../../../core/models/section.model';
+import { ContentTagService } from '../../../core/services/http/content-tag.service';
+import { ContentTag } from '../../../core/models/content-tag.model';
+import { ArticleExtended } from '../../../core/models/article-extended';
 
 @Component({
   selector: 'ant-article-home',
@@ -40,9 +31,12 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
 
   private sections: Section[];
 
+  private globalTags: ContentTag[];
+
   constructor(
     private articleService: ArticleService,
     private sectionsService: SectionService,
+    private contentTagService: ContentTagService,
     protected dialog: MatDialog
   ) {
     super(
@@ -63,8 +57,15 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
   ngOnInit() {
     super.ngOnInit();
 
+    this.sections = [];
+    this.globalTags = [];
+
     this.sectionsService.getAll().subscribe(resp => {
       this.sections = resp;
+    });
+
+    this.contentTagService.getAll().subscribe(resp => {
+      this.globalTags = resp;
     });
   }
 
@@ -72,16 +73,19 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
     super.ngAfterViewInit();
   }
 
-  openCreateDialog(articleToEdit?: Article) {
+  openCreateDialog(articleToEdit?: ArticleExtended) {
     this.dialogRef = this.dialog.open(CreateUpdateArticleComponent, {
       panelClass: 'article-form-dialog',
       data: {
-        article: articleToEdit ? articleToEdit : null,
-        sections: this.sections
+        article$: articleToEdit
+          ? this.articleService.getWithTags(articleToEdit.id)
+          : null,
+        sections: this.sections,
+        tags: this.globalTags
       }
     });
 
-    this.dialogRef.afterClosed().subscribe((response: Article) => {
+    this.dialogRef.afterClosed().subscribe((response: ArticleExtended) => {
       if (!response) {
         return;
       }

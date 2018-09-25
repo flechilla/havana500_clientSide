@@ -17,7 +17,7 @@ export class AntUtilsService {
    *
    * @return {string} A random string, e.g. sn1s7vb4gcic.
    */
-  generateUEId(): string {
+  generateUEId(): any {
     const x = 2147483648;
     return (
       Math.floor(Math.random() * x).toString(36) +

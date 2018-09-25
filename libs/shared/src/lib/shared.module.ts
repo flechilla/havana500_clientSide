@@ -10,6 +10,8 @@ import { AntWidgetComponent } from './components/widget/widget.component';
 import { IfOnDomDirective } from './directives/ant-if-on-dom/if-on-dom.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { SquareFadeSpinnerComponent } from './components/squares-fade-spinner/square-fade-spinner.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   imports: [
@@ -18,12 +20,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    QuillModule
   ],
   declarations: [
     //Components
     ConfirmDialogComponent,
     AntWidgetComponent,
+    SquareFadeSpinnerComponent,
 
     //Directives
     AntWidgetToggleDirective,
@@ -40,10 +44,12 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MaterialModule,
     FlexLayoutModule,
     NgxChartsModule,
+    QuillModule,
 
     //Components
     ConfirmDialogComponent,
     AntWidgetComponent,
+    SquareFadeSpinnerComponent,
 
     //Directives
     AntWidgetToggleDirective,
