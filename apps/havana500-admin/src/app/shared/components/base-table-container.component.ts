@@ -16,10 +16,10 @@ export abstract class BaseTableContainerComponent<T extends BaseEntity<any>>
 
   @ViewChild(MatSort)
   protected sort: MatSort;
-  protected dataSource: BaseDataSource<T>;
+  public dataSource: BaseDataSource<T>;
 
   constructor(
-    protected columnsToDisplay: string[],
+    public columnsToDisplay: string[],
     protected service: BaseCrudService<T>
   ) {}
 

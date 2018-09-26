@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { OAuthWrapperService } from './services/oauth-wrapper.service';
@@ -33,4 +33,15 @@ import { SectionService } from './services/http/section.service';
     SectionService
   ]
 })
-export class CoreModule {}
+export class CoreModule {
+  /* make sure CoreModule is imported only by one NgModule the AppModule */
+  constructor(
+    @Optional()
+    @SkipSelf()
+    parentModule: CoreModule
+  ) {
+    if (parentModule) {
+      throw new Error('CoreModule is already loaded. Import only in AppModule');
+    }
+  }
+}
