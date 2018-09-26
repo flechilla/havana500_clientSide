@@ -1,0 +1,7 @@
+@import '../../../core/scss/ant.scss';
+
+.main-nav-link-container {
+  @include media-breakpoint-up('sm') {
+    max-width: 80%;
+  }
+}
