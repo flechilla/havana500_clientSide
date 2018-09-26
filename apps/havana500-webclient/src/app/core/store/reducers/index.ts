@@ -16,7 +16,7 @@ import { environment } from '../../../../environments/environment';
  * notation packages up all of the exports into a single object.
  */
 
-import * as fromAccount from './account.reducer';
+// import * as fromAccount from './account.reducer';
 
 /**
  * Interface defining the State of the URL
@@ -34,7 +34,7 @@ export interface RouterStateUrl {
  * our top level state interface is just a map of keys to inner state types.
  */
 export interface State {
-  account: fromAccount.State;
+  // account: fromAccount.State;
   router: fromRouter.RouterReducerState<RouterStateUrl>;
 }
 
@@ -51,7 +51,7 @@ export class CustomSerializer
 }
 
 export const reducers: ActionReducerMap<State> = {
-  account: fromAccount.reducer,
+  // account: fromAccount.reducer,
   router: fromRouter.routerReducer
 };
 
@@ -62,30 +62,30 @@ export const metaReducers: Array<MetaReducer<State>> = !environment.production
 //#region Selectors
 
 //#region Account Selectors
-export const getAccountState = (state: State) => state.account;
+// export const getAccountState = (state: State) => state.account;
 
-export const getAccountLoggedUser = createSelector(
-  getAccountState,
-  fromAccount.getLoggedUser
-);
+// export const getAccountLoggedUser = createSelector(
+//   getAccountState,
+//   fromAccount.getLoggedUser
+// );
 
-export const getAccountUserClaims = createSelector(
-  getAccountState,
-  fromAccount.getUserClaims
-);
+// export const getAccountUserClaims = createSelector(
+//   getAccountState,
+//   fromAccount.getUserClaims
+// );
 
-export const getAccountLoading = createSelector(
-  getAccountState,
-  fromAccount.getLoading
-);
+// export const getAccountLoading = createSelector(
+//   getAccountState,
+//   fromAccount.getLoading
+// );
 
-export const getAccountLoaded = createSelector(
-  getAccountState,
-  fromAccount.getLoaded
-);
+// export const getAccountLoaded = createSelector(
+//   getAccountState,
+//   fromAccount.getLoaded
+// );
 
-export const getAccountFailed = createSelector(
-  getAccountState,
-  fromAccount.getFailed
-);
+// export const getAccountFailed = createSelector(
+//   getAccountState,
+//   fromAccount.getFailed
+// );
 //#endregion

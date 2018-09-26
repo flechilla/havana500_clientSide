@@ -22,7 +22,8 @@ import {
   StoreRouterConnectingModule,
   RouterStateSerializer
 } from '@ngrx/router-store';
-import { OAuthModule } from 'angular-oauth2-oidc';
+// import { OAuthModule } from 'angular-oauth2-oidc';
+import { LayoutModule } from './features/layout/layout.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,12 +45,13 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 
     CoreModule,
     SharedModule,
-    OAuthModule.forRoot({
-      resourceServer: {
-        allowedUrls: ['http://localhost:5000/api/'],
-        sendAccessToken: true
-      }
-    })
+    LayoutModule
+    // OAuthModule.forRoot({
+    //   resourceServer: {
+    //     allowedUrls: ['http://localhost:5000/api/'],
+    //     sendAccessToken: true
+    //   }
+    // })
   ],
   providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]

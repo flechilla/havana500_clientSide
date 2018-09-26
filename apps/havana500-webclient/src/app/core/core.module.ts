@@ -3,7 +3,6 @@ import { AuthService } from './services/auth.service';
 import { OAuthWrapperService } from './services/oauth-wrapper.service';
 import { AuthenticatedGuard } from './route_guards/authenticated.guard';
 import { AntUtilsService } from './services/ant-utils.service';
-import { AccountSandbox } from './sandboxes/account-sandbox';
 import { ProjectsDashboardService } from './services/http/dashboard.service';
 import { ArticleService } from './services/http/article.service';
 import { CommentService } from './services/http/comment.service';
@@ -15,12 +14,6 @@ import { SectionService } from './services/http/section.service';
   exports: [],
   declarations: [],
   providers: [
-    AuthService,
-    OAuthWrapperService,
-    AuthenticatedGuard,
-    AntUtilsService,
-    AccountSandbox,
-    ProjectsDashboardService,
     AntUtilsService,
     ArticleService,
     CommentService,
