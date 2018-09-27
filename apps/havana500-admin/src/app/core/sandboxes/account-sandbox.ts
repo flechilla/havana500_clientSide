@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../core/store/reducers';
 import * as accountActions from '../../core/store/actions/account.actions';
-import { OAuthWrapperService } from '../services/oauth-wrapper.service';
+import { OAuthWrapperService } from '../services/auth/oauth-wrapper.service';
 import { Observable } from 'rxjs';
 import { APP_USER } from '../configs/configuration-const.config';
 /**

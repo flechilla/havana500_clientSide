@@ -6,7 +6,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { OAuthWrapperService } from '../../core/services/oauth-wrapper.service';
+import { OAuthWrapperService } from '../../core/services/auth/oauth-wrapper.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({

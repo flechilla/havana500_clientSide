@@ -23,7 +23,7 @@ import { antAnimations } from '../../../../shared/utils/animations';
 import { ArticleExtended } from '../../../../core/models/article-extended';
 import { ContentTag } from '../../../../core/models/content-tag.model';
 import { ContentTagService } from '../../../../core/services/http/content-tag.service';
-import { AntUtilsService } from '../../../../core/services/ant-utils.service';
+import { AntUtilsService } from '../../../../core/services/utils/ant-utils.service';
 import { startWith, map } from 'rxjs/operators';
 import { Article } from '../../../../core/models/article.model';
 import { ArticleService } from '../../../../core/services/http/article.service';
