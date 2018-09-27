@@ -13,12 +13,20 @@ import { appRoutes } from './app-routes';
 import { AccountModule } from './features/account/account.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers, CustomSerializer } from './core/store/reducers';
+import {
+  reducers,
+  metaReducers,
+  CustomSerializer
+} from './core/store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './core/store/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
+import {
+  StoreRouterConnectingModule,
+  RouterStateSerializer
+} from '@ngrx/router-store';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +46,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
       maxAge: 25 //  Retains last 25 states
     }),
     StoreRouterConnectingModule,
-
+    TranslateModule.forRoot(),
     CoreModule,
     SharedModule,
     LayoutModule,
