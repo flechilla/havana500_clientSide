@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AntTranslateService } from '../../../../core/services/translate/translate-wrapper.service';
 import { english, spanish, french } from '../../i18n';
 
-
 @Component({
-  selector: 'ant-home',
+  selector: 'hav-home',
   templateUrl: 'home.component.html'
 })
 export class HomeComponent implements OnInit {
