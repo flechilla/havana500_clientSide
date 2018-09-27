@@ -4,7 +4,7 @@ import { AccountSandbox } from '../../../../core/sandboxes/account-sandbox';
 import { antAnimations } from '../../../../shared/utils/animations';
 
 @Component({
-  selector: 'ant-login',
+  selector: 'admin-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   animations: antAnimations

@@ -4,7 +4,7 @@ import { antAnimations } from '../../../shared/utils/animations';
 import { filter, map } from 'rxjs/operators';
 
 @Component({
-  selector: 'ant-content',
+  selector: 'hav-content',
   templateUrl: './content.component.html',
   animations: antAnimations
 })

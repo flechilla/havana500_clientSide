@@ -3,7 +3,7 @@ import { AntTranslateService } from '../../core/services/translate/translate-wra
 import { spanish, french, english } from '../home/i18n';
 
 @Component({
-  selector: 'ant-layout',
+  selector: 'hav-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
   encapsulation: ViewEncapsulation.None

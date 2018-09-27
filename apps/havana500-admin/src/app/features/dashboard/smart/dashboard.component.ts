@@ -4,7 +4,7 @@ import { antAnimations } from '../../../shared/utils/animations';
 import { ProjectsDashboardService } from '../../../core/services/http/dashboard.service';
 
 @Component({
-  selector: 'ant-dashboard',
+  selector: 'admin-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   encapsulation: ViewEncapsulation.None,

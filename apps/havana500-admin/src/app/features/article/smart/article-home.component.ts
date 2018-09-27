@@ -19,7 +19,7 @@ import { ContentTag } from '../../../core/models/content-tag.model';
 import { ArticleExtended } from '../../../core/models/article-extended';
 
 @Component({
-  selector: 'ant-article-home',
+  selector: 'admin-article-home',
   templateUrl: 'article-home.component.html',
   styleUrls: ['article-home.component.scss'],
   animations: [antAnimations]

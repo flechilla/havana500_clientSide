@@ -10,7 +10,7 @@ import { OAuthWrapperService } from '../../core/services/auth/oauth-wrapper.serv
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
-  selector: 'ant-layout',
+  selector: 'admin-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
   encapsulation: ViewEncapsulation.None

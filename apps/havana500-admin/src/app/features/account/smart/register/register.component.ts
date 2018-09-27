@@ -10,7 +10,7 @@ import { antAnimations } from '../../../../shared/utils/animations';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
-  selector: 'ant-register',
+  selector: 'admin-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   animations: antAnimations
