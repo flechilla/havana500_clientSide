@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { now } from 'moment';
 import { List } from 'immutable';
 import { isNullOrUndefined } from 'util';
-import { BaseEntity } from '../../shared/models/base-entity.model';
+import { BaseEntity } from '../../../shared/models/base-entity.model';
 
 @Injectable()
 export class AntUtilsService {

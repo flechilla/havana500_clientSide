@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AntDashboardComponent } from './smart/dashboard.component';
@@ -7,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [SharedModule, DashboardRoutingModule],
+  imports: [SharedModule, DashboardRoutingModule, TranslateModule.forChild()],
   declarations: [AntDashboardComponent],
   providers: []
 })

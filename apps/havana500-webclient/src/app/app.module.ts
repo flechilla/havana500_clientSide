@@ -24,6 +24,7 @@ import {
 } from '@ngrx/router-store';
 // import { OAuthModule } from 'angular-oauth2-oidc';
 import { LayoutModule } from './features/layout/layout.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,7 +43,7 @@ import { LayoutModule } from './features/layout/layout.module';
       maxAge: 25 //  Retains last 25 states
     }),
     StoreRouterConnectingModule,
-
+    TranslateModule.forRoot(),
     CoreModule,
     SharedModule,
     LayoutModule

@@ -1,6 +1,6 @@
 import { OAuthService } from "angular-oauth2-oidc";
 import { Injectable } from "@angular/core";
-import { authPasswordFlowConfig } from "../configs/auth-password-flow.config";
+import { authPasswordFlowConfig } from "../../configs/auth-password-flow.config";
 
 @Injectable()
 export class OAuthWrapperService {

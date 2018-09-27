@@ -45,6 +45,7 @@
     "@ngrx/effects": "^6.1.0",
     "@ngrx/router-store": "^6.1.0",
     "@ngrx/store": "^6.1.0",
+    "@ngx-translate/core": "^10.0.2",
     "@nrwl/nx": "6.3.1",
     "@swimlane/ngx-charts": "9.0.0",
     "angular-froala-wysiwyg": "^2.8.5",

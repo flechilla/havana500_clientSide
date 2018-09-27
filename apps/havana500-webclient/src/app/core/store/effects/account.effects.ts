@@ -11,7 +11,7 @@ import * as routerActions from '../actions/router.actions';
 import { Store } from '@ngrx/store';
 import * as store from '../reducers';
 import { User } from '../../models/user.model';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Observable, from, of } from 'rxjs';
 import {
   map,

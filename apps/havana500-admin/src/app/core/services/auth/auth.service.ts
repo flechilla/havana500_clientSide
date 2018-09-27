@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { APP_USER } from '../configs/configuration-const.config';
-import { environment } from '../../../environments/environment';
-import { LoginModel } from '../models/login.model';
+import { APP_USER } from '../../configs/configuration-const.config';
+import { environment } from '../../../../environments/environment';
+import { LoginModel } from '../../models/login.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from '../models/user.model';
-import { RegisterModel } from '../models/register.model';
+import { User } from '../../models/user.model';
+import { RegisterModel } from '../../models/register.model';
 
 @Injectable()
 export class AuthService {
