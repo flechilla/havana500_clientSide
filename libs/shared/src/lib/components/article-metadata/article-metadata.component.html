@@ -5,7 +5,7 @@
 
     <div fxLayout="row" fxLayoutAlign="center center">
         <mat-icon class="metadata-icon" aria-label="created-date">watch_later</mat-icon>
-        <span>{{article?.createdAt.toDateString()}}</span>
+        <span>{{article?.createdAt.toLocaleDateString()}}</span>
     </div>
 
     <mat-divider class="metadata-separator" vertical></mat-divider>
