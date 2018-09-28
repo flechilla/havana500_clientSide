@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SquareFadeSpinnerComponent } from './components/squares-fade-spinner/square-fade-spinner.component';
 import { QuillModule } from 'ngx-quill';
+import { ArticleSummaryComponent } from './components/article-summary/article-summary.component';
+import { ArticleMetadataComponent } from './components/article-metadata/article-metadata.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -21,13 +24,16 @@ import { QuillModule } from 'ngx-quill';
     FormsModule,
     ReactiveFormsModule,
     NgxChartsModule,
-    QuillModule
+    QuillModule,
+    TranslateModule
   ],
   declarations: [
     //Components
     ConfirmDialogComponent,
     AntWidgetComponent,
     SquareFadeSpinnerComponent,
+    ArticleSummaryComponent,
+    ArticleMetadataComponent,
 
     //Directives
     AntWidgetToggleDirective,
@@ -50,6 +56,8 @@ import { QuillModule } from 'ngx-quill';
     ConfirmDialogComponent,
     AntWidgetComponent,
     SquareFadeSpinnerComponent,
+    ArticleSummaryComponent,
+    ArticleMetadataComponent,
 
     //Directives
     AntWidgetToggleDirective,
