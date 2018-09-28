@@ -14,8 +14,9 @@ export class HomeComponent implements OnInit {
     id: 0,
     createdBy: 'Nacho',
     sectionId: 0,
-    title: 'dumb art',
-    body: 'dumb body',
+    title: 'This Article Title is a bit long, Dont you think',
+    body:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat libero veniam, laudantium culpa consequuntur illo! Vero odit consequatur odio quas similique accusamus quibusdam hic, autem dolorum magnam eum a nesciunt?',
     allowComments: true,
     allowAnonymousComments: true,
     approvedCommentCount: 0,

@@ -1,4 +1,9 @@
-<div>
-    <h1 class="article-title">{{article?.title}}</h1>
-    <p class="article-body">{{article?.body}}</p>
+<div class="article-summary" fxFill fxLayout="column" fxLayoutAlign="space-between center">
+    <div class="main-article-content" fxLayout="column" fxLayoutAlign="flex-start center">
+        <h1 class="article-title">{{article?.title}}</h1>
+        <p class="article-body">{{article?.body}}</p>
+    </div>
+
+    <ant-article-metadata fxFlexAlign="stretch" [article]="article"></ant-article-metadata>
+
 </div>
