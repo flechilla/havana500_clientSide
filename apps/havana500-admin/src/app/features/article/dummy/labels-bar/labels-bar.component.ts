@@ -1,5 +1,5 @@
-import { ArticleExtended } from './../../../../core/models/article-extended';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ArticleExtended } from '@hav500workspace/shared';
 
 @Component({
   selector: 'admin-labels-bar',

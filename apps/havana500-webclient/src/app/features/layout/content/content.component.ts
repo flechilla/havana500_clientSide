@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { antAnimations } from '../../../shared/utils/animations';
 import { filter, map } from 'rxjs/operators';
+import { antAnimations } from '@hav500workspace/shared';
 
 @Component({
   selector: 'hav-content',

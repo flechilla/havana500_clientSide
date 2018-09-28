@@ -1,6 +1,5 @@
-import { RegisterModel } from './../../models/register.model';
-import { LoginModel } from './../../models/login.model';
 import { Action } from '@ngrx/store';
+import { LoginModel, RegisterModel } from '@hav500workspace/shared';
 
 export const DO_LOGIN = '[Account] Do Login';
 export const DO_LOGIN_SUCCESS = '[Account] Do Login Success';

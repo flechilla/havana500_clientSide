@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { AntTranslateService } from '../../core/services/translate/translate-wrapper.service';
+import { AntTranslateService } from '@hav500workspace/shared';
+
 import { spanish, french, english } from '../home/i18n';
 
 @Component({

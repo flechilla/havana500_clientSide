@@ -4,7 +4,8 @@ import {
   Inject,
   ViewEncapsulation,
   ViewChild,
-  ElementRef} from '@angular/core';
+  ElementRef
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,17 +17,20 @@ import {
 import {
   MatDialogRef,
   MAT_DIALOG_DATA,
-  MatMenuTrigger} from '@angular/material';
-import { Section } from '../../../../core/models/section.model';
+  MatMenuTrigger
+} from '@angular/material';
 import { Observable } from 'rxjs';
-import { antAnimations } from '../../../../shared/utils/animations';
-import { ArticleExtended } from '../../../../core/models/article-extended';
-import { ContentTag } from '../../../../core/models/content-tag.model';
-import { ContentTagService } from '../../../../core/services/http/content-tag.service';
-import { AntUtilsService } from '../../../../core/services/utils/ant-utils.service';
+import {
+  antAnimations,
+  Section,
+  ContentTag,
+  ArticleExtended,
+  ContentTagService,
+  AntUtilsService,
+  ArticleService,
+  Article
+} from '@hav500workspace/shared';
 import { startWith, map } from 'rxjs/operators';
-import { Article } from '../../../../core/models/article.model';
-import { ArticleService } from '../../../../core/services/http/article.service';
 
 @Component({
   selector: 'admin-create-update-article',

@@ -1,5 +1,4 @@
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './modules/material.module';
@@ -15,6 +14,7 @@ import { QuillModule } from 'ngx-quill';
 import { ArticleSummaryComponent } from './components/article-summary/article-summary.component';
 import { ArticleMetadataComponent } from './components/article-metadata/article-metadata.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { AntTranslateService } from './services';
 
 @NgModule({
   imports: [

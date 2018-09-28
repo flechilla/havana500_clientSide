@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { AntTranslateService } from './core/services/translate/translate-wrapper.service';
+import { AntTranslateService } from '@hav500workspace/shared';
 
 @Component({
   selector: 'hav-root',

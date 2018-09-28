@@ -1,15 +1,19 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import {
+  AntUtilsService,
+  ProjectsDashboardService,
+  ArticleService,
+  CommentService,
+  ContentTagService,
+  SectionService,
+  AntTranslateService,
+  HavanaEnvironment
+} from '@hav500workspace/shared';
+import { AuthenticatedGuard } from './route_guards/authenticated.guard';
+import { AccountSandbox } from './sandboxes/account-sandbox';
+import { environment } from '../../environments/environment';
 import { AuthService } from './services/auth/auth.service';
 import { OAuthWrapperService } from './services/auth/oauth-wrapper.service';
-import { AuthenticatedGuard } from './route_guards/authenticated.guard';
-import { AntUtilsService } from './services/utils/ant-utils.service';
-import { AccountSandbox } from './sandboxes/account-sandbox';
-import { ProjectsDashboardService } from './services/http/dashboard.service';
-import { ArticleService } from './services/http/article.service';
-import { CommentService } from './services/http/comment.service';
-import { ContentTagService } from './services/http/content-tag.service';
-import { SectionService } from './services/http/section.service';
-import { AntTranslateService } from './services/utils/translate-wrapper.service';
 
 @NgModule({
   imports: [],
@@ -27,7 +31,8 @@ import { AntTranslateService } from './services/utils/translate-wrapper.service'
     CommentService,
     ContentTagService,
     SectionService,
-    AntTranslateService
+    AntTranslateService,
+    { provide: HavanaEnvironment, useValue: environment }
   ]
 })
 export class CoreModule {

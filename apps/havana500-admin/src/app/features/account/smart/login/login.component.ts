@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountSandbox } from '../../../../core/sandboxes/account-sandbox';
-import { antAnimations } from '../../../../shared/utils/animations';
+import { antAnimations } from '@hav500workspace/shared';
 
 @Component({
   selector: 'admin-login',

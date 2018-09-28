@@ -6,8 +6,8 @@ import {
   Validators
 } from '@angular/forms';
 import { AccountSandbox } from '../../../../core/sandboxes/account-sandbox';
-import { antAnimations } from '../../../../shared/utils/animations';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { antAnimations } from '@hav500workspace/shared';
 
 @Component({
   selector: 'admin-register',
