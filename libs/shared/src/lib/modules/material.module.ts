@@ -26,7 +26,8 @@ import {
   MatSortModule,
   MatTableModule,
   MatTabsModule,
-  MatStepperModule
+  MatStepperModule,
+  MatChipsModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 
@@ -59,7 +60,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    CdkTableModule
+    CdkTableModule,
+    MatChipsModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -88,7 +90,8 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    CdkTableModule
+    CdkTableModule,
+    MatChipsModule
   ]
 })
 export class MaterialModule {}

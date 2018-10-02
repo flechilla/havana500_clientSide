@@ -1,3 +1,17 @@
-<p>
-  article works!
-</p>
+<article id="article-outer-container">
+  <div id="article-header">
+    <h1 id="article-title">{{article.title}}</h1>
+    <div id="article-reading-time">
+      <span id="article-reading-time-title">Reading Time: </span>{{article.readingTime}}
+    </div>
+    <div id="article-writer">
+      <span id="article-write-title">By: </span>Get the Article's writer and put it in here
+    </div>
+  </div>
+
+  <p id="article-body">{{article.body}}</p>
+  <mat-chip-list id="article-tags">
+      <mat-chip *ngFor="let tag of article.tags" (click)="onSelectTag(tag)">{{tag.name}}</mat-chip>
+  </mat-chip-list>
+
+</article>
