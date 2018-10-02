@@ -24,9 +24,11 @@ import {
 } from '@ngrx/router-store';
 // import { OAuthModule } from 'angular-oauth2-oidc';
 import { LayoutModule } from './features/layout/layout.module';
+//import { ArticleComponent } from '../../../libs/shared/components/article/article.component';
+import { ArticleComponent } from '../../../../libs/shared/src/lib/components/article/article.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ArticleComponent],
   imports: [
     CommonModule,
     BrowserModule,
