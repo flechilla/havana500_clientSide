@@ -3,14 +3,12 @@ import { ArticleComponent } from 'libs/shared/src/lib/components/article/article
 import { NgModule } from '@angular/core';
 
 export const appRoutes: Routes = [
-  {
-    path: 'articles/:id',
-    component: ArticleComponent
-  }
+ 
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(appRoutes) ],
+  imports: [ RouterModule.forRoot(appRoutes, { enableTracing: true }) ],
   exports: [ RouterModule ]
 })
 export default class AppRoutingModule {}
+ 

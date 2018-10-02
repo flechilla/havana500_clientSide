@@ -25,11 +25,10 @@ import {
 } from '@ngrx/router-store';
 // import { OAuthModule } from 'angular-oauth2-oidc';
 import { LayoutModule } from './features/layout/layout.module';
-//import { ArticleComponent } from '../../../libs/shared/components/article/article.component';
-import { ArticleComponent } from '../../../../libs/shared/src/lib/components/article/article.component';
+import { ArticleModule } from './features/article/article.module';
 
 @NgModule({
-  declarations: [AppComponent, ArticleComponent],
+  declarations: [AppComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -49,6 +48,7 @@ import { ArticleComponent } from '../../../../libs/shared/src/lib/components/art
     CoreModule,
     SharedModule,
     LayoutModule,
+    ArticleModule,
     AppRoutingModule
     // OAuthModule.forRoot({
     //   resourceServer: {
