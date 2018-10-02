@@ -7,7 +7,7 @@ import {ArticleExtended} from '../../models/article-extended';
 @Component({
   selector: 'ant-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.css']
+  styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
   private article: ArticleExtended;
