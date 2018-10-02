@@ -1,8 +1,16 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { ArticleComponent } from 'libs/shared/src/lib/components/article/article.component';
+import { NgModule } from '@angular/core';
+
 export const appRoutes: Routes = [
-  // {
-  //   path: 'account',
-  //   loadChildren: './features/account/account.module#AccountModule'
-  // },  
-  // { path: '**', redirectTo: 'account' }
+  {
+    path: 'articles/:id',
+    component: ArticleComponent
+  }
 ];
+
+@NgModule({
+  imports: [ RouterModule.forRoot(appRoutes) ],
+  exports: [ RouterModule ]
+})
+export default class AppRoutingModule {}
