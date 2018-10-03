@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ArticleRoutingModule } from './article-routing.module';
 import { SharedModule } from '@hav500workspace/shared';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ArticleComponent } from 'libs/shared/src/lib/components/article/article.component';
-import { ArticleService } from 'libs/shared/src/lib/services/http/article.service';
+import { ArticleComponent } from '@hav500workspace/shared';
+import { ArticleService } from '@hav500workspace/shared';
 
 @NgModule({
   imports: [
