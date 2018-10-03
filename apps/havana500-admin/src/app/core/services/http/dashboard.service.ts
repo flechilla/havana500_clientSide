@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../environments/environment.prod';
+import { environment } from '../../../../environments/environment';
 
 import {
   ActivatedRouteSnapshot,
@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class ProjectsDashboardService implements Resolve<any> {
+export default class ProjectsDashboardService implements Resolve<any> {
 
  
 

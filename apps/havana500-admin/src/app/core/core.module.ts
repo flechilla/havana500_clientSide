@@ -1,7 +1,8 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import ProjectsDashboardService from '../../app/core/services/http/dashboard.service';
+
 import {
   AntUtilsService,
-  ProjectsDashboardService,
   ArticleService,
   CommentService,
   ContentTagService,
