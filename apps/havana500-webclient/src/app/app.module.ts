@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '@hav500workspace/shared';
 import { CommonModule } from '@angular/common';
 import { appRoutes } from './app-routes';
+import AppRoutingModule from './app-routes';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import {
@@ -25,6 +26,7 @@ import {
 // import { OAuthModule } from 'angular-oauth2-oidc';
 import { LayoutModule } from './features/layout/layout.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { ArticleModule } from './features/article/article.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,10 +35,10 @@ import { TranslateModule } from '@ngx-translate/core';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, {
-      initialNavigation: 'enabled',
-      enableTracing: false
-    }),
+    // RouterModule.forRoot(appRoutes, {
+    //   initialNavigation: 'enabled',
+    //   enableTracing: false
+    // }),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument({
@@ -46,7 +48,9 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule.forRoot(),
     CoreModule,
     SharedModule,
-    LayoutModule
+    LayoutModule,
+    ArticleModule,
+    AppRoutingModule
     // OAuthModule.forRoot({
     //   resourceServer: {
     //     allowedUrls: ['http://localhost:5000/api/'],
