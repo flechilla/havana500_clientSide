@@ -6,11 +6,10 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { OAuthWrapperService } from '../../core/services/oauth-wrapper.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
-  selector: 'ant-layout',
+  selector: 'admin-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
   encapsulation: ViewEncapsulation.None

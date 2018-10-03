@@ -1,15 +1,11 @@
-import { authPasswordFlowConfig } from './../../core/configs/auth-password-flow.config';
-import { OAuthService, OAuthStorage } from 'angular-oauth2-oidc';
-import { RegisterModel } from './../../core/models/register.model';
-import { LoginModel } from './../../core/models/login.model';
-import { User } from './../../core/models/user.model';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../core/store/reducers';
 import * as accountActions from '../../core/store/actions/account.actions';
-import { OAuthWrapperService } from '../services/oauth-wrapper.service';
 import { Observable } from 'rxjs';
 import { APP_USER } from '../configs/configuration-const.config';
+import { User, LoginModel, RegisterModel } from '@hav500workspace/shared';
+import { OAuthWrapperService } from '../services/auth/oauth-wrapper.service';
 /**
  * Abstraction Layer for communicating with Core Module
  *

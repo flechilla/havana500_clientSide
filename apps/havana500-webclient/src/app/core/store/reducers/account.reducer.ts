@@ -1,5 +1,5 @@
-import { User } from './../../models/user.model';
 import * as actions from '../actions/account.actions';
+import { User } from '@hav500workspace/shared';
 
 const APP_USER = 'steelERPUser';
 
@@ -20,7 +20,9 @@ const INITIAL_STATE: State = {
 };
 
 export function reducer(state = INITIAL_STATE, action: actions.Actions): State {
-  if (!action) {return state; }
+  if (!action) {
+    return state;
+  }
   switch (action.type) {
     case actions.DO_LOGIN:
     case actions.DO_REGISTER:

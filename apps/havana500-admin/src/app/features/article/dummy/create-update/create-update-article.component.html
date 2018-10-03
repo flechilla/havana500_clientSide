@@ -38,12 +38,12 @@
 
         </mat-toolbar-row>
 
-        <mat-toolbar-row class=" py-8 py-sm-16" fxLayout="column" fxLayoutAlign="center center">
+        <mat-toolbar-row class="py-8 py-sm-16" fxLayout="column" fxLayoutAlign="center center">
             <div class="article-title">{{title.value}}</div>
         </mat-toolbar-row>
 
         <mat-toolbar-row class="toolbar-bottom mat-accent-900-bg">
-            <ant-labels-bar [article]="article" (deleteTag)="deleteArticleTag($event)"></ant-labels-bar>
+            <admin-labels-bar [article]="article" (deleteTag)="deleteArticleTag($event)"></admin-labels-bar>
         </mat-toolbar-row>
 
     </mat-toolbar>

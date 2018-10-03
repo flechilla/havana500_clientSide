@@ -1,11 +1,10 @@
-import { RouteModel } from "./../../models/route.model";
-import { Action } from "@ngrx/store";
-import { NavigationExtras } from "@angular/router";
-export const GO = "[Router] Go";
-export const BACK = "[Router] Back";
-export const FORWARD = "[Router] Forward";
-export const NAVIGATION_FAILED = "[Router] Navigation Failed";
-export const NAVIGATION_SUCCESS = "[Router] Navigation Success";
+import { Action } from '@ngrx/store';
+import { RouteModel } from '@hav500workspace/shared';
+export const GO = '[Router] Go';
+export const BACK = '[Router] Back';
+export const FORWARD = '[Router] Forward';
+export const NAVIGATION_FAILED = '[Router] Navigation Failed';
+export const NAVIGATION_SUCCESS = '[Router] Navigation Success';
 
 /**
  * Router Actions

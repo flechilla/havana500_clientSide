@@ -1,9 +1,9 @@
-import { RouteModel } from './../../models/route.model';
 import { Router } from '@angular/router';
 import { Effect, Actions } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import * as actions from '../actions/router.actions';
 import { tap, map } from 'rxjs/operators';
+import { RouteModel } from '@hav500workspace/shared';
 
 @Injectable()
 export class RouterEffects {

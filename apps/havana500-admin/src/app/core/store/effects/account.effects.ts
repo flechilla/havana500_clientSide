@@ -1,17 +1,10 @@
-import { authPasswordFlowConfig } from './../../configs/auth-password-flow.config';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { RouteModel } from './../../models/route.model';
-import { DoLoginSuccessAction } from './../actions/account.actions';
 
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import * as actions from '../actions/account.actions';
 import * as routerActions from '../actions/router.actions';
-import { Store } from '@ngrx/store';
-import * as store from '../reducers';
-import { User } from '../../models/user.model';
-import { AuthService } from '../../services/auth.service';
 import { Observable, from, of } from 'rxjs';
 import {
   map,
@@ -21,7 +14,8 @@ import {
   concatMap
 } from 'rxjs/operators';
 import { APP_USER } from '../../configs/configuration-const.config';
-import { LoginModel } from '../../models/login.model';
+import { AuthService } from '../../services/auth/auth.service';
+import { LoginModel } from '@hav500workspace/shared';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your

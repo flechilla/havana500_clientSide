@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthenticatedGuard } from '../../core/route_guards/authenticated.guard';
 import { AntDashboardComponent } from './smart/dashboard.component';
-import { ProjectsDashboardService } from '../../core/services/http/dashboard.service';
+import { ProjectsDashboardService } from '@hav500workspace/shared';
 
 const dashboardRoutes: Routes = [
   {

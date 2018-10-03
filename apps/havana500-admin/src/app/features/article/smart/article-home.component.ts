@@ -1,25 +1,20 @@
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import {
-  Component,
-  OnInit,
-  AfterViewInit
-} from '@angular/core';
-import {
- 
-  MatDialog
-} from '@angular/material';
-import { antAnimations } from '../../../shared/utils/animations';
-import { Article } from '../../../core/models/article.model';
-import { ArticleService } from '../../../core/services/http/article.service';
-import { CreateUpdateArticleComponent } from '../dummy/create-update/create-update-article.component';
+  antAnimations,
+  Article,
+  Section,
+  ContentTag,
+  ArticleService,
+  SectionService,
+  ContentTagService,
+  ArticleExtended
+} from '@hav500workspace/shared';
 import { BaseTableContainerComponent } from '../../../shared/components/base-table-container.component';
-import { SectionService } from '../../../core/services/http/section.service';
-import { Section } from '../../../core/models/section.model';
-import { ContentTagService } from '../../../core/services/http/content-tag.service';
-import { ContentTag } from '../../../core/models/content-tag.model';
-import { ArticleExtended } from '../../../core/models/article-extended';
+import { CreateUpdateArticleComponent } from '../dummy/create-update/create-update-article.component';
 
 @Component({
-  selector: 'ant-article-home',
+  selector: 'admin-article-home',
   templateUrl: 'article-home.component.html',
   styleUrls: ['article-home.component.scss'],
   animations: [antAnimations]

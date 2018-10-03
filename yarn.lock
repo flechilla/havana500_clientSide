@@ -241,6 +241,12 @@
     tree-kill "^1.0.0"
     webpack-sources "^1.1.0"
 
+"@ngx-translate/core@^10.0.2":
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-10.0.2.tgz#5eeb78f47845b476a1e892fb2fb153dbbaf72850"
+  dependencies:
+    tslib "^1.9.0"
+
 "@nrwl/nx@6.3.1":
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/@nrwl/nx/-/nx-6.3.1.tgz#e156393ebc1acf5e3a1589cda67fd36f9b66d3c6"
