@@ -1,1 +1,44 @@
 @import '../../scss/ant';
+@import '../../css/bootstrap.css';
+
+.font-weight-700 {
+  font-weight: 700;
+}
+
+#article-outer-container {
+  margin-top: 100px;
+
+  #article-title {
+    margin-bottom: 20px;
+    font-size: 4em;
+  }
+
+  #article-header {
+    margin-bottom: 50px;
+  }
+
+  #article-body {
+    margin-bottom: 50px;
+  }
+
+  .article-tag {
+    background-color: #00ffff;
+  }
+
+  #related-articles-outer-container {
+    margin-top: 30px;
+    background-color: #808080;
+
+    #related-articles-header {
+      font-size: 3em;
+    }
+  }
+
+  #comments-outer-container{
+      margin-top: 30px;
+
+      #comments-header{
+          font-size: 3em;
+      }
+  }
+}
