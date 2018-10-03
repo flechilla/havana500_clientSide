@@ -16,13 +16,13 @@ export default class ProjectsDashboardService implements Resolve<any> {
 
 
   //#region MockData
-  _projects = [
+  projects = [
     {
       name: 'Havana 500'
     }
   ];
 
-  _widgets = {
+  widgets = {
     articlesWidget: {
       ranges: {
         LW: 'Last Week',
@@ -1762,8 +1762,8 @@ export default class ProjectsDashboardService implements Resolve<any> {
   };
   //#endregion
 
-  projects: any[];
-  widgets: any;
+  // projects: any[];
+  // widgets: any;
 
 
 
@@ -1788,15 +1788,15 @@ export default class ProjectsDashboardService implements Resolve<any> {
 
   getProjects(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.projects = this._projects;
-      resolve(this._projects);
+      this.projects = this.projects;
+      resolve(this.projects);
     });
   }
 
   getWidgets(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.widgets = this._widgets;
-      resolve(this._widgets);
+      this.widgets = this.widgets;
+      resolve(this.widgets);
     });
   }
 
