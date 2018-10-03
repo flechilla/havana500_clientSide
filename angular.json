@@ -7,7 +7,7 @@
       "root": "apps/havana500-webclient/",
       "sourceRoot": "apps/havana500-webclient/src",
       "projectType": "application",
-      "prefix": "ant",
+      "prefix": "hav",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
@@ -122,7 +122,7 @@
       "root": "apps/havana500-admin/",
       "sourceRoot": "apps/havana500-admin/src",
       "projectType": "application",
-      "prefix": "ant",
+      "prefix": "admin",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"

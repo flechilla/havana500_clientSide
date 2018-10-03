@@ -1,19 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { APP_USER } from '../../configs/configuration-const.config';
-import { environment } from '../../../../environments/environment';
-import { LoginModel } from '../../models/login.model';
+import {
+  HavanaEnvironment,
+  LoginModel,
+  User,
+  RegisterModel
+} from '@hav500workspace/shared';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from '../../models/user.model';
-import { RegisterModel } from '../../models/register.model';
 
 @Injectable()
 export class AuthService {
   public token: string;
   public apiUrl: string;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private environment: HavanaEnvironment,
+    private http: HttpClient
+  ) {
     const currentUser = JSON.parse(localStorage.getItem(APP_USER));
     this.token = currentUser && currentUser.token;
     this.apiUrl = environment.apiUrl;

@@ -6,11 +6,11 @@ import {
   Validators
 } from '@angular/forms';
 import { AccountSandbox } from '../../../../core/sandboxes/account-sandbox';
-import { antAnimations } from '../../../../shared/utils/animations';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { antAnimations } from '@hav500workspace/shared';
 
 @Component({
-  selector: 'ant-register',
+  selector: 'admin-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   animations: antAnimations

@@ -11,14 +11,14 @@
 }
 
 .toolbar {
-  position: fixed;
+  position: relative;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
   z-index: 2;
   // background-color: mat-color();
 }
 
 .main-content {
-  margin-top: 64px;
+  height: -webkit-fill-available;
 }
 
 .container__overflowed {
@@ -28,6 +28,6 @@
 .main-footer {
   bottom: 0%;
   min-height: 64px;
-  position: fixed;
+  position: relative;
   width: 100%;
 }

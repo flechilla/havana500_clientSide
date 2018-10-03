@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '@hav500workspace/shared';
 import { CommonModule } from '@angular/common';
 import { appRoutes } from './app-routes';
-import { AccountModule } from './features/account/account.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import {

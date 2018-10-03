@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import * as shape from 'd3-shape';
-import { antAnimations } from '../../../shared/utils/animations';
-import { ProjectsDashboardService } from '../../../core/services/http/dashboard.service';
+import {
+  antAnimations,
+  ProjectsDashboardService
+} from '@hav500workspace/shared';
 
 @Component({
-  selector: 'ant-dashboard',
+  selector: 'admin-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   encapsulation: ViewEncapsulation.None,
