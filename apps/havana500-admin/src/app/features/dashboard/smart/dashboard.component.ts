@@ -6,7 +6,7 @@ import {
 } from '@hav500workspace/shared';
 import { StatsService } from '../../../core/services/http/stats.service';
 import { List } from 'immutable';
-import { Article } from '../../../core/models/article.model';
+import { Article } from '@hav500workspace/shared';
 
 @Component({
   selector: 'admin-dashboard',
