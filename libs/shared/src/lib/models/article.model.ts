@@ -159,4 +159,13 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @memberof Article
    */
   readingTime: number;
+
+  /**
+   * Gets or sets the creation date of the current comment.
+   * This value is in Human 'readable'.
+   *
+   * @type {string}
+   * @memberof Comment
+   */
+  createdAtHumanized: string;
 }

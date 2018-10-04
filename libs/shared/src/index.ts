@@ -5,5 +5,6 @@ export * from './lib/state';
 export * from './lib/utils';
 export * from './lib/modules/material.module';
 export * from './lib/components/article/article.component';
+export * from './lib/components/article-summary/article-summary.component';
 
 export * from './lib/shared.module';
