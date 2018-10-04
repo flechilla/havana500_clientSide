@@ -55,4 +55,18 @@ export class ArticleService extends BaseCrudService<Article> {
       )
       .pipe(catchError(this.handleError));
   }
+
+    /**
+   * Get the related articles of an Article
+   *
+   * @param {number} articleId
+   * @returns {Observable<Article>}
+   * @memberof ArticleService
+   */
+  public getRelatedArticles(articleId: number): Observable<Article[]> {
+    return this.http.get<Article[]>(
+      this.url + '/GetRelatedArticles?articleId=' + articleId
+    )
+    .pipe(catchError(this.handleError));    
+  }
 }

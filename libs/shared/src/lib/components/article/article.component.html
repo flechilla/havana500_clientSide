@@ -20,7 +20,7 @@
     <h2 id="related-articles-header">Related articles</h2>
 
     <div id="related-articles-cards-container">
-      Places the related articles in here.
+        <ant-article-summary *ngFor="let article of relatedArticles" [article]="article"></ant-article-summary>
       <!-- for this try to use the grid-list from material -->
     </div>
   </div>

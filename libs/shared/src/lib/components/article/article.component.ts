@@ -4,6 +4,7 @@ import {  Location} from '@angular/common';
 import {  ArticleService} from '../../services/http/article.service';
 import {  ArticleExtended} from '../../models/article-extended';
 import {  switchMap} from 'rxjs/operators';
+import { Article } from '../../models';
 
 @Component({
   selector: 'ant-article',
@@ -12,8 +13,9 @@ import {  switchMap} from 'rxjs/operators';
 })
 export class ArticleComponent implements OnInit {
   private article: ArticleExtended;
+  private relatedArticles: Article[];
   constructor(private articleService: ArticleService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, 
     private location: Location) {}
 
   ngOnInit() {
@@ -23,7 +25,7 @@ export class ArticleComponent implements OnInit {
     // )
 
     this.getArticle();
-
+    this.getRelatedArticles();
   }
 
   getArticle(): void {
@@ -35,6 +37,12 @@ export class ArticleComponent implements OnInit {
 
   onSelectTag(tagId: number) : void{
     console.log('this method is hit after the user selelects a tag. the tag Id is: '+tagId);
+  }
+
+  getRelatedArticles(){
+    const articleId = +this.route.snapshot.paramMap.get('id');
+    this.articleService.getRelatedArticles(articleId).
+    subscribe(articles => this.relatedArticles = articles);
   }
 
 }
