@@ -3,11 +3,11 @@
 .container {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  // position: absolute; this can't be absolute. Also we shouldn't use the 'container' name
+  // top: 0;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
 }
 
 .toolbar {
@@ -19,6 +19,7 @@
 
 .main-content {
   height: -webkit-fill-available;
+  position: relative;
 }
 
 .container__overflowed {
