@@ -167,5 +167,5 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Comment
    */
-  createdAtHumanized: string;
+  publicationDateHumanized: string;
 }

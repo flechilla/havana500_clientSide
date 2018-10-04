@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     modifiedAt: new Date(),
     createdAt: new Date(),
     modifiedBy: 'pepe el cojo',
-    createdAtHumanized: '7 moonths ago'
+    publicationDateHumanized: '7 months ago'
   };
   constructor(private translateService: AntTranslateService) {}
 
