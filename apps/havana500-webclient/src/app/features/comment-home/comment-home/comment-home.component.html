@@ -1,5 +1,14 @@
-<div id="comments-outer-container">
+<!-- <div id="comments-outer-container">
   <div class="comment-container" *ngFor="let comment of comments">
     <hav-comment [comment]="comment" class="comment-inner-container row"></hav-comment>    
   </div>
+</div> -->
+<div id="comments-outer-container">
+  <mat-card class="comment-container" *ngFor="let comment of comments">
+    <mat-card-content class="comment-body">{{comment.body}}</mat-card-content>
+    <mat-card-footer class="comment-details">
+      <span class="comment-date">{{comment.createdAtHumanized}}</span>
+      <span class="comment-user">{{comment.userName}}</span>
+    </mat-card-footer>
+  </mat-card>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '@hav500workspace/shared';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'hav-comment-home',
