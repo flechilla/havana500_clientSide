@@ -31,7 +31,8 @@ export class HomeComponent implements OnInit {
     editorWeight: 3,
     modifiedAt: new Date(),
     createdAt: new Date(),
-    modifiedBy: 'pepe el cojo'
+    modifiedBy: 'pepe el cojo',
+    createdAtHumanized: '7 moonths ago'
   };
   constructor(private translateService: AntTranslateService) {}
 
