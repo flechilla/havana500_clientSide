@@ -1,3 +1,5 @@
-<p>
-  comment-home works!
-</p>
+<div id="comments-outer-container">
+  <div class="comment-container" *ngFor="let comment of comments">
+    <hav-comment [comment]="comment" class="comment-inner-container row"></hav-comment>    
+  </div>
+</div>

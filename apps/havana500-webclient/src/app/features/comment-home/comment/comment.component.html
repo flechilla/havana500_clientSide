@@ -1,3 +1,7 @@
-<p>
-  comment works!
+<p class="comment-body">
+  {{comment.body}}
 </p>
+<div class="comment-details right">
+  <span class="comment-date">{{comment.createdAtHumanized}}</span>
+  <span class="comment-userName">{{comment.userName}}</span>
+</div>
