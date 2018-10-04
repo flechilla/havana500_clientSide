@@ -6,6 +6,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ArticleComponent } from '@hav500workspace/shared';
 import { ArticleService } from '@hav500workspace/shared';
 import { CommentHomeComponent } from '../comment-home/comment-home/comment-home.component';
+import { CommentComponent } from '../comment-home/comment/comment.component';
+
 
 @NgModule({
   imports: [
@@ -16,7 +18,8 @@ import { CommentHomeComponent } from '../comment-home/comment-home/comment-home.
   ],
   declarations: [
     ArticleComponent,
-    CommentHomeComponent
+    CommentHomeComponent,
+    CommentComponent
   ],
   providers: [ArticleService]
 })
