@@ -33,4 +33,13 @@ export interface Comment extends UserContent {
    * @memberof Comment
    */
   dislikes: number;
+
+    /**
+   * Gets or sets the creation date of the current comment.
+   * This value is in Human 'readable'.
+   *
+   * @type {string}
+   * @memberof Comment
+   */
+  createdAtHumanized: string;
 }
