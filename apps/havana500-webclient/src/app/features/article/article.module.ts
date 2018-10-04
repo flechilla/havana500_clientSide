@@ -5,6 +5,7 @@ import { SharedModule } from '@hav500workspace/shared';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ArticleComponent } from '@hav500workspace/shared';
 import { ArticleService } from '@hav500workspace/shared';
+import { CommentHomeComponent } from '../comment-home/comment-home/comment-home.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { ArticleService } from '@hav500workspace/shared';
     FlexLayoutModule
   ],
   declarations: [
-    ArticleComponent
+    ArticleComponent,
+    CommentHomeComponent
   ],
   providers: [ArticleService]
 })

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CommentService } from '@hav500workspace/shared';
 
 @Component({
   selector: 'hav-comment-home',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentHomeComponent implements OnInit {
 
-  constructor() { }
+  // Represents the Article that is the container of the Comments
+  @Input() articleId : number;
 
-  ngOnInit() {
+  private comments : Comment[];
+
+  constructor(private commentService : CommentService){
+    console.log(this.articleId);
+  }
+
+  ngOnInit(): void {
+    this.commentService.getArticleComments(this.articleId, 0, 10).
+      subscribe(_comments => this.comments = _comments);
   }
 
 }

@@ -1,23 +1,9 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  ActivatedRoute,
-  ParamMap
-} from '@angular/router';
-import {
-  Location
-} from '@angular/common';
-import {
-  ArticleService
-} from '../../services/http/article.service';
-import {
-  ArticleExtended
-} from '../../models/article-extended';
-import {
-  switchMap
-} from 'rxjs/operators';
+import {  Component,  OnInit} from '@angular/core';
+import {  ActivatedRoute,  ParamMap} from '@angular/router';
+import {  Location} from '@angular/common';
+import {  ArticleService} from '../../services/http/article.service';
+import {  ArticleExtended} from '../../models/article-extended';
+import {  switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'ant-article',
