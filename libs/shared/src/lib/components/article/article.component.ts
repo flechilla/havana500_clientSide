@@ -60,7 +60,7 @@ export class ArticleComponent implements OnInit {
     this.newComment.articleId = this.article.id;
     this.commentService.create(this.newComment).
       subscribe(newComment=>this.newComment = newComment);
-
+    //TODO: insert the new comment in the old comment's list
   }
 
 }

@@ -40,9 +40,13 @@
 
       </div>
       <label for="new-comment-body">Comentario
-      <textarea type="text" [(ngModel)]="newComment.body" name="new-comment-body" id="new-comment-body" class="col-12 form-control"></textarea>
+      <textarea type="text" [(ngModel)]="newComment.body" name="body" id="new-comment-body" class="col-12 form-control" #body="ngModel" required ></textarea>
+      <div [hidden]="body.valid" class="alert alert-danger">
+          Body is required
+        </div>
       </label>
-        <button type="submit" class="btn btn-success" id="new-comment-post-btn" (click)="postNewComment(); newCommentForm.reset()" >Comentar!</button>
+        <button type="submit" class="btn btn-success" 
+          id="new-comment-post-btn" (click)="postNewComment(); newCommentForm.reset()" [disabled] = "!newCommentForm.form.valid">Comentar!</button>
     </form>
     <hav-comment-home [articleId]="article.id"></hav-comment-home>
     
