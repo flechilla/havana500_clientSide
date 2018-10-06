@@ -27,10 +27,12 @@ import {
 import { LayoutModule } from './features/layout/layout.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ArticleModule } from './features/article/article.module';
+import { HomeModule } from './features/home/home.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    HomeModule,
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
