@@ -28,11 +28,13 @@ import { LayoutModule } from './features/layout/layout.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ArticleModule } from './features/article/article.module';
 import { HomeModule } from './features/home/home.module';
+import { SecondLevelModule } from './features/second-level/second-level.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     HomeModule,
+    SecondLevelModule,
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
