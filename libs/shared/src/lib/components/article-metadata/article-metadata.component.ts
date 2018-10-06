@@ -4,7 +4,7 @@ import { AntTranslateService } from '../../services/translate/translate-wrapper.
 import { english } from './i18n';
 
 @Component({
-  selector: 'ant-article-metadata',
+  selector: 'ant-article-summary-metadata',
   templateUrl: 'article-metadata.component.html',
   styleUrls: ['article-metadata.component.scss']
 })

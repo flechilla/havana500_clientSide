@@ -1,16 +1,27 @@
-.article-summary {
+//START variables declaration
+$article-summary-bColor: #ffffff;
+//END variables declaration
+ant-article-summary, .article-summary-outer-container {
   max-width: 30rem;
+  background-color: $article-summary-bColor;
+  border: 0.3rem solid gray;
+
+  &:not(:last-child)
+  {
+    margin-right: 3rem;
+  }
 }
 
-.main-article-content {
-  padding: 0 5rem;
+.main-article-summary-content {
+  padding: 0 1.5rem;
 }
 
-.article-title {
+.article-summary-title {
   text-align: justify;
   text-align-last: center;
+  font-weight: 700;
 }
 
-.article-body {
+.article-summary-body {
   text-align: justify;
 }

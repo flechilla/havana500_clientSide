@@ -1,5 +1,11 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
+//START variables declaration
+$related-articles-outer-container-bColor:  #eeeeee;
+$article-tag-bColor: #62b0ff;
+//END variables declaration
+
+
 .font-weight-700 {
   font-weight: 700;
 }
@@ -21,15 +27,20 @@
   }
 
   .article-tag {
-    background-color: #00ffff;
+    background-color: $article-tag-bColor;
   }
 
   #related-articles-outer-container {
     margin-top: 30px;
-    background-color: #808080;
+    background-color: $related-articles-outer-container-bColor;
+    padding: 1rem;
 
     #related-articles-header {
       font-size: 3em;
+    }
+
+    #related-articles-cards-container{
+      margin: 0 !important;
     }
   }
 

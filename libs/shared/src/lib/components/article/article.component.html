@@ -19,8 +19,8 @@
   <div id="related-articles-outer-container">
     <h2 id="related-articles-header">Related articles</h2>
 
-    <div id="related-articles-cards-container">
-        <ant-article-summary *ngFor="let article of relatedArticles" [article]="article"></ant-article-summary>
+    <div id="related-articles-cards-container" class="row">
+        <ant-article-summary *ngFor="let article of relatedArticles" [article]="article" class="col-xs-12 col-md-3"></ant-article-summary>
       <!-- for this try to use the grid-list from material -->
     </div>
   </div>
