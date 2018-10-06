@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import {  Location} from '@angular/common';
+import { ArticleService, Article } from '@hav500workspace/shared';
 
 @Component({
   selector: 'hav-second-level-deafult',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SecondLevelDeafultComponent implements OnInit {
 
-  constructor() { }
+  private articles: Article[];
+  private amountOfArticles = 30;
+  private currentPage = 0;
+
+  constructor(   private route: ActivatedRoute, 
+    private location: Location,
+  private articleService: ArticleService) { }
 
   ngOnInit() {
+    this.getContent();
+
   }
 
+  getContent(): void{
+    const sectionName = this.route.snapshot.paramMap.get('sectionName');
+    this.articleService.getArticlesBasicDataBySectionName(sectionName, this.currentPage, this.amountOfArticles)
+      .subscribe(articles=>this.articles = articles);
+  }
+
+  
 }

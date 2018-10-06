@@ -69,4 +69,12 @@ export class ArticleService extends BaseCrudService<Article> {
     )
     .pipe(catchError(this.handleError));    
   }
+
+  public getArticlesBasicDataBySectionName(sectionName: string, currentPage: number, amountOfArticles: number): Observable<Article[]>{
+    return this.http.get<Article[]>(
+      this.url + '/GetArticlesBasicDataBySectionName?sectionName='+sectionName
+      +'&currentPage='+currentPage+'&amountOfArticles='+amountOfArticles
+    )
+    .pipe(catchError(this.handleError)); 
+  }
 }
