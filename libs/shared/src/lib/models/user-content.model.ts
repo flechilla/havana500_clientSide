@@ -23,7 +23,7 @@ export interface UserContent extends TrackableEntity<number> {
    * @type {string}
    * @memberof UserContent
    */
-  userName: string;
+  userName?: string;
 
   /**
    * Gets or sets the email of the User
@@ -31,5 +31,5 @@ export interface UserContent extends TrackableEntity<number> {
    * @type {string}
    * @memberof UserContent
    */
-  userEmail: string;
+  userEmail?: string;
 }

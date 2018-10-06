@@ -1,7 +1,32 @@
 import { UserContent } from './user-content.model';
 import { Discriminator } from './enums/discriminator.enum';
 
-export interface Comment extends UserContent {
+export class Comment implements UserContent {
+
+ 
+  /**
+   * @param  {number} articleId
+   * @param  {string} body
+   * @param  {string} userName?
+   * @param  {string} userEmail?
+   */
+  constructor( articleId: number, 
+  body: string, 
+userName?: string,
+userEmail?:string, 
+){
+  this.body = body;
+  this.userEmail = userEmail;
+  this.userName = userName;
+  this.articleId = articleId;
+}
+
+ipAddress: string;
+isApproved: boolean;
+createdAt: Date;
+modifiedAt: Date;
+id: number;
+
   /**
    * Gets or sets the FK to the related Article
    *
@@ -17,6 +42,22 @@ export interface Comment extends UserContent {
    * @memberof Comment
    */
   body: string;
+ 
+  /**
+   * Gets or sets the user name
+   *
+   * @type {string}
+   * @memberof Comment
+   */
+  userName?: string;
+
+  /**
+   * Gets or sets the user email
+   *
+   * @type {string}
+   * @memberof Comment
+   */
+  userEmail?: string;
 
   /**
    * Gets or sets the amount of likes for the current comment.
