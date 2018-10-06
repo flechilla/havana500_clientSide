@@ -35,6 +35,14 @@ export class AntToolbarComponent implements OnInit {
 
   getSections() : void{
     this.sectionService.getAll()
-      .subscribe(sections=>this.sections = sections);
+      .subscribe(sections=>{
+        this.sections = sections
+        this.sections.map(function(value, index, array){
+          if(value.subSections.length>0)
+          value.subSections.forEach(section => {
+              array.push(section);
+            });
+        })
+      });
   }
 }
