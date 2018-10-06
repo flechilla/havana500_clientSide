@@ -4,6 +4,7 @@ import { HavanaEnvironment } from '../../models';
 import { BaseCrudService } from '../base';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import {Comment} from '../../models'
 
 @Injectable()
 export class CommentService extends BaseCrudService<Comment> {

@@ -6,6 +6,7 @@ import {  ArticleExtended} from '../../models/article-extended';
 import {  switchMap} from 'rxjs/operators';
 import { Article } from '../../models';
 import {Comment} from '../../models';
+import { CommentService } from '../../services';
 
 @Component({
   selector: 'ant-article',
@@ -19,7 +20,8 @@ export class ArticleComponent implements OnInit {
 
   constructor(private articleService: ArticleService,
     private route: ActivatedRoute, 
-    private location: Location) {}
+    private location: Location,
+  private commentService: CommentService) {}
 
   ngOnInit() {
     // this.route.paramMap.pipe(
@@ -56,8 +58,9 @@ export class ArticleComponent implements OnInit {
 
   postNewComment(): void{
     this.newComment.articleId = this.article.id;
-    console.log("Inside the postNewCOmment method.");
-    console.log(JSON.stringify(this.newComment));
+    this.commentService.create(this.newComment).
+      subscribe(newComment=>this.newComment = newComment);
+
   }
 
 }
