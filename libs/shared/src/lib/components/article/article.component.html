@@ -11,7 +11,7 @@
 
   <p id="article-body">{{article.body}}</p>
 
-  
+
   <mat-chip-list id="article-tags">
     <mat-chip class="article-tag" *ngFor="let tag of article.tags" (click)="onSelectTag(tag.id)">{{tag.name}}</mat-chip>
   </mat-chip-list>
@@ -20,17 +20,32 @@
     <h2 id="related-articles-header">Related articles</h2>
 
     <div id="related-articles-cards-container" class="row">
-        <ant-article-summary *ngFor="let article of relatedArticles" [article]="article" class="col-xs-12 col-md-3"></ant-article-summary>
+      <ant-article-summary *ngFor="let article of relatedArticles" [article]="article" class="col-xs-12 col-md-3"></ant-article-summary>
       <!-- for this try to use the grid-list from material -->
     </div>
   </div>
 
   <div id="comments-outer-container">
     <h2 id="comments-header">Comments</h2>
-    <hav-comment-home [articleId]="article.id"></hav-comment-home>
+    <form id="new-comment-outer-container" class="row" #newCommentForm="ngForm">
+      <div id="new-comment-user-metadata" class="col-12 form-group">
+        <label for="new-comment-username">Nombre de usuario: 
+        <input type="text" [(ngModel)]="newComment.userName" name="new-comment-username" id="new-comment-username" class="form-control col-xs-12 col-md-5" placeholder="Nombre">
+      </label>
+        <label for="new-comment-useremail">Nombre de usuario: 
+        <input type="text" [(ngModel)]="newComment.userEmail" name="new-comment-useremail" id="new-comment-useremail" class="form-control col-xs-12 col-md-5"
+          placeholder="Correo">
+        </label>
 
-    <div id="comments-inner-container">
-      <div class="comment-container">This is the container of a single comment.</div>
-    </div>
+
+      </div>
+      <label for="new-comment-body">Comentario
+      <textarea type="text" [(ngModel)]="newComment.body" name="new-comment-body" id="new-comment-body" class="col-12 form-control"></textarea>
+      </label>
+        <button type="submit" class="btn btn-success" id="new-comment-post-btn" (click)="postNewComment(); newCommentForm.reset()" >Comentar!</button>
+    </form>
+    <hav-comment-home [articleId]="article.id"></hav-comment-home>
+    
+   
   </div>
 </article>

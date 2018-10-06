@@ -7,6 +7,7 @@ import { ArticleComponent } from '@hav500workspace/shared';
 import { ArticleService } from '@hav500workspace/shared';
 import { CommentHomeComponent } from '../comment-home/comment-home/comment-home.component';
 import { CommentComponent } from '../comment-home/comment/comment.component';
+import { FormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { CommentComponent } from '../comment-home/comment/comment.component';
     CommonModule,
     ArticleRoutingModule,
     SharedModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule
   ],
   declarations: [
     ArticleComponent,

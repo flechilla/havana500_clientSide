@@ -56,3 +56,14 @@ $article-tag-bColor: #62b0ff;
 .comment-body{
   background-color: black;
 }
+
+#new-comment-outer-container{
+  input, textarea{
+    // border: 1px solid gray;
+  }
+
+  #new-comment-post-btn {
+    // border: 2px solid black;
+    // background-color: #62b0ff
+  }
+}
