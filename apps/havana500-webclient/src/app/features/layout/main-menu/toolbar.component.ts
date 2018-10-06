@@ -1,16 +1,19 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { SectionService, Section } from '@hav500workspace/shared';
 
 @Component({
   selector: 'hav-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss']
+  styleUrls: ['./toolbar.component.scss'],
+  providers: [SectionService]
 })
 export class AntToolbarComponent implements OnInit {
   languages: any;
   selectedLanguage: any;
+  private sections: Section[];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private sectionService: SectionService) {}
 
   ngOnInit(): void {
     this.languages = [
@@ -19,6 +22,7 @@ export class AntToolbarComponent implements OnInit {
     ];
 
     this.selectedLanguage = this.languages[0];
+    this.getSections();
   }
 
   setLanguage(lang) {
@@ -27,5 +31,10 @@ export class AntToolbarComponent implements OnInit {
 
     // Use the selected language for translations
     // this.translate.use(lang.id);
+  }
+
+  getSections() : void{
+    this.sectionService.getAll()
+      .subscribe(sections=>this.sections = sections);
   }
 }

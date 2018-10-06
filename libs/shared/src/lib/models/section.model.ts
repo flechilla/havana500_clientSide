@@ -73,4 +73,6 @@ export interface Section extends AuditableAndTrackableEntity<number> {
    * @memberof Section
    */
   amountOfArticles: number;
+
+  subSections: Section[];
 }
