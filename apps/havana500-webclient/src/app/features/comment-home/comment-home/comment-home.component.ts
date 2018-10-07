@@ -32,18 +32,19 @@ export class CommentHomeComponent implements OnInit {
     this.commentService.getArticleComments(this.articleId, 0, 10).
       subscribe(_comments => this.comments = _comments);
   }
-
+  /**
+   *  Post a new comment to the server and add it to the list of comments.
+   *  This will update the DOM automatically.
+   */
   postNewComment(): void{
     this.newComment.articleId = this.articleId;
+    
     this.commentService.create(this.newComment).
       subscribe(newComment=>{
         this.newComment = newComment
       this.comments.push(this.newComment);
       });
 
-      
-      
-    //TODO: insert the new comment in the old comment's list
   }
 
 }
