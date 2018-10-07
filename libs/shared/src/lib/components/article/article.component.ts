@@ -1,5 +1,5 @@
 import {  Component,  OnInit} from '@angular/core';
-import {  ActivatedRoute,  ParamMap} from '@angular/router';
+import {  ActivatedRoute,  ParamMap, Router} from '@angular/router';
 import {  Location} from '@angular/common';
 import {  ArticleService} from '../../services/http/article.service';
 import {  ArticleExtended} from '../../models/article-extended';
@@ -22,7 +22,8 @@ export class ArticleComponent implements OnInit {
   constructor(private articleService: ArticleService,
     private route: ActivatedRoute, 
     private location: Location,
-  private commentService: CommentService) {}
+  private commentService: CommentService,
+private router: Router) {}
 
   ngOnInit() {
     // this.route.paramMap.pipe(
@@ -62,6 +63,8 @@ export class ArticleComponent implements OnInit {
     this.articleService.getRelatedArticles(articleId).
     subscribe(articles => this.relatedArticles = articles);
   }
+
+ 
 
 
 
