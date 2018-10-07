@@ -1,4 +1,4 @@
-<article id="article-outer-container" class="container">
+<article *ngIf="article$ | async as article" id="article-outer-container" class="container">
   <div id="article-header" class="row">
     <h1 id="article-title" class="col-12">{{article.title}}</h1>
     <div id="article-reading-time" class="col-md-6 col-xs-12 ">

@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
+  article$: Observable<ArticleExtended>;
   private article: ArticleExtended;
   private relatedArticles: Article[];
   private asyncArticle: Observable<Article>;
@@ -26,13 +27,15 @@ export class ArticleComponent implements OnInit {
 private router: Router) {}
 
   ngOnInit() {
-    // this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap)=>
-    //     this.getArticle(+params.get('id')))
-    // )
+    this.article$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap)=>{
+        return this.articleService.getWithTags(+params.get('id');
+      }
+      ))
+    );
    
 
-    this.getArticle();
+    //this.getArticle();
     this.getRelatedArticles();
   }
   /**
