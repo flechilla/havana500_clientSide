@@ -38,10 +38,7 @@ export class CommentHomeComponent implements OnInit {
     this.commentService.create(this.newComment).
       subscribe(newComment=>{
         this.newComment = newComment
-        console.log('inserting new comment with Id: '+this.newComment.id);
-      console.log('Total comments before: ' + this.comments.length);
       this.comments.push(this.newComment);
-      console.log('Total comments after: ' + this.comments.length);
       });
 
       
