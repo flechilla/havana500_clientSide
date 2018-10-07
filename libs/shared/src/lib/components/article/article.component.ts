@@ -15,10 +15,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
+  relatedArticles$: Observable<ArticleExtended[]>;
   article$: Observable<ArticleExtended>;
-  private article: ArticleExtended;
-  private relatedArticles: Article[];
-  private asyncArticle: Observable<Article>;
 
   constructor(private articleService: ArticleService,
     private route: ActivatedRoute, 
@@ -33,10 +31,16 @@ private router: Router) {}
       }
       ))
     );
+    this.relatedArticles$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap)=>{
+        return this.articleService.getRelatedArticles(+params.get('id');
+      }
+      ))
+    );
    
 
     //this.getArticle();
-    this.getRelatedArticles();
+    //this.getRelatedArticles();
   }
   /**
    *  Get the article with the given articleId that is in the route.
