@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '@hav500workspace/shared';
 import {MatCardModule} from '@angular/material/card';
 import {Comment} from '@hav500workspace/shared';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'hav-comment-home',
@@ -27,7 +28,7 @@ export class CommentHomeComponent implements OnInit {
     this.newComment.userEmail = '';
     this.newComment.userName = '';
     this.newComment.body = '';
-    console.log(this.newComment);
+    console.log(this.newComment);   
 
     this.commentService.getArticleComments(this.articleId, 0, 10).
       subscribe(_comments => this.comments = _comments);
