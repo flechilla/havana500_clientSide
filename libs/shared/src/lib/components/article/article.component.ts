@@ -16,7 +16,6 @@ import { CommentService } from '../../services';
 export class ArticleComponent implements OnInit {
   private article: ArticleExtended;
   private relatedArticles: Article[];
-  private newComment: Comment;
 
   constructor(private articleService: ArticleService,
     private route: ActivatedRoute, 
@@ -28,12 +27,7 @@ export class ArticleComponent implements OnInit {
     //   switchMap((params: ParamMap)=>
     //     this.getArticle(+params.get('id')))
     // )
-    this.newComment = new Comment(-1, '', '', '');
-    this.newComment.articleId = -1;
-    this.newComment.userEmail = '';
-    this.newComment.userName = '';
-    this.newComment.body = '';
-    console.log(this.newComment);
+   
 
     this.getArticle();
     this.getRelatedArticles();
@@ -56,11 +50,6 @@ export class ArticleComponent implements OnInit {
     subscribe(articles => this.relatedArticles = articles);
   }
 
-  postNewComment(): void{
-    this.newComment.articleId = this.article.id;
-    this.commentService.create(this.newComment).
-      subscribe(newComment=>this.newComment = newComment);
-    //TODO: insert the new comment in the old comment's list
-  }
+
 
 }
