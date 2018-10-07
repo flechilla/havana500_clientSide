@@ -1,7 +1,8 @@
 <nav fxFlex fxFill fxLayout="row" fxLayoutAlign="space-between center">
     <mat-icon></mat-icon>
     <div fxHide.xs class="main-nav-link-container" fxFlex fxLayout="row" fxLayoutAlign="space-evenly center">
-        <a class="mat-white-500-bg" mat-flat-button *ngFor="let section of sections">{{section.name}}</a>      
+        <a class="mat-white-500-bg" mat-flat-button *ngFor="let section of sections" routerLink="/section/"
+        [queryParams]="{sectionName:section.name}">{{section.name}}</a>      
     </div>
 </nav>
 

@@ -11,7 +11,7 @@ import { ArticleService, Article } from '@hav500workspace/shared';
 export class SecondLevelDeafultComponent implements OnInit {
 
   private articles: Article[];
-  private amountOfArticles = 30;
+  private amountOfArticles = 50;
   private currentPage = 0;
 
   constructor(   private route: ActivatedRoute, 

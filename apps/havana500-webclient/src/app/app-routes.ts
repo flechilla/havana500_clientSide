@@ -9,7 +9,7 @@ export const appRoutes: Routes = [
     loadChildren: './features/home/home.module#HomeModule'
   },
   {
-    path: ':sectionName',
+    path: 'section/:sectionName',
     component: SecondLevelDeafultComponent
   },
   { path: '**', redirectTo: 'home' }
