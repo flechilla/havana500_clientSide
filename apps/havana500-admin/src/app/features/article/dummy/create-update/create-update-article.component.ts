@@ -31,6 +31,7 @@ import {
   Article
 } from '@hav500workspace/shared';
 import { startWith, map } from 'rxjs/operators';
+import { UploadService } from '../../../../core/services/http/upload.service';
 
 @Component({
   selector: 'admin-create-update-article',
@@ -46,6 +47,7 @@ export class CreateUpdateArticleComponent implements OnInit {
   tagNameField: ElementRef;
   @ViewChild('tagName')
   tagName: FormControl;
+  @ViewChild("mainPicture") mainPicture;
 
   public form: FormGroup;
   public onEdit = false;
@@ -69,7 +71,8 @@ export class CreateUpdateArticleComponent implements OnInit {
     },
     protected contentTagService: ContentTagService,
     protected utilsService: AntUtilsService,
-    protected articleService: ArticleService
+    protected articleService: ArticleService,
+    private uploadService: UploadService
   ) {}
 
   ngOnInit() {
@@ -210,5 +213,17 @@ export class CreateUpdateArticleComponent implements OnInit {
     return this.globalTags.filter(tag =>
       tag.name.toLowerCase().includes(filterValue)
     );
+  }
+
+  public addMainPicture(articleId: number): void{
+    const fi = this.mainPicture.nativeElement;
+    if (fi.files && fi.files[0]) {
+        const fileToUpload = fi.files[0];
+        this.uploadService
+            .upload(fileToUpload, articleId)
+            .subscribe(res => {
+                console.log(res);
+            });
+    }
   }
 }
