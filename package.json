@@ -53,6 +53,7 @@
     "bootstrap": "^4.1.3",
     "classlist.js": "1.1.20150312",
     "core-js": "^2.5.7",
+    "cosmicjs": "^3.2.14",
     "d3": "5.7.0",
     "hammerjs": "^2.0.8",
     "immutable": "^3.8.2",
