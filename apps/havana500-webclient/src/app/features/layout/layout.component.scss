@@ -12,6 +12,20 @@
 //   // right: 0;
 // }
 
+#site-main{
+  height: 100%;
+  background: #fff;
+
+  #toolbar-outer-container{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: auto;
+    z-index: 1000000;
+  }
+}
+
 .toolbar {
   position: relative;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
@@ -23,7 +37,6 @@
   height: 100%;
   position: relative;
   margin-top: 5rem;
-  overflow: scroll;
   margin-bottom: 5rem;
 }
 
