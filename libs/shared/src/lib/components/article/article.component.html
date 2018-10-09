@@ -1,11 +1,13 @@
 <article *ngIf="article$ | async as article" id="article-outer-container" class="container">
   <div id="article-header" class="row">
     <h1 id="article-title" class="col-12">{{article.title}}</h1>
-    <div id="article-reading-time" class="col-md-6 col-xs-12 ">
-      <span id="article-reading-time-title " class="font-weight-700">Reading Time: </span>{{article.readingTime}}
-    </div>
-    <div id="article-writer" class="col-md-6 col-xs-12 ">
-      <span id="article-write-title " class="font-weight-700">By: </span>Get the Article's writer and put it in here
+    <div id="article-info" class="col-4">
+      <div id="article-reading-time" class="col-12">
+        <span id="article-reading-time-title " class="font-weight-700">Reading Time: </span>{{article.readingTime}}
+      </div>
+      <div id="article-writer" class="col-12 ">
+        <span id="article-write-title " class="font-weight-700">By: </span>Get the Article's writer and put it in here
+      </div>
     </div>
   </div>
 
@@ -27,9 +29,9 @@
 
   <div id="comments-outer-container">
     <h2 id="comments-header">Comments</h2>
-   
+
     <hav-comment-home [articleId]="article.id"></hav-comment-home>
-    
-   
+
+
   </div>
 </article>

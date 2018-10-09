@@ -10,6 +10,10 @@ $comment-container-bColor: #E8F5E9;
     background-color: $comments-container-bColor;
     position: relative;
     border-radius: 6px;
+
+    #new-comment-outer-container{
+        margin-bottom: 4rem;
+    }
     
     .comment-details {
         float: right;

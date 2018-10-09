@@ -6,6 +6,14 @@ ant-article-summary, .article-summary-outer-container {
   background-color: $article-summary-bColor;
   border: 0.3rem solid gray;
 
+  display: block;
+  cursor: pointer;
+
+  &:hover{
+    box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.2);
+    text-decoration: none !important;
+  }
+
   &:not(:last-child)
   {
     margin-right: 3rem;

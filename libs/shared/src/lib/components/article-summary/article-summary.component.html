@@ -1,4 +1,4 @@
-<div class="article-summary-outer-container" (click)="navigateTo(article.id)" >
+<a class="article-summary-outer-container" (click)="navigateTo(article.id)" >
     <div class="main-article-summary-content" fxLayout="column" fxLayoutAlign="flex-start center">
         <h4 class="article-summary-title">{{article?.title}}</h4> 
         <p class="article-summary-body">{{article?.body}}</p>
@@ -6,4 +6,4 @@
 
     <ant-article-summary-metadata fxFlexAlign="stretch" [article]="article"></ant-article-summary-metadata>
 
-</div>
+</a>
