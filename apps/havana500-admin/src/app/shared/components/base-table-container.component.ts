@@ -11,6 +11,7 @@ import { BaseResolverService } from '../services/base-resolver.service';
 
 export abstract class BaseTableContainerComponent<T extends BaseEntity<any>>
   implements OnInit, AfterViewInit {
+    
   @ViewChild(MatPaginator)
   protected paginator: MatPaginator;
 
