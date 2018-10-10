@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@hav500workspace/shared';
 import { LoginComponent } from './smart/login/login.component';
 import { RegisterComponent } from './smart/register/register.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { RegisterComponent } from './smart/register/register.component';
     AccountRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    TranslateModule.forChild()
   ],
   declarations: [LoginComponent, RegisterComponent],
   providers: []

@@ -2,17 +2,12 @@ import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule,
   MatButtonModule,
-  MatButtonToggleModule,
   MatCheckboxModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatCardModule,
-  MatChipsModule,
   MatDatepickerModule,
   MatDialogModule,
-  MatExpansionModule,
   MatFormFieldModule,
-  MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -31,7 +26,9 @@ import {
   MatSortModule,
   MatTableModule,
   MatTabsModule,
-  MatStepperModule
+  MatStepperModule,
+  MatChipsModule,
+  MatCardModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 
@@ -39,15 +36,10 @@ import { CdkTableModule } from '@angular/cdk/table';
   imports: [
     MatAutocompleteModule,
     MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
     MatCheckboxModule,
-    MatChipsModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatExpansionModule,
     MatFormFieldModule,
-    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
@@ -69,19 +61,16 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    CdkTableModule
+    CdkTableModule,
+    MatChipsModule,
+    MatCardModule
   ],
   exports: [
     MatAutocompleteModule,
     MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
     MatCheckboxModule,
-    MatChipsModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatExpansionModule,
-    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
@@ -103,7 +92,9 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    CdkTableModule
+    CdkTableModule,
+    MatChipsModule,
+    MatCardModule
   ]
 })
 export class MaterialModule {}

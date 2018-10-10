@@ -1,0 +1,69 @@
+import { Component, OnInit, Output, EventEmitter, InjectionToken } from '@angular/core';
+import { Router } from '@angular/router';
+import { SectionService, Section } from '@hav500workspace/shared';
+import {Location} from '@angular/common';
+
+@Component({
+  selector: 'hav-toolbar',
+  templateUrl: './toolbar.component.html',
+  styleUrls: ['./toolbar.component.scss'],
+  providers: [SectionService]
+})
+export class AntToolbarComponent implements OnInit {
+  
+
+  constructor(private router: Router, 
+    private sectionService: SectionService,
+  private location: Location) {}
+  languages: any;
+  selectedLanguage: any;
+  private sections: Section[];
+  private DOCUMENT: InjectionToken<Document>;
+
+  ngOnInit(): void {
+    this.languages = [
+      { id: 'en', title: 'English', flag: 'us' },
+      { id: 'fr', title: 'French', flag: 'fr' }
+    ];
+
+    this.selectedLanguage = this.languages[0];
+    this.getSections();
+  }
+
+  setLanguage(lang) {
+    // Set the selected language for toolbar
+    this.selectedLanguage = lang;
+
+    // Use the selected language for translations
+    // this.translate.use(lang.id);
+  }
+  /**
+   *  Gets the sections from the server. These values are used
+   *  in the navabar. This is a nice thing, because we can change
+   *  the name of the values in the server, and would get them here
+   *  dinamically.
+   */
+  getSections() : void{
+    this.sectionService.getAll()
+      .subscribe(sections=>{
+        this.sections = sections
+        this.sections.map(function(value, index, array){
+          if(value.subSections.length>0)
+          value.subSections.forEach(section => {
+              array.push(section);
+            });
+        })
+      });
+  }
+  /**
+   *  This is a work around, of course that this can't be the final
+   *  implementation because this reload the page...
+   * 
+   *  What happens is that right now there is a bug when use the routeLink
+   *  attr in the nav's elements
+   * @param  {string} sectionName
+   */
+  goToSection(sectionName: string) : void{
+    location.assign('/section/'+sectionName);
+  }
+}

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AccountSandbox } from './core/sandboxes/account-sandbox';
 import { isNullOrUndefined } from 'util';
 import { OAuthService, EventType } from 'angular-oauth2-oidc';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'hav500workspace-root',
@@ -13,7 +14,8 @@ export class AppComponent {
 
   constructor(
     private accountSandbox: AccountSandbox,
-    private oauthService: OAuthService
+    private oauthService: OAuthService,
+    private translateService: TranslateService
   ) {
     // Set to the store the logged user
     this.accountSandbox.getUserClaims().subscribe(claims => {
@@ -30,5 +32,12 @@ export class AppComponent {
         this.accountSandbox.refreshToken();
       }
     });
+
+    // Add languages
+    this.translateService.addLangs(['en', 'es', 'fr']);
+    // Set the default language
+    this.translateService.setDefaultLang('en');
+    // Use a language
+    this.translateService.use('en');
   }
 }

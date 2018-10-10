@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
-    selector   : 'ant-nav-vertical-item',
+    selector: 'admin-nav-vertical-item',
     templateUrl: './nav-vertical-item.component.html',
     styleUrls  : ['./nav-vertical-item.component.scss']
 })

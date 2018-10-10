@@ -1,0 +1,39 @@
+<!-- <div id="comments-outer-container">
+  <div class="comment-container" *ngFor="let comment of comments">
+    <hav-comment [comment]="comment" class="comment-inner-container row"></hav-comment>    
+  </div>
+</div> -->
+<div id="comments-outer-container">
+    <form id="new-comment-outer-container" class="row" #newCommentForm="ngForm">
+        <div id="new-comment-user-metadata" class="col-12 form-group">
+          <label class="col-12" for="new-comment-username">Nombre de usuario: 
+          <input type="text" [(ngModel)]="newComment.userName" name="new-comment-username" id="new-comment-username" class="form-control col-xs-12 col-md-5" placeholder="Nombre">
+        </label>
+          <label class="col-12" for="new-comment-useremail">Nombre de usuario: 
+          <input type="text" [(ngModel)]="newComment.userEmail" name="new-comment-useremail" id="new-comment-useremail" class="form-control col-xs-12 col-md-5"
+            placeholder="Correo">
+          </label>
+  
+  
+        </div>
+        <div class="new-comment-body-container col-xs-12 col-md-12">
+        <label class="col-12" for="new-comment-body">Comentario
+       
+        </label>
+        <textarea type="text" [(ngModel)]="newComment.body" name="body" id="new-comment-body" class="col-12 form-control" 
+        #body="ngModel" required rows="10" cols="35"></textarea>
+        <div [hidden]="body.valid" class="alert alert-danger">
+            Body is required
+          </div>
+        </div>
+          <button type="submit" class="btn btn-success" 
+            id="new-comment-post-btn" (click)="postNewComment(); newCommentForm.reset()" [disabled] = "!newCommentForm.form.valid">Comentar!</button>
+      </form>
+  <mat-card class="comment-container" *ngFor="let comment of comments">
+    <mat-card-content class="comment-body">{{comment.body}}</mat-card-content>
+    <mat-card-footer class="comment-details">
+      <span class="comment-date">{{comment.createdAtHumanized}}</span>
+      <span class="comment-user">{{comment.userName}}</span>
+    </mat-card-footer>
+  </mat-card>
+</div>

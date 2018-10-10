@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment.prod';
 import { catchError } from 'rxjs/operators';
-import { BaseCrudService } from '../../../shared/services/base-crud.service';
+import { BaseCrudService } from '@hav500workspace/shared';
 
 
 
@@ -13,7 +13,7 @@ import {
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Article } from '../../models/article.model';
+import { Article } from '@hav500workspace/shared';
 
 @Injectable()
 export class StatsService extends BaseCrudService<number> { 

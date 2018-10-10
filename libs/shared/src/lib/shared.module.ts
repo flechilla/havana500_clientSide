@@ -1,5 +1,4 @@
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './modules/material.module';
@@ -10,6 +9,12 @@ import { AntWidgetComponent } from './components/widget/widget.component';
 import { IfOnDomDirective } from './directives/ant-if-on-dom/if-on-dom.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { SquareFadeSpinnerComponent } from './components/squares-fade-spinner/square-fade-spinner.component';
+import { QuillModule } from 'ngx-quill';
+import { ArticleSummaryComponent } from './components/article-summary/article-summary.component';
+import { ArticleMetadataComponent } from './components/article-metadata/article-metadata.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { AntTranslateService } from './services';
 
 @NgModule({
   imports: [
@@ -18,12 +23,17 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    QuillModule,
+    TranslateModule
   ],
   declarations: [
     //Components
     ConfirmDialogComponent,
     AntWidgetComponent,
+    SquareFadeSpinnerComponent,
+    ArticleSummaryComponent,
+    ArticleMetadataComponent,
 
     //Directives
     AntWidgetToggleDirective,
@@ -40,10 +50,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MaterialModule,
     FlexLayoutModule,
     NgxChartsModule,
+    QuillModule,
 
     //Components
     ConfirmDialogComponent,
     AntWidgetComponent,
+    SquareFadeSpinnerComponent,
+    ArticleSummaryComponent,
+    ArticleMetadataComponent,
 
     //Directives
     AntWidgetToggleDirective,

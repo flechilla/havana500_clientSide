@@ -1,13 +1,15 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import * as shape from 'd3-shape';
-import { antAnimations } from '../../../shared/utils/animations';
-import { ProjectsDashboardService } from '../../../core/services/http/dashboard.service';
+import ProjectsDashboardService from '../../../core/services/http/dashboard.service';
+import {
+  antAnimations
+} from '@hav500workspace/shared';
 import { StatsService } from '../../../core/services/http/stats.service';
 import { List } from 'immutable';
-import { Article } from '../../../core/models/article.model';
+import { Article } from '@hav500workspace/shared';
 
 @Component({
-  selector: 'ant-dashboard',
+  selector: 'admin-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   encapsulation: ViewEncapsulation.None,

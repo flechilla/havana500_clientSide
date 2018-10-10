@@ -1,0 +1,37 @@
+<article *ngIf="article$ | async as article" id="article-outer-container" class="container">
+  <div id="article-header" class="row">
+    <h1 id="article-title" class="col-12">{{article.title}}</h1>
+    <div id="article-info" class="col-4">
+      <div id="article-reading-time" class="col-12">
+        <span id="article-reading-time-title " class="font-weight-700">Reading Time: </span>{{article.readingTime}}
+      </div>
+      <div id="article-writer" class="col-12 ">
+        <span id="article-write-title " class="font-weight-700">By: </span>Get the Article's writer and put it in here
+      </div>
+    </div>
+  </div>
+
+  <p id="article-body">{{article.body}}</p>
+
+
+  <mat-chip-list id="article-tags">
+    <mat-chip class="article-tag" *ngFor="let tag of article.tags" (click)="onSelectTag(tag.id)">{{tag.name}}</mat-chip>
+  </mat-chip-list>
+
+  <div id="related-articles-outer-container">
+    <h2 id="related-articles-header">Related articles</h2>
+
+    <div id="related-articles-cards-container" class="row">
+      <ant-article-summary *ngFor="let article of relatedArticles$ | async" [article]="article" class="col-xs-12 col-md-3"></ant-article-summary>
+      <!-- for this try to use the grid-list from material -->
+    </div>
+  </div>
+
+  <div id="comments-outer-container">
+    <h2 id="comments-header">Comments</h2>
+
+    <hav-comment-home [articleId]="article.id"></hav-comment-home>
+
+
+  </div>
+</article>

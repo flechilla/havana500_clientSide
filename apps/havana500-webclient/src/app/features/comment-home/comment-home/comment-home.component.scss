@@ -1,0 +1,35 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+// START of variables declaration:
+$comments-container-bColor: #ffffff;
+$comment-container-bColor: #E8F5E9;
+// END of variables declaration:
+
+// START of the styles
+#comments-outer-container{
+    background-color: $comments-container-bColor;
+    position: relative;
+    border-radius: 6px;
+
+    #new-comment-outer-container{
+        margin-bottom: 4rem;
+    }
+    
+    .comment-details {
+        float: right;
+        padding-right: 26px;
+
+        .comment-date{
+            margin-right: 3rem;
+        }
+    }
+
+    .comment-container:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+    .comment-container {
+        background-color: $comment-container-bColor;
+    }
+}
+
+// END  of the styles

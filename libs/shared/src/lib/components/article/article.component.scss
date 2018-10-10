@@ -1,0 +1,70 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+//START variables declaration
+$related-articles-outer-container-bColor:  #eeeeee;
+$article-tag-bColor: #62b0ff;
+//END variables declaration
+
+
+.font-weight-700 {
+  font-weight: 700;
+}
+
+#article-outer-container {
+  margin-top: 100px;
+
+  #article-title {
+    margin-bottom: 20px;
+    font-size: 4em;
+  }
+
+  #article-header {
+    margin-bottom: 50px;
+  }
+
+  #article-body {
+    margin-bottom: 50px;
+    font-size: 1.8em;
+  }
+
+  .article-tag {
+    background-color: $article-tag-bColor;
+  }
+
+  #related-articles-outer-container {
+    margin-top: 30px;
+    background-color: $related-articles-outer-container-bColor;
+    padding: 1rem;
+
+    #related-articles-header {
+      font-size: 3em;
+    }
+
+    #related-articles-cards-container{
+      margin: 0 !important;
+    }
+  }
+
+  #comments-outer-container{
+      margin-top: 30px;
+
+      #comments-header{
+          font-size: 3em;
+      }
+  }
+}
+
+.comment-body{
+  background-color: black;
+}
+
+#new-comment-outer-container{
+  input, textarea{
+    // border: 1px solid gray;
+  }
+
+  #new-comment-post-btn {
+    // border: 2px solid black;
+    // background-color: #62b0ff
+  }
+}

@@ -2,12 +2,12 @@
 
     <!-- <mat-toolbar  class="toolbar mat-elevation-z1" *ngIf="authService.hasValidAccessToken()"> -->
     <mat-toolbar class="toolbar mat-elevation-z1 mat-white-500-bg" *ngIf="authService.hasValidAccessToken()">
-        <ant-toolbar fxFill (toggleSideNav)="snav.toggle()" (closeSideNav)="snav.close()"></ant-toolbar>
+        <admin-toolbar fxFill (toggleSideNav)="snav.toggle()" (closeSideNav)="snav.close()"></admin-toolbar>
     </mat-toolbar>
 
     <mat-sidenav-container style="height:100%">
-        <mat-sidenav class="sidenav nav mat-ant-dark-700-bg" role="navigation" #snav [mode]="over"
-            [fixedInViewport]="true" fixedTopGap="56">
+        <mat-sidenav class="sidenav nav mat-ant-dark-700-bg" role="navigation" #snav [fixedInViewport]="true"
+            fixedTopGap="56">
 
             <mat-nav-list>
 
@@ -18,14 +18,14 @@
                     </div>
                 </div>
 
-                <ant-nav-vertical-item [item]="nav" *ngFor="let nav of fillerNav"></ant-nav-vertical-item>
+                <admin-nav-vertical-item [item]="nav" *ngFor="let nav of fillerNav"></admin-nav-vertical-item>
 
             </mat-nav-list>
 
         </mat-sidenav>
 
         <mat-sidenav-content [class.main-content]="authService.hasValidAccessToken()" role="main">
-            <ant-content></ant-content>
+            <admin-content></admin-content>
         </mat-sidenav-content>
 
     </mat-sidenav-container>
