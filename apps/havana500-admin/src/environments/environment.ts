@@ -6,7 +6,8 @@ import { HavanaEnvironment } from '@hav500workspace/shared';
 
 export const environment: HavanaEnvironment = {
   production: false,
-  apiUrl: 'http://localhost:5000/api/v1/'
+  domainUrl: 'http://localhost:5000',
+  apiUrl: this.domainUrl + '/api/v1/'
 };
 
 /*

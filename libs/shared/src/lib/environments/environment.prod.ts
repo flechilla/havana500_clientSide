@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:5000/api/v1/'
+  domainUrl: 'http://localhost:5000',
+  apiUrl: this.domainUrl + '/api/v1/'
 };
