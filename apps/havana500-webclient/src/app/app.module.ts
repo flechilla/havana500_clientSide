@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from '@hav500workspace/shared';
 import { CommonModule } from '@angular/common';
 import { appRoutes } from './app-routes';
-import AppRoutingModule from './app-routes';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import {
@@ -39,10 +38,10 @@ import { SecondLevelModule } from './features/second-level/second-level.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // RouterModule.forRoot(appRoutes, {
-    //   initialNavigation: 'enabled',
-    //   enableTracing: false
-    // }),
+    RouterModule.forRoot(appRoutes, {
+      initialNavigation: 'enabled',
+      enableTracing: false
+    }),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
     StoreDevtoolsModule.instrument({
@@ -53,8 +52,7 @@ import { SecondLevelModule } from './features/second-level/second-level.module';
     CoreModule,
     SharedModule,
     LayoutModule,
-    ArticleModule,
-    AppRoutingModule
+    ArticleModule
     // OAuthModule.forRoot({
     //   resourceServer: {
     //     allowedUrls: ['http://localhost:5000/api/'],
