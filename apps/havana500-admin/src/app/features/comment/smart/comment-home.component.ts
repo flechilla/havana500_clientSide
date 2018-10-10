@@ -1,10 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { antAnimations } from '../../../shared/utils/animations';
 import { BaseTableContainerComponent } from '../../../shared/components/base-table-container.component';
 import { ArticleCommentsInfo } from '../../../core/models/articleCommentsInfo';
-import { CommentService } from '../../../core/services/http/comment.service';
 import { ArticleCommentsInfoService } from '../../../core/services/http/article-comments-info.service';
+import { antAnimations } from '@hav500workspace/shared';
 
 @Component({
   selector: 'ant-comment-home',

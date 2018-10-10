@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
-import { BaseCrudService } from '../../../shared/services/base-crud.service';
 import { ArticleCommentsInfo } from '../../models/articleCommentsInfo';
 import { Observable } from 'rxjs';
 import { CommentModule } from '../../../features/comment/comment.module';
 import { catchError } from 'rxjs/operators';
+import { BaseCrudService } from '@hav500workspace/shared';
 
 @Injectable()
 export class ArticleCommentsInfoService extends BaseCrudService<

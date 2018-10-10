@@ -1,4 +1,4 @@
-import { AuditableAndTrackableEntity } from '../../shared/models/auditable-trackable-entity.model';
+import { AuditableAndTrackableEntity } from "@hav500workspace/shared";
 
 /**
  * Represents an article of the app.

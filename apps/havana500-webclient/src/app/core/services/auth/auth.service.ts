@@ -1,6 +1,6 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { APP_USER } from '../../configs/configuration-const.config';
 import {
   HavanaEnvironment,
   LoginModel,
@@ -9,6 +9,7 @@ import {
 } from '@hav500workspace/shared';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { APP_USER } from '../../configs/configuration-const.config';
 
 @Injectable()
 export class AuthService {

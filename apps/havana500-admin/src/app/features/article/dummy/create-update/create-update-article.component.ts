@@ -47,7 +47,8 @@ export class CreateUpdateArticleComponent implements OnInit {
   tagNameField: ElementRef;
   @ViewChild('tagName')
   tagName: FormControl;
-  @ViewChild("mainPicture") mainPicture;
+  @ViewChild('mainPicture')
+  mainPicture;
 
   public form: FormGroup;
   public onEdit = false;
@@ -215,15 +216,13 @@ export class CreateUpdateArticleComponent implements OnInit {
     );
   }
 
-  public addMainPicture(articleId: number): void{
+  public addMainPicture(articleId: number): void {
     const fi = this.mainPicture.nativeElement;
     if (fi.files && fi.files[0]) {
-        const fileToUpload = fi.files[0];
-        this.uploadService
-            .upload(fileToUpload, articleId)
-            .subscribe(res => {
-                console.log(res);
-            });
+      const fileToUpload = fi.files[0];
+      this.uploadService.upload(fileToUpload, articleId).subscribe(res => {
+        console.log(res);
+      });
     }
   }
 }

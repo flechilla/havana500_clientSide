@@ -32,7 +32,8 @@ export class HomeComponent implements OnInit {
     modifiedAt: new Date(),
     createdAt: new Date(),
     modifiedBy: 'pepe el cojo',
-    publicationDateHumanized: '7 months ago'
+    publicationDateHumanized: '7 months ago',
+    mainPicture: null
   };
   constructor(private translateService: AntTranslateService) {}
 
