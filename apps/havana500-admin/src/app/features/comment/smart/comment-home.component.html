@@ -14,7 +14,8 @@
             <!-- APP TITLE -->
             <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
                 <mat-icon class="logo-icon mr-16" *antIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">shopping_basket</mat-icon>
-                <span class="logo-text h1" *antIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Articulos con nuevos comentarios</span>
+                <span class="logo-text h1" *antIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Articulos
+                    con nuevos comentarios</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -34,8 +35,8 @@
         <!-- CONTENT CARD -->
         <div class="content-card mat-white-bg">
 
-            <mat-table class="articles-table" #table [dataSource]="articleCommentsInfos" matSort [@animateStagger]="{value:'50'}">
-                <!-- <mat-table class="articles-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}"> -->
+            <mat-table class="articles-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}">
+
 
                 <!-- ID Column -->
                 <ng-container matColumnDef="id">
@@ -62,34 +63,6 @@
                     </mat-cell>
                 </ng-container>
 
-                <!-- Approved Comments Count Column
-                <ng-container matColumnDef="approvedCommentCount">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Approved Comments</mat-header-cell>
-                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-sm>
-
-                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-red-500-bg':article.approvedCommentCount <= 5, 'mat-amber-500-bg':article.approvedCommentCount > 5 && article.ApprovedCommentCount <= 25,'mat-green-600-bg':article.approvedCommentCount > 25}">
-                        </span>
-                        <span>
-                            {{article.approvedCommentCount}}
-                        </span>
-
-                    </mat-cell>
-                </ng-container>
-
-                Not Approved Comments Count Column
-                <ng-container matColumnDef="notApprovedCommentCount">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Not Approved Comments</mat-header-cell>
-                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-sm>
-
-                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-green-500-bg':article.notApprovedCommentCount <= 5, 'mat-amber-500-bg':article.notApprovedCommentCount > 5 && article.ApprovedCommentCount <= 25,'mat-red-600-bg':article.notApprovedCommentCount > 25}">
-                        </span>
-                        <span>
-                            {{article.notApprovedCommentCount}}
-                        </span>
-
-                    </mat-cell>
-                </ng-container> -->
-
                 <!-- amountOfComments Column -->
                 <ng-container matColumnDef="amountOfComments">
                     <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Nuevos comentarios</mat-header-cell>
@@ -108,21 +81,15 @@
 
                 <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
 
-                <mat-row *matRowDef="let article; columns: columnsToDisplay;" class="article" matRipple >
+                <mat-row *matRowDef="let article; columns: columnsToDisplay;" class="article" matRipple>
                 </mat-row>
 
-                <mat-paginator #paginator [length]="dataSource.currentLength" [pageIndex]="0" [pageSize]="10"
-                [pageSizeOptions]="[5, 10, 25, 100]">
-
-            </mat-paginator>
-
-
             </mat-table>
-<!-- 
+
             <mat-paginator #paginator [length]="dataSource.currentLength" [pageIndex]="0" [pageSize]="10"
                 [pageSizeOptions]="[5, 10, 25, 100]">
 
-            </mat-paginator> -->
+            </mat-paginator>
 
         </div>
         <!-- / CONTENT CARD -->
