@@ -1,4 +1,5 @@
 import { AuditableAndTrackableEntity } from './base/auditable-trackable-entity.model';
+import { Picture } from '.';
 
 /**
  * Represents an article of the app.
@@ -168,4 +169,6 @@ export interface Article extends AuditableAndTrackableEntity<number> {
    * @memberof Comment
    */
   publicationDateHumanized: string;
+
+  mainPicture: Picture;
 }

@@ -66,6 +66,16 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    */
   fullPath: string;
 
+    /**
+   *Gets or sets the value that indicate the realtive path
+   *in the server to the Picture. We have to 
+   * prefix it the domain of the server.
+   *
+   * @type {string}
+   * @memberof Picture
+   */
+  relativePath: string;
+
   /**
    *Gets or sets the value that indicates the extension
    *of the picture.
