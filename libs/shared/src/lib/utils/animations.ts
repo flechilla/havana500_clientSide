@@ -148,14 +148,15 @@ export const antAnimations = [
       'void',
       style({
         transform: 'translateX(-100%)',
-        display: 'none'
+        // display: 'none'
+        
       })
     ),
     state(
       '*',
       style({
         transform: 'translateX(0)',
-        display: 'flex'
+        // display: 'flex'
       })
     ),
     transition('void => *', animate('300ms')),

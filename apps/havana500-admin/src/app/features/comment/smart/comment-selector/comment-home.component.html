@@ -57,7 +57,7 @@
 
                 <!-- startDateUtc Column -->
                 <ng-container matColumnDef="startDateUtc">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>startDateUtc</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de Inicio</mat-header-cell>
                     <mat-cell *matCellDef="let article">
                         <p class="text-truncate">{{article.startDateUtc}}</p>
                     </mat-cell>
@@ -81,7 +81,7 @@
 
                 <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
 
-                <mat-row *matRowDef="let article; columns: columnsToDisplay;" class="article" matRipple>
+                <mat-row *matRowDef="let article; columns: columnsToDisplay;" class="article" matRipple (click)="openCommentsAnalyzerDialog(article.id)">
                 </mat-row>
 
             </mat-table>

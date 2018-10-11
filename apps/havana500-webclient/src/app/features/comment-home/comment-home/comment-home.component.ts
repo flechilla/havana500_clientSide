@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '@hav500workspace/shared';
-import { Comment } from '@hav500workspace/shared';
+import { CommentModel } from '@hav500workspace/shared';
 
 @Component({
   selector: 'hav-comment-home',
@@ -11,16 +11,16 @@ export class CommentHomeComponent implements OnInit {
   // Represents the Article that is the container of the Comments
   @Input()
   articleId: number;
-  private newComment: Comment;
+  private newComment: CommentModel;
 
-  private comments: Comment[];
+  private comments: CommentModel[];
 
   constructor(private commentService: CommentService) {
     console.log(this.articleId);
   }
 
   ngOnInit(): void {
-    this.newComment = new Comment(-1, '', '', '');
+    this.newComment = new CommentModel(-1, '', '', '');
     this.newComment.articleId = -1;
     this.newComment.userEmail = '';
     this.newComment.userName = '';
