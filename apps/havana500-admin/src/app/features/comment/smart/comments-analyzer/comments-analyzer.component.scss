@@ -1,10 +1,6 @@
 @import '../../../../core/scss/ant';
 
-.main-input__sized {
-  width: 60%;
-}
-
-.article-form-dialog {
+.comment-analyzer-dialog {
   @include media-breakpoint('xs') {
     width: 100%;
   }
@@ -23,29 +19,10 @@
       mat-icon {
         color: white;
       }
-
-      .article-title {
-        max-width: 100%;
-        text-align: center;
-        text-overflow: ellipsis;
-        overflow: hidden;
-      }
     }
 
     .toolbar-bottom {
       height: auto;
-    }
-
-    .article-field__size-md {
-      max-width: 10rem;
-    }
-
-    .article-field__size-lg {
-      max-width: 15rem;
-    }
-
-    .article-field__size-xl {
-      max-width: 20rem;
     }
 
     .mat-slide-toggle-content {
@@ -57,9 +34,5 @@
     max-height: 85vh;
     display: flex;
     flex-direction: column;
-  }
-
-  .unmaterial-label {
-    font: 500 13px/20px Roboto, 'Helvetica Neue', sans-serif;
   }
 }

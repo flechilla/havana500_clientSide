@@ -47,7 +47,8 @@ export class CreateUpdateArticleComponent implements OnInit {
   tagNameField: ElementRef;
   @ViewChild('tagName')
   tagName: FormControl;
-  @ViewChild("mainPicture") mainPicture;
+  @ViewChild('mainPicture')
+  mainPicture;
 
   public form: FormGroup;
   public onEdit = false;
@@ -57,6 +58,8 @@ export class CreateUpdateArticleComponent implements OnInit {
   protected globalTags: ContentTag[];
 
   public article: ArticleExtended;
+
+  protected isTemporary: boolean;
 
   filteredTags: Observable<ContentTag[]>;
 
@@ -68,6 +71,7 @@ export class CreateUpdateArticleComponent implements OnInit {
       article$: Observable<ArticleExtended>;
       sections: Section[];
       tags: ContentTag[];
+      isTemporary: boolean;
     },
     protected contentTagService: ContentTagService,
     protected utilsService: AntUtilsService,
@@ -86,6 +90,8 @@ export class CreateUpdateArticleComponent implements OnInit {
     this.sections = this.data.sections;
 
     this.globalTags = this.data.tags;
+
+    this.isTemporary = this.data.isTemporary;
 
     if (this.data.article$) {
       this.onEdit = true;
@@ -127,7 +133,7 @@ export class CreateUpdateArticleComponent implements OnInit {
   public save() {
     const toUpdateOrCreate: Article = this.form.get('article').value;
 
-    this.dialogRef.close(toUpdateOrCreate);
+    this.dialogRef.close({ update: true, data: toUpdateOrCreate });
   }
 
   public addTag(tagForm: NgForm) {
@@ -215,15 +221,24 @@ export class CreateUpdateArticleComponent implements OnInit {
     );
   }
 
-  public addMainPicture(articleId: number): void{
+  public addMainPicture(articleId: number): void {
     const fi = this.mainPicture.nativeElement;
     if (fi.files && fi.files[0]) {
-        const fileToUpload = fi.files[0];
-        this.uploadService
-            .upload(fileToUpload, articleId)
-            .subscribe(res => {
-                console.log(res);
-            });
+      const fileToUpload = fi.files[0];
+      this.uploadService.upload(fileToUpload, articleId).subscribe(res => {
+        console.log(res);
+      });
+    }
+  }
+
+  public close() {
+    console.log('Closing');
+    console.log(this.isTemporary);
+
+    if (this.isTemporary) {
+      this.dialogRef.close({ update: false, data: this.article.id });
+    } else {
+      this.dialogRef.close();
     }
   }
 }

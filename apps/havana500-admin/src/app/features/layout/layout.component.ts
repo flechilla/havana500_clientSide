@@ -26,6 +26,13 @@ export class LayoutComponent implements OnInit, OnDestroy {
       url: '/dashboard'
     },
     {
+      id: 'comment',
+      title: 'Comments',
+      type: 'item',
+      icon: 'email',
+      url: '/comments'
+    },
+    {
       id: 'articles',
       title: 'Articles',
       type: 'item',

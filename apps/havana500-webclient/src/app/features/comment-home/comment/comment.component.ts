@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Comment } from '@hav500workspace/shared';
+import { CommentModel } from '@hav500workspace/shared';
 
 @Component({
   selector: 'hav-comment',
@@ -8,7 +8,7 @@ import { Comment } from '@hav500workspace/shared';
 })
 export class CommentComponent implements OnInit {
   @Input() 
-    comment : Comment
+    comment : CommentModel
 
   constructor() { }
 

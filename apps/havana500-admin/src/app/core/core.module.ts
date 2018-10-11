@@ -1,21 +1,22 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import ProjectsDashboardService from '../../app/core/services/http/dashboard.service';
 
 import {
+  HavanaEnvironment,
   AntUtilsService,
   ArticleService,
   CommentService,
   ContentTagService,
   SectionService,
-  AntTranslateService,
-  HavanaEnvironment
+  AntTranslateService
 } from '@hav500workspace/shared';
 import { AuthenticatedGuard } from './route_guards/authenticated.guard';
 import { AccountSandbox } from './sandboxes/account-sandbox';
 import { environment } from '../../environments/environment';
 import { AuthService } from './services/auth/auth.service';
-import { StatsService } from './services/http/stats.service'; 
+import { StatsService } from './services/http/stats.service';
 import { OAuthWrapperService } from './services/auth/oauth-wrapper.service';
+import { ArticleCommentsInfoService } from './services/http/article-comments-info.service';
+import ProjectsDashboardService from './services/http/dashboard.service';
 
 @NgModule({
   imports: [],
@@ -29,11 +30,11 @@ import { OAuthWrapperService } from './services/auth/oauth-wrapper.service';
     AccountSandbox,
     ProjectsDashboardService,
     StatsService,
-    AntUtilsService,
     ArticleService,
     CommentService,
     ContentTagService,
     SectionService,
+    ArticleCommentsInfoService,
     AntTranslateService,
     { provide: HavanaEnvironment, useValue: environment }
   ]

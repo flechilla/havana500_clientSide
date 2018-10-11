@@ -56,7 +56,7 @@ export class ArticleService extends BaseCrudService<Article> {
       .pipe(catchError(this.handleError));
   }
 
-    /**
+  /**
    * Get the related articles of an Article
    *
    * @param {number} articleId
@@ -64,17 +64,37 @@ export class ArticleService extends BaseCrudService<Article> {
    * @memberof ArticleService
    */
   public getRelatedArticles(articleId: number): Observable<Article[]> {
-    return this.http.get<Article[]>(
-      this.url + '/GetRelatedArticles?articleId=' + articleId
-    )
-    .pipe(catchError(this.handleError));    
+    return this.http
+      .get<Article[]>(this.url + '/GetRelatedArticles?articleId=' + articleId)
+      .pipe(catchError(this.handleError));
   }
 
-  public getArticlesBasicDataBySectionName(sectionName: string, currentPage: number, amountOfArticles: number): Observable<Article[]>{
-    return this.http.get<Article[]>(
-      this.url + '/GetArticlesBasicDataBySectionName?sectionName='+sectionName
-      +'&currentPage='+currentPage+'&amountOfArticles='+amountOfArticles
-    )
-    .pipe(catchError(this.handleError)); 
+  public getArticlesBasicDataBySectionName(
+    sectionName: string,
+    currentPage: number,
+    amountOfArticles: number
+  ): Observable<Article[]> {
+    return this.http
+      .get<Article[]>(
+        this.url +
+          '/GetArticlesBasicDataBySectionName?sectionName=' +
+          sectionName +
+          '&currentPage=' +
+          currentPage +
+          '&amountOfArticles=' +
+          amountOfArticles
+      )
+      .pipe(catchError(this.handleError));
+  }
+
+  /**
+   * Creates an empty temporary article
+   *
+   * @memberof ArticleService
+   */
+  public createTemporaryArticle(): Observable<Article> {
+    return this.http
+      .post<Article>(this.url + '/CreateTemporaryArticle', null)
+      .pipe(catchError(this.handleError));
   }
 }

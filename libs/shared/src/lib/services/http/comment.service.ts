@@ -1,13 +1,13 @@
+import { CommentModel } from './../../models/comment.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HavanaEnvironment } from '../../models';
 import { BaseCrudService } from '../base';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {Comment} from '../../models'
 
 @Injectable()
-export class CommentService extends BaseCrudService<Comment> {
+export class CommentService extends BaseCrudService<CommentModel> {
   constructor(
     private environment: HavanaEnvironment,
     private httpClient: HttpClient
@@ -19,15 +19,16 @@ export class CommentService extends BaseCrudService<Comment> {
     articleId: number,
     pageNumber: number,
     pageSize: number
-  ): Observable<Comment[]> {
+  ): Observable<CommentModel[]> {
     return this.http
-      .get<Comment[]>(
+      .get<CommentModel[]>(
         this.url +
           '/GetArticleComments?pageNumber=' +
           pageNumber +
           '&pageSize=' +
           pageSize +
-          '&articleId=' + articleId
+          '&articleId=' +
+          articleId
       )
       .pipe(catchError(this.handleError));
   }

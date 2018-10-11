@@ -12,6 +12,7 @@ import {
 } from '@hav500workspace/shared';
 import { BaseTableContainerComponent } from '../../../shared/components/base-table-container.component';
 import { CreateUpdateArticleComponent } from '../dummy/create-update/create-update-article.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'admin-article-home',
@@ -74,21 +75,30 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
       data: {
         article$: articleToEdit
           ? this.articleService.getWithTags(articleToEdit.id)
-          : null,
+          : this.articleService.createTemporaryArticle(),
         sections: this.sections,
-        tags: this.globalTags
+        tags: this.globalTags,
+        isTemporary: articleToEdit == null
       }
     });
 
-    this.dialogRef.afterClosed().subscribe((response: ArticleExtended) => {
-      if (!response) {
-        return;
-      }
-      if (!articleToEdit) {
-        this.service.create(response).subscribe();
-      } else {
-        this.service.update(response.id, response).subscribe();
-      }
-    });
+    this.dialogRef
+      .afterClosed()
+      .subscribe(
+        (response: { update: Boolean; data: ArticleExtended | number }) => {
+          if (!response) {
+            return;
+          } else if (!response.update) {
+            this.articleService.delete(response.data).subscribe();
+          } else {
+            this.service
+              .update(
+                (response.data as ArticleExtended).id,
+                response.data as ArticleExtended
+              )
+              .subscribe();
+          }
+        }
+      );
   }
 }

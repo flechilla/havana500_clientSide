@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentService } from '@hav500workspace/shared';
-import {MatCardModule} from '@angular/material/card';
-import {Comment} from '@hav500workspace/shared';
-import { switchMap } from 'rxjs/operators';
+import { CommentModel } from '@hav500workspace/shared';
 
 @Component({
   selector: 'hav-comment-home',
@@ -10,42 +8,39 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./comment-home.component.scss']
 })
 export class CommentHomeComponent implements OnInit {
-
   // Represents the Article that is the container of the Comments
-  @Input() articleId : number;
-  private newComment: Comment;
-  
+  @Input()
+  articleId: number;
+  private newComment: CommentModel;
 
-  private comments : Comment[];
+  private comments: CommentModel[];
 
-  constructor(private commentService : CommentService){
+  constructor(private commentService: CommentService) {
     console.log(this.articleId);
   }
 
   ngOnInit(): void {
-    this.newComment = new Comment(-1, '', '', '');
+    this.newComment = new CommentModel(-1, '', '', '');
     this.newComment.articleId = -1;
     this.newComment.userEmail = '';
     this.newComment.userName = '';
     this.newComment.body = '';
-    console.log(this.newComment);   
+    console.log(this.newComment);
 
-    this.commentService.getArticleComments(this.articleId, 0, 10).
-      subscribe(_comments => this.comments = _comments);
+    this.commentService
+      .getArticleComments(this.articleId, 0, 10)
+      .subscribe(_comments => (this.comments = _comments));
   }
   /**
    *  Post a new comment to the server and add it to the list of comments.
    *  This will update the DOM automatically.
    */
-  postNewComment(): void{
+  postNewComment(): void {
     this.newComment.articleId = this.articleId;
-    
-    this.commentService.create(this.newComment).
-      subscribe(newComment=>{
-        this.newComment = newComment
+
+    this.commentService.create(this.newComment).subscribe(newComment => {
+      this.newComment = newComment;
       this.comments.push(this.newComment);
-      });
-
+    });
   }
-
 }
