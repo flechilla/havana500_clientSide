@@ -1,0 +1,34 @@
+<div class="comment-card" fxLayout="column" fxLayoutAlign="start stretch">
+
+    <div class="card-content" fxLayout="column" fxLayoutAlign="start stretch">
+        <p fxFlexAlign="center" class="comment-body">{{comment.body}}</p>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="row wrap">
+                <span class="h4 secondary-text text-truncate">Created At:</span>
+                <span class="h4 ml-8">{{comment.createdAtHumanized}}</span>
+            </div>
+
+            <div fxLayout="row wrap">
+                <span class="h4 secondary-text text-truncate">Created By:</span>
+                <span class="h4 ml-8">{{comment.userName}}</span>
+            </div>
+        </div>
+
+    </div>
+
+    <mat-divider fxFlex="100%" fxFlexFill>
+    </mat-divider>
+
+
+
+    <div class="comment-action-container mat-blue-grey-A700-bg" fxLayout="row" fxLayoutAlign="space-between center">
+        <button (click)="approveComment()" class="mat-green-A700-bg" mat-mini-fab>
+            <mat-icon>check</mat-icon>
+        </button>
+        <button (click)="dennyComment()" color="warn" mat-mini-fab>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+</div>

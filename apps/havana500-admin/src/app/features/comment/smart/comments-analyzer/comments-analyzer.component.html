@@ -1,0 +1,31 @@
+<div class="dialog-content-wrapper">
+    <!-- HEADER -->
+    <mat-toolbar color="warn" matDialogTitle class="mat-accent m-0">
+
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+
+            <span tabindex="-1" class="title dialog-title">Moderación de Comentarios</span>
+
+            <button mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+
+        </mat-toolbar-row>
+
+    </mat-toolbar>
+    <!-- / HEADER -->
+
+    <!-- BODY -->
+    <div mat-dialog-content class="p-24 m-0" fxLayout="column" fxLayoutAlign="start center">
+        <admin-comment-moderate-card @slideInLeft style="min-width: 80%;" [comment]="comment" (wasApproved)="approveComment(comment)"
+            (wasDenied)="dennyComment(comment)" *ngFor="let comment of comments">
+        </admin-comment-moderate-card>
+
+        <button mat-icon-button (click)="loadComments()">
+            <mat-icon>add</mat-icon>
+        </button>
+
+    </div>
+    <!-- / BODY -->
+
+</div>
