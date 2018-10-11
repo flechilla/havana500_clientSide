@@ -59,6 +59,8 @@ export class CreateUpdateArticleComponent implements OnInit {
 
   public article: ArticleExtended;
 
+  protected isTemporary: boolean;
+
   filteredTags: Observable<ContentTag[]>;
 
   constructor(
@@ -69,6 +71,7 @@ export class CreateUpdateArticleComponent implements OnInit {
       article$: Observable<ArticleExtended>;
       sections: Section[];
       tags: ContentTag[];
+      isTemporary: boolean;
     },
     protected contentTagService: ContentTagService,
     protected utilsService: AntUtilsService,
@@ -87,6 +90,8 @@ export class CreateUpdateArticleComponent implements OnInit {
     this.sections = this.data.sections;
 
     this.globalTags = this.data.tags;
+
+    this.isTemporary = this.data.isTemporary;
 
     if (this.data.article$) {
       this.onEdit = true;
@@ -128,7 +133,7 @@ export class CreateUpdateArticleComponent implements OnInit {
   public save() {
     const toUpdateOrCreate: Article = this.form.get('article').value;
 
-    this.dialogRef.close(toUpdateOrCreate);
+    this.dialogRef.close({ update: true, data: toUpdateOrCreate });
   }
 
   public addTag(tagForm: NgForm) {
@@ -223,6 +228,17 @@ export class CreateUpdateArticleComponent implements OnInit {
       this.uploadService.upload(fileToUpload, articleId).subscribe(res => {
         console.log(res);
       });
+    }
+  }
+
+  public close() {
+    console.log('Closing');
+    console.log(this.isTemporary);
+
+    if (this.isTemporary) {
+      this.dialogRef.close({ update: false, data: this.article.id });
+    } else {
+      this.dialogRef.close();
     }
   }
 }
