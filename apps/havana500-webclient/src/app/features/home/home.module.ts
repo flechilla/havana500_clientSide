@@ -10,9 +10,10 @@ import { OutstandingExperiencesComponent } from './dummy/outstanding-experiences
 import { OutstandingCuriositiesComponent } from './dummy/outstanding-curiosities/outstanding-curiosities.component';
 import { EntertainmentComponent } from './dummy/entertainment-preview/entertainment-preview.component';
 import { ImageSliderComponent } from './smart/image-slider/image-slider.component';
+import {SlideshowModule} from 'ng-simple-slideshow';
 
 @NgModule({
-  imports: [SharedModule, TranslateModule.forChild(), HomeRoutingModule],
+  imports: [SharedModule, TranslateModule.forChild(), HomeRoutingModule, SlideshowModule],
   exports: [],
   declarations: [
     HomeComponent,
