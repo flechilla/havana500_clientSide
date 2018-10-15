@@ -9,6 +9,7 @@ import { OutstandingNewsComponent } from './dummy/outstanding-news/outstanding-n
 import { OutstandingExperiencesComponent } from './dummy/outstanding-experiences/outstanding-experiences.component';
 import { OutstandingCuriositiesComponent } from './dummy/outstanding-curiosities/outstanding-curiosities.component';
 import { EntertainmentComponent } from './dummy/entertainment-preview/entertainment-preview.component';
+import { ImageSliderComponent } from './smart/image-slider/image-slider.component';
 
 @NgModule({
   imports: [SharedModule, TranslateModule.forChild(), HomeRoutingModule],
@@ -20,7 +21,8 @@ import { EntertainmentComponent } from './dummy/entertainment-preview/entertainm
     OutstandingGaleryMediasComponent,
     OutstandingExperiencesComponent,
     OutstandingCuriositiesComponent,
-    EntertainmentComponent
+    EntertainmentComponent,
+    ImageSliderComponent
   ],
   providers: []
 })
