@@ -11,9 +11,11 @@ import { OutstandingCuriositiesComponent } from './dummy/outstanding-curiosities
 import { EntertainmentComponent } from './dummy/entertainment-preview/entertainment-preview.component';
 import { ImageSliderComponent } from './smart/image-slider/image-slider.component';
 import {SlideshowModule} from 'ng-simple-slideshow';
+import {MatTabsModule} from '@angular/material/tabs';
+import { ArticleShortcutsComponent } from './smart/article-shortcuts/article-shortcuts.component';
 
 @NgModule({
-  imports: [SharedModule, TranslateModule.forChild(), HomeRoutingModule, SlideshowModule],
+  imports: [SharedModule, TranslateModule.forChild(), HomeRoutingModule, SlideshowModule, MatTabsModule],
   exports: [],
   declarations: [
     HomeComponent,
@@ -23,7 +25,8 @@ import {SlideshowModule} from 'ng-simple-slideshow';
     OutstandingExperiencesComponent,
     OutstandingCuriositiesComponent,
     EntertainmentComponent,
-    ImageSliderComponent
+    ImageSliderComponent,
+    ArticleShortcutsComponent
   ],
   providers: []
 })
