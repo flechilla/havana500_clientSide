@@ -18,10 +18,10 @@ export class ArticleShortcutsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.cinemaArticles = this.articleService.getArticlesBasicDataBySectionName('cine', 0, 5);
-    this.sportArticles = this.articleService.getArticlesBasicDataBySectionName('deportes', 0, 5);
-    this.cultureArticles = this.articleService.getArticlesBasicDataBySectionName('cultura', 0, 5);
-    this.literatureArticles = this.articleService.getArticlesBasicDataBySectionName('literatura', 0, 5);
+    this.cinemaArticles = this.articleService.getArticlesBasicDataBySectionName('cine', 0, 8);
+    this.sportArticles = this.articleService.getArticlesBasicDataBySectionName('deportes', 0, 8);
+    this.cultureArticles = this.articleService.getArticlesBasicDataBySectionName('cultura', 0, 8);
+    this.literatureArticles = this.articleService.getArticlesBasicDataBySectionName('literatura', 0, 8);
 
   }
 
