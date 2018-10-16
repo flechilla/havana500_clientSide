@@ -27,7 +27,7 @@ export class AntToolbarComponent implements OnInit {
     ];
 
     this.selectedLanguage = this.languages[0];
-    this.getSections();
+    //this.getSections(); we wont use this solution be the moment, gonna be static
   }
 
   setLanguage(lang) {
@@ -46,13 +46,7 @@ export class AntToolbarComponent implements OnInit {
   getSections() : void{
     this.sectionService.getAll()
       .subscribe(sections=>{
-        this.sections = sections
-        this.sections.map(function(value, index, array){
-          if(value.subSections.length>0)
-          value.subSections.forEach(section => {
-              array.push(section);
-            });
-        })
+        this.sections = sections;        
       });
   }
   /**
