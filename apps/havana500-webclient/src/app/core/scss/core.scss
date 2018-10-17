@@ -2,6 +2,7 @@
 // Ant
 @import "ant";
 
+
 // @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 // // Theming
@@ -27,3 +28,5 @@
 @import "partials/forms";
 @import "partials/toolbar";
 @import "partials/print";
+
+@import "~@ng-select/ng-select/themes/material.theme.css";

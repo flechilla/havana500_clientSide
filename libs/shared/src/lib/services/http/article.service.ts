@@ -87,6 +87,27 @@ export class ArticleService extends BaseCrudService<Article> {
       .pipe(catchError(this.handleError));
   }
 
+  public getArticlesBasicDataBySectionNameAndTagIds(
+    sectionName: string,
+    tagIds: number[] = [],
+    currentPage: number,
+    amountOfArticles: number
+  ): Observable<Article[]> {
+    return this.http
+      .get<Article[]>(
+        this.url +
+          '/GetArticlesBasicDataBySectionNameAndTagIds?sectionName=' +
+          sectionName +
+          '&tagsIds=' +
+          tagIds +
+          '&currentPage=' +
+          currentPage +
+          '&amountOfArticles=' +
+          amountOfArticles
+      )
+      .pipe(catchError(this.handleError));
+  }
+
   /**
    * Creates an empty temporary article
    *

@@ -1,20 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SecondLevelDeafultComponent } from './second-level-deafult.component';
+import { SecondLevelDefaultComponent } from './second-level-default.component';
 
 describe('SecondLevelDeafultComponent', () => {
-  let component: SecondLevelDeafultComponent;
-  let fixture: ComponentFixture<SecondLevelDeafultComponent>;
+  let component: SecondLevelDefaultComponent;
+  let fixture: ComponentFixture<SecondLevelDefaultComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SecondLevelDeafultComponent ]
-    })
-    .compileComponents();
+      declarations: [SecondLevelDefaultComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SecondLevelDeafultComponent);
+    fixture = TestBed.createComponent(SecondLevelDefaultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
