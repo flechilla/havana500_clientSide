@@ -32,7 +32,7 @@ export class ImageSliderComponent implements OnInit {
       .subscribe(pics=>{
         this.firstLevelImages = pics;
         this.firstLevelImages.map(pic => {
-            const imgUrl : IImage = {url: pic.relativePath, caption: pic.seoFileName};
+            const imgUrl : IImage = {url: pic.relativePath, caption: pic.seoFileName, href : pic.hRef};
 
             this.imageUrls.push(imgUrl);
         })

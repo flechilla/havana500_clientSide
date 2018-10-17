@@ -84,4 +84,13 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    * @memberof Picture
    */
   pictureExtension: string;
+
+    /**
+   *Gets or sets the value that contains the url where we should
+   * redirect the user after a click on the image.
+   *
+   * @type {string}
+   * @memberof Picture
+   */
+  href: string;
 }
