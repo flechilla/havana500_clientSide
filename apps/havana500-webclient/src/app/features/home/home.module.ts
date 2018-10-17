@@ -13,6 +13,7 @@ import { ImageSliderComponent } from './smart/image-slider/image-slider.componen
 import {SlideshowModule} from 'ng-simple-slideshow';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ArticleShortcutsComponent } from './smart/article-shortcuts/article-shortcuts.component';
+import { MarketingImageService } from 'libs/shared/src/lib/services/http/marketing-image.service';
 
 @NgModule({
   imports: [SharedModule, TranslateModule.forChild(), HomeRoutingModule, SlideshowModule, MatTabsModule],
@@ -28,6 +29,6 @@ import { ArticleShortcutsComponent } from './smart/article-shortcuts/article-sho
     ImageSliderComponent,
     ArticleShortcutsComponent
   ],
-  providers: []
+  providers: [MarketingImageService]
 })
 export class HomeModule {}
