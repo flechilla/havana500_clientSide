@@ -42,7 +42,7 @@ export class ArticleComponent implements OnInit {
 
   onSelectTag(tagId: number): void {
     console.log(
-      'this method is hit after the user selelects a tag. the tag Id is: ' +
+      'this method hits after the user selelects a tag. the tag Id is: ' +
         tagId
     );
   }

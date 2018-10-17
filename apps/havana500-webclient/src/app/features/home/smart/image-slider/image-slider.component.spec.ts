@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SecondLevelDeafultComponent } from './second-level-deafult.component';
+import { ImageSliderComponent } from './image-slider.component';
 
-describe('SecondLevelDeafultComponent', () => {
-  let component: SecondLevelDeafultComponent;
-  let fixture: ComponentFixture<SecondLevelDeafultComponent>;
+describe('ImageSliderComponent', () => {
+  let component: ImageSliderComponent;
+  let fixture: ComponentFixture<ImageSliderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SecondLevelDeafultComponent ]
+      declarations: [ ImageSliderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SecondLevelDeafultComponent);
+    fixture = TestBed.createComponent(ImageSliderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

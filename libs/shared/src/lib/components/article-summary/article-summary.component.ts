@@ -19,7 +19,7 @@ export class ArticleSummaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.mainPictureRelPath = this.env.domainUrl + this.article.mainPicture.relativePath;
+   // this.mainPictureRelPath = this.env.domainUrl + this.article.mainPicture.relativePath;
   }
 
   navigateTo(articleId: number){

@@ -240,6 +240,13 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.4"
 
+"@ng-select/ng-select@^2.10.2":
+  version "2.10.2"
+  resolved "https://registry.yarnpkg.com/@ng-select/ng-select/-/ng-select-2.10.2.tgz#52b7285ef9764761da48bd9d85c6dfced46c1a99"
+  integrity sha512-khqCorhNcPR3d9c7gW0TD4jLiueTcaDLJQQmQejp8X+XXYdH90jjvHJGTVclT/6ZvAa2qz0HovEtm9SpObLG/Q==
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngrx/effects@^6.1.0":
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-6.1.0.tgz#3c1e1ab1e5a86c6d9c29d4f3771e42cc9bd8576c"
@@ -5335,6 +5342,10 @@ neo-async@^2.5.0:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.2.tgz#489105ce7bc54e709d736b195f82135048c50fcc"
   integrity sha512-vdqTKI9GBIYcAEbFAcpKPErKINfPF5zIuz3/niBfq8WUZjpT2tytLlFVrBgWdOtqI4uaA/Rb6No0hux39XXDuw==
+
+ng-simple-slideshow@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/ng-simple-slideshow/-/ng-simple-slideshow-1.2.5.tgz#bf49496c70c182903f0a28e3e831261b32511d63"
 
 ngrx-store-freeze@^0.2.4:
   version "0.2.4"

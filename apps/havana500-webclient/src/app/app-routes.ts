@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { SecondLevelDeafultComponent } from './features/second-level/second-level-deafult/second-level-deafult.component';
+import { SecondLevelDefaultComponent } from './features/second-level/second-level-default/second-level-default.component';
 
 export const appRoutes: Routes = [
   {
@@ -9,7 +8,7 @@ export const appRoutes: Routes = [
   },
   {
     path: 'section/:sectionName',
-    component: SecondLevelDeafultComponent
+    component: SecondLevelDefaultComponent
   },
   { path: '**', redirectTo: 'home' }
 ];

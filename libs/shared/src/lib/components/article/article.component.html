@@ -11,7 +11,8 @@
     </div>
   </div>
 
-  <p id="article-body">{{article.body}}</p>
+  <section id="article-body" [innerHtml]="article.body"></section>
+  
 
 
   <mat-chip-list id="article-tags">
