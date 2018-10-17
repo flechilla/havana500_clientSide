@@ -222,6 +222,8 @@ export class CreateUpdateArticleComponent implements OnInit {
   }
 
   public addMainPicture(articleId: number): void {
+    console.log('image changed');
+
     const fi = this.mainPicture.nativeElement;
     if (fi.files && fi.files[0]) {
       const fileToUpload = fi.files[0];
