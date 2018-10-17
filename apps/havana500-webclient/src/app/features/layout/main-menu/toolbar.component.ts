@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, InjectionToken } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, InjectionToken, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SectionService, Section } from '@hav500workspace/shared';
 import {Location} from '@angular/common';
+import { MatMenuTrigger } from '@angular/material';
 
 @Component({
   selector: 'hav-toolbar',
@@ -10,7 +11,8 @@ import {Location} from '@angular/common';
   providers: [SectionService]
 })
 export class AntToolbarComponent implements OnInit {
-  
+  @ViewChild(MatMenuTrigger)
+    private menuTrigger: MatMenuTrigger;
 
   constructor(private router: Router, 
     private sectionService: SectionService,
@@ -27,7 +29,7 @@ export class AntToolbarComponent implements OnInit {
     ];
 
     this.selectedLanguage = this.languages[0];
-    this.getSections();
+    //this.getSections(); we wont use this solution be the moment, gonna be static
   }
 
   setLanguage(lang) {
@@ -46,13 +48,7 @@ export class AntToolbarComponent implements OnInit {
   getSections() : void{
     this.sectionService.getAll()
       .subscribe(sections=>{
-        this.sections = sections
-        this.sections.map(function(value, index, array){
-          if(value.subSections.length>0)
-          value.subSections.forEach(section => {
-              array.push(section);
-            });
-        })
+        this.sections = sections;        
       });
   }
   /**
@@ -65,5 +61,13 @@ export class AntToolbarComponent implements OnInit {
    */
   goToSection(sectionName: string) : void{
     location.assign('/section/'+sectionName);
+  }
+
+  onSelect(event: any) : void{
+    const menu = document.getElementById('entertainment');
+    console.log(JSON.stringify(menu));
+    menu.style.display = '';
+    menu.style.top = '65px';
+
   }
 }
