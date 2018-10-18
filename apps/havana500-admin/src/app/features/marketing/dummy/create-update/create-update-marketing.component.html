@@ -1,12 +1,34 @@
+<mat-menu (click)="$event.stopPropagation()" #tagMenu="matMenu" [overlapTrigger]="false">
+
+    <form class="px-16 py-8" #newTagForm="ngForm" (click)="$event.stopPropagation();tagAutocompleteTrigger.closePanel();"
+        (submit)="addTag(newTagForm)" fxLayout="row" fxLayoutAlign="space-evenly space-evenly">
+
+        <mat-form-field (click)="$event.stopPropagation()" class="main-input__sized" floatPlaceholder="never">
+            <input (click)="$event.stopPropagation()" type="text" matInput ngModel #tagNameField #tagName="ngModel"
+                name="name" placeholder="Tag title" required [matAutocomplete]="auto" #tagAutocompleteTrigger="matAutocompleteTrigger">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName">
+                <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+                    {{tag.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <button style="margin: 1rem;" mat-raised-button (click)="tagAutocompleteTrigger.closePanel()" class="mat-accent"
+            aria-label="Add Tag" [disabled]="!newTagForm.valid">Add
+            Tag</button>
+    </form>
+
+</mat-menu>
+
 <div class="dialog-content-wrapper">
     <mat-toolbar color="warn" matDialogTitle class="mat-accent m-0">
 
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
 
-            <!-- <button [disabled]="!marketing?.id" mat-icon-button class="" [matMenuTriggerFor]="tagMenu" #tagMenuTrigger="matMenuTrigger"
+            <button [disabled]="!marketing?.id" mat-icon-button class="" [matMenuTriggerFor]="tagMenu" #tagMenuTrigger="matMenuTrigger"
                 (menuOpened)="onTagMenuOpened()">
                 <mat-icon>label</mat-icon>
-            </button> -->
+            </button>
 
             <span tabindex="-1" class="title dialog-title">{{!onEdit?"Create Article":"Edit Article"}}</span>
 
@@ -17,20 +39,19 @@
         </mat-toolbar-row>
 
         <mat-toolbar-row class="py-8 py-sm-16" fxLayout="column" fxLayoutAlign="center center">
-            <div class="article-title">{{title.value}}</div>
+            <div class="article-title">{{name.value}}</div>
         </mat-toolbar-row>
 
         <mat-toolbar-row class="toolbar-bottom mat-accent-900-bg">
-            <admin-labels-bar [article]="article" (deleteTag)="deleteArticleTag($event)"></admin-labels-bar>
+            <admin-labels-bar [tags]="marketing?.tags" (deleteTag)="deletePictureTag($event)"></admin-labels-bar>
         </mat-toolbar-row>
-
     </mat-toolbar>
 
     <div mat-dialog-content class="p-24 m-0">
         <!-- FORM -->
         <form [formGroup]="form">
 
-            <div formGroupName="article">
+            <div formGroupName="marketing">
 
                 <div hidden>
                     <input formControlName="id" type="text" class="form-control">
@@ -39,110 +60,54 @@
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <input #title name="title" formControlName="title" placeholder="Title" matInput required>
+                        <input #name name="name" formControlName="name" placeholder="Marketing Name" matInput required>
                     </mat-form-field>
                 </div>
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
-                    <!-- <mat-form-field fxFlex>
-                        <textarea name="body" formControlName="body" placeholder="Body of the article..." matInput
-                            required></textarea>
-
-                    </mat-form-field> -->
-                    <div>
-                        <label class="unmaterial-label" for="description">Body:</label>
-                        <quill-editor name="body" placeholder="Body*" formControlName="body" required></quill-editor>
-                    </div>
-
-                </div>
-
-                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
-                    <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <mat-select formControlName="sectionId" placeholder="Select a section" required>
-                            <mat-option *ngFor="let section of sections" [value]="section.id">
-                                {{section.name}}
+                        <mat-select formControlName="pictureType" placeholder="Select a Marketing Level" required>
+                            <mat-option *ngFor="let option of marketingType | keys" [value]="option.key">
+                                {{option.value}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
 
+                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                    <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+                    <mat-form-field fxFlex>
+                        <input type="url" name="href" formControlName="href" placeholder="HRef" matInput required>
+                    </mat-form-field>
+                </div>
 
                 <div class="mb-24" fxLayout="row wrap" fxLayoutAlign="space-between start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
-                    <mat-slide-toggle [ngStyle.xs]="'height: 5rem;'" name="allowComments" formControlName="allowComments"
-                        class="mr-24 article-field__size-xl" aria-label="Allow Comments">
-                        Allow Comments
-                    </mat-slide-toggle>
 
-                    <mat-slide-toggle [ngStyle.xs]="'height: 5rem;'" name="allowAnonymousComments" formControlName="allowAnonymousComments"
-                        class="mr-24 article-field__size-xl" aria-label="Allow Anonymous Comments">
-                        Allow Anonymous Comments
+                    <mat-form-field class="article-field__size-md" fxFlex>
+                        <input type="number" name="weight" formControlName="weight" matInput placeholder="Marketing Weight">
+                    </mat-form-field>
+
+                    <mat-slide-toggle [ngStyle.xs]="'height: 5rem;'" name="isActive" formControlName="isActive" class="mr-24 article-field__size-xl"
+                        aria-label="Is Active">
+                        Is Active
                     </mat-slide-toggle>
                 </div>
 
-                <!-- <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
-                    <mat-slide-toggle name="allowAnonymousComments" formControlName="allowAnonymousComments" class="mr-24"
-                        aria-label="Allow Anonymous Comments">
-                        Allow Anonymous Comments
-                    </mat-slide-toggle>
-                </div> -->
-
-
-                <div class="mb-24 " fxLayout="row wrap" fxLayoutAlign="space-evenly flex-start">
-
-                    <mat-form-field class="mr-sm-24 article-field__size-lg" fxFlex>
-                        <input matInput [matDatepicker]="endDatePicker" placeholder="End Date" name="end"
-                            formControlName="endDateUtc">
-                        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-                        <mat-datepicker #endDatePicker></mat-datepicker>
-                    </mat-form-field>
-
-                    <mat-form-field class="mr-sm-24 article-field__size-lg" fxFlex>
-                        <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date" name="start"
-                            formControlName="startDateUtc">
-                        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-                        <mat-datepicker #startDatePicker></mat-datepicker>
-                    </mat-form-field>
-
-                </div>
-
-                <div class="mb-24 " fxLayout="row " fxLayoutAlign="start start ">
-                    <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12 "></mat-icon>
                     <mat-form-field fxFlex>
-                        <input name="metaKeywords" formControlName="metaKeywords" matInput placeholder="Meta Keywords">
+                        <input name="seoFileName" formControlName="seoFileName" placeholder="SEO File Name" matInput>
                     </mat-form-field>
                 </div>
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <textarea name="metaDescription" formControlName="metaDescription" placeholder="Meta Description"
-                            matInput></textarea>
+                        <input name="companyName" formControlName="companyName" placeholder="Company Name" matInput>
                     </mat-form-field>
                 </div>
-
-                <div class="mb-24 " fxLayout="row " fxLayoutAlign="start start ">
-                    <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12 "></mat-icon>
-                    <mat-form-field fxFlex>
-                        <input name="metaTitle" formControlName="metaTitle" matInput placeholder="Meta Title">
-                    </mat-form-field>
-                </div>
-
-                <div class="mb-24 " fxLayout="row " fxLayoutAlign="space-around start">
-                    <!-- <mat-icon class="mr-12 mt-12 "></mat-icon> -->
-                    <mat-form-field class="article-field__size-md" fxFlex>
-                        <input type="number" name="editorWeight" formControlName="editorWeight" matInput placeholder="Editor Weight">
-                    </mat-form-field>
-
-                    <mat-form-field class="article-field__size-md" fxFlex>
-                        <input type="number" name="readingTime" formControlName="readingTime" matInput placeholder="Reading Time">
-                        <span matSuffix>min&nbsp;</span>
-                    </mat-form-field>
-                </div>
-
 
             </div>
         </form>
@@ -153,16 +118,12 @@
     <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="flex-end center">
         <!-- TODO: how to change the name of the input btn??  -->
         <!-- TODO: This can be accesible when the article is created, so we have to create the article and the let the user to edit it -->
-        <input hidden #mainPicture id="logoUrl" accept="image/*" type="file" (change)="addMainPicture(article?.id)" />
+        <input hidden #mainPicture accept="image/*" type="file" (change)="addMainPicture(marketing?.id)" />
 
         <button mat-raised-button (click)="mainPicture.click()" class="mat-accent">Guardar imagen</button>
 
-        <button mat-raised-button (click)="save()" class="save-button mat-accent" [disabled]="form.invalid" aria-label="SAVE ">
+        <button mat-raised-button class="save-button mat-accent" [disabled]="form.invalid" aria-label="SAVE ">
             SAVE
         </button>
-
-
-
-
     </div>
 </div>
