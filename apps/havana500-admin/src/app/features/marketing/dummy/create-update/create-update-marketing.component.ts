@@ -13,7 +13,9 @@ import {
   Picture,
   ContentTagService,
   AntUtilsService,
-  MarketingImageService
+  MarketingImageService,
+  PictureType,
+  PictureExtended
 } from '@hav500workspace/shared';
 import {
   MatMenuTrigger,
@@ -24,7 +26,8 @@ import {
   FormControl,
   FormGroup,
   FormBuilder,
-  Validators
+  Validators,
+  NgForm
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -51,24 +54,26 @@ export class CreateUpdateMarketingComponent implements OnInit {
 
   protected globalTags: ContentTag[];
 
-  protected marketing: Picture;
+  protected marketing: PictureExtended;
 
   protected isTemporary: boolean;
 
   filteredTags: Observable<ContentTag[]>;
+
+  marketingType = PictureType;
 
   constructor(
     protected fb: FormBuilder,
     public dialogRef: MatDialogRef<CreateUpdateMarketingComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: {
-      picture$: Observable<Picture>;
+      marketing$: Observable<PictureExtended>;
       tags: ContentTag[];
       isTemporary: boolean;
     },
     protected contentTagService: ContentTagService,
     protected utilsService: AntUtilsService,
-    protected pictureService: MarketingImageService,
+    protected marketingService: MarketingImageService,
     private uploadService: UploadService
   ) {}
 
@@ -85,58 +90,147 @@ export class CreateUpdateMarketingComponent implements OnInit {
 
     this.isTemporary = this.data.isTemporary;
 
-    if (this.data.picture$) {
+    if (this.data.marketing$) {
       this.onEdit = true;
     }
 
     if (this.onEdit) {
-      this.data.picture$.subscribe(resp => {
+      this.data.marketing$.subscribe(resp => {
         this.form.get('marketing').patchValue(resp);
         this.marketing = resp;
       });
     }
+
+    this.filteredTags = this.tagName.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterTags(value))
+    );
   }
 
   protected loadForm() {
     this.form = this.fb.group({
-      article: this.fb.group({
+      marketing: this.fb.group({
         id: 0,
-        sectionId: 0,
-        title: ['', Validators.required],
-        body: ['', Validators.required],
-        allowComments: true,
-        allowAnonymousComments: false,
-        startDateUtc: '',
-        endDateUtc: '',
-        metaKeywords: '',
-        metaDescription: '',
-        metaTitle: '',
-        editorWeight: 0,
-        readingTime: 1
+        weight: ['', Validators.required],
+        seoFileName: '',
+        pictureType: ['', Validators.required],
+        href: ['', Validators.required],
+        isActive: [true, Validators.required],
+        name: ['', Validators.required],
+        companyName: [''],
+        languageCulture: 'es'
       })
     });
   }
 
-  public addMainPicture(articleId: number): void {
+  public addMainPicture(marketingId: number): void {
     console.log('image changed');
 
     const fi = this.mainPicture.nativeElement;
     if (fi.files && fi.files[0]) {
       const fileToUpload = fi.files[0];
-      this.uploadService.upload(fileToUpload, articleId).subscribe(res => {
+      this.uploadService.upload(fileToUpload, marketingId).subscribe(res => {
         console.log(res);
       });
     }
   }
 
   public close() {
-    console.log('Closing');
-    console.log(this.isTemporary);
-
     if (this.isTemporary) {
       this.dialogRef.close({ update: false, data: this.marketing.id });
     } else {
       this.dialogRef.close();
     }
+  }
+
+  public save() {
+    const toUpdateOrCreate: Picture = this.form.get('marketing').value;
+
+    this.dialogRef.close({ update: true, data: toUpdateOrCreate });
+  }
+
+  public addTag(tagForm: NgForm) {
+    if (tagForm.value.name.id) {
+      const selectedTag: ContentTag = tagForm.value.name;
+      if (
+        this.marketing.tags.findIndex(tag => tag.id === selectedTag.id) === -1
+      ) {
+        //OPtimistic Add Tag
+        this.optimisticAddTagToPicture(selectedTag);
+      }
+    } else {
+      const toCreateTag: ContentTag = {
+        name: tagForm.value.name.toString(),
+        id: this.utilsService.generateUEId()
+      };
+
+      this.optimisticCreateAndAddTagToPicture(toCreateTag);
+    }
+
+    tagForm.resetForm();
+    this.tagMenu.closeMenu();
+  }
+
+  private optimisticCreateAndAddTagToPicture(toCreateTag: ContentTag) {
+    this.marketing.tags.push(toCreateTag);
+    this.contentTagService.create({ ...toCreateTag, id: 0 }).subscribe(
+      createdTag => {
+        const indexOfOld = this.marketing.tags.findIndex(
+          tag => tag.id === toCreateTag.id
+        );
+        this.marketing.tags.splice(indexOfOld, 1);
+        this.optimisticAddTagToPicture(createdTag);
+        this.globalTags.push(createdTag);
+      },
+      () => {
+        const indexOfOld = this.marketing.tags.findIndex(
+          tag => tag === toCreateTag
+        );
+        this.marketing.tags.splice(indexOfOld, 1);
+      }
+    );
+  }
+
+  private optimisticAddTagToPicture(selectedTag: ContentTag) {
+    this.marketing.tags.push(selectedTag);
+    this.marketingService
+      .addTag(this.marketing.id, selectedTag.id)
+      .subscribe(null, () => {
+        const index = this.marketing.tags.findIndex(
+          tag => tag.id === selectedTag.id
+        );
+        this.marketing.tags.splice(index, 1);
+      });
+  }
+
+  public onTagMenuOpened() {
+    this.tagNameField.nativeElement.focus();
+  }
+
+  public deletePictureTag(tagId: any) {
+    const index = this.marketing.tags.findIndex(tag => tag.id === tagId);
+    const toDelete = this.marketing.tags[index];
+    this.marketing.tags.splice(index, 1);
+    this.marketingService
+      .removeTag(this.marketing.id, tagId)
+      .subscribe(null, () => {
+        this.marketing.tags.splice(index, 0, toDelete);
+      });
+  }
+
+  public displayName(tag: ContentTag): string {
+    if (tag) return tag.name;
+  }
+
+  private _filterTags(value: any): ContentTag[] {
+    let filterValue = '';
+
+    if (value && !value.id) {
+      filterValue = value.toLowerCase();
+    }
+
+    return this.globalTags.filter(tag =>
+      tag.name.toLowerCase().includes(filterValue)
+    );
   }
 }
