@@ -84,4 +84,19 @@ export class MarketingImageService extends BaseCrudService<Picture> {
       .post<Picture>(this.url + '/CreateTemporaryPicture', null)
       .pipe(catchError(this.handleError));
   }
+
+  public uploadMarketingImage(
+    marketingId: number,
+    fileToUpload: any
+  ): Observable<Picture> {
+    const input = new FormData();
+    input.append('file', fileToUpload);
+
+    return this.http
+      .post<Picture>(
+        this.url + '/UploadMarketingPicture?marketingId=' + marketingId,
+        input
+      )
+      .pipe(catchError(this.handleError));
+  }
 }
