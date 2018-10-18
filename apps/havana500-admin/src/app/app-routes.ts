@@ -16,5 +16,9 @@ export const appRoutes: Routes = [
     path: 'comments',
     loadChildren: './features/comment/comment.module#CommentModule'
   },
+  {
+    path: 'marketing',
+    loadChildren: './features/marketing/marketing.module#MarketingModule'
+  },
   { path: '**', redirectTo: 'dashboard' }
 ];
