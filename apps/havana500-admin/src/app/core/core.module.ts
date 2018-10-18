@@ -7,7 +7,8 @@ import {
   CommentService,
   ContentTagService,
   SectionService,
-  AntTranslateService
+  AntTranslateService,
+  MarketingImageService
 } from '@hav500workspace/shared';
 import { AuthenticatedGuard } from './route_guards/authenticated.guard';
 import { AccountSandbox } from './sandboxes/account-sandbox';
@@ -36,6 +37,7 @@ import ProjectsDashboardService from './services/http/dashboard.service';
     SectionService,
     ArticleCommentsInfoService,
     AntTranslateService,
+    MarketingImageService,
     { provide: HavanaEnvironment, useValue: environment }
   ]
 })

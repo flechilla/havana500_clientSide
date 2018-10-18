@@ -10,13 +10,19 @@ import { OutstandingExperiencesComponent } from './dummy/outstanding-experiences
 import { OutstandingCuriositiesComponent } from './dummy/outstanding-curiosities/outstanding-curiosities.component';
 import { EntertainmentComponent } from './dummy/entertainment-preview/entertainment-preview.component';
 import { ImageSliderComponent } from './smart/image-slider/image-slider.component';
-import {SlideshowModule} from 'ng-simple-slideshow';
-import {MatTabsModule} from '@angular/material/tabs';
+import { SlideshowModule } from 'ng-simple-slideshow';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ArticleShortcutsComponent } from './smart/article-shortcuts/article-shortcuts.component';
 import { MarketingImageService } from 'libs/shared/src/lib/services/http/marketing-image.service';
 
 @NgModule({
-  imports: [SharedModule, TranslateModule.forChild(), HomeRoutingModule, SlideshowModule, MatTabsModule],
+  imports: [
+    SharedModule,
+    TranslateModule.forChild(),
+    HomeRoutingModule,
+    SlideshowModule,
+    MatTabsModule
+  ],
   exports: [],
   declarations: [
     HomeComponent,
@@ -28,7 +34,6 @@ import { MarketingImageService } from 'libs/shared/src/lib/services/http/marketi
     EntertainmentComponent,
     ImageSliderComponent,
     ArticleShortcutsComponent
-  ],
-  providers: [MarketingImageService]
+  ]
 })
 export class HomeModule {}
