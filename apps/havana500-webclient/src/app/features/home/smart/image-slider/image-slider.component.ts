@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IImage } from 'ng-simple-slideshow';
-import { MarketingImageService } from 'libs/shared/src/lib/services/http/marketing-image.service';
-import { Picture } from '@hav500workspace/shared';
-import { IncomingMessage } from 'http';
+import { Picture, MarketingImageService } from '@hav500workspace/shared';
 
 @Component({
   selector: 'hav-image-slider',
@@ -10,7 +8,7 @@ import { IncomingMessage } from 'http';
   styleUrls: ['./image-slider.component.css']
 })
 export class ImageSliderComponent implements OnInit {
-  private firstLevelImages : Picture[];
+  private firstLevelImages: Picture[];
   // imageUrls: (string | IImage)[] = [
   //   { url: 'https://cdn.vox-cdn.com/uploads/chorus_image/image/56748793/dbohn_170625_1801_0018.0.0.jpg', caption: 'The first slide', href: '#config' },
   //   { url: 'https://cdn.vox-cdn.com/uploads/chorus_asset/file/9278671/jbareham_170917_2000_0124.jpg', clickAction: () => alert('custom click function') },
@@ -19,25 +17,26 @@ export class ImageSliderComponent implements OnInit {
   //   { url: 'assets/kitties.jpg', backgroundSize: 'contain', backgroundPosition: 'center' }
   // ];
   private imageUrls: (string | IImage)[] = [];
-  
 
-  constructor(private marketingImageService : MarketingImageService) { }
+  constructor(private marketingImageService: MarketingImageService) {}
 
   ngOnInit() {
     this.getFirstLevelImages();
   }
 
-  getFirstLevelImages() : void {
-    this.marketingImageService.getImagesByLevel(1, 5)
-      .subscribe(pics=>{
-        this.firstLevelImages = pics;
-        this.firstLevelImages.map(pic => {
-            const imgUrl : IImage = {url: pic.relativePath, caption: pic.seoFileName, href : pic.hRef};
+  getFirstLevelImages(): void {
+    this.marketingImageService.getImagesByLevel(1, 5).subscribe(pics => {
+      this.firstLevelImages = pics;
+      this.firstLevelImages.map(pic => {
+        const imgUrl: IImage = {
+          url: pic.relativePath,
+          caption: pic.seoFileName,
+          href: pic.href
+        };
 
-            this.imageUrls.push(imgUrl);
-        })
-        console.log(JSON.stringify(this.imageUrls))
+        this.imageUrls.push(imgUrl);
       });
+      console.log(JSON.stringify(this.imageUrls));
+    });
   }
-
 }

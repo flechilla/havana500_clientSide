@@ -234,9 +234,6 @@ export class CreateUpdateArticleComponent implements OnInit {
   }
 
   public close() {
-    console.log('Closing');
-    console.log(this.isTemporary);
-
     if (this.isTemporary) {
       this.dialogRef.close({ update: false, data: this.article.id });
     } else {
