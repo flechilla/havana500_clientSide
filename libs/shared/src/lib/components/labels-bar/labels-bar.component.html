@@ -1,5 +1,5 @@
 <div class="labels-bar" fxLayout="row wrap" fxLayoutAlign="flex-start flex-start">
-    <div class="label" fxLayout="row" *ngFor="let label of article?.tags">
+    <div class="label" fxLayout="row" *ngFor="let label of tags">
         <span class="label-text">{{label.name}}</span>
         <button mat-icon-button (click)="deleteLabel(label.id)">
             <mat-icon class="label-close-icon" aria-label="Delete">close</mat-icon>

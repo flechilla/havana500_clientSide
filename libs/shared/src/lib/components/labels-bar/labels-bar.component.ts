@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ArticleExtended } from '@hav500workspace/shared';
+import { ArticleExtended, ContentTag } from '@hav500workspace/shared';
 
 @Component({
   selector: 'admin-labels-bar',
@@ -8,7 +8,7 @@ import { ArticleExtended } from '@hav500workspace/shared';
 })
 export class LabelsBarComponent implements OnInit {
   @Input()
-  public article: ArticleExtended;
+  public tags: ContentTag[];
 
   @Output()
   protected deleteTag: EventEmitter<any> = new EventEmitter();

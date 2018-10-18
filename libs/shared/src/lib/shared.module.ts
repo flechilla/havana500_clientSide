@@ -15,6 +15,7 @@ import { ArticleSummaryComponent } from './components/article-summary/article-su
 import { ArticleMetadataComponent } from './components/article-metadata/article-metadata.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AntTranslateService } from './services';
+import { LabelsBarComponent } from './components/labels-bar/labels-bar.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { AntTranslateService } from './services';
     SquareFadeSpinnerComponent,
     ArticleSummaryComponent,
     ArticleMetadataComponent,
+    LabelsBarComponent,
 
     //Directives
     AntWidgetToggleDirective,
@@ -58,6 +60,7 @@ import { AntTranslateService } from './services';
     SquareFadeSpinnerComponent,
     ArticleSummaryComponent,
     ArticleMetadataComponent,
+    LabelsBarComponent,
 
     //Directives
     AntWidgetToggleDirective,

@@ -43,7 +43,7 @@
         </mat-toolbar-row>
 
         <mat-toolbar-row class="toolbar-bottom mat-accent-900-bg">
-            <admin-labels-bar [article]="article" (deleteTag)="deleteArticleTag($event)"></admin-labels-bar>
+            <admin-labels-bar [tags]="article?.tags" (deleteTag)="deleteArticleTag($event)"></admin-labels-bar>
         </mat-toolbar-row>
 
     </mat-toolbar>
@@ -175,7 +175,7 @@
     <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="flex-end center">
         <!-- TODO: how to change the name of the input btn??  -->
         <!-- TODO: This can be accesible when the article is created, so we have to create the article and the let the user to edit it -->
-        <input hidden #mainPicture id="logoUrl" accept="image/*" type="file" (change)="addMainPicture(article?.id)" />
+        <input hidden #mainPicture accept="image/*" type="file" (change)="addMainPicture(article?.id)" />
 
         <button mat-raised-button (click)="mainPicture.click()" class="mat-accent">Guardar imagen</button>
 
