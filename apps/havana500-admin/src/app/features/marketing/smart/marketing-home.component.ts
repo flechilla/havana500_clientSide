@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { BaseTableContainerComponent } from '../../../shared/components/base-table-container.component';
 import {
   MarketingContent,
@@ -18,7 +18,8 @@ import { CreateUpdateMarketingComponent } from '../dummy/create-update/create-up
   styleUrls: ['marketing-home.component.scss'],
   animations: [antAnimations]
 })
-export class MarketingHomeComponent implements OnInit {
+export class MarketingHomeComponent extends BaseTableContainerComponent<Picture>
+  implements OnInit, AfterViewInit {
   protected dialogRef: any;
   protected globalTags: ContentTag[];
 
@@ -26,14 +27,26 @@ export class MarketingHomeComponent implements OnInit {
     protected dialog: MatDialog,
     protected marketingService: MarketingImageService,
     protected contentTagService: ContentTagService
-  ) {}
+  ) {
+    super(
+      ['id', 'image', 'name', 'companyName', 'isActive'],
+      marketingService,
+      'id, relativePath, name, companyName, isActive',
+      'Pictures'
+    );
+  }
 
   ngOnInit() {
+    super.ngOnInit();
     this.globalTags = [];
 
     this.contentTagService.getAll().subscribe(resp => {
       this.globalTags = resp;
     });
+  }
+
+  ngAfterViewInit(): void {
+    super.ngAfterViewInit();
   }
 
   openCreateDialog(marketingToEdit?: PictureExtended) {
