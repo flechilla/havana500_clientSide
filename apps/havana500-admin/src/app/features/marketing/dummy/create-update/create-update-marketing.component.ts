@@ -73,8 +73,7 @@ export class CreateUpdateMarketingComponent implements OnInit {
     },
     protected contentTagService: ContentTagService,
     protected utilsService: AntUtilsService,
-    protected marketingService: MarketingImageService,
-    private uploadService: UploadService
+    protected marketingService: MarketingImageService
   ) {}
 
   ngOnInit() {
@@ -124,14 +123,14 @@ export class CreateUpdateMarketingComponent implements OnInit {
   }
 
   public addMainPicture(marketingId: number): void {
-    console.log('image changed');
-
     const fi = this.mainPicture.nativeElement;
     if (fi.files && fi.files[0]) {
       const fileToUpload = fi.files[0];
-      this.uploadService.upload(fileToUpload, marketingId).subscribe(res => {
-        console.log(res);
-      });
+      this.marketingService
+        .uploadMarketingImage(marketingId, fileToUpload)
+        .subscribe(res => {
+          console.log(res);
+        });
     }
   }
 

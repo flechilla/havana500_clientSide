@@ -30,7 +30,7 @@
                 <mat-icon>label</mat-icon>
             </button>
 
-            <span tabindex="-1" class="title dialog-title">{{!onEdit?"Create Article":"Edit Article"}}</span>
+            <span tabindex="-1" class="title dialog-title">{{(isTemporary || !onEdit)?"Create Article":"Edit Article"}}</span>
 
             <button mat-button class="mat-icon-button" (click)="close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
