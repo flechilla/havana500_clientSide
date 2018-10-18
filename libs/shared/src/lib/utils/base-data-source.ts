@@ -34,10 +34,19 @@ export class BaseDataSource<T extends BaseEntity<any>> extends DataSource<T> {
     filter = '',
     sortDirection = 'asc',
     pageIndex = 0,
-    pageSize = 10
+    pageSize = 10,
+    columnsToReturn: string = '*',
+    tableToQuery: string = null
   ) {
     this.service
-      .getWithPagAndSort(pageIndex, pageSize, columnName, sortDirection)
+      .getWithPagAndSort(
+        pageIndex,
+        pageSize,
+        columnName,
+        sortDirection,
+        columnsToReturn,
+        tableToQuery
+      )
       .pipe(catchError(() => of({ entities: [], length: 0 })))
       .subscribe((result: PaginationResult<T>) => {
         this.data$.next(result.entities);

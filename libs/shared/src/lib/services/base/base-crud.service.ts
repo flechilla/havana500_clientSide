@@ -38,21 +38,25 @@ export class BaseCrudService<T> {
     pageNumber: number,
     pageSize: number,
     columnToSort: string,
-    sortDir: string
+    sortDir: string,
+    columnsToReturn: string = '*',
+    tableToQuery: string = null
   ): Observable<T[]> {
-    return this.http
-      .get<T[]>(
-        this.url +
-          '/getWithPaginationAndFilter?pageNumber=' +
-          pageNumber +
-          '&pageSize=' +
-          pageSize +
-          '&columnNameForSorting=' +
-          columnToSort +
-          '&sortingType=' +
-          sortDir
-      )
-      .pipe(catchError(this.handleError));
+    const fUrl =
+      this.url +
+      '/getWithPaginationAndFilter?pageNumber=' +
+      pageNumber +
+      '&pageSize=' +
+      pageSize +
+      '&columnNameForSorting=' +
+      columnToSort +
+      '&sortingType=' +
+      sortDir +
+      '&columnsToReturn=' +
+      columnsToReturn +
+      (tableToQuery ? '&tableToQuery=' + tableToQuery : '');
+    console.log(fUrl);
+    return this.http.get<T[]>(fUrl).pipe(catchError(this.handleError));
   }
 
   public create(resource: T): Observable<T> {
