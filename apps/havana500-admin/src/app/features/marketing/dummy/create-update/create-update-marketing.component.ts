@@ -76,6 +76,10 @@ export class CreateUpdateMarketingComponent implements OnInit {
     protected marketingService: MarketingImageService
   ) {}
 
+  public get pictureTypeSelected(): PictureType {
+    return this.form.get('marketing').get('pictureType').value;
+  }
+
   ngOnInit() {
     this.loadForm();
 
@@ -113,7 +117,7 @@ export class CreateUpdateMarketingComponent implements OnInit {
         weight: ['', Validators.required],
         seoFileName: '',
         pictureType: ['', Validators.required],
-        href: ['', Validators.required],
+        hRef: ['', Validators.required],
         isActive: [true, Validators.required],
         name: ['', Validators.required],
         companyName: [''],
