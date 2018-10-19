@@ -54,13 +54,13 @@
                 <ng-container matColumnDef="image">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Image</mat-header-cell>
                     <mat-cell *matCellDef="let marketing">
-                        <p class="text-truncate">{{marketing.relativePath}}</p>
+                        <img src="{{marketing.relativePath}}" alt="{{marketing.seoFileName}}">
                     </mat-cell>
                 </ng-container>
 
                 <!-- NAME Column -->
                 <ng-container matColumnDef="name">
-                    <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Name</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-xs>Name</mat-header-cell>
                     <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
                         <p class="category text-truncate">
                             {{marketing.name}}
@@ -70,8 +70,8 @@
 
                 <!--COMPANY NAME Column -->
                 <ng-container matColumnDef="companyName">
-                    <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Company Name</mat-header-cell>
-                    <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-md>
+                    <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-xs>Company Name</mat-header-cell>
+                    <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
                         <p class="category text-truncate">
                             {{marketing.companyName}}
                         </p>
@@ -83,7 +83,7 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Is Active?</mat-header-cell>
                     <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
                         <mat-icon *ngIf="marketing.isActive" class="active-icon mat-green-600-bg s-16">check</mat-icon>
-                        <mat-icon *ngIf="!marketing.allowAnonymousComments" class="active-icon mat-red-500-bg s-16">close</mat-icon>
+                        <mat-icon *ngIf="!marketing.isActive" class="active-icon mat-red-500-bg s-16">close</mat-icon>
                     </mat-cell>
                 </ng-container>
 
