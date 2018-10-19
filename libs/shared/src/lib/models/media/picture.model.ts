@@ -92,7 +92,7 @@ export interface Picture extends AuditableAndTrackableEntity<number> {
    * @type {string}
    * @memberof Picture
    */
-  href: string;
+  hRef: string;
 
   /**
    * Gets or sets the value that indicates that this
