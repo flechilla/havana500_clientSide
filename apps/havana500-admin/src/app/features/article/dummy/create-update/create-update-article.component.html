@@ -42,6 +42,13 @@
             <div class="article-title">{{title.value}}</div>
         </mat-toolbar-row>
 
+        <mat-toolbar-row>
+            <div class="article-image">
+                <img src="{{article?.mainPicture?.relativePath}}" alt="{{article?.mainPicture?.seoFileName}}">
+            </div>
+
+        </mat-toolbar-row>
+
         <mat-toolbar-row class="toolbar-bottom mat-accent-900-bg">
             <admin-labels-bar [tags]="article?.tags" (deleteTag)="deleteArticleTag($event)"></admin-labels-bar>
         </mat-toolbar-row>

@@ -43,9 +43,18 @@
             <div class="article-title">{{name.value}}</div>
         </mat-toolbar-row>
 
+        <mat-toolbar-row>
+            <div class="article-image">
+                <img src="{{marketing?.relativePath}}" alt="{{marketing?.seoFileName}}">
+            </div>
+
+        </mat-toolbar-row>
+
         <mat-toolbar-row class="toolbar-bottom mat-accent-900-bg">
             <admin-labels-bar [tags]="marketing?.tags" (deleteTag)="deletePictureTag($event)"></admin-labels-bar>
         </mat-toolbar-row>
+
+
     </mat-toolbar>
 
     <div mat-dialog-content class="p-24 m-0">
@@ -80,7 +89,7 @@
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <input type="url" name="href" formControlName="href" placeholder="HRef" matInput required>
+                        <input type="url" name="href" formControlName="hRef" placeholder="HRef" matInput required>
                     </mat-form-field>
                 </div>
 
