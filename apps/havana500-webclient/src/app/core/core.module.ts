@@ -6,7 +6,8 @@ import {
   CommentService,
   ContentTagService,
   SectionService,
-  HavanaEnvironment
+  HavanaEnvironment,
+  MarketingImageService
 } from '@hav500workspace/shared';
 import { environment } from '../../environments/environment';
 
@@ -21,6 +22,7 @@ import { environment } from '../../environments/environment';
     ContentTagService,
     SectionService,
     AntTranslateService,
+    MarketingImageService,
     { provide: HavanaEnvironment, useValue: environment }
   ]
 })
