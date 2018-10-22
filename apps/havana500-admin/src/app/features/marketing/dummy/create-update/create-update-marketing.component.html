@@ -77,8 +77,8 @@
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <mat-select formControlName="pictureType" id="pictureType" placeholder="Select a Marketing Level"
-                            required>
+                        <mat-select [compareWith]="utilsService.enumComparer" formControlName="pictureType" id="pictureType"
+                            placeholder="Select a Marketing Level" required>
                             <mat-option *ngFor="let option of marketingType | keys" [value]="option.key">
                                 {{option.value}}
                             </mat-option>
