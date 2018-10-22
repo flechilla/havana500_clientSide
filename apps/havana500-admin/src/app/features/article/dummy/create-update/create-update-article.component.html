@@ -42,7 +42,7 @@
             <div class="article-title">{{title.value}}</div>
         </mat-toolbar-row>
 
-        <mat-toolbar-row>
+        <mat-toolbar-row class="h-120">
             <div class="article-image">
                 <img src="{{article?.mainPicture?.relativePath}}" alt="{{article?.mainPicture?.seoFileName}}">
             </div>
@@ -89,7 +89,8 @@
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <mat-select formControlName="sectionId" placeholder="Select a section" required>
+                        <mat-select [compareWith]="utilsService.entityComparer" formControlName="sectionId" placeholder="Select a section"
+                            required>
                             <mat-option *ngFor="let section of sections" [value]="section.id">
                                 {{section.name}}
                             </mat-option>
@@ -182,7 +183,7 @@
     <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="flex-end center">
         <!-- TODO: how to change the name of the input btn??  -->
         <!-- TODO: This can be accesible when the article is created, so we have to create the article and the let the user to edit it -->
-        <input hidden #mainPicture accept="image/*" type="file" (change)="addMainPicture(article?.id)" />
+        <input hidden #mainPicture accept="image/*" type="file" (change)="editMainPicture(article?.id)" />
 
         <button mat-raised-button (click)="mainPicture.click()" class="mat-accent">Guardar imagen</button>
 
