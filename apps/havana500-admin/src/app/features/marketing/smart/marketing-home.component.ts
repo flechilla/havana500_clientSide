@@ -65,6 +65,7 @@ export class MarketingHomeComponent extends BaseTableContainerComponent<Picture>
       .afterClosed()
       .subscribe(
         (response: { update: Boolean; data: PictureExtended | number }) => {
+          this.loadPage();
           if (!response) {
             return;
           } else if (!response.update) {
