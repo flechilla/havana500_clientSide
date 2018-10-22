@@ -27,10 +27,12 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
-  NgForm
+  NgForm,
+  AbstractControl
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'admin-create-update-marketing',
@@ -121,10 +123,38 @@ export class CreateUpdateMarketingComponent implements OnInit {
         isActive: [true, Validators.required],
         name: ['', Validators.required],
         companyName: [''],
-        languageCulture: 'es'
+        languageCulture: 'es',
+        mimeType: '',
+        width: '',
+        height: '',
+        isNew: true,
+        fullPath: '',
+        relativePath: '',
+        pictureExtension: ''
       })
     });
   }
+
+  //#region Form Properties
+
+  public get fullPath(): AbstractControl {
+    return this.form.get('marketing').get('fullPath');
+  }
+
+  public get relativePath(): AbstractControl {
+    return this.form.get('marketing').get('relativePath');
+  }
+  public get seoFileName(): AbstractControl {
+    return this.form.get('marketing').get('seoFileName');
+  }
+  public get mimeType(): AbstractControl {
+    return this.form.get('marketing').get('mimeType');
+  }
+  public get pictureExtension(): AbstractControl {
+    return this.form.get('marketing').get('pictureExtension');
+  }
+
+  //#endregion
 
   public addMainPicture(marketingId: number): void {
     const fi = this.mainPicture.nativeElement;
@@ -132,10 +162,26 @@ export class CreateUpdateMarketingComponent implements OnInit {
       const fileToUpload = fi.files[0];
       this.marketingService
         .uploadMarketingImage(marketingId, fileToUpload)
-        .subscribe(res => {
-          console.log(res);
+        .subscribe((uploadedPic: Picture) => {
+          this.refreshImageFields(uploadedPic);
         });
     }
+  }
+
+  private refreshImageFields(res: Picture) {
+    this.marketing.relativePath = res.relativePath;
+    this.marketing.fullPath = res.fullPath;
+    this.marketing.mimeType = res.mimeType;
+    this.marketing.seoFileName =
+      this.marketing.seoFileName == null || this.marketing.seoFileName === ''
+        ? res.seoFileName
+        : this.marketing.seoFileName;
+    this.marketing.pictureExtension = res.pictureExtension;
+    this.fullPath.setValue(this.marketing.fullPath);
+    this.relativePath.setValue(this.marketing.relativePath);
+    this.seoFileName.setValue(this.marketing.seoFileName);
+    this.mimeType.setValue(this.marketing.mimeType);
+    this.pictureExtension.setValue(this.marketing.pictureExtension);
   }
 
   public close() {
