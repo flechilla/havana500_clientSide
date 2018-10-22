@@ -86,6 +86,7 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
       .afterClosed()
       .subscribe(
         (response: { update: Boolean; data: ArticleExtended | number }) => {
+          this.loadPage();
           if (!response) {
             return;
           } else if (!response.update) {
