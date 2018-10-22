@@ -1,4 +1,3 @@
-import { UploadService } from './../../../../core/services/http/upload.service';
 import {
   Component,
   OnInit,
