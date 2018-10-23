@@ -27,7 +27,8 @@ export class AntToolbarComponent implements OnInit {
   ngOnInit(): void {
     this.languages = [
       { id: 'en', title: 'English', flag: 'us' },
-      { id: 'tr', title: 'Turkish', flag: 'tr' }
+      { id: 'es', title: 'Spanish', flag: 'es' },
+      { id: 'fr', title: 'French', flag: 'fr' }
     ];
 
     this.selectedLanguage = this.languages[0];
