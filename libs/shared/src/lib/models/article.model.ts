@@ -171,4 +171,6 @@ export interface Article extends AuditableAndTrackableEntity<number> {
   publicationDateHumanized: string;
 
   mainPicture: Picture;
+
+  mainPictureId: number;
 }

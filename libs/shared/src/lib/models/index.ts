@@ -15,3 +15,4 @@ export * from './route.model';
 export * from './section.model';
 export * from './user-content.model';
 export * from './user.model';
+export * from './marketing-content.model';

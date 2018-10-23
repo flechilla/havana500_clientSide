@@ -1,0 +1,140 @@
+<mat-menu (click)="$event.stopPropagation()" #tagMenu="matMenu" [overlapTrigger]="false">
+
+    <form class="px-16 py-8" #newTagForm="ngForm" (click)="$event.stopPropagation();tagAutocompleteTrigger.closePanel();"
+        (submit)="addTag(newTagForm)" fxLayout="row" fxLayoutAlign="space-evenly space-evenly">
+
+        <mat-form-field (click)="$event.stopPropagation()" class="main-input__sized" floatPlaceholder="never">
+            <input (click)="$event.stopPropagation()" type="text" matInput ngModel #tagNameField #tagName="ngModel"
+                name="name" placeholder="Tag title" required [matAutocomplete]="auto" #tagAutocompleteTrigger="matAutocompleteTrigger">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayName">
+                <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+                    {{tag.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <button style="margin: 1rem;" mat-raised-button (click)="tagAutocompleteTrigger.closePanel()" class="mat-accent"
+            aria-label="Add Tag" [disabled]="!newTagForm.valid">Add
+            Tag</button>
+    </form>
+
+</mat-menu>
+
+<div class="dialog-content-wrapper">
+    <mat-toolbar color="warn" matDialogTitle class="mat-accent m-0">
+
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+
+            <button [disabled]="!marketing?.id" mat-icon-button class="" [matMenuTriggerFor]="tagMenu" #tagMenuTrigger="matMenuTrigger"
+                (menuOpened)="onTagMenuOpened()">
+                <mat-icon>label</mat-icon>
+            </button>
+
+            <span tabindex="-1" class="title dialog-title">{{(isTemporary || !onEdit) ?"Create Marketing":"Edit
+                Marketing"}}</span>
+
+            <button mat-button class="mat-icon-button" (click)="close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+
+        </mat-toolbar-row>
+
+        <mat-toolbar-row class="py-8 py-sm-16" fxLayout="column" fxLayoutAlign="center center">
+            <div class="article-title">{{name.value}}</div>
+        </mat-toolbar-row>
+
+        <mat-toolbar-row class="h-120">
+            <div class="article-image">
+                <img src="{{marketing?.relativePath}}" alt="{{marketing?.seoFileName}}">
+            </div>
+
+        </mat-toolbar-row>
+
+        <mat-toolbar-row class="toolbar-bottom mat-accent-900-bg">
+            <admin-labels-bar [tags]="marketing?.tags" (deleteTag)="deletePictureTag($event)"></admin-labels-bar>
+        </mat-toolbar-row>
+
+
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <!-- FORM -->
+        <form [formGroup]="form">
+
+            <div formGroupName="marketing">
+
+                <div hidden>
+                    <input formControlName="id" type="text" class="form-control">
+                </div>
+
+                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                    <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+                    <mat-form-field fxFlex>
+                        <input #name name="name" formControlName="name" placeholder="Marketing Name" matInput required>
+                    </mat-form-field>
+                </div>
+
+                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                    <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+                    <mat-form-field fxFlex>
+                        <mat-select [compareWith]="utilsService.enumComparer" formControlName="pictureType" id="pictureType"
+                            placeholder="Select a Marketing Level" required>
+                            <mat-option *ngFor="let option of marketingType | keys" [value]="option.key">
+                                {{option.value}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                    <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+                    <mat-form-field fxFlex>
+                        <input type="url" name="href" formControlName="hRef" placeholder="HRef" matInput required>
+                    </mat-form-field>
+                </div>
+
+                <div class="mb-24" fxLayout="row wrap" fxLayoutAlign="space-between start">
+                    <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+
+                    <mat-form-field class="article-field__size-md" fxFlex>
+                        <input type="number" name="weight" formControlName="weight" matInput placeholder="Marketing Weight">
+                    </mat-form-field>
+
+                    <mat-slide-toggle [ngStyle.xs]="'height: 5rem;'" name="isActive" formControlName="isActive" class="mr-24 article-field__size-xl"
+                        aria-label="Is Active">
+                        Is Active
+                    </mat-slide-toggle>
+                </div>
+
+                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                    <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+                    <mat-form-field fxFlex>
+                        <input name="seoFileName" formControlName="seoFileName" placeholder="SEO File Name" matInput>
+                    </mat-form-field>
+                </div>
+
+                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                    <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+                    <mat-form-field fxFlex>
+                        <input name="companyName" formControlName="companyName" placeholder="Company Name" matInput>
+                    </mat-form-field>
+                </div>
+
+            </div>
+        </form>
+        <!-- / FORM -->
+
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="flex-end center">
+        <!-- TODO: how to change the name of the input btn??  -->
+        <!-- TODO: This can be accesible when the article is created, so we have to create the article and the let the user to edit it -->
+        <input hidden #mainPicture accept="image/*" type="file" (change)="addMainPicture(marketing?.id)" />
+
+        <button mat-raised-button (click)="mainPicture.click()" class="mat-accent">Guardar imagen</button>
+
+        <button mat-raised-button (click)="save()" class="save-button mat-accent" [disabled]="form.invalid" aria-label="SAVE ">
+            SAVE
+        </button>
+    </div>
+</div>

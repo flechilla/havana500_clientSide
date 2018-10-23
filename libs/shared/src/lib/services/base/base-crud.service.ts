@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {
   ServerDown,
@@ -38,21 +38,25 @@ export class BaseCrudService<T> {
     pageNumber: number,
     pageSize: number,
     columnToSort: string,
-    sortDir: string
+    sortDir: string,
+    columnsToReturn: string = '*',
+    tableToQuery: string = null
   ): Observable<T[]> {
-    return this.http
-      .get<T[]>(
-        this.url +
-          '/getWithPaginationAndFilter?pageNumber=' +
-          pageNumber +
-          '&pageSize=' +
-          pageSize +
-          '&columnNameForSorting=' +
-          columnToSort +
-          '&sortingType=' +
-          sortDir
-      )
-      .pipe(catchError(this.handleError));
+    const fUrl =
+      this.url +
+      '/getWithPaginationAndFilter?pageNumber=' +
+      pageNumber +
+      '&pageSize=' +
+      pageSize +
+      '&columnNameForSorting=' +
+      columnToSort +
+      '&sortingType=' +
+      sortDir +
+      '&columnsToReturn=' +
+      columnsToReturn +
+      (tableToQuery ? '&tableToQuery=' + tableToQuery : '');
+    console.log(fUrl);
+    return this.http.get<T[]>(fUrl).pipe(catchError(this.handleError));
   }
 
   public create(resource: T): Observable<T> {
@@ -75,21 +79,21 @@ export class BaseCrudService<T> {
 
   public handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
-      return Observable.throw(new ServerDown(error));
+      return throwError(new ServerDown(error));
     }
 
     if (error.status === 400) {
-      return Observable.throw(new BadInput(error));
+      return throwError(new BadInput(error));
     }
 
     if (error.status === 404) {
-      return Observable.throw(new NotFoundError(error));
+      return throwError(new NotFoundError(error));
     }
 
     if (error.status === 401) {
-      return Observable.throw(new UnauthorizedError(error));
+      return throwError(new UnauthorizedError(error));
     }
 
-    return Observable.throw(new AntError(error));
+    return throwError(new AntError(error));
   }
 }

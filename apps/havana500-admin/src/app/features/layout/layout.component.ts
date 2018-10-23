@@ -38,6 +38,13 @@ export class LayoutComponent implements OnInit, OnDestroy {
       type: 'item',
       icon: 'email',
       url: '/articles'
+    },
+    {
+      id: 'marketing',
+      title: 'Marketing',
+      type: 'item',
+      icon: 'email',
+      url: '/marketing'
     }
   ];
 

@@ -43,6 +43,10 @@ export class AntUtilsService {
     return x.id === y.id;
   }
 
+  enumComparer(x: any, y: any): boolean {
+    return x == y;
+  }
+
   listComparer(x: List<any>, y: List<any>): boolean {
     if (isNullOrUndefined(x) && isNullOrUndefined(y)) {
       return true;

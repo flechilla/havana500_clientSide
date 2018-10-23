@@ -9,17 +9,19 @@ import {
 
 export abstract class BaseTableContainerComponent<T extends BaseEntity<any>>
   implements OnInit, AfterViewInit {
-    
   @ViewChild(MatPaginator)
   protected paginator: MatPaginator;
 
   @ViewChild(MatSort)
   protected sort: MatSort;
+
   public dataSource: BaseDataSource<T>;
 
   constructor(
     public columnsToDisplay: string[],
-    protected service: BaseCrudService<T>
+    protected service: BaseCrudService<T>,
+    protected columnsToReturn: string = '*',
+    protected tableToQuery: string = null
   ) {}
 
   ngOnInit() {
@@ -30,7 +32,9 @@ export abstract class BaseTableContainerComponent<T extends BaseEntity<any>>
       '',
       this.sort.direction,
       this.paginator.pageIndex,
-      this.paginator.pageSize
+      this.paginator.pageSize,
+      this.columnsToReturn,
+      this.tableToQuery
     );
   }
   ngAfterViewInit(): void {
@@ -47,7 +51,9 @@ export abstract class BaseTableContainerComponent<T extends BaseEntity<any>>
       '',
       this.sort.direction,
       this.paginator.pageIndex,
-      this.paginator.pageSize
+      this.paginator.pageSize,
+      this.columnsToReturn,
+      this.tableToQuery
     );
   }
 }

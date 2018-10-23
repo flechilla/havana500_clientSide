@@ -24,7 +24,8 @@ export class AccountSandbox {
   }
 
   public getUserProfile(): any {
-    return this.oauthService.loadUserProfile();
+    this.oauthService.loadUserProfile();
+    return this.oauthService.userProfile;
   }
 
   public getUserClaims(): Observable<any> {

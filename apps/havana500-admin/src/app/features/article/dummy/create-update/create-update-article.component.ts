@@ -28,7 +28,8 @@ import {
   ContentTagService,
   AntUtilsService,
   ArticleService,
-  Article
+  Article,
+  Picture
 } from '@hav500workspace/shared';
 import { startWith, map } from 'rxjs/operators';
 import { UploadService } from '../../../../core/services/http/upload.service';
@@ -125,7 +126,8 @@ export class CreateUpdateArticleComponent implements OnInit {
         metaDescription: '',
         metaTitle: '',
         editorWeight: 0,
-        readingTime: 1
+        readingTime: 1,
+        mainPictureId: ''
       })
     });
   }
@@ -221,20 +223,27 @@ export class CreateUpdateArticleComponent implements OnInit {
     );
   }
 
-  public addMainPicture(articleId: number): void {
+  public editMainPicture(articleId: number): void {
     const fi = this.mainPicture.nativeElement;
     if (fi.files && fi.files[0]) {
       const fileToUpload = fi.files[0];
-      this.uploadService.upload(fileToUpload, articleId).subscribe(res => {
-        console.log(res);
-      });
+      this.uploadService
+        .upload(fileToUpload, articleId)
+        .subscribe((res: Picture) => {
+          this.previewMainPicture(res);
+        });
     }
   }
 
-  public close() {
-    console.log('Closing');
-    console.log(this.isTemporary);
+  private previewMainPicture(res: Picture) {
+    this.article.mainPicture = res;
+    this.form
+      .get('article')
+      .get('mainPictureId')
+      .setValue(res.id);
+  }
 
+  public close() {
     if (this.isTemporary) {
       this.dialogRef.close({ update: false, data: this.article.id });
     } else {

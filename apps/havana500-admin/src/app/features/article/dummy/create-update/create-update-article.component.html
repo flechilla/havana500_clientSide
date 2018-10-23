@@ -30,7 +30,7 @@
                 <mat-icon>label</mat-icon>
             </button>
 
-            <span tabindex="-1" class="title dialog-title">{{!onEdit?"Create Article":"Edit Article"}}</span>
+            <span tabindex="-1" class="title dialog-title">{{(isTemporary || !onEdit)?"Create Article":"Edit Article"}}</span>
 
             <button mat-button class="mat-icon-button" (click)="close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
@@ -42,8 +42,15 @@
             <div class="article-title">{{title.value}}</div>
         </mat-toolbar-row>
 
+        <mat-toolbar-row class="h-120">
+            <div class="article-image">
+                <img src="{{article?.mainPicture?.relativePath}}" alt="{{article?.mainPicture?.seoFileName}}">
+            </div>
+
+        </mat-toolbar-row>
+
         <mat-toolbar-row class="toolbar-bottom mat-accent-900-bg">
-            <admin-labels-bar [article]="article" (deleteTag)="deleteArticleTag($event)"></admin-labels-bar>
+            <admin-labels-bar [tags]="article?.tags" (deleteTag)="deleteArticleTag($event)"></admin-labels-bar>
         </mat-toolbar-row>
 
     </mat-toolbar>
@@ -82,7 +89,8 @@
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <mat-select formControlName="sectionId" placeholder="Select a section" required>
+                        <mat-select [compareWith]="utilsService.entityComparer" formControlName="sectionId" placeholder="Select a section"
+                            required>
                             <mat-option *ngFor="let section of sections" [value]="section.id">
                                 {{section.name}}
                             </mat-option>
@@ -175,8 +183,9 @@
     <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="flex-end center">
         <!-- TODO: how to change the name of the input btn??  -->
         <!-- TODO: This can be accesible when the article is created, so we have to create the article and the let the user to edit it -->
-        <input #mainPicture type="file" />
-        <button mat-raised-button (click)="addMainPicture(article?.id)" class="mat-accent">Guardar imagen</button>
+        <input hidden #mainPicture accept="image/*" type="file" (change)="editMainPicture(article?.id)" />
+
+        <button mat-raised-button (click)="mainPicture.click()" class="mat-accent">Guardar imagen</button>
 
         <button mat-raised-button (click)="save()" class="save-button mat-accent" [disabled]="form.invalid" aria-label="SAVE ">
             SAVE

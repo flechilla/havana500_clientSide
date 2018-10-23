@@ -5346,6 +5346,7 @@ neo-async@^2.5.0:
 ng-simple-slideshow@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/ng-simple-slideshow/-/ng-simple-slideshow-1.2.5.tgz#bf49496c70c182903f0a28e3e831261b32511d63"
+  integrity sha512-pLRpfhBfIOJw3DGg+t0xEuB5EAzKCJ4GBzhdVYbxHpqy/zBL2LHGZBiQNluqC6lOlCxqSl7J7ingyaWk+LPvxg==
 
 ngrx-store-freeze@^0.2.4:
   version "0.2.4"
