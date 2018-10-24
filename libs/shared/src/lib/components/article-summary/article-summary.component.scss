@@ -1,21 +1,23 @@
-//START variables declaration
+//#region variables declaration
 $article-summary-bColor: #ffffff;
-//END variables declaration
-ant-article-summary, .article-summary-outer-container {
+//#endregion variables declaration
+
+ant-article-summary,
+.article-summary-outer-container {
   max-width: 30rem;
   background-color: $article-summary-bColor;
-  border: 0.3rem solid gray;
-
+  box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-out;
   display: block;
   cursor: pointer;
+  margin-bottom: 0.5rem;
 
-  &:hover{
-    box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.2);
+  &:hover {
     text-decoration: none !important;
+    box-shadow: 0 0 5px 1px #0000007d;
   }
 
-  &:not(:last-child)
-  {
+  &:not(:last-child) {
     margin-right: 3rem;
   }
 }
