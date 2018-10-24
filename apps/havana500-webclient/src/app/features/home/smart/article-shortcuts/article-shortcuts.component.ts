@@ -1,28 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ArticleService, Article } from '@hav500workspace/shared';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'hav-article-shortcuts',
   templateUrl: './article-shortcuts.component.html',
-  styleUrls: ['./article-shortcuts.component.scss']
+  styleUrls: ['./article-shortcuts.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ArticleShortcutsComponent implements OnInit {
+  private sportArticles: Observable<Article[]>;
+  private literatureArticles: Observable<Article[]>;
+  private cultureArticles: Observable<Article[]>;
+  private cinemaArticles: Observable<Article[]>;
 
-  private sportArticles : Observable<Article[]>;
-  private literatureArticles : Observable<Article[]>;
-  private cultureArticles : Observable<Article[]>;
-  private cinemaArticles : Observable<Article[]>;
-
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService) {}
 
   ngOnInit() {
-
-    this.cinemaArticles = this.articleService.getArticlesBasicDataBySectionName('cine', 0, 8);
-    this.sportArticles = this.articleService.getArticlesBasicDataBySectionName('deportes', 0, 8);
-    this.cultureArticles = this.articleService.getArticlesBasicDataBySectionName('cultura', 0, 8);
-    this.literatureArticles = this.articleService.getArticlesBasicDataBySectionName('literatura', 0, 8);
-
+    this.cinemaArticles = this.articleService.getArticlesBasicDataBySectionName(
+      'cine',
+      0,
+      8
+    );
+    this.sportArticles = this.articleService.getArticlesBasicDataBySectionName(
+      'deportes',
+      0,
+      8
+    );
+    this.cultureArticles = this.articleService.getArticlesBasicDataBySectionName(
+      'cultura',
+      0,
+      8
+    );
+    this.literatureArticles = this.articleService.getArticlesBasicDataBySectionName(
+      'literatura',
+      0,
+      8
+    );
   }
-
 }
