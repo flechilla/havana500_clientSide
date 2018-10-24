@@ -31,7 +31,7 @@ export class ImageSliderComponent implements OnInit {
         const imgUrl: IImage = {
           url: pic.relativePath,
           caption: pic.seoFileName,
-          href: pic.href
+          href: pic.hRef
         };
 
         this.imageUrls.push(imgUrl);
