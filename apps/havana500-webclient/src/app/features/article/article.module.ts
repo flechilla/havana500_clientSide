@@ -23,6 +23,6 @@ import { FormsModule } from '@angular/forms';
     CommentHomeComponent,
     CommentComponent
   ],
-  providers: [ArticleService]
+  providers: []
 })
 export class ArticleModule { }
