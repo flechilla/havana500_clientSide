@@ -32,8 +32,6 @@ import { SecondLevelModule } from './features/second-level/second-level.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    HomeModule,
-    SecondLevelModule,
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -51,8 +49,7 @@ import { SecondLevelModule } from './features/second-level/second-level.module';
     TranslateModule.forRoot(),
     CoreModule,
     SharedModule,
-    LayoutModule,
-    ArticleModule
+    LayoutModule
     // OAuthModule.forRoot({
     //   resourceServer: {
     //     allowedUrls: ['http://localhost:5000/api/'],
