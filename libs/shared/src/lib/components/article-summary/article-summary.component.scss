@@ -7,15 +7,17 @@ ant-article-summary,
   max-width: 30rem;
   background-color: $article-summary-bColor;
   box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.5s cubic-bezier(0, 1.13, 0.88, 1.32);
   display: block;
   cursor: pointer;
   margin-bottom: 0.5rem;
   color: inherit;
+  border-radius: 3%;
 
   &:hover {
     text-decoration: none !important;
-    box-shadow: 0 0 5px 1px #0000007d;
+    box-shadow: 0 3px 6px 0px #00000069;
+    // transform: scale(1.01);
   }
 
   &:not(:last-child) {
@@ -28,11 +30,16 @@ ant-article-summary,
 }
 
 .article-summary-title {
-  text-align: justify;
-  text-align-last: center;
-  font-weight: 700;
+  text-align: center;
+  // text-align-last: center;
+  font-weight: 600;
+  padding-top: 1rem;
 }
 
 .article-summary-body {
   text-align: justify;
+}
+
+.article-image {
+  border-radius: 3% 3% 0 0;
 }
