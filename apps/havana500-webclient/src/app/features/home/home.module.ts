@@ -9,10 +9,8 @@ import { OutstandingNewsComponent } from './dummy/outstanding-news/outstanding-n
 import { OutstandingExperiencesComponent } from './dummy/outstanding-experiences/outstanding-experiences.component';
 import { OutstandingCuriositiesComponent } from './dummy/outstanding-curiosities/outstanding-curiosities.component';
 import { EntertainmentComponent } from './dummy/entertainment-preview/entertainment-preview.component';
-import { ImageSliderComponent } from './smart/image-slider/image-slider.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ArticleShortcutsComponent } from './smart/article-shortcuts/article-shortcuts.component';
 
 @NgModule({
   imports: [
@@ -30,9 +28,7 @@ import { ArticleShortcutsComponent } from './smart/article-shortcuts/article-sho
     OutstandingGaleryMediasComponent,
     OutstandingExperiencesComponent,
     OutstandingCuriositiesComponent,
-    EntertainmentComponent,
-    ImageSliderComponent,
-    ArticleShortcutsComponent
+    EntertainmentComponent
   ]
 })
 export class HomeModule {}
