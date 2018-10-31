@@ -1,25 +1,34 @@
-<div id="article-shortcur-inner-container">
+<div fxLayout="column">
+
+    <h1 fxFlexAlign="center" class="section-name" [routerLink]="'/section/entretenimiento'">ENTERTAINMENT</h1>
+
     <mat-tab-group>
         <mat-tab label="DEPORTE">
-            <div class="row">
-                <ant-article-summary *ngFor="let article of sportArticles | async" [article]="article" class="col-xs-12 col-md-3"></ant-article-summary>
+            <div class="row article-summary-container">
+                <ant-article-summary [isTextVisible]="false" [isMetadataVisible]="false" *ngFor="let article of sportArticles | async"
+                    [article]="article" class="col-xs-12 col-md-4"></ant-article-summary>
             </div>
         </mat-tab>
         <mat-tab label="CINE">
-            <div class="row">
-                <ant-article-summary *ngFor="let article of cinemaArticles | async" [article]="article" class="col-xs-12 col-md-3"></ant-article-summary>
+            <div class="row article-summary-container">
+                <ant-article-summary [isTextVisible]="false" [isMetadataVisible]="false" *ngFor="let article of cinemaArticles | async"
+                    [article]="article" class="col-xs-12 col-md-4"></ant-article-summary>
             </div>
         </mat-tab>
         <mat-tab label="LITERATURA">
-            <div class="row">
-                <ant-article-summary *ngFor="let article of literatureArticles | async" [article]="article" class="col-xs-12 col-md-3"></ant-article-summary>
+            <div class="row article-summary-container">
+                <ant-article-summary [isTextVisible]="false" [isMetadataVisible]="false" *ngFor="let article of literatureArticles | async"
+                    [article]="article" class="col-xs-12 col-md-4"></ant-article-summary>
             </div>
         </mat-tab>
         <mat-tab label="CULTURA">
-            <div class="row">
-                <ant-article-summary *ngFor="let article of cultureArticles | async" [article]="article" class="col-xs-12 col-md-3"></ant-article-summary>
+            <div class="row article-summary-container">
+                <ant-article-summary [isTextVisible]="false" [isMetadataVisible]="false" *ngFor="let article of cultureArticles | async"
+                    [article]="article" class="col-xs-12 col-md-4"></ant-article-summary>
             </div>
         </mat-tab>
 
     </mat-tab-group>
+
+    <a class="see-more-section" [routerLink]="'/section/entretenimiento'" fxFlexAlign=center>See More</a>
 </div>
