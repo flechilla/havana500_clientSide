@@ -1,16 +1,10 @@
-<div class="container__overflowed" id="site-main">
-  <div id="toolbar-outer-container">
-    <mat-toolbar class="toolbar mat-elevation-z1 mat-white-500-bg">
-      <hav-toolbar fxFill></hav-toolbar>
-    </mat-toolbar>
-  </div>
-  <div class="toolbar-vertical-separator"></div>
+<div class=" main-container" fxLayout="column">
+  <mat-toolbar class="toolbar mat-elevation-z1 mat-white-500-bg">
+    <hav-toolbar fxFlexFill></hav-toolbar>
+  </mat-toolbar>
 
-  <div class="main-content container">
+  <div fxLayout="column" class="main-content container__overflowed">
     <hav-content></hav-content>
-
+    <hav-footer class="main-footer"></hav-footer>
   </div>
-  
-  <hav-footer class="main-footer"></hav-footer>
-
 </div>

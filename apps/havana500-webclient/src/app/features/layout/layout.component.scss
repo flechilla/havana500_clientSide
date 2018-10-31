@@ -1,56 +1,21 @@
 @import '../../core/scss/ant';
-@import "~bootstrap/dist/css/bootstrap.css";
-
-
-// .container {
-//   display: flex;
-//   flex-direction: column;
-//   // position: absolute; this can't be absolute. Also we shouldn't use the 'container' name
-//   // top: 0;
-//   // bottom: 0;
-//   // left: 0;
-//   // right: 0;
-// }
-
-#site-main{
-  height: 100%;
-  background: #fff;
-
-  #toolbar-outer-container{
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: auto;
-    z-index: 100;
-  }
-
-  .toolbar-vertical-separator{
-    height: 5rem;
-  }
-}
 
 .toolbar {
-  position: relative;
-  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
   z-index: 2;
-  // background-color: mat-color();
 }
 
 .main-content {
-  height: auto;
-  position: relative;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  height: 100%;
 }
 
 .container__overflowed {
   overflow: auto;
 }
 
+.main-container {
+  height: 100%;
+}
+
 .main-footer {
-  bottom: 0%;
   min-height: 64px;
-  position: relative;
-  width: 100%;
 }
