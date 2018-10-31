@@ -3,6 +3,7 @@ import { AccountSandbox } from './core/sandboxes/account-sandbox';
 import { isNullOrUndefined } from 'util';
 import { OAuthService, EventType } from 'angular-oauth2-oidc';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hav500workspace-root',
@@ -15,7 +16,8 @@ export class AppComponent {
   constructor(
     private accountSandbox: AccountSandbox,
     private oauthService: OAuthService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private router: Router
   ) {
     // Set to the store the logged user
     this.accountSandbox.getUserClaims().subscribe(claims => {
@@ -29,7 +31,8 @@ export class AppComponent {
 
     this.oauthService.events.subscribe(event => {
       if (event.type === 'token_expires') {
-        this.accountSandbox.refreshToken();
+        // this.accountSandbox.refreshToken();
+        this.router.navigate(['/login']);
       }
     });
 
