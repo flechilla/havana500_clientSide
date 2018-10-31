@@ -1,6 +1,3 @@
 import { Locale } from '../../../models/system-misc/locale-lang.model';
 
-export const locale: Locale = {
-    lang: 'es',
-    data: {}
-};
+export const locale: Locale = { lang: 'es', data: { BY: 'by: {{value}}' } };

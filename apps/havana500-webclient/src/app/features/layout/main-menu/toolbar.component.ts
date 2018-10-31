@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { SectionService, Section } from '@hav500workspace/shared';
 import { Location } from '@angular/common';
 import { MatMenuTrigger } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'hav-toolbar',
@@ -24,7 +25,8 @@ export class AntToolbarComponent implements OnInit {
   constructor(
     private router: Router,
     private sectionService: SectionService,
-    private location: Location
+    private location: Location,
+    private translate: TranslateService
   ) {}
   languages: any;
   selectedLanguage: any;
@@ -46,7 +48,7 @@ export class AntToolbarComponent implements OnInit {
     this.selectedLanguage = lang;
 
     // Use the selected language for translations
-    // this.translate.use(lang.id);
+    this.translate.use(lang.id);
   }
   /**
    *  Gets the sections from the server. These values are used
