@@ -10,6 +10,7 @@
 .article-summary-container {
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.1);
+  justify-content: center;
 }
 
 .mat-tab-body-content {
@@ -19,7 +20,7 @@
 .see-more-section {
   color: inherit;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   padding-top: 1rem;
   padding-bottom: 3rem;
   transition: all 0.2s cubic-bezier(0, 1.13, 0.88, 1.32);
@@ -30,4 +31,8 @@
     color: inherit;
     text-shadow: 0px 4px 3px #00000040;
   }
+}
+
+.col-md-4 {
+  max-width: fit-content;
 }
