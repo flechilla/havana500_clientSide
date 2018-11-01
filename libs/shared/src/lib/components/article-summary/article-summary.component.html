@@ -1,14 +1,15 @@
-<a class="article-summary-outer-container" (click)="navigateTo(article.id)">
+<a class="article-summary-outer-container" (click)="navigateTo(article?.id)">
 
   <div class="article-summary-img-container">
-    <img class="article-image" src="{{article.mainPicture.relativePath}}" alt="{{article.mainPicture.seoFileName}}">
+    <img class="article-image" src="{{article?.mainPicture?.relativePath}}" alt="{{article?.mainPicture?.seoFileName}}">
   </div>
 
-  <div class="main-article-summary-content" fxLayout="column" fxLayoutAlign="flex-start center">
-    <h4 *ngIf="isTitleVisible" class="article-summary-title">{{article?.title}}</h4>
-    <p *ngIf="isTextVisible" class="article-summary-body">{{article?.body}}</p>
+  <div>
+    <div class="main-article-summary-content" fxLayout="column" fxLayoutAlign="flex-start center">
+      <h4 *ngIf="isTitleVisible" class="article-summary-title">{{article?.title}}</h4>
+      <p *ngIf="isTextVisible" class="article-summary-body">{{article?.body}}</p>
+    </div>
+
+    <ant-article-summary-metadata *ngIf="isMetadataVisible" fxFlexAlign="stretch" [article]="article"></ant-article-summary-metadata>
   </div>
-
-  <ant-article-summary-metadata *ngIf="isMetadataVisible" fxFlexAlign="stretch" [article]="article"></ant-article-summary-metadata>
-
 </a>
