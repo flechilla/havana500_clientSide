@@ -1,25 +1,25 @@
 <section class="metadata-panel" fxLayout="row" fxLayoutAlign="space-between center">
-    <span translate [translateParams]="{value: article?.createdBy}">BY</span>
+    <span class="metadata-text" translate [translateParams]="{value: article?.createdBy}">BY</span>
 
     <mat-divider class="metadata-separator" vertical></mat-divider>
 
-    <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxHide.lt-lg fxShow.xs fxLayout="row" fxLayoutAlign="center center">
         <mat-icon class="metadata-icon" aria-label="created-date">watch_later</mat-icon>
-        <span>{{article?.publicationDateHumanized}}</span>
+        <span class="metadata-text">{{article?.publicationDateHumanized}}</span>
     </div>
 
-    <mat-divider class="metadata-separator" vertical></mat-divider>
+    <mat-divider fxHide.lt-lg fxShow.xs fxLayout="row" class="metadata-separator" vertical></mat-divider>
 
     <div fxLayout="row" fxLayoutAlign="center center">
         <mat-icon class="metadata-icon" aria-label="views">visibility</mat-icon>
-        <span>{{article?.views}}</span>
+        <span class="metadata-text">{{article?.views}}</span>
     </div>
 
     <mat-divider class="metadata-separator" vertical></mat-divider>
 
     <div fxLayout="row" fxLayoutAlign="center center">
         <mat-icon class="metadata-icon" aria-label="comments">comment</mat-icon>
-        <span>{{article?.approvedCommentCount}}</span>
+        <span class="metadata-text">{{article?.approvedCommentCount}}</span>
 
     </div>
 
