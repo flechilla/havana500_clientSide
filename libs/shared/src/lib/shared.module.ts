@@ -14,8 +14,8 @@ import { QuillModule } from 'ngx-quill';
 import { ArticleSummaryComponent } from './components/article-summary/article-summary.component';
 import { ArticleMetadataComponent } from './components/article-metadata/article-metadata.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { AntTranslateService } from './services';
 import { LabelsBarComponent } from './components/labels-bar/labels-bar.component';
+import { KeysEasedPipe } from './pipes/keys-eased.pipe';
 
 @NgModule({
   imports: [
@@ -42,7 +42,8 @@ import { LabelsBarComponent } from './components/labels-bar/labels-bar.component
     IfOnDomDirective,
 
     //Pipes
-    KeysPipe
+    KeysPipe,
+    KeysEasedPipe
   ],
   exports: [
     //Modules
@@ -67,7 +68,8 @@ import { LabelsBarComponent } from './components/labels-bar/labels-bar.component
     IfOnDomDirective,
 
     //Pipes
-    KeysPipe
+    KeysPipe,
+    KeysEasedPipe
   ]
 })
 export class SharedModule {}
