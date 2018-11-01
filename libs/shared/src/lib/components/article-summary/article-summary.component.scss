@@ -4,7 +4,8 @@ $article-summary-bColor: #ffffff;
 
 ant-article-summary,
 .article-summary-outer-container {
-  max-width: 30rem;
+  // max-width: 30rem;
+  width: fit-content;
   background-color: $article-summary-bColor;
   box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.2);
   transition: all 0.5s cubic-bezier(0, 1.13, 0.88, 1.32);
@@ -26,7 +27,7 @@ ant-article-summary,
 }
 
 .main-article-summary-content {
-  padding: 0 1.5rem;
+  padding: 0 2rem;
 }
 
 .article-summary-title {
@@ -42,4 +43,5 @@ ant-article-summary,
 
 .article-image {
   border-radius: 3% 3% 0 0;
+  width: 100%;
 }
