@@ -1,10 +1,12 @@
-<a class="article-summary-outer-container" (click)="navigateTo(article?.id)">
+<!-- NORMAL ARTICLE DISPLAY -->
+<a class="article-summary-outer-container" (click)="navigateTo(article?.id)" [ngClass]="{'article-summary-outer-container__rounded': !isTopArticle, 'article-summary-outer-container__shadowed': !isTopArticle, 'top-article': isTopArticle}">
 
   <div class="article-summary-img-container">
-    <img class="article-image" src="{{article?.mainPicture?.relativePath}}" alt="{{article?.mainPicture?.seoFileName}}">
+    <img class="article-image" [ngClass]="{'article-image__rounded': !isTopArticle}" src="{{article?.mainPicture?.relativePath}}"
+      alt="{{article?.mainPicture?.seoFileName}}">
   </div>
 
-  <div>
+  <div [ngClass]="{'main-article-summary-content__positioned': isTopArticle, 'clearfix': isTopArticle}">
     <div class="main-article-summary-content" fxLayout="column" fxLayoutAlign="flex-start center">
       <h4 *ngIf="isTitleVisible" class="article-summary-title">{{article?.title}}</h4>
       <p *ngIf="isTextVisible" class="article-summary-body">{{article?.body}}</p>

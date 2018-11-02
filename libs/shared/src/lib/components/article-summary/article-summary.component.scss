@@ -2,22 +2,18 @@
 $article-summary-bColor: #ffffff;
 //#endregion variables declaration
 
-ant-article-summary,
 .article-summary-outer-container {
   // max-width: 30rem;
   width: fit-content;
   background-color: $article-summary-bColor;
-  box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.2);
   transition: all 0.5s cubic-bezier(0, 1.13, 0.88, 1.32);
   display: block;
   cursor: pointer;
   margin-bottom: 0.5rem;
   color: inherit;
-  border-radius: 3%;
 
   &:hover {
     text-decoration: none !important;
-    box-shadow: 0 3px 6px 0px #00000069;
     // transform: scale(1.01);
   }
 
@@ -26,8 +22,35 @@ ant-article-summary,
   }
 }
 
+.top-article {
+  width: auto;
+  max-width: 80%;
+}
+
+.article-summary-outer-container__shadowed {
+  box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    box-shadow: 0 3px 6px 0px #00000069;
+    // transform: scale(1.01);
+  }
+}
+
+.article-summary-outer-container__rounded {
+  border-radius: 3%;
+}
+
 .main-article-summary-content {
   padding: 0 2rem;
+}
+
+.main-article-summary-content__positioned {
+  position: relative;
+  background-color: gainsboro;
+  max-width: 50%;
+  bottom: 14.1rem;
+  float: right;
+  left: 10%;
 }
 
 .article-summary-title {
@@ -42,6 +65,9 @@ ant-article-summary,
 }
 
 .article-image {
-  border-radius: 3% 3% 0 0;
   width: 100%;
+}
+
+.article-image__rounded {
+  border-radius: 3% 3% 0 0;
 }
