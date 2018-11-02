@@ -1,7 +1,32 @@
-<div fxLayout="column" style="min-height: 30rem">
+<div class="top-articles" fxLayout="column">
 
     <h1 fxFlexAlign="center" class="section-name">HAVANA TOP</h1>
 
-    <ant-article-summary fxFlexAlign="center" [article]="currentArticle | async"></ant-article-summary>
+    <!-- VERSION 1 -->
+    <!-- <ant-article-summary @slideInRight fxFlexAlign="center" [article]="currentArticle$ | async"></ant-article-summary> -->
+
+    <!-- VERSION 2 -->
+    <!-- <div fxLayout="row" fxFlexAlign="center" *ngFor="let article of topArticles$ | async; let i = index">
+        <ant-article-summary *ngIf="i === (currentIndex$ | async)" @slideInRight [article]="article"></ant-article-summary>
+    </div> -->
+
+    <!-- VERSION 3 -->
+    <!-- <ui-carousel *ngIf="articles" [infinite]="true" [fade]="false" [speed]="400" height="45.2rem" width="60%">
+        <ui-carousel-item *ngFor="let article of articles">
+            <ant-article-summary [article]="article"></ant-article-summary>
+        </ui-carousel-item>
+
+    </ui-carousel> -->
+
+    <!-- VERSION 4 -->
+    <!-- <carousel class="carousel-4" fxFlexAlign="center" [noWrap]="true" [interval]="10000">
+        <slide *ngFor="let article of articles">
+            <ant-article-summary [article]="article"></ant-article-summary>
+        </slide>
+
+    </carousel> -->
+
+
+    <ant-article-summary [isTopArticle]="true" [article]="dumbArt"></ant-article-summary>
 
 </div>

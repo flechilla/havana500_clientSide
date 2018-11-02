@@ -1,29 +1,103 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { Article, ArticleService } from '@hav500workspace/shared';
-import { switchMap, map } from 'rxjs/operators';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+  ViewEncapsulation
+} from '@angular/core';
+import { Observable, BehaviorSubject, of, interval } from 'rxjs';
+import {
+  Article,
+  ArticleService,
+  antAnimations
+} from '@hav500workspace/shared';
+import {
+  combineLatest,
+  map,
+  switchMap,
+  distinctUntilChanged
+} from 'rxjs/operators';
 
 @Component({
   selector: 'hav-outstanding-general-articles',
-  templateUrl: 'outstanding-general-articles.component.html'
+  templateUrl: 'outstanding-general-articles.component.html',
+  styleUrls: ['outstanding-general-articles.component.scss'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: antAnimations,
+  // encapsulation: ViewEncapsulation.None
 })
 export class OutstandingGeneralArticlesComponent implements OnInit {
-  protected topArticles: Observable<Article[]>;
-  protected currentArticle: Observable<Article>;
+  @Input()
+  totalItems: number;
 
-  protected currentIndex = 0;
+  protected dumbArt = {
+    id: 757,
+    title: 'Dolores nostrum vel consequatur recusandae saepe.',
+    publicationDateHumanized: '3 years ago',
+    body:
+      'Odit dignissimos ex. Quo quae et. Accusamus quae est accusantium dolorem maiores. Exercitationem ma...',
+    views: 9878041,
+    approvedCommentCount: 48,
+    mainPicture: {
+      relativePath: 'http://localhost:5000/images/deafaultMainPicture.JPG',
+      seoFileName: 'fooName',
+      mimeType: null,
+      hRef: null,
+      height: 0,
+      width: 0,
+      pictureType: 0,
+      isActive: false,
+      name: null,
+      weight: 0,
+      companyName: null,
+      languageCulture: 'es',
+      id: 0
+    }
+  };
+
+  protected topArticles$: Observable<Article[]>;
+  protected currentArticle$: Observable<Article>;
+
+  protected currentIndex$: BehaviorSubject<number> = new BehaviorSubject(0);
+
+  protected articles: Article[];
 
   constructor(protected articleService: ArticleService) {}
 
   ngOnInit() {
-    this.topArticles = this.articleService.getArticlesBasicDataBySectionName(
+    this.topArticles$ = this.articleService.getArticlesBasicDataBySectionName(
       'deportes',
       0,
-      6
+      this.totalItems
     );
 
-    this.currentArticle = this.topArticles.pipe(
-      map(articles => articles[this.currentIndex])
-    );
+    this.topArticles$.subscribe(resp => {
+      this.articles = resp;
+    });
+
+    // ENABLE FOR 1
+    // this.currentArticle$ = this.topArticles$.pipe(
+    //   combineLatest(this.currentIndex$),
+    //   switchMap(([articles, index]) => {
+    //     if (articles != null) {
+    //       return of(articles[index]);
+    //     }
+    //   })
+    // );
+
+    // ENABLE FOR 1 AND 2
+    interval(3000)
+      .pipe(
+        combineLatest(this.currentIndex$),
+        distinctUntilChanged((x, y) => x[0] === y[0] || x[1] === y[1]),
+        map(([x, index]) => {
+          if (index === this.totalItems) {
+            this.currentIndex$.next(0);
+          } else {
+            this.currentIndex$.next(index + 1);
+          }
+        })
+      )
+      .subscribe();
   }
 }

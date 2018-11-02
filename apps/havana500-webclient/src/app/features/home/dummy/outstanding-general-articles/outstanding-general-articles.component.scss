@@ -1,0 +1,31 @@
+@import '../../../../core/scss/ant.scss';
+
+.top-articles {
+  min-height: 54rem;
+  @include media-breakpoint('xs') {
+    min-height: 44rem;
+  }
+}
+
+.section-name {
+  text-align: center;
+  padding: 2rem;
+  padding-top: 4rem;
+  cursor: default;
+}
+
+// asdasdasd
+
+ui-carousel {
+  display: block;
+  margin: 0 auto;
+}
+
+.carousel-4 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.carousel-inner {
+  padding: 1rem;
+}
