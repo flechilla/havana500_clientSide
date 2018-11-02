@@ -23,7 +23,7 @@ export class DotsComponent implements OnInit {
 
   @HostBinding('class')
   @Input()
-  position: string = 'left';
+  position: string = 'flex-center';
 
   @Output('on-click')
   onClick: EventEmitter<number> = new EventEmitter<number>();

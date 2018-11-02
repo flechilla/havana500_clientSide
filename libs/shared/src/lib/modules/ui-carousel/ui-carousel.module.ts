@@ -9,7 +9,7 @@ import { SwiperDirective } from './directives/swiper.directive';
 
 @NgModule({
   imports: [CommonModule],
-  exports: [UICarouselComponent, UICarouselItemComponent, UILazyloadDirective],
+  exports: [UICarouselComponent, UICarouselItemComponent, UILazyloadDirective, DotsComponent],
   declarations: [
     UICarouselComponent,
     UICarouselItemComponent,
