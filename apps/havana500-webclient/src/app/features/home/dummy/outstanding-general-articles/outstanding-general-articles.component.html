@@ -6,9 +6,13 @@
     <!-- <ant-article-summary @slideInRight fxFlexAlign="center" [article]="currentArticle$ | async"></ant-article-summary> -->
 
     <!-- VERSION 2 -->
-    <!-- <div fxLayout="row" fxFlexAlign="center" *ngFor="let article of topArticles$ | async; let i = index">
-        <ant-article-summary *ngIf="i === (currentIndex$ | async)" @slideInRight [article]="article"></ant-article-summary>
-    </div> -->
+    <div fxLayout="row" fxFlexFill fxFlexAlign="center" *ngFor="let article of topArticles$ | async; let i = index">
+        <ant-article-summary fxFlexFill [isTopArticle]="true" *ngIf="i === (currentIndex$ | async)" @slideInRight
+            [article]="article"></ant-article-summary>
+
+    </div>
+    <dots [dots-count]="5" [active-dot]="currentIndex$ | async" (on-click)="setIndex($event)"></dots>
+
 
     <!-- VERSION 3 -->
     <!-- <ui-carousel *ngIf="articles" [infinite]="true" [fade]="false" [speed]="400" height="45.2rem" width="60%">
@@ -27,6 +31,5 @@
     </carousel> -->
 
 
-    <ant-article-summary [isTopArticle]="true" [article]="dumbArt"></ant-article-summary>
 
 </div>

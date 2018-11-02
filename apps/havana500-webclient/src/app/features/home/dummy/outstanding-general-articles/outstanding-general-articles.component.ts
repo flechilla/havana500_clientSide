@@ -23,37 +23,15 @@ import {
   templateUrl: 'outstanding-general-articles.component.html',
   styleUrls: ['outstanding-general-articles.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: antAnimations,
+  animations: antAnimations
   // encapsulation: ViewEncapsulation.None
 })
 export class OutstandingGeneralArticlesComponent implements OnInit {
   @Input()
   totalItems: number;
 
-  protected dumbArt = {
-    id: 757,
-    title: 'Dolores nostrum vel consequatur recusandae saepe.',
-    publicationDateHumanized: '3 years ago',
-    body:
-      'Odit dignissimos ex. Quo quae et. Accusamus quae est accusantium dolorem maiores. Exercitationem ma...',
-    views: 9878041,
-    approvedCommentCount: 48,
-    mainPicture: {
-      relativePath: 'http://localhost:5000/images/deafaultMainPicture.JPG',
-      seoFileName: 'fooName',
-      mimeType: null,
-      hRef: null,
-      height: 0,
-      width: 0,
-      pictureType: 0,
-      isActive: false,
-      name: null,
-      weight: 0,
-      companyName: null,
-      languageCulture: 'es',
-      id: 0
-    }
-  };
+  @Input()
+  carouselTime: number = 3000;
 
   protected topArticles$: Observable<Article[]>;
   protected currentArticle$: Observable<Article>;
@@ -86,12 +64,18 @@ export class OutstandingGeneralArticlesComponent implements OnInit {
     // );
 
     // ENABLE FOR 1 AND 2
-    interval(3000)
+    this.beginTimeSlide();
+  }
+
+  private beginTimeSlide() {
+    interval(this.carouselTime)
       .pipe(
         combineLatest(this.currentIndex$),
-        distinctUntilChanged((x, y) => x[0] === y[0] || x[1] === y[1]),
+        distinctUntilChanged(
+          (x, y) => x[0] === y[0] || (x[0] === y[0] && x[1] === y[1])
+        ),
         map(([x, index]) => {
-          if (index === this.totalItems) {
+          if (index === this.totalItems - 1) {
             this.currentIndex$.next(0);
           } else {
             this.currentIndex$.next(index + 1);
@@ -99,5 +83,9 @@ export class OutstandingGeneralArticlesComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  public setIndex(index) {
+    this.currentIndex$.next(index);
   }
 }
