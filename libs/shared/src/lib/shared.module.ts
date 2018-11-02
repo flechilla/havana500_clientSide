@@ -16,6 +16,7 @@ import { ArticleMetadataComponent } from './components/article-metadata/article-
 import { TranslateModule } from '@ngx-translate/core';
 import { LabelsBarComponent } from './components/labels-bar/labels-bar.component';
 import { KeysEasedPipe } from './pipes/keys-eased.pipe';
+import { UICarouselModule } from './modules/ui-carousel/ui-carousel.module';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { KeysEasedPipe } from './pipes/keys-eased.pipe';
     ReactiveFormsModule,
     NgxChartsModule,
     QuillModule,
-    TranslateModule
+    TranslateModule,
+    UICarouselModule
   ],
   declarations: [
     //Components
@@ -54,6 +56,7 @@ import { KeysEasedPipe } from './pipes/keys-eased.pipe';
     FlexLayoutModule,
     NgxChartsModule,
     QuillModule,
+    UICarouselModule,
 
     //Components
     ConfirmDialogComponent,

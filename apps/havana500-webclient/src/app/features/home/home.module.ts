@@ -1,3 +1,4 @@
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { OutstandingGeneralArticlesComponent } from './dummy/outstanding-general-articles/outstanding-general-articles.component';
 import { OutstandingGaleryMediasComponent } from './dummy/outstanding-galery-medias/outstanding-galery-medias.component';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     TranslateModule.forChild(),
     HomeRoutingModule,
     SlideshowModule,
-    MatTabsModule
+    MatTabsModule,
+    CarouselModule
   ],
   exports: [],
   declarations: [

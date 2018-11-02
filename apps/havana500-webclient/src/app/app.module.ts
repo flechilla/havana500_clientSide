@@ -29,6 +29,8 @@ import { ArticleModule } from './features/article/article.module';
 import { HomeModule } from './features/home/home.module';
 import { SecondLevelModule } from './features/second-level/second-level.module';
 
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -49,7 +51,8 @@ import { SecondLevelModule } from './features/second-level/second-level.module';
     TranslateModule.forRoot(),
     CoreModule,
     SharedModule,
-    LayoutModule
+    LayoutModule,
+    CarouselModule.forRoot()
     // OAuthModule.forRoot({
     //   resourceServer: {
     //     allowedUrls: ['http://localhost:5000/api/'],
