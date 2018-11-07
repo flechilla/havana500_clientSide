@@ -15,8 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'hav-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss'],
-  providers: [SectionService]
+  styleUrls: ['./toolbar.component.scss']
 })
 export class AntToolbarComponent implements OnInit {
   @ViewChild(MatMenuTrigger)

@@ -6,7 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, publishLast, refCount } from 'rxjs/operators';
 import {
   ServerDown,
   BadInput,
@@ -14,24 +14,38 @@ import {
   UnauthorizedError,
   AntError
 } from '../../error-handling';
+import { MatSnackBar } from '@angular/material';
+import { InternalServerError } from '../../error-handling/internal-server.error';
 
 @Injectable()
 export class BaseCrudService<T> {
   public url: string;
-  constructor(url: string, public http: HttpClient) {
+  constructor(
+    url: string,
+    public http: HttpClient,
+    protected snack: MatSnackBar
+  ) {
     this.url = url;
   }
 
   public getAll(): Observable<T[]> {
-    return this.http
-      .get<T[]>(this.url + '/getAll')
-      .pipe(catchError(this.handleError));
+    return this.http.get<T[]>(this.url + '/getAll').pipe(
+      publishLast(),
+      refCount(),
+      catchError(error => {
+        return this.handleError(error);
+      })
+    );
   }
 
   public get(id: any): Observable<T> {
-    return this.http
-      .get<T>(this.url + '/get/' + id)
-      .pipe(catchError(this.handleError));
+    return this.http.get<T>(this.url + '/get/' + id).pipe(
+      publishLast(),
+      refCount(),
+      catchError(error => {
+        return this.handleError(error);
+      })
+    );
   }
 
   public getWithPagAndSort(
@@ -56,42 +70,79 @@ export class BaseCrudService<T> {
       columnsToReturn +
       (tableToQuery ? '&tableToQuery=' + tableToQuery : '');
     console.log(fUrl);
-    return this.http.get<T[]>(fUrl).pipe(catchError(this.handleError));
+    return this.http.get<T[]>(fUrl).pipe(
+      publishLast(),
+      refCount(),
+      catchError(error => {
+        return this.handleError(error);
+      })
+    );
   }
 
   public create(resource: T): Observable<T> {
-    return this.http
-      .post<T>(this.url + '/post/', resource)
-      .pipe(catchError(this.handleError));
+    return this.http.post<T>(this.url + '/post/', resource).pipe(
+      publishLast(),
+      refCount(),
+      catchError(error => {
+        return this.handleError(error);
+      })
+    );
   }
 
   public update(id, resource: T): Observable<T> {
-    return this.http
-      .put<T>(this.url + '/put/' + id, resource)
-      .pipe(catchError(this.handleError));
+    return this.http.put<T>(this.url + '/put/' + id, resource).pipe(
+      publishLast(),
+      refCount(),
+      catchError(error => {
+        return this.handleError(error);
+      })
+    );
   }
 
   public delete(id) {
-    return this.http
-      .delete<T>(this.url + '/delete/' + id)
-      .pipe(catchError(this.handleError));
+    return this.http.delete<T>(this.url + '/delete/' + id).pipe(
+      publishLast(),
+      refCount(),
+      catchError(error => {
+        return this.handleError(error);
+      })
+    );
   }
 
   public handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
+      if (this.snack) {
+        this.snack.open('Error: Server Down', 'Close', { duration: 5000 });
+      }
+
       return throwError(new ServerDown(error));
     }
 
     if (error.status === 400) {
+      this.snack.open('Error: Bad Requests', 'Close', { duration: 5000 });
       return throwError(new BadInput(error));
     }
 
     if (error.status === 404) {
+      this.snack.open('Error: Not Found', 'Close', { duration: 5000 });
+
       return throwError(new NotFoundError(error));
     }
 
     if (error.status === 401) {
+      this.snack.open('Error: Unauthorized Request', 'Close', {
+        duration: 5000
+      });
+
       return throwError(new UnauthorizedError(error));
+    }
+
+    if (error.status === 500) {
+      this.snack.open('Error: Internal Server Error', 'Close', {
+        duration: 5000
+      });
+
+      return throwError(new InternalServerError(error));
     }
 
     return throwError(new AntError(error));
