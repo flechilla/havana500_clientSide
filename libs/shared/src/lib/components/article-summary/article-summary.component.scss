@@ -1,3 +1,5 @@
+@import '../../scss/ant.scss';
+
 //#region variables declaration
 $article-summary-bColor: #ffffff;
 //#endregion variables declaration
@@ -11,6 +13,7 @@ $article-summary-bColor: #ffffff;
   cursor: pointer;
   margin-bottom: 0.5rem;
   color: inherit;
+  position: relative;
 
   &:hover {
     text-decoration: none !important;
@@ -25,6 +28,10 @@ $article-summary-bColor: #ffffff;
 .top-article {
   width: auto;
   max-width: 80%;
+
+  @include media-breakpoint('xs') {
+    max-width: 100%;
+  }
 }
 
 .article-summary-outer-container__shadowed {
@@ -45,12 +52,18 @@ $article-summary-bColor: #ffffff;
 }
 
 .main-article-summary-content__positioned {
-  position: relative;
+  position: absolute;
   background-color: gainsboro;
-  max-width: 50%;
-  bottom: 14.1rem;
-  float: right;
-  left: 10%;
+  @include media-breakpoint-up('xs') {
+    max-width: 50%;
+    bottom: 0;
+    right: -6rem;
+  }
+  @include media-breakpoint('xs') {
+    position: relative;
+    max-width: 80%;
+    left: 11%;
+  }
 }
 
 .article-summary-title {
