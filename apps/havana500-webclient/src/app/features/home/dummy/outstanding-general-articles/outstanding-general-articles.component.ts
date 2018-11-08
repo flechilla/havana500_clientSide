@@ -22,9 +22,9 @@ import {
   selector: 'hav-outstanding-general-articles',
   templateUrl: 'outstanding-general-articles.component.html',
   styleUrls: ['outstanding-general-articles.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: antAnimations
-  // encapsulation: ViewEncapsulation.None
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: antAnimations,
+  encapsulation: ViewEncapsulation.None
 })
 export class OutstandingGeneralArticlesComponent implements OnInit {
   @Input()

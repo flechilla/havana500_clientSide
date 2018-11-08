@@ -1,9 +1,18 @@
 @import '../../../../core/scss/ant.scss';
 
 .top-articles {
+  position: relative;
   min-height: 54rem;
   @include media-breakpoint('xs') {
     min-height: 44rem;
+  }
+
+  .article-summary-title {
+    font-size: 1.8em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: -webkit-fill-available;
   }
 
   // max-height: 54rem;
