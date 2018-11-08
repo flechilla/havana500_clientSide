@@ -1,4 +1,10 @@
+@import '../../../../core/scss/ant';
+
 .main-section {
   padding: 0 15%;
   overflow: hidden;
+
+  @include media-breakpoint('xs') {
+    padding: 0;
+  }
 }
