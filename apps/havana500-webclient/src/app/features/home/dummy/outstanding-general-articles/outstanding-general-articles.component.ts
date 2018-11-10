@@ -49,9 +49,9 @@ export class OutstandingGeneralArticlesComponent implements OnInit {
       this.totalItems
     );
 
-    this.topArticles$.subscribe(resp => {
-      this.articles = resp;
-    });
+    // this.topArticles$.subscribe(resp => {
+    //   this.articles = resp;
+    // });
 
     // ENABLE FOR 1
     // this.currentArticle$ = this.topArticles$.pipe(
