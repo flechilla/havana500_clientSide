@@ -1,8 +1,22 @@
-<div fxLayout="column">
+<div class="feature-section__padded feature-section__positioned" fxLayout="column">
 
-    <h1 fxFlexAlign="center" class="section-name" [routerLink]="'/section/curiosidades'">CURIOSISDADES</h1>
+    <h1 fxFlexAlign="center" class="section-name pb-44" [routerLink]="'/section/curiosidades'">CURIOSISDADES</h1>
 
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <div *ngFor="let curiosity of curiosities$ | async; let index = index">
+            <ant-article-summary [isCuriositySelected]="index===current" [isCuriosityHomeArticle]="true" *ngIf="isIndexVisible(index)"
+                [article]="curiosity">
+            </ant-article-summary>
+        </div>
 
+    </div>
 
-    <a class="see-more-section" [routerLink]="'/section/entretenimiento'" fxFlexAlign=center>See More</a>
+    <button (click)="movePrevious()" class="arrow previous-arrow" mat-icon-button>
+        <mat-icon [svgIcon]="'arrow'"></mat-icon>
+    </button>
+    <button (click)="moveNext()" class="arrow next-arrow" mat-icon-button>
+        <mat-icon [svgIcon]="'arrow'"></mat-icon>
+    </button>
+
+    <a class="see-more-section" [routerLink]="'/section/curiosidades'" fxFlexAlign=center>See More</a>
 </div>
