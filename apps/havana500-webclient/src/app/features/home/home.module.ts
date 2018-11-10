@@ -12,6 +12,7 @@ import { OutstandingCuriositiesComponent } from './dummy/outstanding-curiosities
 import { EntertainmentComponent } from './dummy/entertainment-preview/entertainment-preview.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ImpactPortalComponent } from './dummy/impact-portal/impact-portal.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     OutstandingGaleryMediasComponent,
     OutstandingExperiencesComponent,
     OutstandingCuriositiesComponent,
-    EntertainmentComponent
+    EntertainmentComponent,
+    ImpactPortalComponent
   ]
 })
 export class HomeModule {}
