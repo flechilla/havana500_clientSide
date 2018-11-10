@@ -149,7 +149,7 @@ export const antAnimations = [
     state(
       'void',
       style({
-        transform: 'translateX(-100%)'
+        transform: 'translateX(-100)'
         // display: 'none'
       })
     ),
@@ -163,14 +163,37 @@ export const antAnimations = [
     transition('void => *', animate('300ms')),
     transition('* => void', animate('300ms'))
   ]),
-  trigger('enterRightLeaveLeft', [
+  trigger('rotateIn', [
     transition(':enter', [
       animate(
-        '400ms 200ms ease-in',
+        '800ms ease-in',
         keyframes([
           style({
             offset: 0,
-            transform: 'translateX(100%)',
+            transform: 'rotateY(0deg)',
+            display: 'none'
+          }),
+          style({
+            offset: 0.5,
+            transform: 'rotateY(180deg)',
+            display: 'initial'
+          }),
+          style({
+            offset: 1,
+            transform: 'rotateY(360deg)'
+          })
+        ])
+      )
+    ])
+  ]),
+  trigger('enterRightLeaveLeft', [
+    transition(':enter', [
+      animate(
+        '300ms 300ms ease-in',
+        keyframes([
+          style({
+            offset: 0,
+            transform: 'translateX(200%)',
             display: 'none',
             opacity: '0'
           }),
@@ -185,7 +208,7 @@ export const antAnimations = [
     ]),
     transition(':leave', [
       animate(
-        '200ms ease-in',
+        '300ms ease-in',
         keyframes([
           style({
             offset: 0,
@@ -193,7 +216,7 @@ export const antAnimations = [
           }),
           style({
             offset: 1,
-            transform: 'translateX(-100%)',
+            transform: 'translateX(-200%)',
             display: 'none'
           })
         ])
