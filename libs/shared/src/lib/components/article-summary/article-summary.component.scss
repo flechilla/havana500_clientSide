@@ -25,15 +25,6 @@ $article-summary-bColor: #ffffff;
   }
 }
 
-.top-article {
-  width: auto;
-  max-width: 80%;
-
-  @include media-breakpoint('xs') {
-    max-width: 100%;
-  }
-}
-
 .article-summary-outer-container__shadowed {
   box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.2);
 
@@ -85,4 +76,35 @@ $article-summary-bColor: #ffffff;
 
 .article-image__rounded {
   border-radius: 3% 3% 0 0;
+}
+
+//TOP ARTICLE STYLES
+.top-article {
+  width: auto;
+  max-width: 80%;
+
+  @include media-breakpoint('xs') {
+    max-width: 100%;
+  }
+}
+
+// CURIOSITY ARTICLE STYLES
+.curiosity-article {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s cubic-bezier(0, 1.13, 0.88, 1.32);
+
+  .article-summary-img-container {
+    flex-grow: 1;
+
+    .article-image {
+      height: fit-content;
+      width: 100%;
+    }
+  }
+}
+
+.selected-curiosity {
+  transform: translateY(-2rem);
 }

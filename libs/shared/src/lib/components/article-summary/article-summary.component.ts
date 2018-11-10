@@ -3,7 +3,6 @@ import { ArticleExtended } from '../../models/article-extended';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { HavanaEnvironment } from '../../models';
-import { flattenStyles } from '@angular/platform-browser/src/dom/dom_renderer';
 
 @Component({
   selector: 'ant-article-summary',
@@ -28,6 +27,12 @@ export class ArticleSummaryComponent implements OnInit {
 
   @Input()
   public isTopArticle = false;
+
+  @Input()
+  public isCuriosityHomeArticle = false;
+
+  @Input()
+  public isCuriositySelected = false;
 
   constructor(private router: Router) {
     this.env = environment;
