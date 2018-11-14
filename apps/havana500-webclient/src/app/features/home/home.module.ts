@@ -1,6 +1,5 @@
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { OutstandingGeneralArticlesComponent } from './dummy/outstanding-general-articles/outstanding-general-articles.component';
-import { OutstandingGaleryMediasComponent } from './dummy/outstanding-galery-medias/outstanding-galery-medias.component';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './smart/main/home.component';
 import { SharedModule } from '@hav500workspace/shared';
@@ -13,6 +12,7 @@ import { EntertainmentComponent } from './dummy/entertainment-preview/entertainm
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ImpactPortalComponent } from './dummy/impact-portal/impact-portal.component';
+import { OutstandingGalleryMediasComponent } from './dummy/outstanding-gallery-medias/outstanding-gallery-medias.component';
 
 @NgModule({
   imports: [
@@ -28,7 +28,7 @@ import { ImpactPortalComponent } from './dummy/impact-portal/impact-portal.compo
     HomeComponent,
     PrincipalSliderComponent,
     OutstandingGeneralArticlesComponent,
-    OutstandingGaleryMediasComponent,
+    OutstandingGalleryMediasComponent,
     OutstandingExperiencesComponent,
     OutstandingCuriositiesComponent,
     EntertainmentComponent,

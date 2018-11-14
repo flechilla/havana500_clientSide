@@ -1,0 +1,18 @@
+.gallery {
+  min-height: 88vh;
+}
+
+.gallery-section-name {
+  font-size: 7em;
+  font-weight: 800;
+  //   line-height: 1;
+}
+
+.gallery-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+//   grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  grid-auto-rows: minmax(13rem, auto);
+}
