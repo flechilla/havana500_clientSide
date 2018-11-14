@@ -1,35 +1,61 @@
 <div class="top-articles feature-section__padded" fxLayout="column">
-
-    <h1 fxFlexAlign="center" class="section-name">HAVANA TOP</h1>
-
-    <!-- VERSION 1 -->
-    <!-- <ant-article-summary @slideInRight fxFlexAlign="center" [article]="currentArticle$ | async"></ant-article-summary> -->
+  <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between start">
+    <div fxFlexAlign="center">
+      <h1 fxFlexAlign="center" class="section-name top-section-name mb-0 pb-0">
+        NOTI
+      </h1>
+      <h1
+        fxFlexAlign="center"
+        class="section-name top-section-name m-0 pt-0 text-underline"
+      >
+        CIAS
+      </h1>
+    </div>
 
     <!-- VERSION 2 -->
-    <div fxLayout="row" fxFlexFill fxFlexAlign="center" *ngFor="let article of topArticles$ | async; let i = index">
-        <ant-article-summary fxFlexFill [isTopArticle]="true" *ngIf="i === (currentIndex$ | async)" @slideInRight
-            [article]="article"></ant-article-summary>
-
+    <div
+      class="article-container"
+      fxFlex="1 1 100%"
+      fxFlexAlign="center"
+      [@fadeInOut]="i === (currentIndex$ | async) ? 'visible' : 'invisible'"
+      *ngFor="let article of (topArticles$ | async); let i = index"
+    >
+      <ant-article-summary
+        fxFlexFill
+        [isTopArticle]="true"
+        [article]="article"
+      ></ant-article-summary>
     </div>
-    <dots [dots-count]="5" [active-dot]="currentIndex$ | async" (on-click)="setIndex($event)"></dots>
+  </div>
 
+  <dots
+    [dots-count]="totalItems"
+    [active-dot]="currentIndex$ | async"
+    (on-click)="setIndex($event)"
+  ></dots>
 
-    <!-- VERSION 3 -->
-    <!-- <ui-carousel *ngIf="articles" [infinite]="true" [fade]="false" [speed]="400" height="45.2rem" width="60%">
+  <!-- VERSION 1 -->
+  <!--
+    <ant-article-summary @slideInRight fxFlexAlign="center" [article]="currentArticle$ | async"></ant-article-summary>
+  -->
+
+  <!-- VERSION 3 -->
+  <!--
+    <ui-carousel *ngIf="articles" [infinite]="true" [fade]="false" [speed]="400" height="45.2rem" width="60%">
         <ui-carousel-item *ngFor="let article of articles">
             <ant-article-summary [article]="article"></ant-article-summary>
         </ui-carousel-item>
 
-    </ui-carousel> -->
+    </ui-carousel>
+  -->
 
-    <!-- VERSION 4 -->
-    <!-- <carousel class="carousel-4" fxFlexAlign="center" [noWrap]="true" [interval]="10000">
+  <!-- VERSION 4 -->
+  <!--
+    <carousel class="carousel-4" fxFlexAlign="center" [noWrap]="true" [interval]="10000">
         <slide *ngFor="let article of articles">
             <ant-article-summary [article]="article"></ant-article-summary>
         </slide>
 
-    </carousel> -->
-
-
-
+    </carousel>
+  -->
 </div>

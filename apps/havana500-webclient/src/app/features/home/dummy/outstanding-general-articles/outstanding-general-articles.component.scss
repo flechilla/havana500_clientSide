@@ -2,9 +2,14 @@
 
 .top-articles {
   position: relative;
-  min-height: 54rem;
+  margin-top: 11rem;
+
+  min-height: 41rem;
+  max-height: 47rem;
   @include media-breakpoint('xs') {
-    min-height: 44rem;
+    min-height: 67rem;
+    max-height: 70rem;
+    margin-top: 4rem;
   }
 
   .article-summary-title {
@@ -25,6 +30,13 @@
   cursor: default;
 }
 
+.top-section-name {
+  font-size: 7em;
+  font-weight: 800;
+
+  line-height: 1;
+}
+
 // asdasdasd
 
 ui-carousel {
@@ -39,4 +51,12 @@ ui-carousel {
 }
 .carousel-inner {
   padding: 1rem;
+}
+
+.article-container {
+  max-width: 100%;
+}
+
+.text-underline {
+  text-decoration: underline;
 }

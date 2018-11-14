@@ -3,7 +3,8 @@ import {
   OnInit,
   Input,
   ChangeDetectionStrategy,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ElementRef
 } from '@angular/core';
 import { Observable, BehaviorSubject, of, interval } from 'rxjs';
 import {
@@ -28,7 +29,7 @@ import {
 })
 export class OutstandingGeneralArticlesComponent implements OnInit {
   @Input()
-  totalItems: number;
+  totalItems: number = 5;
 
   @Input()
   carouselTime: number = 3000;
