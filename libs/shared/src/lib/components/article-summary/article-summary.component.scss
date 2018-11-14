@@ -6,8 +6,11 @@ $article-summary-bColor: #ffffff;
 
 .article-summary-outer-container {
   // max-width: 30rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   background-color: $article-summary-bColor;
+  -webkit-transition: all 0.5s cubic-bezier(0, 1.13, 0.88, 1.32);
   transition: all 0.5s cubic-bezier(0, 1.13, 0.88, 1.32);
   display: block;
   cursor: pointer;
@@ -26,9 +29,11 @@ $article-summary-bColor: #ffffff;
 }
 
 .article-summary-outer-container__shadowed {
+  -webkit-box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.2);
 
   &:hover {
+    -webkit-box-shadow: 0 3px 6px 0px #00000069;
     box-shadow: 0 3px 6px 0px #00000069;
     // transform: scale(1.01);
   }
@@ -57,6 +62,20 @@ $article-summary-bColor: #ffffff;
   }
 }
 
+.main-article-summary-content__limited {
+  @include media-breakpoint-up('xs') {
+    max-width: 40%;
+  }
+  @include media-breakpoint('xs') {
+    max-width: 80%;
+  }
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
 .article-summary-title {
   text-align: center;
   // text-align-last: center;
@@ -81,7 +100,10 @@ $article-summary-bColor: #ffffff;
 //TOP ARTICLE STYLES
 .top-article {
   width: auto;
-  max-width: 80%;
+  // max-width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 
   @include media-breakpoint('xs') {
     max-width: 100%;
@@ -91,14 +113,24 @@ $article-summary-bColor: #ffffff;
 // CURIOSITY ARTICLE STYLES
 .curiosity-article {
   min-height: 70vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-transition: all 0.5s cubic-bezier(0, 1.13, 0.88, 1.32);
   transition: all 0.5s cubic-bezier(0, 1.13, 0.88, 1.32);
 
   .article-summary-img-container {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
     flex-grow: 1;
 
     .article-image {
+      height: -webkit-fit-content;
+      height: -moz-fit-content;
       height: fit-content;
       width: 100%;
     }
@@ -106,5 +138,11 @@ $article-summary-bColor: #ffffff;
 }
 
 .selected-curiosity {
-  transform: translateY(-2rem);
+  @include media-breakpoint-up('xs') {
+    -webkit-transform: translateY(-2rem);
+    transform: translateY(-2rem);
+  }
+  @include media-breakpoint('xs') {
+    margin: 0 5rem;
+  }
 }
