@@ -65,21 +65,21 @@ export const antAnimations = [
   ]),
   trigger('fadeInOut', [
     state(
-      '0',
+      'invisible',
       style({
         display: 'none',
         opacity: 0
       })
     ),
     state(
-      '1',
+      'visible',
       style({
         display: 'block',
         opacity: 1
       })
     ),
-    transition('1 => 0', animate('300ms ease-out')),
-    transition('0 => 1', animate('300ms ease-in'))
+    transition('visible => invisible', animate('0ms  ease-in')),
+    transition('invisible => visible', animate('1500ms ease-out'))
   ]),
   trigger('slideInOut', [
     state(
@@ -170,13 +170,13 @@ export const antAnimations = [
         keyframes([
           style({
             offset: 0,
-            transform: 'rotateY(0deg)',
-            display: 'none'
+            transform: 'rotateY(0deg)'
+            // display: 'none'
           }),
           style({
             offset: 0.5,
-            transform: 'rotateY(180deg)',
-            display: 'initial'
+            transform: 'rotateY(180deg)'
+            // display: 'initial'
           }),
           style({
             offset: 1,
@@ -186,37 +186,68 @@ export const antAnimations = [
       )
     ])
   ]),
+  trigger('rotateOut', [
+    transition(':leave', [
+      animate(
+        '800ms ease-in',
+        keyframes([
+          style({
+            offset: 0,
+            transform: 'rotateY(0deg)'
+            // display: 'none'
+          }),
+          style({
+            offset: 0.5,
+            transform: 'rotateY(180deg)'
+            // display: 'initial'
+          }),
+          style({
+            offset: 1,
+            transform: 'rotateY(360deg)',
+            opacity: '0'
+          })
+        ])
+      )
+    ])
+  ]),
   trigger('enterRightLeaveLeft', [
     transition(':enter', [
       animate(
-        '300ms 300ms ease-in',
+        '400ms ease-in',
         keyframes([
           style({
             offset: 0,
             transform: 'translateX(200%)',
-            display: 'none',
-            opacity: '0'
+            display: 'none'
+          }),
+          style({
+            offset: 0,
+            transform: 'translateX(200%)',
+            display: 'none'
           }),
           style({
             offset: 1,
             transform: 'translateX(0%)',
-            display: 'initial',
-            opacity: '1'
+            display: 'initial'
           })
         ])
       )
     ]),
     transition(':leave', [
       animate(
-        '300ms ease-in',
+        '400ms  ease-in-out',
         keyframes([
           style({
             offset: 0,
-            transform: 'translateX(0%)'
+            transform: 'translateX(0%)',
+            display: 'initial'
+          }),
+          style({
+            offset: 0.9,
+            transform: 'translateX(-200%)'
           }),
           style({
             offset: 1,
-            transform: 'translateX(-200%)',
             display: 'none'
           })
         ])
@@ -227,18 +258,18 @@ export const antAnimations = [
     state(
       'void',
       style({
-        transform: 'translateX(100%)',
+        transform: 'translateX(200%)',
         display: 'none'
       })
     ),
     state(
       '*',
       style({
-        transform: 'translateX(0)'
-        // display: 'flex'
+        transform: 'translateX(0)',
+        display: 'initial'
       })
     ),
-    transition('void => *', animate('400ms')),
+    transition('void => *', animate('400ms 400ms ease-in')),
     transition('* => void', animate('0ms'))
   ]),
   trigger('slideInTop', [
