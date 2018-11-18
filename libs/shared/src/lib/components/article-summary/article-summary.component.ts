@@ -34,6 +34,9 @@ export class ArticleSummaryComponent implements OnInit {
   @Input()
   public isCuriositySelected = false;
 
+  @Input()
+  public isExperienceArticle = false;
+
   constructor(private router: Router) {
     this.env = environment;
   }

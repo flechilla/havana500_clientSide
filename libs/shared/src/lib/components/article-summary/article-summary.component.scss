@@ -79,9 +79,10 @@ $article-summary-bColor: #ffffff;
 .article-summary-title {
   text-align: center;
   // text-align-last: center;
-  font-weight: 600;
+  font-weight: 700;
   padding-top: 1rem;
-  font-size: 1.8em;
+  font-size: 2em;
+  text-transform: uppercase;
 }
 
 .article-summary-body {
@@ -135,6 +136,10 @@ $article-summary-bColor: #ffffff;
       width: 100%;
     }
   }
+}
+
+.experience-article {
+  height: 100%;
 }
 
 .selected-curiosity {
