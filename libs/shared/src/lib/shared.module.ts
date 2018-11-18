@@ -17,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LabelsBarComponent } from './components/labels-bar/labels-bar.component';
 import { KeysEasedPipe } from './pipes/keys-eased.pipe';
 import { UICarouselModule } from './modules/ui-carousel/ui-carousel.module';
+import { CountdownComponent } from './components/countdown/countdown.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { UICarouselModule } from './modules/ui-carousel/ui-carousel.module';
     ArticleSummaryComponent,
     ArticleMetadataComponent,
     LabelsBarComponent,
+    CountdownComponent,
 
     //Directives
     AntWidgetToggleDirective,
@@ -65,6 +67,7 @@ import { UICarouselModule } from './modules/ui-carousel/ui-carousel.module';
     ArticleSummaryComponent,
     ArticleMetadataComponent,
     LabelsBarComponent,
+    CountdownComponent,
 
     //Directives
     AntWidgetToggleDirective,

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Picture, MarketingImageService } from '@hav500workspace/shared';
 import { IImage } from 'ng-simple-slideshow';
+import * as moment from 'moment';
 
 @Component({
   selector: 'hav-principal-slider',
-  templateUrl: 'principal-slider.component.html'
+  templateUrl: 'principal-slider.component.html',
+  styleUrls: ['principal-slider.component.scss']
 })
 export class PrincipalSliderComponent implements OnInit {
   private firstLevelImages: Picture[];
@@ -29,7 +31,10 @@ export class PrincipalSliderComponent implements OnInit {
 
         this.imageUrls.push(imgUrl);
       });
-      console.log(JSON.stringify(this.imageUrls));
     });
+  }
+
+  protected getHavana500Moment() {
+    return moment([2019, 11, 16]);
   }
 }
