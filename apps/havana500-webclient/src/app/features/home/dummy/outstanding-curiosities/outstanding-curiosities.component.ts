@@ -11,10 +11,9 @@ import {
   antAnimations,
   ArticleService
 } from '@hav500workspace/shared';
-import { Observable } from 'rxjs';
-import { MatIconRegistry } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Observable, interval } from 'rxjs';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'hav-outstanding-curiosities',
@@ -33,17 +32,10 @@ export class OutstandingCuriositiesComponent implements OnInit, OnDestroy {
   private _mobileQueryListener: () => void;
 
   constructor(
-    iconRegistry: MatIconRegistry,
-    sanitizer: DomSanitizer,
     protected articleService: ArticleService,
     public media: MediaMatcher,
     public changeDetectorRef: ChangeDetectorRef
   ) {
-    iconRegistry.addSvgIcon(
-      'arrow',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/images/arrow.svg')
-    );
-
     //Sets the media query listener
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -58,31 +50,8 @@ export class OutstandingCuriositiesComponent implements OnInit, OnDestroy {
     );
 
     this.visibleIndexes = new IndexesCircularLinkedList(this.totalItems);
-    console.log(this.visibleIndexes.predecessor);
-    console.log(this.visibleIndexes.current);
-    console.log(this.visibleIndexes.successor);
-  }
 
-  isIndexVisible(index: number) {
-    return (
-      index === this.visibleIndexes.current ||
-      (!this.isMobile() && index === this.visibleIndexes.successor) ||
-      (!this.isMobile() && index === this.visibleIndexes.predecessor)
-    );
-  }
-
-  moveNext() {
-    this.visibleIndexes.moveNext();
-    console.log(this.visibleIndexes.predecessor);
-    console.log(this.visibleIndexes.current);
-    console.log(this.visibleIndexes.successor);
-  }
-
-  movePrevious() {
-    this.visibleIndexes.moveBack();
-    console.log(this.visibleIndexes.predecessor);
-    console.log(this.visibleIndexes.current);
-    console.log(this.visibleIndexes.successor);
+    this.slideCuriosities();
   }
 
   public get current(): number {
@@ -91,6 +60,22 @@ export class OutstandingCuriositiesComponent implements OnInit, OnDestroy {
 
   isMobile(): boolean {
     return this.mobileQuery.matches;
+  }
+
+  moveNext() {
+    this.visibleIndexes.moveNext();
+  }
+
+  slideCuriosities() {
+    interval(7000)
+      .pipe(
+        map(() => {
+          console.log('is workng');
+
+          this.moveNext();
+        })
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {
