@@ -1,3 +1,4 @@
+import { GalleryService } from './../../../../../libs/shared/src/lib/services/http/gallery.service';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import {
   AntTranslateService,
@@ -23,6 +24,7 @@ import { environment } from '../../environments/environment';
     SectionService,
     AntTranslateService,
     MarketingImageService,
+    GalleryService,
     { provide: HavanaEnvironment, useValue: environment }
   ]
 })
