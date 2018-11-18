@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { GalleryService } from './../../../../../../../../libs/shared/src/lib/services/http/gallery.service';
+import { Component, OnInit, SecurityContext } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Picture } from '@hav500workspace/shared';
 
 @Component({
   selector: 'hav-outstanding-gallery',
@@ -6,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['outstanding-gallery-medias.component.scss']
 })
 export class OutstandingGalleryMediasComponent implements OnInit {
-  constructor() {}
+  protected galleryImages$: Observable<Picture[]>;
+  constructor(
+    protected galleryService: GalleryService,
+    protected sanitizer: DomSanitizer
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.galleryImages$ = this.galleryService.getGalleryImages(9);
+  }
 }
