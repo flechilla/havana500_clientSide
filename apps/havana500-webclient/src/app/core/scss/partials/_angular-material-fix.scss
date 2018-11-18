@@ -76,3 +76,17 @@ mat-vertical-stepper {
 mat-vertical-stepper {
   padding: 16px 0;
 }
+
+// MAT TABS
+.mat-tab-labels {
+  justify-content: center;
+}
+
+.mat-tab-label {
+  color: #03a9f4;
+  opacity: 0.8 !important;
+}
+
+.mat-tab-header {
+  border-bottom: none;
+}
