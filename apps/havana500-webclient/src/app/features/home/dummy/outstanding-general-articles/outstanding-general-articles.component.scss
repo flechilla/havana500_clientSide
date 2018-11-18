@@ -2,13 +2,13 @@
 
 .top-articles {
   position: relative;
-  margin-top: 11rem;
+  margin-top: 3rem;
 
   min-height: 41rem;
-  max-height: 47rem;
+  // max-height: 47rem;
   @include media-breakpoint('xs') {
     min-height: 67rem;
-    max-height: 70rem;
+    // max-height: 70rem;
     margin-top: 4rem;
   }
 
