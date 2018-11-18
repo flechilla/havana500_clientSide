@@ -79,7 +79,7 @@ export const antAnimations = [
       })
     ),
     transition('visible => invisible', animate('0ms  ease-in')),
-    transition('invisible => visible', animate('1500ms ease-out'))
+    transition('invisible => visible', animate('3000ms ease-out'))
   ]),
   trigger('slideInOut', [
     state(
