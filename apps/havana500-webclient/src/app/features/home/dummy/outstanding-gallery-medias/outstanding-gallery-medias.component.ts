@@ -5,7 +5,6 @@ import {
   GalleryService,
   PictureToGalleryPipe
 } from '@hav500workspace/shared';
-import { GalleryItem } from '@ngx-gallery/core';
 import { NgxImageGalleryComponent, GALLERY_IMAGE } from 'ngx-image-gallery';
 import { map } from 'rxjs/operators';
 
