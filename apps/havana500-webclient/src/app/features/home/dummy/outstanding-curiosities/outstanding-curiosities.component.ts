@@ -70,8 +70,6 @@ export class OutstandingCuriositiesComponent implements OnInit, OnDestroy {
     interval(7000)
       .pipe(
         map(() => {
-          console.log('is workng');
-
           this.moveNext();
         })
       )

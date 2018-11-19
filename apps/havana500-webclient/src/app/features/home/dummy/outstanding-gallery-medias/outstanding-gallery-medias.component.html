@@ -7,89 +7,20 @@
     - GALLERY
   </h1>
 
-  <div *ngIf="(galleryImages$ | async) as galleryImages" class="gallery-grid">
+  <div class="gallery-grid">
     <div
-      class="gallery-image first-image"
-      [style.backgroundImage]="'url(' + galleryImages[0]?.relativePath + ')'"
+      (click)="openGallery(i)"
+      *ngFor="let galleryImage of galleryImages; let i = index"
+      class="gallery-image"
+      [ngClass]="gridItemClasses[i]"
+      [style.backgroundImage]="'url(' + galleryImage?.relativePath + ')'"
     >
       <div class="image"></div>
       <div class="middle">
         <mat-icon class="view-picture-icon accent-500-fg">visibility</mat-icon>
-      </div>
-    </div>
-    <div
-      class="gallery-image second-image"
-      [style.backgroundImage]="'url(' + galleryImages[1]?.relativePath + ')'"
-    >
-      <div class="image"></div>
-      <div class="middle">
-        <mat-icon class="view-picture-icon accent-500-fg">visibility</mat-icon>
-      </div>
-    </div>
-    <div
-      class="gallery-image third-image"
-      [style.backgroundImage]="'url(' + galleryImages[2]?.relativePath + ')'"
-    >
-      <div class="image"></div>
-      <div class="middle">
-        <mat-icon class="view-picture-icon accent-500-fg">visibility</mat-icon>
-      </div>
-    </div>
-    <div
-      class="gallery-image fourth-image"
-      [style.backgroundImage]="'url(' + galleryImages[3]?.relativePath + ')'"
-    >
-      <div class="image"></div>
-      <div class="middle">
-        <mat-icon class="view-picture-icon accent-500-fg">visibility</mat-icon>
-      </div>
-    </div>
-    <div
-      class="gallery-image fifth-image"
-      [style.backgroundImage]="'url(' + galleryImages[4]?.relativePath + ')'"
-    >
-      <div class="image"></div>
-      <div class="middle">
-        <mat-icon class="view-picture-icon accent-500-fg">visibility</mat-icon>
-      </div>
-    </div>
-    <div
-      class="gallery-image sixth-image"
-      [style.backgroundImage]="'url(' + galleryImages[5]?.relativePath + ')'"
-    >
-      <div class="image"></div>
-      <div class="middle">
-        <mat-icon class="view-picture-icon accent-500-fg">visibility</mat-icon>
-      </div>
-    </div>
-    <div
-      class="gallery-image seventh-image"
-      [style.backgroundImage]="'url(' + galleryImages[6]?.relativePath + ')'"
-    >
-      <div class="image"></div>
-      <div class="middle">
-        <mat-icon class="view-picture-icon accent-500-fg">visibility</mat-icon>
-      </div>
-    </div>
-    <div
-      class="gallery-image eighth-image"
-      [style.backgroundImage]="'url(' + galleryImages[7]?.relativePath + ')'"
-    >
-      <div class="image"></div>
-      <div class="middle">
-        <mat-icon class="view-picture-icon accent-500-fg">visibility</mat-icon>
-      </div>
-    </div>
-    <div
-      class="gallery-image ninth-image"
-      [style.backgroundImage]="'url(' + galleryImages[8]?.relativePath + ')'"
-    >
-      <div class="image"></div>
-      <div class="middle">
-        <mat-icon class="view-picture-icon accent-500-fg"
-          >visibility_black</mat-icon
-        >
       </div>
     </div>
   </div>
+
+  <ngx-image-gallery [images]="secondGallery"></ngx-image-gallery>
 </div>
