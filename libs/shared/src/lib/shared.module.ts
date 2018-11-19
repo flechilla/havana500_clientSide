@@ -14,8 +14,12 @@ import { QuillModule } from 'ngx-quill';
 import { ArticleSummaryComponent } from './components/article-summary/article-summary.component';
 import { ArticleMetadataComponent } from './components/article-metadata/article-metadata.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { AntTranslateService } from './services';
 import { LabelsBarComponent } from './components/labels-bar/labels-bar.component';
+import { KeysEasedPipe } from './pipes/keys-eased.pipe';
+import { UICarouselModule } from './modules/ui-carousel/ui-carousel.module';
+import { CountdownComponent } from './components/countdown/countdown.component';
+import { NgxImageGalleryModule } from 'ngx-image-gallery';
+import { PictureToGalleryPipe } from './pipes/picture-to-gallery.pipe';
 
 @NgModule({
   imports: [
@@ -26,7 +30,10 @@ import { LabelsBarComponent } from './components/labels-bar/labels-bar.component
     ReactiveFormsModule,
     NgxChartsModule,
     QuillModule,
-    TranslateModule
+    TranslateModule,
+    UICarouselModule,
+
+    NgxImageGalleryModule
   ],
   declarations: [
     //Components
@@ -36,13 +43,16 @@ import { LabelsBarComponent } from './components/labels-bar/labels-bar.component
     ArticleSummaryComponent,
     ArticleMetadataComponent,
     LabelsBarComponent,
+    CountdownComponent,
 
     //Directives
     AntWidgetToggleDirective,
     IfOnDomDirective,
 
     //Pipes
-    KeysPipe
+    KeysPipe,
+    KeysEasedPipe,
+    PictureToGalleryPipe
   ],
   exports: [
     //Modules
@@ -53,6 +63,9 @@ import { LabelsBarComponent } from './components/labels-bar/labels-bar.component
     FlexLayoutModule,
     NgxChartsModule,
     QuillModule,
+    UICarouselModule,
+
+    NgxImageGalleryModule,
 
     //Components
     ConfirmDialogComponent,
@@ -61,13 +74,16 @@ import { LabelsBarComponent } from './components/labels-bar/labels-bar.component
     ArticleSummaryComponent,
     ArticleMetadataComponent,
     LabelsBarComponent,
+    CountdownComponent,
 
     //Directives
     AntWidgetToggleDirective,
     IfOnDomDirective,
 
     //Pipes
-    KeysPipe
+    KeysPipe,
+    KeysEasedPipe,
+    PictureToGalleryPipe
   ]
 })
 export class SharedModule {}

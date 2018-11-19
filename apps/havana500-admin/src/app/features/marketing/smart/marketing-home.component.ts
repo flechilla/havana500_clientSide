@@ -28,12 +28,7 @@ export class MarketingHomeComponent extends BaseTableContainerComponent<Picture>
     protected marketingService: MarketingImageService,
     protected contentTagService: ContentTagService
   ) {
-    super(
-      ['id', 'image', 'name', 'companyName', 'isActive'],
-      marketingService,
-      'id, relativePath, name, companyName, isActive',
-      'Pictures'
-    );
+    super(['id', 'relativePath', 'pictureType', 'name', 'companyName', 'isActive'], marketingService, 'id, relativePath, pictureType, name, companyName, isActive', 'Pictures');
   }
 
   ngOnInit() {

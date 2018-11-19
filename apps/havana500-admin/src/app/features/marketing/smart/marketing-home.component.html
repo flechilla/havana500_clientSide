@@ -1,106 +1,162 @@
 <div class="page-layout carded fullwidth articles-home-padded">
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+  <!-- / TOP BACKGROUND -->
 
-    <!-- TOP BACKGROUND -->
-    <div class="top-bg mat-accent-bg"></div>
-    <!-- / TOP BACKGROUND -->
+  <!-- CENTER -->
+  <div class="center">
+    <!-- HEADER -->
+    <div
+      class="header white-fg"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayout.gt-xs="row"
+      fxLayoutAlign.gt-xs="space-around center"
+    >
+      <!-- APP TITLE -->
+      <div
+        class="logo my-12 m-sm-0"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+      >
+        <mat-icon
+          class="logo-icon mr-16"
+          *antIfOnDom
+          [@animate]="{ value: '*', params: { delay: '50ms', scale: '0.2' } }"
+          >shopping_basket</mat-icon
+        >
+        <span
+          class="logo-text h1"
+          *antIfOnDom
+          [@animate]="{ value: '*', params: { delay: '100ms', x: '-25px' } }"
+          >Marketing</span
+        >
+      </div>
+      <!-- / APP TITLE -->
 
-    <!-- CENTER -->
-    <div class="center">
+      <!-- SEARCH -->
+      <div
+        *hidden
+        class="search-input-wrapper mx-12 m-md-0"
+        fxFlex="1 0 auto"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+      >
+        <label for="search" class="mr-8">
+          <mat-icon class="secondary-text">search</mat-icon>
+        </label>
+        <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
+          <input id="search" matInput #filter placeholder="Search" />
+        </mat-form-field>
+      </div>
+      <!-- / SEARCH -->
 
-        <!-- HEADER -->
-        <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-            fxLayoutAlign.gt-xs="space-around center">
-
-            <!-- APP TITLE -->
-            <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *antIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">shopping_basket</mat-icon>
-                <span class="logo-text h1" *antIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Marketing</span>
-            </div>
-            <!-- / APP TITLE -->
-
-            <!-- SEARCH -->
-            <div *hidden class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-                <label for="search" class="mr-8">
-                    <mat-icon class="secondary-text">search</mat-icon>
-                </label>
-                <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
-                    <input id="search" matInput #filter placeholder="Search">
-                </mat-form-field>
-            </div>
-            <!-- / SEARCH -->
-
-            <button (click)="openCreateDialog()" mat-mini-fab color="warn">
-                <mat-icon aria-label="Add Article">add</mat-icon>
-            </button>
-
-        </div>
-        <!-- / HEADER -->
-
-        <!-- CONTENT CARD -->
-        <div class="content-card mat-white-bg">
-
-            <mat-table class="articles-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}">
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
-                    <mat-cell *matCellDef="let marketing">
-                        <p class="text-truncate">{{marketing.id}}</p>
-                    </mat-cell>
-                </ng-container>
-
-
-                <!-- IMAGE Column -->
-                <ng-container matColumnDef="image">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Image</mat-header-cell>
-                    <mat-cell *matCellDef="let marketing">
-                        <img src="{{marketing.relativePath}}" alt="{{marketing.seoFileName}}">
-                    </mat-cell>
-                </ng-container>
-
-                <!-- NAME Column -->
-                <ng-container matColumnDef="name">
-                    <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-xs>Name</mat-header-cell>
-                    <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
-                        <p class="category text-truncate">
-                            {{marketing.name}}
-                        </p>
-                    </mat-cell>
-                </ng-container>
-
-                <!--COMPANY NAME Column -->
-                <ng-container matColumnDef="companyName">
-                    <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-xs>Company Name</mat-header-cell>
-                    <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
-                        <p class="category text-truncate">
-                            {{marketing.companyName}}
-                        </p>
-                    </mat-cell>
-                </ng-container>
-
-                <!-- IS ACTIVE Column -->
-                <ng-container matColumnDef="isActive">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Is Active?</mat-header-cell>
-                    <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
-                        <mat-icon *ngIf="marketing.isActive" class="active-icon mat-green-600-bg s-16">check</mat-icon>
-                        <mat-icon *ngIf="!marketing.isActive" class="active-icon mat-red-500-bg s-16">close</mat-icon>
-                    </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-
-                <mat-row *matRowDef="let marketing; columns: columnsToDisplay;" class="marketing" matRipple (click)="openCreateDialog(marketing)">
-                </mat-row>
-
-            </mat-table>
-
-            <mat-paginator #paginator [length]="dataSource.currentLength" [pageIndex]="0" [pageSize]="10"
-                [pageSizeOptions]="[5, 10, 25, 100]">
-
-            </mat-paginator>
-
-        </div>
-        <!-- / CONTENT CARD -->
+      <button (click)="openCreateDialog()" mat-mini-fab color="warn">
+        <mat-icon aria-label="Add Article">add</mat-icon>
+      </button>
     </div>
-    <!-- / CENTER -->
+    <!-- / HEADER -->
+
+    <!-- CONTENT CARD -->
+    <div class="content-card mat-white-bg">
+      <mat-table
+        class="articles-table"
+        #table
+        [dataSource]="dataSource"
+        matSort
+        [@animateStagger]="{ value: '50' }"
+      >
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >ID</mat-header-cell
+          >
+          <mat-cell *matCellDef="let marketing">
+            <p class="text-truncate">{{ marketing.id }}</p>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Type -->
+        <ng-container matColumnDef="pictureType">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Type</mat-header-cell
+          >
+          <mat-cell *matCellDef="let marketing">
+            <p class="text-truncate">{{ marketing.pictureType.toString() }}</p>
+          </mat-cell>
+        </ng-container>
+
+        <!-- IMAGE Column -->
+        <ng-container matColumnDef="relativePath">
+          <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+          <mat-cell *matCellDef="let marketing">
+            <img
+              src="{{marketing.relativePath}}"
+              alt="{{marketing.seoFileName}}"
+            />
+          </mat-cell>
+        </ng-container>
+
+        <!-- NAME Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-xs
+            >Name</mat-header-cell
+          >
+          <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
+            <p class="category text-truncate">{{ marketing.name }}</p>
+          </mat-cell>
+        </ng-container>
+
+        <!-- COMPANY NAME Column -->
+        <ng-container matColumnDef="companyName">
+          <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-xs
+            >Company Name</mat-header-cell
+          >
+          <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
+            <p class="category text-truncate">{{ marketing.companyName }}</p>
+          </mat-cell>
+        </ng-container>
+
+        <!-- IS ACTIVE Column -->
+        <ng-container matColumnDef="isActive">
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs
+            >Is Active?</mat-header-cell
+          >
+          <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
+            <mat-icon
+              *ngIf="marketing.isActive"
+              class="active-icon mat-green-600-bg s-16"
+              >check</mat-icon
+            >
+            <mat-icon
+              *ngIf="!marketing.isActive"
+              class="active-icon mat-red-500-bg s-16"
+              >close</mat-icon
+            >
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+
+        <mat-row
+          *matRowDef="let marketing; columns: columnsToDisplay"
+          class="marketing"
+          matRipple
+          (click)="openCreateDialog(marketing)"
+        >
+        </mat-row>
+      </mat-table>
+
+      <mat-paginator
+        #paginator
+        [length]="dataSource.currentLength"
+        [pageIndex]="0"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+      >
+      </mat-paginator>
+    </div>
+    <!-- / CONTENT CARD -->
+  </div>
+  <!-- / CENTER -->
 </div>

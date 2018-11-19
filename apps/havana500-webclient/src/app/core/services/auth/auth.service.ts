@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
@@ -8,7 +7,7 @@ import {
   RegisterModel
 } from '@hav500workspace/shared';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, publishLast, refCount } from 'rxjs/operators';
 import { APP_USER } from '../../configs/configuration-const.config';
 
 @Injectable()
@@ -44,7 +43,9 @@ export class AuthService {
           } else {
             return false;
           }
-        })
+        }),
+        publishLast(),
+        refCount()
       );
   }
 
@@ -70,7 +71,9 @@ export class AuthService {
         } else {
           return false;
         }
-      })
+      }),
+      publishLast(),
+      refCount()
     );
   }
 

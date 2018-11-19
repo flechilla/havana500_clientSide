@@ -1,18 +1,20 @@
+import { MatSnackBar } from '@angular/material';
 import { CommentModel } from './../../models/comment.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HavanaEnvironment } from '../../models';
 import { BaseCrudService } from '../base';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, publishLast, refCount } from 'rxjs/operators';
 
 @Injectable()
 export class CommentService extends BaseCrudService<CommentModel> {
   constructor(
     private environment: HavanaEnvironment,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    protected snack: MatSnackBar
   ) {
-    super(environment.apiUrl + 'comments', httpClient);
+    super(environment.apiUrl + 'comments', httpClient, snack);
   }
 
   public getArticleComments(
@@ -30,6 +32,12 @@ export class CommentService extends BaseCrudService<CommentModel> {
           '&articleId=' +
           articleId
       )
-      .pipe(catchError(this.handleError));
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        })
+      );
   }
 }

@@ -1,1 +1,16 @@
-<img fxFill src="../../../../../assets/images/main-slider.png">
+<slideshow
+  [minHeight]="'525px'"
+  [autoPlay]="true"
+  [imageUrls]="imageUrls"
+  [lazyLoad]="imageUrls?.length > 1"
+  [autoPlayWaitForLazyLoad]="true"
+  [showDots]="true"
+  [showCaptions]="false"
+  [showArrows]="false"
+>
+</slideshow>
+
+<ant-countdown
+  class="countdown"
+  [eventDate]="getHavana500Moment()"
+></ant-countdown>

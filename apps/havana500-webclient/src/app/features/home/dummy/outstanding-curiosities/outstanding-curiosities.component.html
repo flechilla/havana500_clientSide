@@ -1,0 +1,38 @@
+<div
+  class="feature-section__padded feature-section__positioned"
+  fxLayout="column"
+>
+  <h1
+    fxFlexAlign="center"
+    class="section-name pb-44 curiosity-section-name"
+    [routerLink]="['/section/curiosidades']"
+  >
+    - CURIOSISDADES
+  </h1>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <div
+      [@fadeInOut]="index === current ? 'visible' : 'invisible'"
+      *ngFor="let curiosity of (curiosities$ | async); let index = index"
+    >
+      <ant-article-summary [isTopArticle]="true" [article]="curiosity">
+      </ant-article-summary>
+    </div>
+  </div>
+
+  <!--
+    <button (click)="movePrevious()" class="arrow previous-arrow" mat-icon-button>
+      <mat-icon [svgIcon]="'arrow'"></mat-icon>
+    </button>
+    <button (click)="moveNext()" class="arrow next-arrow" mat-icon-button>
+      <mat-icon [svgIcon]="'arrow'"></mat-icon>
+    </button>
+  -->
+
+  <a
+    class="see-more-section"
+    [routerLink]="'/section/curiosidades'"
+    fxFlexAlign="center"
+    >See More</a
+  >
+</div>

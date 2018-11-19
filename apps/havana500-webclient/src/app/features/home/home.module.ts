@@ -1,18 +1,18 @@
-import { OutstandingGaleryMediasComponent } from './dummy/outstanding-galery-medias/outstanding-galery-medias.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { OutstandingGeneralArticlesComponent } from './dummy/outstanding-general-articles/outstanding-general-articles.component';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './smart/main/home.component';
 import { SharedModule } from '@hav500workspace/shared';
 import { TranslateModule } from '@ngx-translate/core';
 import { HomeRoutingModule } from './home-routing.module';
 import { PrincipalSliderComponent } from './dummy/principal-slider/principal-slider.component';
-import { OutstandingNewsComponent } from './dummy/outstanding-news/outstanding-news.component';
 import { OutstandingExperiencesComponent } from './dummy/outstanding-experiences/outstanding-experiences.component';
 import { OutstandingCuriositiesComponent } from './dummy/outstanding-curiosities/outstanding-curiosities.component';
 import { EntertainmentComponent } from './dummy/entertainment-preview/entertainment-preview.component';
-import { ImageSliderComponent } from './smart/image-slider/image-slider.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ArticleShortcutsComponent } from './smart/article-shortcuts/article-shortcuts.component';
+import { ImpactPortalComponent } from './dummy/impact-portal/impact-portal.component';
+import { OutstandingGalleryMediasComponent } from './dummy/outstanding-gallery-medias/outstanding-gallery-medias.component';
 
 @NgModule({
   imports: [
@@ -20,19 +20,19 @@ import { ArticleShortcutsComponent } from './smart/article-shortcuts/article-sho
     TranslateModule.forChild(),
     HomeRoutingModule,
     SlideshowModule,
-    MatTabsModule
+    MatTabsModule,
+    CarouselModule
   ],
   exports: [],
   declarations: [
     HomeComponent,
     PrincipalSliderComponent,
-    OutstandingNewsComponent,
-    OutstandingGaleryMediasComponent,
+    OutstandingGeneralArticlesComponent,
+    OutstandingGalleryMediasComponent,
     OutstandingExperiencesComponent,
     OutstandingCuriositiesComponent,
     EntertainmentComponent,
-    ImageSliderComponent,
-    ArticleShortcutsComponent
+    ImpactPortalComponent
   ]
 })
 export class HomeModule {}

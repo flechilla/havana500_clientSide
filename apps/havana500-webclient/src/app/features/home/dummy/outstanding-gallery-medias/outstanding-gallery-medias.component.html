@@ -1,0 +1,26 @@
+<div class="feature-section__padded gallery" fxLayout="column">
+  <h1
+    fxFlexAlign="center"
+    class="section-name pb-44 gallery-section-name"
+    [routerLink]="['/section/gallery']"
+  >
+    - GALLERY
+  </h1>
+
+  <div class="gallery-grid">
+    <div
+      (click)="openGallery(i)"
+      *ngFor="let galleryImage of galleryImages; let i = index"
+      class="gallery-image"
+      [ngClass]="gridItemClasses[i]"
+      [style.backgroundImage]="'url(' + galleryImage?.relativePath + ')'"
+    >
+      <div class="image"></div>
+      <div class="middle">
+        <mat-icon class="view-picture-icon accent-500-fg">visibility</mat-icon>
+      </div>
+    </div>
+  </div>
+
+  <ngx-image-gallery [images]="secondGallery"></ngx-image-gallery>
+</div>

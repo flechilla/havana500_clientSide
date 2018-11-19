@@ -9,7 +9,8 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between start">
 
-                <span class="mat-display-1 mb-0 welcome-message" *antIfOnDom [@animate]="{value:'*',params:{x:'50px'}}">Welcome back,
+                <span class="mat-display-1 mb-0 welcome-message" *antIfOnDom [@animate]="{value:'*',params:{x:'50px'}}">Welcome
+                    back,
                     John!
                 </span>
             </div>
@@ -41,14 +42,17 @@
                     <div class="widget-group p-12" fxLayout="row wrap" *antIfOnDom fxFlex="100" [@animateStagger]="{value:'50'}">
 
                         <!-- ARTICLE WIDGET -->
-                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100"
+                            fxFlex.gt-xs="50" fxFlex.gt-md="25">
 
                             <!-- Front -->
                             <div class="ant-widget-front mat-white-bg mat-elevation-z2">
                                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
                                     <mat-form-field>
-                                        <mat-select class="simplified font-size-16" [(ngModel)]="widgets.articlesWidget.currentRange" aria-label="Change range">
-                                            <mat-option *ngFor="let range of widgets.articlesWidget.ranges | keys" [value]="range.key">
+                                        <mat-select [compareWith]="utilsService.enumComparer" class="simplified font-size-16"
+                                            [(ngModel)]="widgets.articlesWidget.currentRange" aria-label="Change range">
+                                            <mat-option *ngFor="let range of widgets.articlesWidget.ranges | keys_eased"
+                                                [value]="range.key">
                                                 {{range.value}}
                                             </mat-option>
                                         </mat-select>
@@ -88,14 +92,17 @@
                         <!-- / ARTICLE WIDGET -->
 
                         <!-- COMMENTS WIDGET -->
-                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100"
+                            fxFlex.gt-xs="50" fxFlex.gt-md="25">
 
                             <!-- Front -->
                             <div class="ant-widget-front mat-white-bg mat-elevation-z2">
                                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
                                     <mat-form-field>
-                                        <mat-select class="simplified font-size-16" [(ngModel)]="widgets.commentsWidget.currentRange" aria-label="Change range">
-                                            <mat-option *ngFor="let range of widgets.commentsWidget.ranges | keys" [value]="range.key">
+                                        <mat-select [compareWith]="utilsService.enumComparer" class="simplified font-size-16"
+                                            [(ngModel)]="widgets.commentsWidget.currentRange" aria-label="Change range">
+                                            <mat-option *ngFor="let range of widgets.commentsWidget.ranges | keys_eased"
+                                                [value]="range.key">
                                                 {{range.value}}
                                             </mat-option>
                                         </mat-select>
@@ -117,7 +124,7 @@
                                     <span class="h4 ml-8">{{widgets.commentsWidget.data.extra.aproved.count[widgets.commentsWidget.currentRange]}}</span>
                                     <span style="width: 20px ;"></span>
                                     <span class="h4 secondary-text text-truncate">{{widgets.commentsWidget.data.extra.notAproved.label}}:</span>
-                                    <span class="h4 ml-8">{{widgets.commentsWidget.data.extra.notAproved.count[widgets.commentsWidget.currentRange]}}</span>                               
+                                    <span class="h4 ml-8">{{widgets.commentsWidget.data.extra.notAproved.count[widgets.commentsWidget.currentRange]}}</span>
                                 </div>
                             </div>
                             <!-- / Front -->
@@ -138,7 +145,8 @@
                         <!-- / COMMENTS WIDGET -->
 
                         <!-- WIDGET 3 -->
-                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100"
+                            fxFlex.gt-xs="50" fxFlex.gt-md="25">
 
                             <!-- Front -->
                             <div class="ant-widget-front mat-white-bg mat-elevation-z2">
@@ -180,7 +188,8 @@
                         <!-- / WIDGET 3 -->
 
                         <!-- WIDGET 4 -->
-                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100"
+                            fxFlex.gt-xs="50" fxFlex.gt-md="25">
 
                             <!-- Front -->
                             <div class="ant-widget-front mat-white-bg mat-elevation-z2">
@@ -231,8 +240,8 @@
                                     <div fxFlex class="py-8 h3">{{widgets.trendingArticlesWidget.title}}</div>
 
                                     <div fxFlex="0 1 auto" class="py-8" fxLayout="row">
-                                        <button mat-button class="px-16" *ngFor="let range of widgets.trendingArticlesWidget.ranges | keys" (click)="trendingArticlesWidget.currentRange = range.key"
-                                            [disabled]="trendingArticlesWidget.currentRange == range.key">
+                                        <button mat-button class="px-16" *ngFor="let range of widgets.trendingArticlesWidget.ranges | keys_eased"
+                                            (click)="trendingArticlesWidget.currentRange = range.key" [disabled]="trendingArticlesWidget.currentRange == range.key">
                                             {{range.value}}
                                         </button>
                                     </div>
@@ -240,16 +249,19 @@
 
                                 <div fxLayout="row wrap" fxLayoutAlign="start end">
                                     <div class="h-420 mb-16" fxLayout="row" fxFlex="100" fxFlex.gt-sm="100">
-                                        <ngx-charts-bar-vertical-stacked *antIfOnDom [scheme]="trendingArticlesWidget.scheme" [results]="this.widgets.trendingArticlesWidget.mainChart[this.trendingArticlesWidget.currentRange]"
-                                            [gradient]="trendingArticlesWidget.gradient" [xAxis]="trendingArticlesWidget.xAxis" [yAxis]="trendingArticlesWidget.yAxis" [legend]="trendingArticlesWidget.legend"
+                                        <ngx-charts-bar-vertical-stacked *antIfOnDom [scheme]="trendingArticlesWidget.scheme"
+                                            [results]="this.widgets.trendingArticlesWidget.mainChart[this.trendingArticlesWidget.currentRange]"
+                                            [gradient]="trendingArticlesWidget.gradient" [xAxis]="trendingArticlesWidget.xAxis"
+                                            [yAxis]="trendingArticlesWidget.yAxis" [legend]="trendingArticlesWidget.legend"
                                             [showXAxisLabel]="trendingArticlesWidget.showXAxisLabel" [showYAxisLabel]="trendingArticlesWidget.showYAxisLabel"
-                                            [xAxisLabel]="trendingArticlesWidget.xAxisLabel" [yAxisLabel]="trendingArticlesWidget.yAxisLabel" (select)="trendingArticlesWidget.onSelect($event)">
+                                            [xAxisLabel]="trendingArticlesWidget.xAxisLabel" [yAxisLabel]="trendingArticlesWidget.yAxisLabel"
+                                            (select)="trendingArticlesWidget.onSelect($event)">
                                         </ngx-charts-bar-vertical-stacked>
                                     </div>
 
                                     <!-- <div class="mb-16" fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="row" fxLayout="row wrap">
 
-                                        <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="center" *ngFor="let widget of widgets.trendingArticlesWidget.supporting | keys">
+                                        <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxLayoutAlign="center" *ngFor="let widget of widgets.trendingArticlesWidget.supporting | keys_eased">
 
                                             <div class="px-24">
                                                 <div class="h4 secondary-text">{{widget.value.label}}</div>
@@ -276,7 +288,8 @@
                         <!-- / TRENDING ARTICLES WIDGET -->
 
                         <!-- WIDGET 6 -->
-                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50">
+                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100"
+                            fxFlex.gt-sm="50">
 
                             <!-- Front -->
                             <div class="ant-widget-front mat-white-bg mat-elevation-z2">
@@ -285,8 +298,10 @@
                                     <div class="h3">{{widgets.widget6.title}}</div>
                                     <mat-form-field>
 
-                                        <mat-select class="simplified" aria-label="Change range" [(ngModel)]="widget6.currentRange">
-                                            <mat-option *ngFor="let range of widgets.widget6.ranges | keys" [value]="range.key">
+                                        <mat-select [compareWith]="utilsService.enumComparer" class="simplified"
+                                            aria-label="Change range" [(ngModel)]="widget6.currentRange">
+                                            <mat-option *ngFor="let range of widgets.widget6.ranges | keys_eased"
+                                                [value]="range.key">
                                                 {{range.value}}
                                             </mat-option>
                                         </mat-select>
@@ -294,19 +309,21 @@
                                 </div>
 
                                 <div class="h-400">
-                                    <ngx-charts-pie-chart *antIfOnDom [scheme]="widget6.scheme" [results]="widgets.widget6.mainChart[widget6.currentRange]" [legend]="widget6.showLegend"
-                                        [explodeSlices]="widget6.explodeSlices" [labels]="widget6.labels" [doughnut]="widget6.doughnut"
-                                        [gradient]="widget6.gradient" (select)="widget6.onSelect($event)">
+                                    <ngx-charts-pie-chart *antIfOnDom [scheme]="widget6.scheme" [results]="widgets.widget6.mainChart[widget6.currentRange]"
+                                        [legend]="widget6.showLegend" [explodeSlices]="widget6.explodeSlices" [labels]="widget6.labels"
+                                        [doughnut]="widget6.doughnut" [gradient]="widget6.gradient" (select)="widget6.onSelect($event)">
                                     </ngx-charts-pie-chart>
                                 </div>
 
                                 <div class="py-8 mh-16 border-top" fxLayout="row wrap" fxLayoutAlign="start center">
-                                    <div class="py-8 border-right" fxLayout="column" fxLayoutAlign="center center" fxFlex="100" fxFlex.gt-sm="50">
+                                    <div class="py-8 border-right" fxLayout="column" fxLayoutAlign="center center"
+                                        fxFlex="100" fxFlex.gt-sm="50">
                                         <span class="mat-display-1 mb-0">{{widgets.widget6.footerLeft.count[widget6.currentRange]}}</span>
                                         <span class="h4">{{widgets.widget6.footerLeft.title}}</span>
                                     </div>
 
-                                    <div class="py-8" fxLayout="column" fxLayoutAlign="center center" fxFlex="100" fxFlex.gt-sm="50">
+                                    <div class="py-8" fxLayout="column" fxLayoutAlign="center center" fxFlex="100"
+                                        fxFlex.gt-sm="50">
                                         <span class="mat-display-1 mb-0">{{widgets.widget6.footerRight.count[widget6.currentRange]}}</span>
                                         <span class="h4">{{widgets.widget6.footerRight.title}}</span>
                                     </div>
@@ -319,7 +336,8 @@
                         <!-- / WIDGET 6 -->
 
                         <!-- WIDGET 7 -->
-                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50">
+                        <ant-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="column" fxFlex="100"
+                            fxFlex.gt-sm="50">
 
                             <!-- Front -->
                             <div class="ant-widget-front mat-white-bg mat-elevation-z2">
@@ -327,9 +345,11 @@
                                 <div class="px-16 border-bottom" fxLayout="row" fxLayoutAlign="space-between center">
                                     <div class="h3">{{widgets.widget7.title}}</div>
                                     <mat-form-field>
-                                        <mat-select class="simplified" aria-label="Change range" [(ngModel)]="widget7.currentRange">
+                                        <mat-select [compareWith]="utilsService.enumComparer" class="simplified"
+                                            aria-label="Change range" [(ngModel)]="widget7.currentRange">
 
-                                            <mat-option *ngFor="let range of widgets.widget7.ranges | keys" [value]="range.key">
+                                            <mat-option *ngFor="let range of widgets.widget7.ranges | keys_eased"
+                                                [value]="range.key">
                                                 {{range.value}}
                                             </mat-option>
                                         </mat-select>

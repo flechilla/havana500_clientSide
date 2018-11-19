@@ -1,0 +1,62 @@
+@import '../../../../core/scss/ant.scss';
+
+.top-articles {
+  position: relative;
+  margin-top: 3rem;
+
+  min-height: 41rem;
+  // max-height: 47rem;
+  @include media-breakpoint('xs') {
+    min-height: 67rem;
+    // max-height: 70rem;
+    margin-top: 4rem;
+  }
+
+  .article-summary-title {
+    font-size: 1.8em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: -webkit-fill-available;
+  }
+
+  // max-height: 54rem;
+}
+
+.section-name {
+  text-align: center;
+  padding: 2rem;
+  padding-top: 4rem;
+  cursor: default;
+}
+
+.top-section-name {
+  font-size: 7em;
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+// asdasdasd
+
+ui-carousel {
+  display: block;
+  margin: 0 auto;
+}
+
+.carousel-4 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.carousel-inner {
+  padding: 1rem;
+}
+
+.article-container {
+  max-width: 100%;
+}
+
+.text-underline {
+  text-decoration: underline;
+}

@@ -1,7 +1,8 @@
+import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, publishLast, refCount } from 'rxjs/operators';
 import { BaseCrudService } from '../base';
 import { Article, HavanaEnvironment, ArticleExtended } from '../../models';
 
@@ -9,9 +10,10 @@ import { Article, HavanaEnvironment, ArticleExtended } from '../../models';
 export class ArticleService extends BaseCrudService<Article> {
   constructor(
     private environment: HavanaEnvironment,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    protected snack: MatSnackBar
   ) {
-    super(environment.apiUrl + 'articles', httpClient);
+    super(environment.apiUrl + 'articles', httpClient, snack);
   }
 
   /**
@@ -20,7 +22,13 @@ export class ArticleService extends BaseCrudService<Article> {
   public getWithTags(id: number): Observable<ArticleExtended> {
     return this.http
       .get<ArticleExtended>(this.url + '/GetArticleWithTags?articleId=' + id)
-      .pipe(catchError(this.handleError));
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        })
+      );
   }
 
   /**
@@ -37,7 +45,13 @@ export class ArticleService extends BaseCrudService<Article> {
         articleId: articleId,
         contentTagId: tagId
       })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        })
+      );
   }
 
   /**
@@ -53,7 +67,13 @@ export class ArticleService extends BaseCrudService<Article> {
       .delete<any>(
         this.url + `/removeTagToArticle?articleId=${articleId}&tagId=${tagId}`
       )
-      .pipe(catchError(this.handleError));
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        })
+      );
   }
 
   /**
@@ -66,7 +86,13 @@ export class ArticleService extends BaseCrudService<Article> {
   public getRelatedArticles(articleId: number): Observable<Article[]> {
     return this.http
       .get<Article[]>(this.url + '/GetRelatedArticles?articleId=' + articleId)
-      .pipe(catchError(this.handleError));
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        })
+      );
   }
 
   public getArticlesBasicDataBySectionName(
@@ -84,7 +110,13 @@ export class ArticleService extends BaseCrudService<Article> {
           '&amountOfArticles=' +
           amountOfArticles
       )
-      .pipe(catchError(this.handleError));
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        })
+      );
   }
 
   public getArticlesBasicDataBySectionNameAndTagIds(
@@ -105,7 +137,13 @@ export class ArticleService extends BaseCrudService<Article> {
           '&amountOfArticles=' +
           amountOfArticles
       )
-      .pipe(catchError(this.handleError));
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        })
+      );
   }
 
   /**
@@ -116,6 +154,12 @@ export class ArticleService extends BaseCrudService<Article> {
   public createTemporaryArticle(): Observable<Article> {
     return this.http
       .post<Article>(this.url + '/CreateTemporaryArticle', null)
-      .pipe(catchError(this.handleError));
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        })
+      );
   }
 }

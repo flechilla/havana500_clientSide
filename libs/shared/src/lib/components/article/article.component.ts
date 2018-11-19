@@ -40,12 +40,7 @@ export class ArticleComponent implements OnInit {
     this.article$ = this.articleService.getWithTags(id);
   }
 
-  onSelectTag(tagId: number): void {
-    console.log(
-      'this method hits after the user selelects a tag. the tag Id is: ' +
-        tagId
-    );
-  }
+  onSelectTag(tagId: number): void {}
 
   /**
    *  Get the related articles of the current article.

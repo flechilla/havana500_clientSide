@@ -4,15 +4,16 @@ import { environment } from '../../../../environments/environment';
 import { ArticleCommentsInfo } from '../../models/articleCommentsInfo';
 import { Observable } from 'rxjs';
 import { CommentModule } from '../../../features/comment/comment.module';
-import { catchError } from 'rxjs/operators';
+import { catchError, publishLast, refCount } from 'rxjs/operators';
 import { BaseCrudService } from '@hav500workspace/shared';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class ArticleCommentsInfoService extends BaseCrudService<
   ArticleCommentsInfo
 > {
-  constructor(private httpClient: HttpClient) {
-    super(environment.apiUrl + 'articles', httpClient);
+  constructor(private httpClient: HttpClient, protected snack: MatSnackBar) {
+    super(environment.apiUrl + 'articles', httpClient, snack);
   }
 
   /**
@@ -26,10 +27,18 @@ export class ArticleCommentsInfoService extends BaseCrudService<
     const options = daysAgo
       ? { params: new HttpParams().set('daysAgo', daysAgo.toString()) }
       : {};
-    return this.httpClient.get<ArticleCommentsInfo[]>(
-      `${this.url}/GetArticlesWithNewCommentsInfo`,
-      options
-    );
+    return this.httpClient
+      .get<ArticleCommentsInfo[]>(
+        `${this.url}/GetArticlesWithNewCommentsInfo`,
+        options
+      )
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        })
+      );
   }
 
   public getWithPagAndSort(
@@ -54,6 +63,12 @@ export class ArticleCommentsInfoService extends BaseCrudService<
           '&daysAgo=' +
           daysAgo
       )
-      .pipe(catchError(this.handleError));
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        })
+      );
   }
 }

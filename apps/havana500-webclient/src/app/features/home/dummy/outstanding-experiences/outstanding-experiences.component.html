@@ -1,0 +1,75 @@
+<div
+  class="feature-section__padded feature-section__positioned"
+  fxLayout="column"
+>
+  <h1
+    fxFlexAlign="center"
+    class="section-name pb-44 curiosity-section-name"
+    [routerLink]="['/section/curiosidades']"
+  >
+    - EXPERIENCIAS
+  </h1>
+
+  <div fxLayout="row" fxLayoutAlign="stretch stretch">
+    <!-- POSTER -->
+    <div
+      class="mat-accent-500-bg experiences-poster"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+    >
+      <h1 class="experiences-poster-title">
+        ESTO LO PUEDES HACER EN LA HABANA
+      </h1>
+    </div>
+
+    <!-- CARDS -->
+    <div
+      *ngIf="(experiences$ | async) as experiences"
+      fxLayout="row"
+      class="cards-container"
+    >
+      <ant-article-summary
+        [isExperienceArticle]="true"
+        [article]="experiences[predecessor]"
+      >
+      </ant-article-summary>
+      <ant-article-summary
+        [isExperienceArticle]="true"
+        [article]="experiences[current]"
+      >
+      </ant-article-summary>
+      <ant-article-summary
+        [isExperienceArticle]="true"
+        [article]="experiences[successor]"
+      >
+      </ant-article-summary>
+      <!--
+        <div *ngFor="let curiosity of (experiences$ | async); let index = index">
+          <ant-article-summary
+            [isExperienceArticle]="true"
+            *ngIf="isIndexVisible(index)"
+            [article]="curiosity"
+          >
+          </ant-article-summary>
+        </div>
+      -->
+
+      <button
+        (click)="movePrevious()"
+        class="mat-accent-500-bg arrow previous-arrow"
+      >
+        <mat-icon class="arrow-icon">keyboard_arrow_left</mat-icon>
+      </button>
+      <button (click)="moveNext()" class="mat-accent-500-bg arrow next-arrow">
+        <mat-icon class="arrow-icon">keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <a
+    class="see-more-section"
+    [routerLink]="'/section/curiosidades'"
+    fxFlexAlign="center"
+    >See More</a
+  >
+</div>

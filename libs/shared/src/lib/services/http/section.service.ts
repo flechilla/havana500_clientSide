@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,8 +9,9 @@ import { BaseCrudService } from '../base';
 export class SectionService extends BaseCrudService<Section> {
   constructor(
     private environment: HavanaEnvironment,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    protected snack: MatSnackBar
   ) {
-    super(environment.apiUrl + 'section', httpClient);
+    super(environment.apiUrl + 'section', httpClient, snack);
   }
 }

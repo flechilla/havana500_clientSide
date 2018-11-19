@@ -1,0 +1,19 @@
+@import '../../../../core/scss/ant';
+
+.main-section {
+  overflow: hidden;
+}
+
+.feature-section__padded {
+  padding-right: 5%;
+  padding-left: 5%;
+
+  @include media-breakpoint('xs') {
+    padding-right: 0%;
+    padding-left: 0%;
+  }
+}
+
+button:focus {
+  outline: none !important;
+}

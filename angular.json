@@ -26,7 +26,11 @@
               "apps/havana500-webclient/src/favicon.ico",
               "apps/havana500-webclient/src/assets"
             ],
-            "styles": ["apps/havana500-webclient/src/styles.scss"],
+            "styles": [
+              "apps/havana500-webclient/src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -188,7 +192,11 @@
             "polyfills": "apps/havana500-admin/src/polyfills.ts",
             "tsConfig": "apps/havana500-admin/tsconfig.spec.json",
             "karmaConfig": "apps/havana500-admin/karma.conf.js",
-            "styles": ["apps/havana500-admin/src/styles.scss"],
+            "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "apps/havana500-admin/src/styles.scss"
+            ],
             "scripts": [],
             "assets": [
               "apps/havana500-admin/src/favicon.ico",

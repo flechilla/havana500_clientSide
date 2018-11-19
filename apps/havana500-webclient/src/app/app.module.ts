@@ -25,9 +25,8 @@ import {
 // import { OAuthModule } from 'angular-oauth2-oidc';
 import { LayoutModule } from './features/layout/layout.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { ArticleModule } from './features/article/article.module';
-import { HomeModule } from './features/home/home.module';
-import { SecondLevelModule } from './features/second-level/second-level.module';
+
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,7 +48,9 @@ import { SecondLevelModule } from './features/second-level/second-level.module';
     TranslateModule.forRoot(),
     CoreModule,
     SharedModule,
-    LayoutModule
+    LayoutModule,
+    CarouselModule.forRoot()
+
     // OAuthModule.forRoot({
     //   resourceServer: {
     //     allowedUrls: ['http://localhost:5000/api/'],

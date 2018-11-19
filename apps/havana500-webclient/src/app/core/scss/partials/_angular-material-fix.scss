@@ -1,78 +1,92 @@
 // Fix: "Icon button ripple radius is not correct on Edge & Safari"
 .mat-icon-button {
+  .mat-button-ripple {
+    border-radius: 50%;
+  }
 
-    .mat-button-ripple {
-        border-radius: 50%;
-    }
+  .mat-icon {
+    height: auto;
+    width: auto;
+  }
 }
 
 // Fix: "Inconsistent font sizes across elements"
 .mat-input-wrapper {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .mat-checkbox {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .mat-radio-button {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .mat-pseudo-checkbox-checked:after {
-    width: 14px !important;
-    height: 7px !important;
+  width: 14px !important;
+  height: 7px !important;
 }
 
 // Fix: "Input underlines has wrong color opacity value"
 .mat-form-field-underline {
-    background-color: rgba(0, 0, 0, 0.12);
+  background-color: rgba(0, 0, 0, 0.12);
 }
 
 // Fix: "Some idiots using table-cell and inline-table in mat-select"
 .mat-form-field {
+  &.mat-form-field-type-mat-select {
+    .mat-input-infix {
+      display: inline-flex;
+      width: auto;
 
-    &.mat-form-field-type-mat-select {
+      .mat-select-trigger {
+        display: inline-flex;
+        align-items: center;
+        width: 100%;
 
-        .mat-input-infix {
-            display: inline-flex;
-            width: auto;
-
-            .mat-select-trigger {
-                display: inline-flex;
-                align-items: center;
-                width: 100%;
-
-                .mat-select-value {
-                    display: flex;
-                    max-width: none;
-                    margin-right: 8px;
-                }
-
-                .mat-select-arrow-wrapper {
-                    display: inline-flex;
-                }
-            }
+        .mat-select-value {
+          display: flex;
+          max-width: none;
+          margin-right: 8px;
         }
+
+        .mat-select-arrow-wrapper {
+          display: inline-flex;
+        }
+      }
     }
+  }
 }
 
 // Fix: "Stepper icons are broken due to Ant's icon helpers"
 mat-horizontal-stepper,
 mat-vertical-stepper {
-
-    mat-step-header {
-
-        mat-icon {
-            height: 16px !important;
-            width: 16px !important;
-            min-width: 0 !important;
-            min-height: 0 !important;
-            color: rgba(255, 255, 255, 0.87) !important;
-        }
+  mat-step-header {
+    mat-icon {
+      height: 16px !important;
+      width: 16px !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      color: rgba(255, 255, 255, 0.87) !important;
     }
+  }
 }
 
 mat-vertical-stepper {
-    padding: 16px 0;
+  padding: 16px 0;
+}
+
+// MAT TABS
+.mat-tab-labels {
+  justify-content: center;
+}
+
+.mat-tab-label {
+  color: #03a9f4;
+  opacity: 0.8 !important;
+}
+
+.mat-tab-header {
+  border-bottom: none;
 }

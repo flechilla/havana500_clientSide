@@ -1,0 +1,44 @@
+.arrow {
+  position: absolute;
+  top: 15%;
+  display: flex;
+}
+
+.arrow-icon {
+  width: auto;
+  height: auto;
+  font-size: 3em;
+  padding: 1rem;
+}
+
+.previous-arrow {
+  left: 0%;
+}
+
+.next-arrow {
+  right: 0%;
+}
+
+.feature-section__positioned {
+  position: relative;
+}
+
+.curiosity-section-name {
+  font-size: 7em;
+  font-weight: 800;
+  // line-height: 1;
+}
+
+.experiences-poster {
+  min-width: 20%;
+}
+
+.experiences-poster-title {
+  font-size: 3.5em;
+  padding: 2rem;
+}
+
+.cards-container {
+  position: relative;
+  // flex-grow: 1;
+}
