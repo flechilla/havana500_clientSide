@@ -46,7 +46,6 @@ export class ArticleSummaryComponent implements OnInit {
   }
 
   navigateTo(articleId: number) {
-    console.log(articleId);
     this.router.navigate(['/article', articleId]);
   }
 }

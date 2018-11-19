@@ -69,7 +69,6 @@ export class BaseCrudService<T> {
       '&columnsToReturn=' +
       columnsToReturn +
       (tableToQuery ? '&tableToQuery=' + tableToQuery : '');
-    console.log(fUrl);
     return this.http.get<T[]>(fUrl).pipe(
       publishLast(),
       refCount(),
