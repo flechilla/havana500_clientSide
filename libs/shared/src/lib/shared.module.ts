@@ -18,6 +18,8 @@ import { LabelsBarComponent } from './components/labels-bar/labels-bar.component
 import { KeysEasedPipe } from './pipes/keys-eased.pipe';
 import { UICarouselModule } from './modules/ui-carousel/ui-carousel.module';
 import { CountdownComponent } from './components/countdown/countdown.component';
+import { NgxImageGalleryModule } from 'ngx-image-gallery';
+import { PictureToGalleryPipe } from './pipes/picture-to-gallery.pipe';
 
 @NgModule({
   imports: [
@@ -29,7 +31,9 @@ import { CountdownComponent } from './components/countdown/countdown.component';
     NgxChartsModule,
     QuillModule,
     TranslateModule,
-    UICarouselModule
+    UICarouselModule,
+
+    NgxImageGalleryModule
   ],
   declarations: [
     //Components
@@ -47,7 +51,8 @@ import { CountdownComponent } from './components/countdown/countdown.component';
 
     //Pipes
     KeysPipe,
-    KeysEasedPipe
+    KeysEasedPipe,
+    PictureToGalleryPipe
   ],
   exports: [
     //Modules
@@ -59,6 +64,8 @@ import { CountdownComponent } from './components/countdown/countdown.component';
     NgxChartsModule,
     QuillModule,
     UICarouselModule,
+
+    NgxImageGalleryModule,
 
     //Components
     ConfirmDialogComponent,
@@ -75,7 +82,8 @@ import { CountdownComponent } from './components/countdown/countdown.component';
 
     //Pipes
     KeysPipe,
-    KeysEasedPipe
+    KeysEasedPipe,
+    PictureToGalleryPipe
   ]
 })
 export class SharedModule {}
