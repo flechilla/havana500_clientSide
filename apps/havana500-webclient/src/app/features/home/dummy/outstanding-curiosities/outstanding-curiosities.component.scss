@@ -1,8 +1,15 @@
+@import '../../../../core/scss/ant.scss';
+
 .feature-section__positioned {
   position: relative;
 }
 
 .curiosity-section-name {
+  @include media-breakpoint('xs') {
+    font-size: 3em;
+    padding-bottom: 0;
+  }
+  padding-bottom: 44px;
   font-size: 7em;
   font-weight: 800;
   // line-height: 1;
