@@ -41,9 +41,9 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     }),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25 //  Retains last 25 states
-    }),
+    // StoreDevtoolsModule.instrument({
+    //   maxAge: 25 //  Retains last 25 states
+    // }),
     StoreRouterConnectingModule,
     TranslateModule.forRoot(),
     CoreModule,
