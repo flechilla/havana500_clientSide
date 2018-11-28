@@ -3,7 +3,8 @@
   class="article-summary-outer-container"
   (click)="navigateTo(article?.id)"
   [ngClass]="{
-    'article-summary-outer-container__shadowed': !isTopArticle,
+    'article-summary-outer-container__shadowed':
+      !isTopArticle && isCardShadowMode,
     'top-article': isTopArticle,
     'curiosity-article': isCuriosityHomeArticle,
     'selected-curiosity': isCuriositySelected,

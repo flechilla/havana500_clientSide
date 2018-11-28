@@ -40,6 +40,9 @@ export class ArticleSummaryComponent implements OnInit {
   @Input()
   public isEntertainmentArticle = false;
 
+  @Input()
+  public isCardShadowMode = true;
+
   constructor(private router: Router) {
     this.env = environment;
   }

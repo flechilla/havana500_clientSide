@@ -7,7 +7,7 @@
     class="section-name curiosity-section-name"
     [routerLink]="['/section/curiosidades']"
   >
-    - CURIOSISDADES
+    - CURIOSIDADES
   </h1>
 
   <div fxLayout="row" fxLayoutAlign="center center">
@@ -15,7 +15,12 @@
       [@fadeInOut]="index === current ? 'visible' : 'invisible'"
       *ngFor="let curiosity of (curiosities$ | async); let index = index"
     >
-      <ant-article-summary [isTopArticle]="true" [article]="curiosity">
+      <ant-article-summary
+        [isTopArticle]="!isMobile()"
+        [isMetadataVisible]="!isMobile()"
+        [isCardShadowMode]="!isMobile()"
+        [article]="curiosity"
+      >
       </ant-article-summary>
     </div>
   </div>
