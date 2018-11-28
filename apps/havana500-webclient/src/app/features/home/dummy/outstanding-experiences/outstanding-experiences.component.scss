@@ -1,3 +1,4 @@
+@import '../../../../core/scss/ant.scss';
 .arrow {
   position: absolute;
   top: 15%;
@@ -5,6 +6,10 @@
 }
 
 .arrow-icon {
+  @include media-breakpoint('xs') {
+    font-size: 1.2em;
+    padding: 0.5rem;
+  }
   width: auto;
   height: auto;
   font-size: 3em;
@@ -23,17 +28,34 @@
   position: relative;
 }
 
-.curiosity-section-name {
+.feature-section__sized {
+  min-height: 50vh;
+}
+
+.experiences-section-name {
+  @include media-breakpoint('xs') {
+    font-size: 3em;
+    padding-bottom: 0;
+  }
   font-size: 7em;
   font-weight: 800;
+  padding-bottom: 44px;
+
   // line-height: 1;
 }
 
 .experiences-poster {
+  @include media-breakpoint('xs') {
+    min-width: 33%;
+  }
   min-width: 20%;
 }
 
 .experiences-poster-title {
+  @include media-breakpoint('xs') {
+    font-size: 2em;
+    padding: 1rem;
+  }
   font-size: 3.5em;
   padding: 2rem;
 }

@@ -1,16 +1,17 @@
 <div
   class="feature-section__padded feature-section__positioned"
+  [ngClass]="{ 'feature-section__sized': isMobile() }"
   fxLayout="column"
 >
   <h1
     fxFlexAlign="center"
-    class="section-name pb-44 curiosity-section-name"
+    class="section-name experiences-section-name"
     [routerLink]="['/section/curiosidades']"
   >
     - EXPERIENCIAS
   </h1>
 
-  <div fxLayout="row" fxLayoutAlign="stretch stretch">
+  <div fxFlex="1 1 100%" fxLayout="row" fxLayoutAlign="stretch stretch">
     <!-- POSTER -->
     <div
       class="mat-accent-500-bg experiences-poster"
@@ -29,16 +30,23 @@
       class="cards-container"
     >
       <ant-article-summary
-        [isExperienceArticle]="true"
+        [isExperienceArticle]="!isMobile()"
+        [isEntertainmentArticle]="isMobile()"
+        [isMetadataVisible]="!isMobile()"
+        [isTextVisible]="!isMobile()"
         [article]="experiences[predecessor]"
       >
       </ant-article-summary>
       <ant-article-summary
-        [isExperienceArticle]="true"
+        [isExperienceArticle]="!isMobile()"
+        [isEntertainmentArticle]="isMobile()"
+        [isMetadataVisible]="!isMobile()"
+        [isTextVisible]="!isMobile()"
         [article]="experiences[current]"
       >
       </ant-article-summary>
       <ant-article-summary
+        *ngIf="!isMobile()"
         [isExperienceArticle]="true"
         [article]="experiences[successor]"
       >
