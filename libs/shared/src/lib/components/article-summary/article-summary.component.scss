@@ -9,6 +9,7 @@ $article-summary-bColor: #ffffff;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  max-width: 100%;
   background-color: $article-summary-bColor;
   -webkit-transition: all 0.5s cubic-bezier(0, 1.13, 0.88, 1.32);
   transition: all 0.5s cubic-bezier(0, 1.13, 0.88, 1.32);
@@ -17,6 +18,7 @@ $article-summary-bColor: #ffffff;
   margin-bottom: 0.5rem;
   color: inherit;
   position: relative;
+  height: 100%;
 
   &:hover {
     text-decoration: none !important;
@@ -62,6 +64,31 @@ $article-summary-bColor: #ffffff;
   }
 }
 
+.main-article-summary-content__positioned {
+  @include media-breakpoint('xs') {
+    position: absolute;
+    bottom: 7%;
+    background: white;
+    max-width: 90%;
+    left: 0 !important;
+    right: 0 !important;
+    margin: auto;
+  }
+
+  .article-summary-title {
+    text-align: center;
+    // text-align-last: center;
+    font-weight: 500;
+    padding-top: 0rem;
+    font-size: 1.5em;
+    text-transform: uppercase;
+  }
+
+  .main-article-summary-content {
+    padding: 0 0.1rem;
+  }
+}
+
 .main-article-summary-content__limited {
   @include media-breakpoint-up('xs') {
     max-width: 40%;
@@ -92,6 +119,7 @@ $article-summary-bColor: #ffffff;
 
 .article-image {
   width: 100%;
+  height: auto;
 }
 
 .article-image__rounded {

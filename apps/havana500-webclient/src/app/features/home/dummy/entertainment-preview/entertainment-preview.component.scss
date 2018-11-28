@@ -1,4 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap.css';
+@import '../../../../core/scss/ant.scss';
 
 .section-name {
   text-align: center;
@@ -39,4 +40,9 @@
 
 .entertainment-article {
   max-width: 80%;
+
+  @include media-breakpoint('xs') {
+    max-width: 50%;
+    padding: 0;
+  }
 }

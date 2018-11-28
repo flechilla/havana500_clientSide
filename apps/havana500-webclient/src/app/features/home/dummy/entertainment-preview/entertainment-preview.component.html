@@ -13,9 +13,10 @@
         <ant-article-summary
           [isTextVisible]="false"
           [isMetadataVisible]="false"
+          [isEntertainmentArticle]="isMobile()"
           *ngFor="let article of (sportArticles | async)"
           [article]="article"
-          class="col-xs-12 col-md-4 w-auto entertainment-article"
+          class="col-xs-6 col-md-4 w-auto entertainment-article"
         ></ant-article-summary>
       </div>
     </mat-tab>
@@ -24,9 +25,10 @@
         <ant-article-summary
           [isTextVisible]="false"
           [isMetadataVisible]="false"
+          [isEntertainmentArticle]="isMobile()"
           *ngFor="let article of (cinemaArticles | async)"
           [article]="article"
-          class="col-xs-12 col-md-4 w-auto entertainment-article"
+          class="col-xs-6 col-md-4 w-auto entertainment-article"
         ></ant-article-summary>
       </div>
     </mat-tab>
@@ -35,9 +37,10 @@
         <ant-article-summary
           [isTextVisible]="false"
           [isMetadataVisible]="false"
+          [isEntertainmentArticle]="isMobile()"
           *ngFor="let article of (literatureArticles | async)"
           [article]="article"
-          class="col-xs-12 col-md-4 w-auto entertainment-article"
+          class="col-xs-6  col-md-4 w-auto entertainment-article"
         ></ant-article-summary>
       </div>
     </mat-tab>
@@ -46,9 +49,10 @@
         <ant-article-summary
           [isTextVisible]="false"
           [isMetadataVisible]="false"
+          [isEntertainmentArticle]="isMobile()"
           *ngFor="let article of (cultureArticles | async)"
           [article]="article"
-          class="col-xs-12 col-md-4 w-auto entertainment-article"
+          class="col-xs-6  col-md-4 w-auto entertainment-article"
         ></ant-article-summary>
       </div>
     </mat-tab>

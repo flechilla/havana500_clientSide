@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { Article, ArticleService } from '@hav500workspace/shared';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'hav-entertainment-preview',
@@ -41,7 +41,7 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
       .pipe(
         map(resp => {
           if (this.isMobile()) {
-            return resp.slice(0, 2);
+            return resp.slice(0, 4);
           } else {
             return resp;
           }
@@ -50,9 +50,12 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
     this.sportArticles = this.articleService
       .getArticlesBasicDataBySectionName('deportes', 0, 6)
       .pipe(
+        tap(resp => {
+          console.log('there are ' + resp.length + ' sport articles');
+        }),
         map(resp => {
           if (this.isMobile()) {
-            return resp.slice(0, 2);
+            return resp.slice(0, 4);
           } else {
             return resp;
           }
@@ -63,7 +66,7 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
       .pipe(
         map(resp => {
           if (this.isMobile()) {
-            return resp.slice(0, 2);
+            return resp.slice(0, 4);
           } else {
             return resp;
           }
@@ -74,7 +77,7 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
       .pipe(
         map(resp => {
           if (this.isMobile()) {
-            return resp.slice(0, 2);
+            return resp.slice(0, 4);
           } else {
             return resp;
           }
