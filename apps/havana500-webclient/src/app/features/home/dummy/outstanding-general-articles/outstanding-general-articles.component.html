@@ -1,6 +1,11 @@
 <div class="top-articles feature-section__padded" fxLayout="column">
-  <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between start">
-    <div fxFlexAlign="center">
+  <div
+    class="position-relative"
+    fxLayout.xs="column"
+    fxLayout="row"
+    fxLayoutAlign="space-between start"
+  >
+    <div fxFlexAlign="center" class="title-container">
       <h1 fxFlexAlign="center" class="section-name top-section-name mb-0 pb-0">
         NOTI
       </h1>
@@ -22,8 +27,9 @@
     >
       <ant-article-summary
         fxFlexFill
-        [isTopArticle]="true"
+        [isTopArticle]="!isMobile()"
         [article]="article"
+        [isMetadataVisible]="!isMobile()"
       ></ant-article-summary>
     </div>
   </div>

@@ -4,7 +4,9 @@ import {
   Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  ElementRef
+  ElementRef,
+  ChangeDetectorRef,
+  OnDestroy
 } from '@angular/core';
 import { Observable, BehaviorSubject, of, interval } from 'rxjs';
 import {
@@ -18,6 +20,7 @@ import {
   switchMap,
   distinctUntilChanged
 } from 'rxjs/operators';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'hav-outstanding-general-articles',
@@ -27,7 +30,7 @@ import {
   animations: antAnimations,
   encapsulation: ViewEncapsulation.None
 })
-export class OutstandingGeneralArticlesComponent implements OnInit {
+export class OutstandingGeneralArticlesComponent implements OnInit, OnDestroy {
   @Input()
   totalItems: number = 5;
 
@@ -41,7 +44,18 @@ export class OutstandingGeneralArticlesComponent implements OnInit {
 
   protected articles: Article[];
 
-  constructor(protected articleService: ArticleService) {}
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
+  constructor(
+    protected articleService: ArticleService,
+    public media: MediaMatcher,
+    public changeDetectorRef: ChangeDetectorRef
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   ngOnInit() {
     this.topArticles$ = this.articleService.getArticlesBasicDataBySectionName(
@@ -88,5 +102,13 @@ export class OutstandingGeneralArticlesComponent implements OnInit {
 
   public setIndex(index) {
     this.currentIndex$.next(index);
+  }
+
+  isMobile(): boolean {
+    return this.mobileQuery.matches;
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 }

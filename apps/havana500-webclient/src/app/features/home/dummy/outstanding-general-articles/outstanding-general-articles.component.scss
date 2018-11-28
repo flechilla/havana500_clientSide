@@ -7,9 +7,22 @@
   min-height: 41rem;
   // max-height: 47rem;
   @include media-breakpoint('xs') {
-    min-height: 67rem;
+    min-height: auto;
     // max-height: 70rem;
     margin-top: 4rem;
+  }
+
+  .title-container {
+    @include media-breakpoint('xs') {
+      align-self: center;
+      position: absolute;
+      z-index: 2;
+      background: white;
+      top: 30%;
+      font-size: 0.6em;
+      left: 0;
+      height: fit-content;
+    }
   }
 
   .article-summary-title {
@@ -26,7 +39,7 @@
 .section-name {
   text-align: center;
   padding: 2rem;
-  padding-top: 4rem;
+  padding-top: 0rem;
   cursor: default;
 }
 
