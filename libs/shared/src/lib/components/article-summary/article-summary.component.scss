@@ -108,13 +108,15 @@ $article-summary-bColor: #ffffff;
   // text-align-last: center;
   font-weight: 700;
   padding-top: 1rem;
-  font-size: 2em;
+  font-size: 2.85em;
   text-transform: uppercase;
 }
 
 .article-summary-body {
   text-align: justify;
-  font-size: 1.3em;
+  font-size: 1.62em;
+  line-height: 16px;
+  font-weight: 300;
 }
 
 .article-image {
@@ -136,6 +138,31 @@ $article-summary-bColor: #ffffff;
 
   @include media-breakpoint('xs') {
     max-width: 100%;
+  }
+
+  .top-article-summary-content {
+    position: absolute;
+    background: white;
+    right: 0;
+    margin: auto;
+    max-width: 25%;
+    top: 0;
+    bottom: 0;
+    max-height: fit-content;
+    padding-bottom: 3rem;
+  }
+
+  .article-summary-img-container {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+
+    .article-image {
+      height: -webkit-fit-content;
+      height: -moz-fit-content;
+      height: fit-content;
+      width: 100%;
+    }
   }
 }
 
