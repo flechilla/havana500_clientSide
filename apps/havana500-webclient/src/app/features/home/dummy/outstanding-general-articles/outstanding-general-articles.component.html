@@ -1,25 +1,13 @@
 <div class="top-articles feature-section__padded" fxLayout="column">
   <div
     class="position-relative"
-    fxLayout.xs="column"
-    fxLayout="row"
+    fxLayout="column"
     fxLayoutAlign="space-between start"
   >
-    <div fxFlexAlign="center" class="title-container">
-      <h1 fxFlexAlign="center" class="section-name top-section-name mb-0 pb-0">
-        NOTI
-      </h1>
-      <h1
-        fxFlexAlign="center"
-        class="section-name top-section-name m-0 pt-0 text-underline"
-      >
-        CIAS
-      </h1>
-    </div>
+    <h1 fxFlexAlign="center" class="section-name">LO MÁS GRANDE</h1>
 
-    <!-- VERSION 2 -->
     <div
-      class="article-container"
+      class="article-container top-article-container"
       fxFlex="1 1 100%"
       fxFlexAlign="center"
       [@fadeInOut]="i === (currentIndex$ | async) ? 'visible' : 'invisible'"
@@ -29,8 +17,8 @@
         fxFlexFill
         [isTopArticle]="!isMobile()"
         [article]="article"
-        [isMetadataVisible]="!isMobile()"
-        [isCardShadowMode]="!isMobile()"
+        [isMetadataVisible]="false"
+        [isCardShadowMode]="false"
       ></ant-article-summary>
     </div>
   </div>
@@ -44,25 +32,5 @@
   <!-- VERSION 1 -->
   <!--
     <ant-article-summary @slideInRight fxFlexAlign="center" [article]="currentArticle$ | async"></ant-article-summary>
-  -->
-
-  <!-- VERSION 3 -->
-  <!--
-    <ui-carousel *ngIf="articles" [infinite]="true" [fade]="false" [speed]="400" height="45.2rem" width="60%">
-        <ui-carousel-item *ngFor="let article of articles">
-            <ant-article-summary [article]="article"></ant-article-summary>
-        </ui-carousel-item>
-
-    </ui-carousel>
-  -->
-
-  <!-- VERSION 4 -->
-  <!--
-    <carousel class="carousel-4" fxFlexAlign="center" [noWrap]="true" [interval]="10000">
-        <slide *ngFor="let article of articles">
-            <ant-article-summary [article]="article"></ant-article-summary>
-        </slide>
-
-    </carousel>
   -->
 </div>
