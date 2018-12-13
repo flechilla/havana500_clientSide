@@ -1,17 +1,21 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 @import '../../../../core/scss/ant.scss';
 
-.section-name {
-  text-align: center;
-  padding: 2rem;
-  padding-top: 4rem;
-  cursor: pointer;
+.entertainment-section {
+  @include media-breakpoint-down('sm') {
+    background-color: #f7f7f7;
+    margin-top: 6rem;
+  }
 }
 
 .article-summary-container {
   padding: 1rem;
   // background-color: rgba(0, 0, 0, 0.1);
   justify-content: center;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .mat-tab-body-content {
@@ -22,7 +26,7 @@
   color: inherit;
   font-weight: 600;
   font-size: 1.5rem;
-  padding-top: 1rem;
+  padding-top: 3rem;
   padding-bottom: 3rem;
   transition: all 0.2s cubic-bezier(0, 1.13, 0.88, 1.32);
 
@@ -40,9 +44,10 @@
 
 .entertainment-article {
   max-width: 80%;
+  margin-bottom: 1rem;
 
   @include media-breakpoint('xs') {
-    max-width: 50%;
     padding: 0;
+    flex: 0 0 80% !important;
   }
 }

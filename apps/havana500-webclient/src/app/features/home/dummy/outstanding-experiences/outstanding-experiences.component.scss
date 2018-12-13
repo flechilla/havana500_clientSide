@@ -1,8 +1,12 @@
 @import '../../../../core/scss/ant.scss';
 .arrow {
   position: absolute;
-  top: 15%;
+  top: 50%;
   display: flex;
+
+  @include media-breakpoint-down('sm') {
+    top: 40%;
+  }
 }
 
 .arrow-icon {
@@ -32,32 +36,24 @@
   min-height: 50vh;
 }
 
-.experiences-section-name {
-  @include media-breakpoint('xs') {
-    font-size: 3em;
-    padding-bottom: 0;
-  }
-  font-size: 7em;
-  font-weight: 800;
-  padding-bottom: 44px;
-
-  // line-height: 1;
-}
-
 .experiences-poster {
   @include media-breakpoint('xs') {
     min-width: 33%;
   }
-  min-width: 20%;
+  min-width: 30%;
 }
 
 .experiences-poster-title {
+  color: white !important;
+  text-align: left;
+  min-width: 60%;
   @include media-breakpoint('xs') {
-    font-size: 2em;
-    padding: 1rem;
+    padding: 0 1rem;
   }
-  font-size: 3.5em;
-  padding: 2rem;
+  @include media-breakpoint-down('sm') {
+    font-size: 3em;
+  }
+  padding: 0 2rem;
 }
 
 .cards-container {

@@ -20,6 +20,20 @@
   </div>
 
   <div
+    *ngIf="isCreationDateVisible"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    class="article-creation-date"
+  >
+    <!--
+      <h4>{{ article?.createdAt?.getDay() }}</h4>
+      <h5>{{ article?.createdAt?.getMonth() }}</h5>
+    -->
+    <h4 class="creation-date-day">29</h4>
+    <h5 class="creation-date-month">ABR</h5>
+  </div>
+
+  <div
     [ngClass]="{
       'top-article-summary-content': isTopArticle,
       'main-article-summary-content__positioned': isEntertainmentArticle,
@@ -34,6 +48,9 @@
       <h4 *ngIf="isTitleVisible" class="article-summary-title">
         {{ article?.title }}
       </h4>
+      <h5 *ngIf="isAuthorVisible" class="article-author">
+        POR: {{ article?.createdBy | uppercase }}
+      </h5>
       <p *ngIf="isTextVisible" class="article-summary-body">
         {{ article?.body }}
       </p>

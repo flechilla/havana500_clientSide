@@ -4,13 +4,16 @@ import {
   Output,
   EventEmitter,
   InjectionToken,
-  ViewChild
+  ViewChild,
+  ChangeDetectorRef
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { SectionService, Section } from '@hav500workspace/shared';
 import { Location } from '@angular/common';
-import { MatMenuTrigger } from '@angular/material';
+import { MatMenuTrigger, MatIconRegistry } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'hav-toolbar',
@@ -21,18 +24,35 @@ export class AntToolbarComponent implements OnInit {
   @ViewChild(MatMenuTrigger)
   private menuTrigger: MatMenuTrigger;
 
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
   constructor(
     private router: Router,
     private sectionService: SectionService,
     private location: Location,
-    private translate: TranslateService
-  ) {}
+    private translate: TranslateService,
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer,
+    public media: MediaMatcher,
+    public changeDetectorRef: ChangeDetectorRef
+  ) {
+    iconRegistry.addSvgIcon(
+      'hav500',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/500hav.svg')
+    );
+  }
   languages: any;
   selectedLanguage: any;
   private sections: Section[];
   private DOCUMENT: InjectionToken<Document>;
 
   ngOnInit(): void {
+    // Setting the changeDetector to detect when is on mobile
+    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+
     this.languages = [
       { id: 'en', title: 'English', flag: 'us' },
       { id: 'fr', title: 'French', flag: 'fr' }
@@ -77,5 +97,9 @@ export class AntToolbarComponent implements OnInit {
     console.log(JSON.stringify(menu));
     menu.style.display = '';
     menu.style.top = '65px';
+  }
+
+  isMobile(): boolean {
+    return this.mobileQuery.matches;
   }
 }

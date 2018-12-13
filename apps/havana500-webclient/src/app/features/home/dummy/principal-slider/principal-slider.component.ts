@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Picture, MarketingImageService } from '@hav500workspace/shared';
 import { IImage } from 'ng-simple-slideshow';
 import * as moment from 'moment';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'hav-principal-slider',
@@ -13,9 +14,21 @@ export class PrincipalSliderComponent implements OnInit {
 
   protected imageUrls: (string | IImage)[] = [];
 
-  constructor(private marketingImageService: MarketingImageService) {}
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
+  constructor(
+    private marketingImageService: MarketingImageService,
+    public media: MediaMatcher,
+    public changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
+    // Setting the changeDetector to detect when is on mobile
+    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+
     this.getFirstLevelImages();
   }
 
@@ -32,6 +45,10 @@ export class PrincipalSliderComponent implements OnInit {
         this.imageUrls.push(imgUrl);
       });
     });
+  }
+
+  isMobile(): boolean {
+    return this.mobileQuery.matches;
   }
 
   protected getHavana500Moment() {

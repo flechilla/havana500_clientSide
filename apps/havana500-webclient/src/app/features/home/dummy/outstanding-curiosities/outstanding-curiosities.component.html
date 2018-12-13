@@ -1,13 +1,13 @@
 <div
-  class="feature-section__padded feature-section__positioned"
+  class="feature-section__padded feature-section__positioned curiosity-section"
   fxLayout="column"
 >
   <h1
     fxFlexAlign="center"
-    class="section-name curiosity-section-name"
+    class="section-name"
     [routerLink]="['/section/curiosidades']"
   >
-    - CURIOSIDADES
+    CURIOSIDADES
   </h1>
 
   <div fxLayout="row" fxLayoutAlign="center center">
@@ -16,10 +16,11 @@
       *ngFor="let curiosity of (curiosities$ | async); let index = index"
     >
       <ant-article-summary
-        [isTopArticle]="!isMobile()"
-        [isMetadataVisible]="!isMobile()"
-        [isCardShadowMode]="!isMobile()"
+        [isMetadataVisible]="true"
+        [isCardShadowMode]="false"
         [article]="curiosity"
+        [isCuriosityHomeArticle]="!isMobile()"
+        [isCreationDateVisible]="false"
       >
       </ant-article-summary>
     </div>

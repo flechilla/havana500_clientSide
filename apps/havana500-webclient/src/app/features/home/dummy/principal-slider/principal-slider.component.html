@@ -5,12 +5,14 @@
   [lazyLoad]="imageUrls?.length > 1"
   [autoPlayWaitForLazyLoad]="true"
   [showDots]="true"
+  [dotColor]="'#32a9e1'"
   [showCaptions]="false"
   [showArrows]="false"
 >
 </slideshow>
 
 <ant-countdown
+  *ngIf="!isMobile()"
   class="countdown"
   [eventDate]="getHavana500Moment()"
 ></ant-countdown>

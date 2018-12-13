@@ -28,7 +28,7 @@
     -ms-flex-pack: center;
     justify-content: center;
     text-align: center;
-    background-color: #00000085;
+    background-color: #ffffff;
 
     .time {
       display: -webkit-box;
@@ -39,7 +39,7 @@
       -ms-flex-direction: column;
       flex-direction: column;
       padding: 0 12px;
-      color: white;
+      color: 4c4c4c;
 
       .value {
         font-size: 34px;
@@ -48,7 +48,7 @@
       }
     }
     .countdown-divider {
-      border-right-color: white;
+      border-right-color: 4c4c4c;
       align-self: stretch;
       max-height: 4rem;
     }

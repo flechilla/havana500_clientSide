@@ -5,10 +5,10 @@
 >
   <h1
     fxFlexAlign="center"
-    class="section-name experiences-section-name"
+    class="section-name"
     [routerLink]="['/section/curiosidades']"
   >
-    - EXPERIENCIAS
+    EXPERIENCIAS
   </h1>
 
   <div fxFlex="1 1 100%" fxLayout="row" fxLayoutAlign="stretch stretch">
@@ -18,9 +18,8 @@
       fxLayout="column"
       fxLayoutAlign="center center"
     >
-      <h1 class="experiences-poster-title">
-        ESTO LO PUEDES HACER EN LA HABANA
-      </h1>
+      <h1 class="experiences-poster-title section-name">QUE</h1>
+      <h1 class="experiences-poster-title section-name">HACER</h1>
     </div>
 
     <!-- CARDS -->
@@ -31,26 +30,14 @@
     >
       <ant-article-summary
         [isExperienceArticle]="!isMobile()"
-        [isEntertainmentArticle]="isMobile()"
-        [isMetadataVisible]="!isMobile()"
-        [isTextVisible]="!isMobile()"
-        [article]="experiences[predecessor]"
-      >
-      </ant-article-summary>
-      <ant-article-summary
-        [isExperienceArticle]="!isMobile()"
-        [isEntertainmentArticle]="isMobile()"
-        [isMetadataVisible]="!isMobile()"
-        [isTextVisible]="!isMobile()"
+        [isMetadataVisible]="true"
         [article]="experiences[current]"
+        [isCreationDateVisible]="false"
+        [isCardShadowMode]="false"
+        [isAuthorVisible]="false"
       >
       </ant-article-summary>
-      <ant-article-summary
-        *ngIf="!isMobile()"
-        [isExperienceArticle]="true"
-        [article]="experiences[successor]"
-      >
-      </ant-article-summary>
+
       <!--
         <div *ngFor="let curiosity of (experiences$ | async); let index = index">
           <ant-article-summary

@@ -1,36 +1,49 @@
 <nav fxFlex fxFill fxLayout="row" fxLayoutAlign="space-between center">
-  <mat-icon></mat-icon>
+  <button *ngIf="isMobile()" mat-icon-button><mat-icon>menu</mat-icon></button>
 
+  <mat-icon class="hav500-icon" svgIcon="hav500"></mat-icon>
 
-  <div fxHide.xs class="main-nav-link-container" fxFlex fxLayout="row" fxLayoutAlign="space-evenly center">
-
+  <div
+    fxHide.xs
+    class="main-nav-link-container"
+    fxFlex
+    fxLayout="row"
+    fxLayoutAlign="space-evenly center"
+  >
     <a mat-button [routerLink]="['/section/eventos']">Eventos</a>
     <a mat-button [routerLink]="['/section/experiencias']">Experiencias</a>
     <a mat-button [routerLink]="['/section/galeria']">Galeria</a>
-    <a mat-button [matMenuTriggerFor]="entertainment">Entretenimiento
+    <a mat-button [matMenuTriggerFor]="entertainment"
+      >Entretenimiento
       <mat-icon>keyboard_arrow_down</mat-icon>
     </a>
-
   </div>
 
-  <button mat-button fxHide fxShow.gt-xs class="language-button" [matMenuTriggerFor]="languageMenu">
+  <button mat-button class="language-button" [matMenuTriggerFor]="languageMenu">
     <div fxLayout="row" fxLayoutAlign="center center">
-      <img class="flag mr-8" [src]="'assets/images/flags/'+selectedLanguage.flag+'.png'">
-      <span class="iso text-uppercase">{{selectedLanguage.id}}</span>
+      <img
+        class="flag mr-8"
+        [src]="'assets/images/flags/' + selectedLanguage.flag + '.png'"
+      />
+      <span class="iso text-uppercase">{{ selectedLanguage.id }}</span>
     </div>
   </button>
 
   <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
-
-    <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
+    <button
+      mat-menu-item
+      *ngFor="let lang of languages"
+      (click)="setLanguage(lang)"
+    >
       <div fxLayout="row" fxLayoutAlign="start center">
-        <img class="flag mr-16" [src]="'assets/images/flags/'+lang.flag+'.png'">
-        <span class="iso">{{lang.title}}</span>
+        <img
+          class="flag mr-16"
+          [src]="'assets/images/flags/' + lang.flag + '.png'"
+        />
+        <span class="iso">{{ lang.title }}</span>
       </div>
     </button>
-
   </mat-menu>
-
 </nav>
 
 <mat-menu #entertainment="matMenu" id="entertainment" [overlapTrigger]="false">

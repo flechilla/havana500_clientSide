@@ -5,7 +5,7 @@ import {
   ChangeDetectorRef,
   OnDestroy
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 import { Article, ArticleService } from '@hav500workspace/shared';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { map, tap } from 'rxjs/operators';
@@ -29,55 +29,54 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
     private articleService: ArticleService,
     public media: MediaMatcher,
     public changeDetectorRef: ChangeDetectorRef
-  ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
+  ) {}
 
   ngOnInit() {
+    // Setting the changeDetector to detect when is on mobile
+    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+
     this.cinemaArticles = this.articleService
-      .getArticlesBasicDataBySectionName('cine', 0, 6)
+      .getArticlesBasicDataBySectionName('cine', 0, 4)
       .pipe(
         map(resp => {
           if (this.isMobile()) {
-            return resp.slice(0, 4);
+            return resp.slice(0, 1);
           } else {
             return resp;
           }
         })
       );
+
     this.sportArticles = this.articleService
-      .getArticlesBasicDataBySectionName('deportes', 0, 6)
+      .getArticlesBasicDataBySectionName('deportes', 0, 4)
       .pipe(
-        tap(resp => {
-          console.log('there are ' + resp.length + ' sport articles');
-        }),
         map(resp => {
           if (this.isMobile()) {
-            return resp.slice(0, 4);
+            return resp.slice(0, 1);
           } else {
             return resp;
           }
         })
       );
     this.cultureArticles = this.articleService
-      .getArticlesBasicDataBySectionName('cultura', 0, 6)
+      .getArticlesBasicDataBySectionName('cultura', 0, 4)
       .pipe(
         map(resp => {
           if (this.isMobile()) {
-            return resp.slice(0, 4);
+            return resp.slice(0, 1);
           } else {
             return resp;
           }
         })
       );
     this.literatureArticles = this.articleService
-      .getArticlesBasicDataBySectionName('literatura', 0, 6)
+      .getArticlesBasicDataBySectionName('literatura', 0, 4)
       .pipe(
         map(resp => {
           if (this.isMobile()) {
-            return resp.slice(0, 4);
+            return resp.slice(0, 1);
           } else {
             return resp;
           }

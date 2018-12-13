@@ -1,5 +1,25 @@
 @import '../../../../core/scss/ant';
 
+.impact-presentation {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+
+  @include media-breakpoint-down('sm') {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+.impact-sections-portal {
+  flex: 0 0 66.666667%;
+  max-width: 66.666667%;
+
+  @include media-breakpoint-down('sm') {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
 .image-container {
   position: relative;
   background-image: url('../../../../../assets/images/article-header.png'),
@@ -23,13 +43,50 @@
   }
 }
 
+.impact-section {
+  padding-top: 3rem;
+}
+
+.impact-sections {
+  height: 25vw;
+  width: 25vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none !important;
+  }
+
+  @include media-breakpoint-down('sm') {
+    height: 40vw;
+    width: 40vw;
+  }
+}
+
+.economic-section {
+  background-color: #3db54b;
+}
+
+.political-section {
+  background-color: #ed2225;
+}
+.social-section {
+  background-color: #29aae3;
+}
+.historic-section {
+  background-color: #fbb03d;
+}
+
 .impact-section-title {
-  position: absolute;
-  bottom: 10%;
-  right: 0;
-  left: 0;
   text-align: center;
-  color: #f8f9faa6;
+  color: white !important;
   font-weight: 900;
-  mix-blend-mode: screen;
+}
+
+.impact-section-body {
+  @include media-breakpoint-down('sm') {
+    padding: 3rem;
+    padding-top: 0;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import {
   Picture,
@@ -7,6 +7,7 @@ import {
 } from '@hav500workspace/shared';
 import { NgxImageGalleryComponent, GALLERY_IMAGE } from 'ngx-image-gallery';
 import { map } from 'rxjs/operators';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'hav-outstanding-gallery',
@@ -19,6 +20,9 @@ export class OutstandingGalleryMediasComponent implements OnInit {
 
   protected secondGallery: GALLERY_IMAGE[] = [];
   protected galleryId: 'hav-gallery';
+
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
 
   gridItemClasses: string[] = [
     'first-image',
@@ -35,14 +39,31 @@ export class OutstandingGalleryMediasComponent implements OnInit {
   @ViewChild(NgxImageGalleryComponent)
   ngxImageGallery: NgxImageGalleryComponent;
 
-  constructor(protected galleryService: GalleryService) {}
+  constructor(
+    protected galleryService: GalleryService,
+    public media: MediaMatcher,
+    public changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   openGallery(index: number) {
     this.ngxImageGallery.open(index);
   }
 
   ngOnInit() {
-    this.galleryImages$ = this.galleryService.getGalleryImages(9);
+    // Setting the changeDetector to detect when is on mobile
+    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+
+    this.galleryImages$ = this.galleryService.getGalleryImages(7).pipe(
+      map(resp => {
+        if (this.isMobile()) {
+          return resp.slice(0, 4);
+        } else {
+          return resp;
+        }
+      })
+    );
 
     this.galleryImages$.subscribe(resp => {
       this.galleryImages = resp;
@@ -54,5 +75,9 @@ export class OutstandingGalleryMediasComponent implements OnInit {
     return pictures.map(a => {
       return { url: a.relativePath };
     });
+  }
+
+  isMobile(): boolean {
+    return this.mobileQuery.matches;
   }
 }

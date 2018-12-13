@@ -43,6 +43,12 @@ export class ArticleSummaryComponent implements OnInit {
   @Input()
   public isCardShadowMode = true;
 
+  @Input()
+  public isAuthorVisible = true;
+
+  @Input()
+  public isCreationDateVisible = true;
+
   constructor(private router: Router) {
     this.env = environment;
   }

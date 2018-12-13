@@ -1,5 +1,11 @@
 @import '../../../../core/scss/ant.scss';
 
+.curiosity-section {
+  @include media-breakpoint-down('xs') {
+    margin-top: 6rem;
+  }
+}
+
 .feature-section__positioned {
   position: relative;
 }

@@ -7,6 +7,10 @@ $headers-color: #4c4c4c;
   padding-top: 4rem;
   cursor: pointer;
   font-weight: 700;
+
+  @include media-breakpoint-down('sm') {
+    font-size: 4em;
+  }
 }
 
 h1,
@@ -14,4 +18,11 @@ h2,
 h3,
 h4 {
   color: $headers-color !important;
+}
+
+p {
+  text-align: justify;
+  font-size: 1.62em;
+  line-height: 16px;
+  font-weight: 300;
 }
