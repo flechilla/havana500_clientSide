@@ -1,7 +1,13 @@
 <nav fxFlex fxFill fxLayout="row" fxLayoutAlign="space-between center">
-  <button *ngIf="isMobile()" mat-icon-button><mat-icon>menu</mat-icon></button>
+  <button *ngIf="isMobile()" mat-icon-button (click)="openMobileMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
 
-  <mat-icon class="hav500-icon" svgIcon="hav500"></mat-icon>
+  <mat-icon
+    [routerLink]="['home']"
+    class="hav500-icon"
+    svgIcon="hav500"
+  ></mat-icon>
 
   <div
     fxHide.xs
@@ -10,11 +16,11 @@
     fxLayout="row"
     fxLayoutAlign="space-evenly center"
   >
-    <a mat-button [routerLink]="['/section/eventos']">Eventos</a>
-    <a mat-button [routerLink]="['/section/experiencias']">Experiencias</a>
-    <a mat-button [routerLink]="['/section/galeria']">Galeria</a>
+    <a mat-button [routerLink]="['/section/eventos']">EVENTOS</a>
+    <a mat-button [routerLink]="['/section/experiencias']">EXPERIENCIAS</a>
+    <a mat-button [routerLink]="['/section/galeria']">GALERIA</a>
     <a mat-button [matMenuTriggerFor]="entertainment"
-      >Entretenimiento
+      >ENTRETENIMIENTO
       <mat-icon>keyboard_arrow_down</mat-icon>
     </a>
   </div>

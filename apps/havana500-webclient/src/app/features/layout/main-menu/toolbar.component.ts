@@ -10,10 +10,16 @@ import {
 import { Router } from '@angular/router';
 import { SectionService, Section } from '@hav500workspace/shared';
 import { Location } from '@angular/common';
-import { MatMenuTrigger, MatIconRegistry } from '@angular/material';
+import {
+  MatMenuTrigger,
+  MatIconRegistry,
+  MatDialog,
+  MatDialogConfig
+} from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { MobileMenuComponent } from '../mobile-menu/mobile-menu.component';
 
 @Component({
   selector: 'hav-toolbar',
@@ -27,6 +33,8 @@ export class AntToolbarComponent implements OnInit {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
+  protected dialogRef: any;
+
   constructor(
     private router: Router,
     private sectionService: SectionService,
@@ -35,7 +43,8 @@ export class AntToolbarComponent implements OnInit {
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
     public media: MediaMatcher,
-    public changeDetectorRef: ChangeDetectorRef
+    public changeDetectorRef: ChangeDetectorRef,
+    protected dialog: MatDialog
   ) {
     iconRegistry.addSvgIcon(
       'hav500',
@@ -101,5 +110,17 @@ export class AntToolbarComponent implements OnInit {
 
   isMobile(): boolean {
     return this.mobileQuery.matches;
+  }
+
+  openMobileMenu() {
+    const dialogConfig: MatDialogConfig<any> = {
+      hasBackdrop: true,
+      position: { top: '0', left: '0' },
+      maxWidth: '100vw',
+      width: '100vw',
+      panelClass: 'mobile-menu',
+      closeOnNavigation: false
+    };
+    this.dialogRef = this.dialog.open(MobileMenuComponent, dialogConfig);
   }
 }

@@ -1,0 +1,21 @@
+<nav
+  class="main-nav-link-container"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="space-evenly flex-start"
+>
+  <mat-icon (click)="closeDialog()" class="close-icon">close_white</mat-icon>
+
+  <a class="section-name" mat-button [routerLink]="['/section/eventos']"
+    >EVENTOS</a
+  >
+  <a class="section-name" mat-button [routerLink]="['/section/experiencias']"
+    >EXPERIENCIAS</a
+  >
+  <a class="section-name" mat-button [routerLink]="['/section/galeria']"
+    >GALERIA</a
+  >
+  <a class="section-name" mat-button [routerLink]="['/section/entretenimiento']"
+    >ENTRETENIMIENTO</a
+  >
+</nav>

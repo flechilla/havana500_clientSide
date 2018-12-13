@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AntToolbarComponent } from './main-menu/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule, FlexLayoutModule],
@@ -16,8 +17,10 @@ import { FooterComponent } from './footer/footer.component';
     LayoutComponent,
     ContentComponent,
     AntToolbarComponent,
-    FooterComponent
+    FooterComponent,
+    MobileMenuComponent
   ],
-  providers: []
+  providers: [],
+  entryComponents: [MobileMenuComponent]
 })
 export class LayoutModule {}
