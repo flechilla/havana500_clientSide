@@ -6,9 +6,14 @@ import {
   OnDestroy
 } from '@angular/core';
 import { Observable, pipe } from 'rxjs';
-import { Article, ArticleService } from '@hav500workspace/shared';
+import {
+  Article,
+  ArticleService,
+  AntTranslateService
+} from '@hav500workspace/shared';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { map, tap } from 'rxjs/operators';
+import { english, spanish, french } from './i18n';
 
 @Component({
   selector: 'hav-entertainment-preview',
@@ -28,8 +33,11 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
   constructor(
     private articleService: ArticleService,
     public media: MediaMatcher,
-    public changeDetectorRef: ChangeDetectorRef
-  ) {}
+    public changeDetectorRef: ChangeDetectorRef,
+    public translate: AntTranslateService
+  ) {
+    this.translate.loadTranslations(english, spanish, french);
+  }
 
   ngOnInit() {
     // Setting the changeDetector to detect when is on mobile
