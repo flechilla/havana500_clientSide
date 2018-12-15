@@ -16,12 +16,20 @@
     fxLayout="row"
     fxLayoutAlign="space-evenly center"
   >
-    <a mat-button [routerLink]="['/section/eventos']">EVENTOS</a>
-    <a mat-button [routerLink]="['/section/experiencias']">EXPERIENCIAS</a>
-    <a mat-button [routerLink]="['/section/galeria']">GALERIA</a>
-    <a mat-button [matMenuTriggerFor]="entertainment"
-      >ENTRETENIMIENTO
-      <mat-icon>keyboard_arrow_down</mat-icon>
+    <a mat-button [routerLink]="['/section/eventos']"
+      ><div translate>EVENTS</div></a
+    >
+    <a mat-button [routerLink]="['/section/experiencias']"
+      ><div translate>EXPERIENCES</div></a
+    >
+    <a mat-button [routerLink]="['/section/galeria']"
+      ><div translate>GALLERY</div></a
+    >
+    <a mat-button [matMenuTriggerFor]="entertainment">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div translate>ENTERTAINMENT</div>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </div>
     </a>
   </div>
 

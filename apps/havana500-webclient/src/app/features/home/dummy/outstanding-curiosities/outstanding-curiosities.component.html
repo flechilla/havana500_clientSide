@@ -2,13 +2,9 @@
   class="feature-section__padded feature-section__positioned curiosity-section"
   fxLayout="column"
 >
-  <h1
-    fxFlexAlign="center"
-    class="section-name"
-    [routerLink]="['/section/curiosidades']"
-  >
-    CURIOSIDADES
-  </h1>
+  <div fxFlexAlign="center" [routerLink]="['/section/curiosidades']">
+    <h1 translate class="section-name clickable">CURIOSITIES</h1>
+  </div>
 
   <div fxLayout="row" fxLayoutAlign="center center">
     <div
@@ -36,9 +32,10 @@
   -->
 
   <a
+    translate
     class="see-more-section"
     [routerLink]="'/section/curiosidades'"
     fxFlexAlign="center"
-    >See More</a
+    >SEE_MORE</a
   >
 </div>

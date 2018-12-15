@@ -9,11 +9,13 @@ import {
   Article,
   IndexesCircularLinkedList,
   antAnimations,
-  ArticleService
+  ArticleService,
+  AntTranslateService
 } from '@hav500workspace/shared';
 import { Observable, interval } from 'rxjs';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
+import { english, spanish, french } from './i18n';
 
 @Component({
   selector: 'hav-outstanding-curiosities',
@@ -34,12 +36,14 @@ export class OutstandingCuriositiesComponent implements OnInit, OnDestroy {
   constructor(
     protected articleService: ArticleService,
     public media: MediaMatcher,
-    public changeDetectorRef: ChangeDetectorRef
+    public changeDetectorRef: ChangeDetectorRef,
+    public translate: AntTranslateService
   ) {
     //Sets the media query listener
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.translate.loadTranslations(english, spanish, french);
   }
 
   ngOnInit() {

@@ -9,9 +9,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AntToolbarComponent } from './main-menu/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, RouterModule, FlexLayoutModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule,
+    FlexLayoutModule,
+    TranslateModule.forChild()
+  ],
   exports: [LayoutComponent],
   declarations: [
     LayoutComponent,

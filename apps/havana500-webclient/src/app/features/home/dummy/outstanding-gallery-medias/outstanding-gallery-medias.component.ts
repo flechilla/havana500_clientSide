@@ -3,11 +3,13 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import {
   Picture,
   GalleryService,
-  PictureToGalleryPipe
+  PictureToGalleryPipe,
+  AntTranslateService
 } from '@hav500workspace/shared';
 import { NgxImageGalleryComponent, GALLERY_IMAGE } from 'ngx-image-gallery';
 import { map } from 'rxjs/operators';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { english, spanish, french } from './i18n';
 
 @Component({
   selector: 'hav-outstanding-gallery',
@@ -42,8 +44,11 @@ export class OutstandingGalleryMediasComponent implements OnInit {
   constructor(
     protected galleryService: GalleryService,
     public media: MediaMatcher,
-    public changeDetectorRef: ChangeDetectorRef
-  ) {}
+    public changeDetectorRef: ChangeDetectorRef,
+    public translate: AntTranslateService
+  ) {
+    this.translate.loadTranslations(english, spanish, french);
+  }
 
   openGallery(index: number) {
     this.ngxImageGallery.open(index);
