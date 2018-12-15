@@ -12,7 +12,8 @@ import { Observable, BehaviorSubject, of, interval } from 'rxjs';
 import {
   Article,
   ArticleService,
-  antAnimations
+  antAnimations,
+  AntTranslateService
 } from '@hav500workspace/shared';
 import {
   combineLatest,
@@ -21,6 +22,7 @@ import {
   distinctUntilChanged
 } from 'rxjs/operators';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { english, spanish, french } from './i18n';
 
 @Component({
   selector: 'hav-outstanding-general-articles',
@@ -50,11 +52,13 @@ export class OutstandingGeneralArticlesComponent implements OnInit, OnDestroy {
   constructor(
     protected articleService: ArticleService,
     public media: MediaMatcher,
-    public changeDetectorRef: ChangeDetectorRef
+    public changeDetectorRef: ChangeDetectorRef,
+    public translate: AntTranslateService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.translate.loadTranslations(english, spanish, french);
   }
 
   ngOnInit() {
