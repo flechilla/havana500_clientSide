@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AntTranslateService } from '@hav500workspace/shared';
 
-import { spanish, french, english } from '../home/i18n';
-
 @Component({
   selector: 'hav-layout',
   templateUrl: './layout.component.html',
@@ -10,9 +8,7 @@ import { spanish, french, english } from '../home/i18n';
   encapsulation: ViewEncapsulation.None
 })
 export class LayoutComponent implements OnInit, OnDestroy {
-  constructor(private translate: AntTranslateService) {
-    this.translate.loadTranslations(spanish, french, english);
-  }
+  constructor() {}
 
   ngOnDestroy(): void {}
 
