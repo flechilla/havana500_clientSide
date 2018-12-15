@@ -4,13 +4,10 @@
   fxLayout.xs="column"
 >
   <div class="impact-presentation">
-    <h1
-      fxFlexAlign="center"
-      class="section-name"
-      [routerLink]="'/section/impacto'"
-    >
-      IMPACTO
-    </h1>
+    <div fxFlexAlign="center" [routerLink]="'/section/impacto'">
+      <h1 translate class="section-name clickable">IMPACT</h1>
+    </div>
+
     <p class="impact-section-body">
       Explicacion de lo que se puede encontrar en impacto, Lorem ipsum dolor sit
       amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
@@ -23,18 +20,18 @@
   <div class="impact-sections-portal">
     <div fxLayout="row wrap" fxLayoutAlign="center center">
       <a class="impact-sections social-section">
-        <h1 class="impact-section-title">SOCIAL</h1>
+        <h1 translate class="impact-section-title">SOCIAL</h1>
       </a>
       <a class="impact-sections political-section">
-        <h1 class="impact-section-title">POLITICO</h1>
+        <h1 translate class="impact-section-title">POLITICAL</h1>
       </a>
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="center center">
       <a class="impact-sections economic-section">
-        <h1 class="impact-section-title">ECONOMICO</h1>
+        <h1 translate class="impact-section-title">ECONOMICAL</h1>
       </a>
       <a class="impact-sections historic-section">
-        <h1 class="impact-section-title">HISTORICO</h1>
+        <h1 translate class="impact-section-title">HISTORICAL</h1>
       </a>
     </div>
   </div>
