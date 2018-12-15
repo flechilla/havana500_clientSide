@@ -9,11 +9,13 @@ import { Observable } from 'rxjs';
 import {
   Article,
   IndexesCircularLinkedList,
-  ArticleService
+  ArticleService,
+  AntTranslateService
 } from '@hav500workspace/shared';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { english, spanish, french } from './i18n';
 
 @Component({
   selector: 'hav-outstanding-experiences',
@@ -35,7 +37,8 @@ export class OutstandingExperiencesComponent implements OnInit, OnDestroy {
     sanitizer: DomSanitizer,
     protected articleService: ArticleService,
     public media: MediaMatcher,
-    public changeDetectorRef: ChangeDetectorRef
+    public changeDetectorRef: ChangeDetectorRef,
+    public translate: AntTranslateService
   ) {
     iconRegistry.addSvgIcon(
       'arrow',
@@ -46,6 +49,8 @@ export class OutstandingExperiencesComponent implements OnInit, OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    this.translate.loadTranslations(english, spanish, french);
   }
 
   ngOnInit() {

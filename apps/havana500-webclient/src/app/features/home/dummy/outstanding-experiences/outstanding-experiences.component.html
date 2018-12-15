@@ -3,13 +3,9 @@
   [ngClass]="{ 'feature-section__sized': isMobile() }"
   fxLayout="column"
 >
-  <h1
-    fxFlexAlign="center"
-    class="section-name"
-    [routerLink]="['/section/curiosidades']"
-  >
-    EXPERIENCIAS
-  </h1>
+  <div fxFlexAlign="center" [routerLink]="['/section/curiosidades']">
+    <h1 translate class="section-name clickable">EXPERIENCES</h1>
+  </div>
 
   <div fxFlex="1 1 100%" fxLayout="row" fxLayoutAlign="stretch stretch">
     <!-- POSTER -->
@@ -18,8 +14,8 @@
       fxLayout="column"
       fxLayoutAlign="center center"
     >
-      <h1 class="experiences-poster-title section-name">QUE</h1>
-      <h1 class="experiences-poster-title section-name">HACER</h1>
+      <h1 translate class="experiences-poster-title section-name">WHAT</h1>
+      <h1 translate class="experiences-poster-title section-name">TODO</h1>
     </div>
 
     <!-- CARDS -->
@@ -62,9 +58,10 @@
   </div>
 
   <a
+    translate
     class="see-more-section"
-    [routerLink]="'/section/curiosidades'"
+    [routerLink]="'/section/experiencias'"
     fxFlexAlign="center"
-    >See More</a
+    >SEE_MORE</a
   >
 </div>
