@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Observable, interval } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AntTranslateService } from '../../services';
+import { english, spanish, french } from './i18n';
 
 @Component({
   selector: 'ant-countdown',
@@ -13,7 +15,9 @@ export class CountdownComponent implements OnInit {
   eventDate;
   countdown: any;
 
-  constructor() {
+  constructor(public translate: AntTranslateService) {
+    this.translate.loadTranslations(english, spanish, french);
+
     this.countdown = {
       days: '',
       hours: '',
