@@ -1,5 +1,9 @@
 @import '../../core/scss/ant';
 
+body{
+  font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif !important;
+}
+
 .toolbar {
   z-index: 2;
 }
