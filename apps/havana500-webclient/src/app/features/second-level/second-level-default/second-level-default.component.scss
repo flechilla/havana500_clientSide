@@ -1,7 +1,38 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 
-.section-name {
-  font-size: 5rem;
-  padding: 8rem 1rem;
-  padding-top: 2rem;
+
+$tags-container-color: #2AAAE2;
+
+#secondary-header {
+  width: 100%;
+  margin-bottom: 130px !important;
+  box-sizing: border-box;
+  position: relative;
+  
+  #section-name-container {
+    float: left;
+    position: relative;
+    .section-name {
+      font-size: 9.2em;
+      padding-top: 25% !important;
+      float: right;
+      padding-top: 15%;
+      font-family: "Roboto Black" !important;
+    }
+  }
+
+  #tags-outer-container {
+    background-color: $tags-container-color;
+    float: right;
+    margin-top: 5.5rem;
+    padding-left: 11.47%;
+    max-height: 214px;
+
+    #tags-title{
+      color: white !important;
+      font-weight: 700;
+      font-size: 5.2em;
+      font-family: "Myriad Pro";//TODO: put the fonts local
+    }
+  }
 }

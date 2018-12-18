@@ -1,11 +1,20 @@
 <div fxLayout="column" fxLayoutAlign="start start">
-  <h1 class="section-name">{{sectionName}}</h1>
-
-  <div style="width: 100%">
-    <ng-select [items]="globalTags$ | async" [hideSelected]="true" bindLabel='name' [closeOnSelect]="false" [multiple]="true"
-      bindValue="id" [placeholder]="'Filter by Tags'" [searchFn]="tagSelectFilter" (change)="tagSelectionChanged($event)"
-      [(ngModel)]="selectedItems"></ng-select>
+  <div id="secondary-header" class="col-12">
+    <div id="section-name-container" class="col-6">
+      <h1 class="section-name">{{sectionName}}</h1>
+    </div>
+    <div id="tags-outer-container" class="col-6">
+      <h3 id="tags-title">SELECTOR DE ETIQUETAS</h3> <!--TODO: translate this-->
+      <div style="width: 100%">
+        <ng-select [items]="globalTags$ | async" [hideSelected]="true" bindLabel='name' [closeOnSelect]="false"
+          [multiple]="true" bindValue="id" [placeholder]="'Filter by Tags'" [searchFn]="tagSelectFilter" (change)="tagSelectionChanged($event)"
+          [(ngModel)]="selectedItems" style=" background-color: #fff !important; width: 40%; min-height: 38px !important;"></ng-select>
+      </div>
+    </div>
   </div>
+
+
+
 
   <div fxFlexFill class="row">
     <ant-article-summary *ngFor="let article of articles$ | async" [article]="article" class="col-md-3 col-xs-12"></ant-article-summary>
