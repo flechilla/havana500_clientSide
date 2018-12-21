@@ -17,6 +17,7 @@ import { Observable } from 'rxjs';
 export class SecondLevelDefaultComponent implements OnInit {
   globalTags$: Observable<ContentTag[]>;
   articles: Article[];
+  articlesToRender: Article[];
   private amountOfArticles = 50;
   private currentPage = 0;
   sectionName: string;
@@ -52,11 +53,18 @@ export class SecondLevelDefaultComponent implements OnInit {
         this.secondMostImporatantArticles.push(articles.shift());
         this.secondMostImporatantArticles.push(articles.shift());
         this.articles = articles;
+        this.articlesToRender = this.articles.splice(0, 8);
     });
   }
 
   public tagSelectFilter(term: string, item: ContentTag): boolean {
     return item.name.toLowerCase().includes(term.toLowerCase());
+  }
+
+  private includeMoreArticles(): void{
+    const itemsToInclude = this.articles.splice(0, 8);
+    console.log(itemsToInclude);
+    this.articlesToRender = this.articlesToRender.concat(itemsToInclude);
   }
 
   tagSelectionChanged(selectedTags: any[]) {

@@ -28,8 +28,10 @@
       <ant-article-summary *ngFor="let article of secondMostImporatantArticles" [article]="article" class="col-md-6 col-xs-12"></ant-article-summary>
     </section>
     <section id="articles-summary-container">
-      <ant-article-summary *ngFor="let article of articles" [article]="article" class="col-md-3 col-xs-12"></ant-article-summary>
+      <ant-article-summary *ngFor="let article of articlesToRender" [article]="article" class="col-md-3 col-xs-12"></ant-article-summary>
     </section>
   </article>
-
+<div id="more-articles-btn-container">
+  <button class="btn" (click)="includeMoreArticles()">More</button>
+</div>
 </div>
