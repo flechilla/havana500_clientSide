@@ -145,6 +145,9 @@ $article-summary-bColor: #ffffff;
   font-size: 1.62em;
   line-height: 16px;
   font-weight: 300;
+  min-height: 210px;
+  max-height: 210px;
+  overflow: hidden;
 }
 
 .article-author {

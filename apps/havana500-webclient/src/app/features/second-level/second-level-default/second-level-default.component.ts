@@ -4,9 +4,12 @@ import {
   ArticleService,
   Article,
   ContentTag,
-  ContentTagService
+  ContentTagService,
+  AntTranslateService
 } from '@hav500workspace/shared';
 import { Observable } from 'rxjs';
+import { english, spanish, french } from '../i18n';
+
 
 @Component({
   selector: 'hav-second-level-default',
@@ -30,7 +33,8 @@ export class SecondLevelDefaultComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private articleService: ArticleService,
-    private contentTagService: ContentTagService
+    private contentTagService: ContentTagService,
+    private translateService: AntTranslateService
   ) {}
 
   ngOnInit() {
@@ -41,6 +45,8 @@ export class SecondLevelDefaultComponent implements OnInit {
       this.getArticles();
     });
     this.isEndOfPage = false;
+    this.translateService.loadTranslations(english, spanish, french);
+
   }
 
   protected getArticles(tagIds: number[] = []): void {

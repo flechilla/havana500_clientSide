@@ -6,6 +6,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SecondLevelDefaultComponent } from './second-level-default/second-level-default.component';
 import { SecondLevelRoutingModule } from './second-level-routing.module';
+import { HomeModule } from '../home/home.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -13,7 +15,9 @@ import { SecondLevelRoutingModule } from './second-level-routing.module';
     SharedModule,
     FlexLayoutModule,
     NgSelectModule,
-    SecondLevelRoutingModule
+    SecondLevelRoutingModule,
+    HomeModule,
+    TranslateModule
   ],
   declarations: [SecondLevelDefaultComponent]
 })

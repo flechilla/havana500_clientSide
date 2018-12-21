@@ -4,7 +4,7 @@
       <h1 class="section-name">{{sectionName}}</h1>
     </div>
     <div id="tags-outer-container" class="col-12 col-sm-6">
-      <h3 id="tags-title">SELECTOR DE ETIQUETAS</h3>
+      <h3 translate id="tags-title">TAG_SELECTOR</h3>
       <!--TODO: translate this-->
       <div style="width: 100%">
         <ng-select [items]="globalTags$ | async" [hideSelected]="true" bindLabel='name' [closeOnSelect]="false"
@@ -32,6 +32,8 @@
     </section>
   </article>
 <div id="more-articles-btn-container" [ngClass]="{'hide-more-btn': isEndOfPage}">
-  <button class="btn" (click)="includeMoreArticles()">More</button>
+  <button class="btn" (click)="includeMoreArticles()" translate="">SEE_MORE</button>
 </div>
+
+<!-- <hav-outstanding-experiences></hav-outstanding-experiences> TODo: use this compoenent, but can't be imported in this module and the homeModule... -->
 </div>
