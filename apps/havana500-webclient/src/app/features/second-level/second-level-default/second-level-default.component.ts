@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import {
   ArticleService,
@@ -11,7 +11,8 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'hav-second-level-default',
   templateUrl: './second-level-default.component.html',
-  styleUrls: ['./second-level-default.component.scss']
+  styleUrls: ['./second-level-default.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SecondLevelDefaultComponent implements OnInit {
   globalTags$: Observable<ContentTag[]>;
