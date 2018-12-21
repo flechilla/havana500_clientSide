@@ -16,10 +16,12 @@ import { Observable } from 'rxjs';
 })
 export class SecondLevelDefaultComponent implements OnInit {
   globalTags$: Observable<ContentTag[]>;
-  articles$: Observable<Article[]>;
+  articles: Article[];
   private amountOfArticles = 50;
   private currentPage = 0;
   sectionName: string;
+  mostImportantArticle: Article;
+  secondMostImporatantArticles: Article[];
 
   selectedItems: any[];
 
@@ -39,12 +41,18 @@ export class SecondLevelDefaultComponent implements OnInit {
   }
 
   protected getArticles(tagIds: number[] = []): void {
-    this.articles$ = this.articleService.getArticlesBasicDataBySectionNameAndTagIds(
+    this.secondMostImporatantArticles = [];
+    this.articleService.getArticlesBasicDataBySectionNameAndTagIds(
       this.sectionName,
       tagIds,
       this.currentPage,
       this.amountOfArticles
-    );
+    ).subscribe(articles=>{
+        this.mostImportantArticle = articles.shift();
+        this.secondMostImporatantArticles.push(articles.shift());
+        this.secondMostImporatantArticles.push(articles.shift());
+        this.articles = articles;
+    });
   }
 
   public tagSelectFilter(term: string, item: ContentTag): boolean {

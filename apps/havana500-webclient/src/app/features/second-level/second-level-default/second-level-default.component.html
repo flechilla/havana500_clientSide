@@ -4,7 +4,8 @@
       <h1 class="section-name">{{sectionName}}</h1>
     </div>
     <div id="tags-outer-container" class="col-6">
-      <h3 id="tags-title">SELECTOR DE ETIQUETAS</h3> <!--TODO: translate this-->
+      <h3 id="tags-title">SELECTOR DE ETIQUETAS</h3>
+      <!--TODO: translate this-->
       <div style="width: 100%">
         <ng-select [items]="globalTags$ | async" [hideSelected]="true" bindLabel='name' [closeOnSelect]="false"
           [multiple]="true" bindValue="id" [placeholder]="'Filter by Tags'" [searchFn]="tagSelectFilter" (change)="tagSelectionChanged($event)"
@@ -16,8 +17,19 @@
 
 
 
-  <div fxFlexFill class="row">
-    <ant-article-summary *ngFor="let article of articles$ | async" [article]="article" class="col-md-3 col-xs-12"></ant-article-summary>
-  </div>
+  <article fxFlexFill class="row">
+    <section id="main-article-summary-container">
+      <ant-article-summary [isCuriosityHomeArticle]=true [article]="mostImportantArticle" class="col-md-3 col-xs-12"></ant-article-summary>
+    </section>
+    <section id="marketing-container">
+
+    </section>
+    <section id="sencond-most-important-article-summary-container">
+      <ant-article-summary *ngFor="let article of secondMostImporatantArticles" [article]="article" class="col-md-6 col-xs-12"></ant-article-summary>
+    </section>
+    <section id="articles-summary-container">
+      <ant-article-summary *ngFor="let article of articles" [article]="article" class="col-md-3 col-xs-12"></ant-article-summary>
+    </section>
+  </article>
 
 </div>

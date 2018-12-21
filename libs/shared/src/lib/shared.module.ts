@@ -20,7 +20,6 @@ import { UICarouselModule } from './modules/ui-carousel/ui-carousel.module';
 import { CountdownComponent } from './components/countdown/countdown.component';
 import { NgxImageGalleryModule } from 'ngx-image-gallery';
 import { PictureToGalleryPipe } from './pipes/picture-to-gallery.pipe';
-import { ArticleSummayMostImportantComponent } from './components/article-summay-most-important/article-summay-most-important.component';
 
 @NgModule({
   imports: [
@@ -53,8 +52,7 @@ import { ArticleSummayMostImportantComponent } from './components/article-summay
     //Pipes
     KeysPipe,
     KeysEasedPipe,
-    PictureToGalleryPipe,
-    ArticleSummayMostImportantComponent
+    PictureToGalleryPipe
   ],
   exports: [
     //Modules
