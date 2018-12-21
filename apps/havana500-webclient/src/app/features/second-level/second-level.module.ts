@@ -8,6 +8,8 @@ import { SecondLevelDefaultComponent } from './second-level-default/second-level
 import { SecondLevelRoutingModule } from './second-level-routing.module';
 import { HomeModule } from '../home/home.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { SlideshowModule } from 'ng-simple-slideshow';
+
 
 @NgModule({
   imports: [
@@ -17,7 +19,8 @@ import { TranslateModule } from '@ngx-translate/core';
     NgSelectModule,
     SecondLevelRoutingModule,
     HomeModule,
-    TranslateModule
+    TranslateModule,
+    SlideshowModule
   ],
   declarations: [SecondLevelDefaultComponent]
 })

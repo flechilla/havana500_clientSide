@@ -5,10 +5,13 @@ import {
   Article,
   ContentTag,
   ContentTagService,
-  AntTranslateService
+  AntTranslateService,
+  MarketingImageService,
+  Picture
 } from '@hav500workspace/shared';
 import { Observable } from 'rxjs';
 import { english, spanish, french } from '../i18n';
+import { IImage } from 'ng-simple-slideshow';
 
 
 @Component({
@@ -27,6 +30,10 @@ export class SecondLevelDefaultComponent implements OnInit {
   mostImportantArticle: Article;
   secondMostImporatantArticles: Article[];
   private isEndOfPage: boolean;
+  private marketingImages: Picture[];
+  protected imageUrls: (string | IImage)[] = [];
+
+
 
   selectedItems: any[];
 
@@ -34,7 +41,8 @@ export class SecondLevelDefaultComponent implements OnInit {
     private route: ActivatedRoute,
     private articleService: ArticleService,
     private contentTagService: ContentTagService,
-    private translateService: AntTranslateService
+    private translateService: AntTranslateService,
+    private marketingImageService: MarketingImageService
   ) {}
 
   ngOnInit() {
@@ -46,7 +54,7 @@ export class SecondLevelDefaultComponent implements OnInit {
     });
     this.isEndOfPage = false;
     this.translateService.loadTranslations(english, spanish, french);
-
+    this.getSecondLevelImages();
   }
 
   protected getArticles(tagIds: number[] = []): void {
@@ -83,5 +91,21 @@ export class SecondLevelDefaultComponent implements OnInit {
     // console.log(selectedTags);
     // console.log(this.selectedItems);
     this.getArticles(this.selectedItems);
+  }
+
+  getSecondLevelImages(): void {
+    this.marketingImageService.getImagesByLevel(2, 5).subscribe(pics => {
+      this.marketingImages = pics;
+      this.marketingImages.map(pic => {
+        const imgUrl: IImage = {
+          url: pic.relativePath,
+          caption: pic.seoFileName,
+          href: pic.hRef
+        };
+
+        this.imageUrls.push(imgUrl);
+      });
+    });
+    console.log(this.imageUrls);
   }
 }

@@ -21,8 +21,19 @@
     <section id="main-article-summary-container">
       <ant-article-summary [isCuriosityHomeArticle]=true [article]="mostImportantArticle" class="col-md-3 col-xs-12"></ant-article-summary>
     </section>
-    <section id="marketing-container">
-
+    <section id="marketing-container" class="col-12">
+        <slideshow
+        [minHeight]="'300px'"
+        [autoPlay]="true"
+        [imageUrls]="imageUrls"
+        [lazyLoad]="imageUrls?.length > 1"
+        [autoPlayWaitForLazyLoad]="true"
+        [showDots]="true"
+        [dotColor]="'#32a9e1'"
+        [showCaptions]="false"
+        [showArrows]="false"
+      >
+      </slideshow>
     </section>
     <section id="sencond-most-important-article-summary-container">
       <ant-article-summary *ngFor="let article of secondMostImporatantArticles" [article]="article" class="col-md-6 col-xs-12"></ant-article-summary>
