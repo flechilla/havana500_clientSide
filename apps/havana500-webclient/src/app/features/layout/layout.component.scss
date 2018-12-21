@@ -1,11 +1,18 @@
 @import '../../core/scss/ant';
 
+body{
+  font-family: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif !important;
+}
+
 .toolbar {
   z-index: 2;
 }
 
 .main-content {
   height: 100%;
+  max-width: 98%;
+  margin-left: 1%;
+  margin-right: 1%;
 }
 
 .container__overflowed {

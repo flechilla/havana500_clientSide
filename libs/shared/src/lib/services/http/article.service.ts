@@ -136,14 +136,14 @@ export class ArticleService extends BaseCrudService<Article> {
           currentPage +
           '&amountOfArticles=' +
           amountOfArticles
-      )
-      .pipe(
-        publishLast(),
-        refCount(),
-        catchError(error => {
-          return this.handleError(error);
-        })
       );
+      // .pipe(
+      //   publishLast(),
+      //   refCount(),
+      //   catchError(error => {
+      //     return this.handleError(error);
+      //   })
+      // );
   }
 
   /**

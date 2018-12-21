@@ -1,7 +1,83 @@
 @import '~bootstrap/dist/css/bootstrap.css';
+@import '../../../../../../../libs/shared/src/lib/scss/ant.scss';
 
-.section-name {
-  font-size: 5rem;
-  padding: 8rem 1rem;
-  padding-top: 2rem;
+$tags-container-color: #2AAAE2;
+
+#secondary-header {
+  width: 100%;
+  margin-bottom: 130px !important;
+  box-sizing: border-box;
+  position: relative;
+  
+  #section-name-container {
+    float: left;
+    position: relative;
+    .section-name {
+      font-size: 9.2em;
+      padding-top: 25% !important;
+      float: right;
+      padding-top: 15%;
+      font-family: "Roboto Black" !important;
+      text-transform: uppercase;
+    }
+  }
+
+  #tags-outer-container {
+    background-color: $tags-container-color;
+    float: right;
+    margin-top: 5.5rem;
+    padding-left: 11.47%;
+    max-height: 214px;
+
+    #tags-title{
+      color: white !important;
+      font-weight: 700;
+      font-size: 5.2em;
+      font-family: "Myriad Pro";//TODO: put the fonts local
+      text-transform: uppercase;
+      max-width: 340px;
+      
+      @include media-breakpoint-down('sm') {
+        font-size: 2.25em;
+        text-align: center;
+      }
+    }
+  }
+}
+
+#sencond-most-important-article-summary-container{
+  ant-article-summary {
+    float: left;
+  }
+}
+
+#articles-summary-container {
+  ant-article-summary {
+    float: left;
+  }
+}
+
+#more-articles-btn-container{
+  position: relative;
+  width: 100%;
+  min-width: 100%;
+  margin-top: 1%;
+  margin-bottom: 3%;
+  button {
+    background-color: $tags-container-color;
+    margin-left: 48%;
+    margin-right: 50%;
+    color: white;
+    font-weight: 700;
+    font-size: 2em;
+    text-transform: uppercase;
+  }
+}
+
+.hide-more-btn {
+  display: none;
+}
+
+#marketing-container{
+  margin-bottom: 30px;
 }

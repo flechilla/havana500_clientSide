@@ -18,7 +18,7 @@ $article-summary-bColor: #ffffff;
   margin-bottom: 0.5rem;
   color: inherit;
   position: relative;
-  height: 100%;
+  height: auto;
 
   &:hover {
     text-decoration: none !important;
@@ -130,6 +130,9 @@ $article-summary-bColor: #ffffff;
   font-size: 2.85em;
   text-transform: uppercase;
   width: 100%;
+  max-height: 125px;
+    overflow: hidden;
+    min-height: 125px;
 
   @include media-breakpoint-down('sm') {
     font-size: 2.25em;
@@ -142,6 +145,9 @@ $article-summary-bColor: #ffffff;
   font-size: 1.62em;
   line-height: 16px;
   font-weight: 300;
+  min-height: 210px;
+  max-height: 210px;
+  overflow: hidden;
 }
 
 .article-author {
@@ -203,11 +209,16 @@ $article-summary-bColor: #ffffff;
   // min-height: 70vh;
   display: flex;
   flex-direction: row;
+  
 
   .article-summary-img-container {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
+    width: 40%;
+  }
+  .summary-outer-container{
+    width: 50%;
   }
 }
 
