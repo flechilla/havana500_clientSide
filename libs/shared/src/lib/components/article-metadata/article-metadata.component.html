@@ -1,15 +1,11 @@
-<section
-  class="metadata-panel"
-  fxLayout="row"
-  fxLayoutAlign="space-between center"
->
+<section class="metadata-panel">
   <!--
     <span class="metadata-text" translate [translateParams]="{value: article?.createdBy}">BY</span>
 
     <mat-divider class="metadata-separator" vertical></mat-divider>
   -->
 
-  <div fxShow.xs fxLayout="row" fxLayoutAlign="center center">
+  <div fxShow.xs fxLayout="row" class="metadata-item" fxLayoutAlign="right center">
     <mat-icon class="metadata-icon" aria-label="created-date"
       >watch_later</mat-icon
     >
@@ -17,17 +13,17 @@
   </div>
 
   <!--
-    <mat-divider fxLayout="row" class="metadata-separator" vertical></mat-divider>
+    <mat-divider fxLayout="row" class="metadata-item" class="right-separator" vertical></mat-divider>
   -->
 
-  <div fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="row" class="metadata-item" fxLayoutAlign="right center">
     <mat-icon class="metadata-icon" aria-label="views">visibility</mat-icon>
     <span class="metadata-text">{{ article?.views }}</span>
   </div>
 
   <!-- <mat-divider class="metadata-separator" vertical></mat-divider> -->
 
-  <div fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="row" class="metadata-item" fxLayoutAlign="right center">
     <mat-icon class="metadata-icon" aria-label="comments">comment</mat-icon>
     <span class="metadata-text">{{ article?.approvedCommentCount }}</span>
   </div>

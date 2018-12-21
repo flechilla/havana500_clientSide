@@ -1,5 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap.css';
-
+@import '../../../../../../../libs/shared/src/lib/scss/ant.scss';
 
 $tags-container-color: #2AAAE2;
 
@@ -18,6 +18,7 @@ $tags-container-color: #2AAAE2;
       float: right;
       padding-top: 15%;
       font-family: "Roboto Black" !important;
+      text-transform: uppercase;
     }
   }
 
@@ -33,6 +34,13 @@ $tags-container-color: #2AAAE2;
       font-weight: 700;
       font-size: 5.2em;
       font-family: "Myriad Pro";//TODO: put the fonts local
+      text-transform: uppercase;
+      max-width: 340px;
+      
+      @include media-breakpoint-down('sm') {
+        font-size: 2.25em;
+        text-align: center;
+      }
     }
   }
 }
@@ -59,6 +67,10 @@ $tags-container-color: #2AAAE2;
     background-color: $tags-container-color;
     margin-left: 48%;
     margin-right: 50%;
+    color: white;
+    font-weight: 700;
+    font-size: 2em;
+    text-transform: uppercase;
   }
 }
 
