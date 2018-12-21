@@ -31,7 +31,7 @@
       <ant-article-summary *ngFor="let article of articlesToRender" [article]="article" class="col-md-3 col-xs-12"></ant-article-summary>
     </section>
   </article>
-<div id="more-articles-btn-container">
+<div id="more-articles-btn-container" [ngClass]="{'hide-more-btn': isEndOfPage}">
   <button class="btn" (click)="includeMoreArticles()">More</button>
 </div>
 </div>

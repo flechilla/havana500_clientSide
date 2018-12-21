@@ -23,6 +23,7 @@ export class SecondLevelDefaultComponent implements OnInit {
   sectionName: string;
   mostImportantArticle: Article;
   secondMostImporatantArticles: Article[];
+  private isEndOfPage: boolean;
 
   selectedItems: any[];
 
@@ -39,6 +40,7 @@ export class SecondLevelDefaultComponent implements OnInit {
       this.sectionName = params.get('sectionName');
       this.getArticles();
     });
+    this.isEndOfPage = false;
   }
 
   protected getArticles(tagIds: number[] = []): void {
@@ -60,11 +62,15 @@ export class SecondLevelDefaultComponent implements OnInit {
   public tagSelectFilter(term: string, item: ContentTag): boolean {
     return item.name.toLowerCase().includes(term.toLowerCase());
   }
-
+  /**
+   *  Includes more articles in the list to render them.
+   * @returns void
+   */
   private includeMoreArticles(): void{
     const itemsToInclude = this.articles.splice(0, 8);
     console.log(itemsToInclude);
     this.articlesToRender = this.articlesToRender.concat(itemsToInclude);
+    this.isEndOfPage = itemsToInclude.length === 0;
   }
 
   tagSelectionChanged(selectedTags: any[]) {
