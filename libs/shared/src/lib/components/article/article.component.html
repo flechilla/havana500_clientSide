@@ -1,5 +1,8 @@
-<article *ngIf="article$ | async as article" id="article-outer-container" class="container">
+<article *ngIf="article" id="article-outer-container" class="container">
   <div id="article-header" class="row">
+    <div id="article-main-picture">
+      <img src="{{articleMainPicture.relativePath}}" alt="{{articleMainPicture.seoFileName}}">
+    </div>
     <h1 id="article-title" class="col-12">{{article.title}}</h1>
     <div id="article-info" class="col-4">
       <div id="article-reading-time" class="col-12">

@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { ArticleService } from '../../services/http/article.service';
 import { ArticleExtended } from '../../models/article-extended';
 import { switchMap } from 'rxjs/operators';
-import { Article } from '../../models';
+import { Article, Picture } from '../../models';
 import { CommentService } from '../../services';
 import { Observable } from 'rxjs';
 
@@ -15,7 +15,8 @@ import { Observable } from 'rxjs';
 })
 export class ArticleComponent implements OnInit {
   relatedArticles$: Observable<Article[]>;
-  article$: Observable<ArticleExtended>;
+  article: ArticleExtended;
+  articleMainPicture: Picture;
 
   constructor(
     private articleService: ArticleService,
@@ -37,7 +38,11 @@ export class ArticleComponent implements OnInit {
    *  Get the article with the given articleId that is in the route.
    */
   getArticle(id: number): void {
-    this.article$ = this.articleService.getWithTags(id);
+    this.articleService.getWithTags(id).subscribe(art=>{
+      this.article = art;
+      this.articleMainPicture = this.article.mainPicture;
+      console.log(this.articleMainPicture);
+    });
   }
 
   onSelectTag(tagId: number): void {}
