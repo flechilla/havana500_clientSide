@@ -10,55 +10,81 @@ $more-btn-color: #2AAAE2;
 // END of variables declaration:
 
 // START of the styles
-#comments-outer-container{
-    background-color: $comments-container-bColor;
-    position: relative;
-    border-radius: 6px;
-    margin-left: 16%;
-    @include media-breakpoint('xs') {
-        margin-left: 0 !important;
-      }
-    #new-comment-outer-container{
-        margin-bottom: 4rem;
+#comments-outer-container {
+  background-color: $comments-container-bColor;
+  position: relative;
+  border-radius: 6px;
+  margin-left: 16%;
+
+  @include media-breakpoint('xs') {
+    margin-left: 0 !important;
+  }
+
+  #new-comment-outer-container {
+    margin-bottom: 4rem;
     background-color: $comment-container-bColor;
-    }
-    
-    .comment-details {
-        float: right;
-        padding-right: 26px;
+    position: relative;
 
-        .comment-date{
-            margin-right: 3rem;
-        }
+    #new-comment-form-group-container {
+      padding: 4%;
+      position: relative;
+      width: 100%;
     }
 
-    .comment-container:not(:last-child) {
-        margin-bottom: 3rem;
+    #new-comment-body-container{
+        margin-bottom: 10px;
     }
-    .comment-container {
-        background-color: $comment-container-bColor;
+
+    #new-comment-username {
+      margin-right: 4%;
     }
+
+    #new-comment-post-btn {
+      background-color: $more-btn-color;
+      float: right;
+      margin-right: 14px;
+      color: #ffffff;
+    }
+  }
+
+  .comment-details {
+    float: right;
+    padding-right: 26px;
+
+    .comment-date {
+      margin-right: 3rem;
+    }
+  }
+
+  .comment-container:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+
+  .comment-container {
+    background-color: $comment-container-bColor;
+  }
 }
 
-#more-comments-btn-container{
-    position: relative;
-    width: 100%;
-    min-width: 100%;
-    margin-top: 1%;
-    margin-bottom: 3%;
-    button {
-      background-color: $more-btn-color;
-      margin-left: 48%;
-      margin-right: 50%;
-      color: white;
-      font-weight: 700;
-      font-size: 2em;
-      text-transform: uppercase;
-    }
+#more-comments-btn-container {
+  position: relative;
+  width: 100%;
+  min-width: 100%;
+  margin-top: 1%;
+  margin-bottom: 3%;
+
+  button {
+    background-color: $more-btn-color;
+    margin-left: 48%;
+    margin-right: 50%;
+    color: white;
+    font-weight: 700;
+    font-size: 2em;
+    text-transform: uppercase;
   }
-  
-  .hide-more-btn {
-    display: none;
-  }
+}
+
+.hide-more-btn {
+  display: none;
+}
 
 // END  of the styles

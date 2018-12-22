@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CommentService } from '@hav500workspace/shared';
+import { CommentService, AntTranslateService } from '@hav500workspace/shared';
 import { CommentModel } from '@hav500workspace/shared';
+import { english, spanish, french } from '../i18n';
+
 
 @Component({
   selector: 'hav-comment-home',
@@ -20,9 +22,10 @@ export class CommentHomeComponent implements OnInit {
   private page_size = 10;
 
 
-  constructor(private commentService: CommentService) {
+  constructor(private commentService: CommentService,private translateService: AntTranslateService) {
     console.log(this.articleId);
     this.endOfComments = false;
+    this.translateService.loadTranslations(english, spanish, french);
   }
 
   ngOnInit(): void {
