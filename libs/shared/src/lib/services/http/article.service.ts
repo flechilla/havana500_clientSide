@@ -125,13 +125,14 @@ export class ArticleService extends BaseCrudService<Article> {
     currentPage: number,
     amountOfArticles: number
   ): Observable<Article[]> {
+    let tagsParams = '';
+    tagIds.forEach((t, i) => tagsParams += '&tagsIds='+t);
     return this.http
       .get<Article[]>(
         this.url +
           '/GetArticlesBasicDataBySectionNameAndTagIds?sectionName=' +
           sectionName +
-          '&tagsIds=' +
-          tagIds +
+          tagsParams +
           '&currentPage=' +
           currentPage +
           '&amountOfArticles=' +
