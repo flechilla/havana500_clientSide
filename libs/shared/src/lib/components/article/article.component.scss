@@ -2,7 +2,7 @@
 
 //START variables declaration
 $related-articles-outer-container-bColor:  #eeeeee;
-$article-tag-bColor: #62b0ff;
+$article-tag-bColor: #32A9E1;
 //END variables declaration
 
 
@@ -32,6 +32,19 @@ $article-tag-bColor: #62b0ff;
 
   .article-tag {
     background-color: $article-tag-bColor;
+    text-align: right;
+    vertical-align: middle;
+    padding: 4px 5px;
+    margin-right: 5px;
+    color: #ffffff;
+
+    img{
+      height: 13px;
+      width: 13px;
+      float: left;
+      margin-right: 4px;
+      margin-top: 2px;
+    }
   }
 
   #related-articles-outer-container {
