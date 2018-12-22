@@ -1,4 +1,6 @@
 @import '../../../../core/scss/ant';
+@import "~bootstrap/dist/css/bootstrap.css";
+
 
 .main-section {
   overflow: hidden;
@@ -16,4 +18,26 @@
 
 button:focus {
   outline: none !important;
+}
+
+#accept-cookies{
+  position: absolute;
+  bottom: 0;
+  top: auto;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  min-height: 100px;
+  min-width: 100%;
+  z-index: 10000;
+  cursor: pointer;
+
+  #cookie-accept-text{
+    font-size: 1.9em;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-top: 30px;
+  }
 }
