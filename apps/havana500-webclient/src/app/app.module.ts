@@ -27,6 +27,7 @@ import { LayoutModule } from './features/layout/layout.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -58,7 +59,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     //   }
     // })
   ],
-  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
+  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
