@@ -1,4 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "../../scss/ant.scss";
 
 //START variables declaration
 $related-articles-outer-container-bColor:  #eeeeee;
@@ -30,22 +31,7 @@ $article-tag-bColor: #32A9E1;
     font-size: 1.8em;
   }
 
-  .article-tag {
-    background-color: $article-tag-bColor;
-    text-align: right;
-    vertical-align: middle;
-    padding: 4px 5px;
-    margin-right: 5px;
-    color: #ffffff;
 
-    img{
-      height: 13px;
-      width: 13px;
-      float: left;
-      margin-right: 4px;
-      margin-top: 2px;
-    }
-  }
 
   #related-articles-outer-container {
     margin-top: 30px;
