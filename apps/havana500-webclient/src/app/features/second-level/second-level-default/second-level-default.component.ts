@@ -22,14 +22,15 @@ import { IImage } from 'ng-simple-slideshow';
 })
 export class SecondLevelDefaultComponent implements OnInit {
   globalTags$: Observable<ContentTag[]>;
-  articles: Article[];
   articlesToRender: Article[];
-  private amountOfArticles = 50;
+  private amountOfArticles = 11;
+  // this represent 2 rows of article's summaries
+  private amountOfActiclesToLoad = 8;
   private currentPage = 0;
   sectionName: string;
   mostImportantArticle: Article;
   secondMostImporatantArticles: Article[];
-  private isEndOfPage: boolean;
+  private isEndOfPage = false;
   private marketingImages: Picture[];
   protected imageUrls: (string | IImage)[] = [];
 
@@ -50,10 +51,9 @@ export class SecondLevelDefaultComponent implements OnInit {
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.sectionName = params.get('sectionName');
-      this.getArticles();
     });
-    this.isEndOfPage = false;
     this.translateService.loadTranslations(english, spanish, french);
+    this.getArticles();
     this.getSecondLevelImages();
   }
 
@@ -65,11 +65,12 @@ export class SecondLevelDefaultComponent implements OnInit {
       this.currentPage,
       this.amountOfArticles
     ).subscribe(articles=>{
+        this.isEndOfPage = articles.length < this.amountOfArticles;
         this.mostImportantArticle = articles.shift();
         this.secondMostImporatantArticles.push(articles.shift());
         this.secondMostImporatantArticles.push(articles.shift());
-        this.articles = articles;
-        this.articlesToRender = this.articles.splice(0, 8);
+        this.articlesToRender = articles;
+
     });
   }
 
@@ -80,11 +81,16 @@ export class SecondLevelDefaultComponent implements OnInit {
    *  Includes more articles in the list to render them.
    * @returns void
    */
-  private includeMoreArticles(): void{
-    const itemsToInclude = this.articles.splice(0, 8);
-    console.log(itemsToInclude);
-    this.articlesToRender = this.articlesToRender.concat(itemsToInclude);
-    this.isEndOfPage = itemsToInclude.length === 0;
+  private loadMoreArticles(): void{
+    this.articleService.getArticlesBasicDataBySectionNameAndTagIds(
+      this.sectionName,
+      this.selectedItems,
+      ++this.currentPage,
+      this.amountOfActiclesToLoad
+    ).subscribe(articles=>{
+        this.articlesToRender = this.articlesToRender.concat(articles);
+        this.isEndOfPage = articles.length < this.amountOfActiclesToLoad;
+    });
   }
 
   tagSelectionChanged(selectedTags: any[]) {
