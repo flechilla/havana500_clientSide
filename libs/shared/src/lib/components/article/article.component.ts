@@ -5,8 +5,10 @@ import { ArticleService } from '../../services/http/article.service';
 import { ArticleExtended } from '../../models/article-extended';
 import { switchMap } from 'rxjs/operators';
 import { Article, Picture } from '../../models';
-import { CommentService } from '../../services';
+import { CommentService, AntTranslateService } from '../../services';
 import { Observable } from 'rxjs';
+import { english, spanish, french } from './i18n';
+
 
 @Component({
   selector: 'ant-article',
@@ -23,8 +25,11 @@ export class ArticleComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private commentService: CommentService,
-    private router: Router
-  ) {}
+    private router: Router,
+    public translate: AntTranslateService
+  ) {
+    this.translate.loadTranslations(english, spanish, french);
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {

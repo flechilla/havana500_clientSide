@@ -30,7 +30,7 @@
     </mat-chip-list>
 
   <div id="related-articles-outer-container">
-    <h2 id="related-articles-header">Related articles</h2>
+    <h2 id="related-articles-header" translate>RELATED</h2>
 
     <div id="related-articles-cards-container" class="row">
       <ant-article-summary *ngFor="let article of relatedArticles$ | async" [article]="article" class="col-xs-12 col-md-3"></ant-article-summary>
@@ -39,7 +39,7 @@
   </div>
 
   <div id="comments-outer-container">
-    <h2 id="comments-header">Comments</h2>
+    <h2 id="comments-header" translate>COMMENTS</h2>
 
     <hav-comment-home [articleId]="article.id"></hav-comment-home>
 
