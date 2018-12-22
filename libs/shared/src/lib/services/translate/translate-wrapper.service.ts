@@ -2,10 +2,18 @@ import { Locale } from '../../models/system-misc/locale-lang.model';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { HavanaEnvironment } from '../../models';
 
 @Injectable()
 export class AntTranslateService {
-  constructor(private translate: TranslateService) {}
+  constructor(private translate: TranslateService, 
+    private environment: HavanaEnvironment,
+    private httpClient: HttpClient) {
+      this.setCookiesUrl = this.environment.apiUrl + "Cookies/SetLanguage"
+    }
+
+    private setCookiesUrl: string;
 
   /**
    * Append local translations to system
@@ -41,6 +49,15 @@ export class AntTranslateService {
    * Changes the lang currently used
    */
   useLanguage(lang: string): Observable<any> {
+    this.setLanguageOnCookies(lang);
     return this.translate.use(lang);
+
+  }
+
+  setLanguageOnCookies(lang: string): void{
+    this.httpClient.post(this.setCookiesUrl, {
+      lang: lang
+    })
+      .subscribe();
   }
 }
