@@ -59,7 +59,7 @@ export class CommentHomeComponent implements OnInit {
 
     this.commentService.create(this.newComment).subscribe(newComment => {
       this.newComment = newComment;
-      this.comments.push(this.newComment);
+      this.commentsToRender.push(this.newComment);
     });
   }
 }
