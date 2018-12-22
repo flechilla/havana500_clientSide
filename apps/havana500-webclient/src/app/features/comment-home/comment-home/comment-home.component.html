@@ -6,7 +6,7 @@
 <div id="comments-outer-container" class="col-sm-8 col-12">
   <form id="new-comment-outer-container" class="row" #newCommentForm="ngForm">
     <div id="new-comment-form-group-container">
-      <div fxLayout="row" id="new-comment-user-metadata" class="col-12 form-group">
+      <div id="new-comment-user-metadata" class="col-12 form-group">
         <input type="text" [(ngModel)]="newComment.userName" name="new-comment-username" id="new-comment-username"
           class="form-control col-12 col-sm-4" placeholder="Nombre">
         <input type="text" [(ngModel)]="newComment.userEmail" name="new-comment-useremail" id="new-comment-useremail"
