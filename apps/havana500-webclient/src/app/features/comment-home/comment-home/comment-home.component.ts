@@ -14,9 +14,15 @@ export class CommentHomeComponent implements OnInit {
   private newComment: CommentModel;
 
   private comments: CommentModel[];
+  private commentsToRender: CommentModel[];
+  private endOfComments: boolean;
+  private currentPage = 0;
+  private page_size = 10;
+
 
   constructor(private commentService: CommentService) {
     console.log(this.articleId);
+    this.endOfComments = false;
   }
 
   ngOnInit(): void {
@@ -29,7 +35,20 @@ export class CommentHomeComponent implements OnInit {
 
     this.commentService
       .getArticleComments(this.articleId, 0, 10)
-      .subscribe(_comments => (this.comments = _comments));
+      .subscribe(_comments => {
+        this.commentsToRender = _comments;
+          this.endOfComments = _comments.length < this.page_size;
+
+      });
+  }
+
+  private loadMoreComments(): void{
+    this.commentService
+    .getArticleComments(this.articleId, ++this.currentPage, this.page_size)
+    .subscribe(_comments => {
+      this.commentsToRender = this.commentsToRender.concat(_comments);
+      this.endOfComments = _comments.length < this.page_size;
+    });
   }
   /**
    *  Post a new comment to the server and add it to the list of comments.

@@ -3,6 +3,8 @@
 // START of variables declaration:
 $comments-container-bColor: #ffffff;
 $comment-container-bColor: #E8F5E9;
+$more-btn-color: #2AAAE2;
+
 // END of variables declaration:
 
 // START of the styles
@@ -31,5 +33,26 @@ $comment-container-bColor: #E8F5E9;
         background-color: $comment-container-bColor;
     }
 }
+
+#more-comments-btn-container{
+    position: relative;
+    width: 100%;
+    min-width: 100%;
+    margin-top: 1%;
+    margin-bottom: 3%;
+    button {
+      background-color: $more-btn-color;
+      margin-left: 48%;
+      margin-right: 50%;
+      color: white;
+      font-weight: 700;
+      font-size: 2em;
+      text-transform: uppercase;
+    }
+  }
+  
+  .hide-more-btn {
+    display: none;
+  }
 
 // END  of the styles
