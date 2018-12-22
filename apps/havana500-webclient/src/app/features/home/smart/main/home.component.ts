@@ -17,6 +17,7 @@ import { CookiesService } from 'apps/havana500-webclient/src/app/core/services/c
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
+
   constructor(
     private translateService: AntTranslateService,
     private cookiesService: CookiesService) {}
@@ -27,5 +28,9 @@ export class HomeComponent implements OnInit {
 
   acceptCookies(): void{
     this.cookiesService.acceptCookies();
+  }
+
+  hideCookieBanner() {
+    return this.cookiesService.hideCookieBanner();
   }
 }
