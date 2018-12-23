@@ -44,9 +44,9 @@ export class ArticleComponent implements OnInit {
    */
   getArticle(id: number): void {
     this.articleService.getWithTags(id).subscribe(art=>{
+      art.body = this.addStyleToArticleImages(art.body);
       this.article = art;
       this.articleMainPicture = this.article.mainPicture;
-      console.log(this.articleMainPicture);
     });
   }
 
@@ -57,5 +57,18 @@ export class ArticleComponent implements OnInit {
    */
   getRelatedArticles(id: number): void {
     this.relatedArticles$ = this.articleService.getRelatedArticles(id);
+  }
+
+  addStyleToArticleImages(articleBody: string): string {
+    const toReplaceWith = '<img style="margin-top: 5%; margin-bottom: 5%;" src';
+    const toReplace = '<img src';
+    let imgTagIndex = articleBody.indexOf(toReplace);
+
+    while (imgTagIndex !== -1) {
+      articleBody = articleBody.replace(toReplace, toReplaceWith);
+      imgTagIndex = articleBody.indexOf(toReplace);
+    }
+
+    return articleBody;
   }
 }
