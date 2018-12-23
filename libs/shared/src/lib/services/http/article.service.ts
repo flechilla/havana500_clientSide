@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError, publishLast, refCount } from 'rxjs/operators';
 import { BaseCrudService } from '../base';
 import { Article, HavanaEnvironment, ArticleExtended } from '../../models';
+import { retryBackoff } from 'backoff-rxjs';
 
 @Injectable()
 export class ArticleService extends BaseCrudService<Article> {
@@ -27,7 +28,8 @@ export class ArticleService extends BaseCrudService<Article> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -50,7 +52,8 @@ export class ArticleService extends BaseCrudService<Article> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -72,7 +75,8 @@ export class ArticleService extends BaseCrudService<Article> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -91,7 +95,8 @@ export class ArticleService extends BaseCrudService<Article> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -115,7 +120,8 @@ export class ArticleService extends BaseCrudService<Article> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -126,7 +132,7 @@ export class ArticleService extends BaseCrudService<Article> {
     amountOfArticles: number
   ): Observable<Article[]> {
     let tagsParams = '';
-    tagIds.forEach((t, i) => tagsParams += '&tagsIds='+t);
+    tagIds.forEach((t, i) => (tagsParams += '&tagsIds=' + t));
     return this.http
       .get<Article[]>(
         this.url +
@@ -137,14 +143,15 @@ export class ArticleService extends BaseCrudService<Article> {
           currentPage +
           '&amountOfArticles=' +
           amountOfArticles
+      )
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        }),
+        retryBackoff(this.retryConfig)
       );
-      // .pipe(
-      //   publishLast(),
-      //   refCount(),
-      //   catchError(error => {
-      //     return this.handleError(error);
-      //   })
-      // );
   }
 
   /**
@@ -160,7 +167,8 @@ export class ArticleService extends BaseCrudService<Article> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 }

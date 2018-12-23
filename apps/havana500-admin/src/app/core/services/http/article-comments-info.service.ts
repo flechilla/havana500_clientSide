@@ -7,6 +7,7 @@ import { CommentModule } from '../../../features/comment/comment.module';
 import { catchError, publishLast, refCount } from 'rxjs/operators';
 import { BaseCrudService } from '@hav500workspace/shared';
 import { MatSnackBar } from '@angular/material';
+import { retryBackoff } from 'backoff-rxjs';
 
 @Injectable()
 export class ArticleCommentsInfoService extends BaseCrudService<
@@ -37,7 +38,8 @@ export class ArticleCommentsInfoService extends BaseCrudService<
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -68,7 +70,8 @@ export class ArticleCommentsInfoService extends BaseCrudService<
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 }

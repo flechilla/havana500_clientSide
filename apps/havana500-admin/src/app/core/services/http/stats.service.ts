@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Article } from '@hav500workspace/shared';
 import { MatSnackBar } from '@angular/material';
+import { retryBackoff } from 'backoff-rxjs';
 
 @Injectable()
 export class StatsService extends BaseCrudService<number> {
@@ -28,7 +29,8 @@ export class StatsService extends BaseCrudService<number> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -42,7 +44,8 @@ export class StatsService extends BaseCrudService<number> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -54,7 +57,8 @@ export class StatsService extends BaseCrudService<number> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -68,7 +72,8 @@ export class StatsService extends BaseCrudService<number> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
   getNotApprovedCommentsCount(amountOfDays: number): Observable<number> {
@@ -81,7 +86,8 @@ export class StatsService extends BaseCrudService<number> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -95,7 +101,8 @@ export class StatsService extends BaseCrudService<number> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 }
