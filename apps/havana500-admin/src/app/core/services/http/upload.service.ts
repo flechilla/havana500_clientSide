@@ -4,6 +4,7 @@ import { BaseCrudService } from '@hav500workspace/shared';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { publishLast, refCount, catchError } from 'rxjs/operators';
+import { retryBackoff } from 'backoff-rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,8 @@ export class UploadService extends BaseCrudService<any> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 }

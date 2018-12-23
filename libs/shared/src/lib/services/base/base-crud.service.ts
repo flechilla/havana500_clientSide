@@ -1,3 +1,4 @@
+import { ForbiddenError } from './../../error-handling/forbidden-error';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -17,9 +18,18 @@ import {
 import { MatSnackBar } from '@angular/material';
 import { InternalServerError } from '../../error-handling/internal-server.error';
 
+import { retryBackoff, RetryBackoffConfig } from 'backoff-rxjs';
+
 @Injectable()
 export class BaseCrudService<T> {
   public url: string;
+
+  protected readonly retryConfig: RetryBackoffConfig = {
+    initialInterval: 1000,
+    shouldRetry: (error: AntError) =>
+      !(error instanceof UnauthorizedError || error instanceof ForbiddenError)
+  };
+
   constructor(
     url: string,
     public http: HttpClient,
@@ -34,7 +44,8 @@ export class BaseCrudService<T> {
       refCount(),
       catchError(error => {
         return this.handleError(error);
-      })
+      }),
+      retryBackoff(this.retryConfig)
     );
   }
 
@@ -44,7 +55,8 @@ export class BaseCrudService<T> {
       refCount(),
       catchError(error => {
         return this.handleError(error);
-      })
+      }),
+      retryBackoff(this.retryConfig)
     );
   }
 
@@ -74,7 +86,8 @@ export class BaseCrudService<T> {
       refCount(),
       catchError(error => {
         return this.handleError(error);
-      })
+      }),
+      retryBackoff(this.retryConfig)
     );
   }
 
@@ -84,7 +97,8 @@ export class BaseCrudService<T> {
       refCount(),
       catchError(error => {
         return this.handleError(error);
-      })
+      }),
+      retryBackoff(this.retryConfig)
     );
   }
 
@@ -94,7 +108,8 @@ export class BaseCrudService<T> {
       refCount(),
       catchError(error => {
         return this.handleError(error);
-      })
+      }),
+      retryBackoff(this.retryConfig)
     );
   }
 
@@ -104,7 +119,8 @@ export class BaseCrudService<T> {
       refCount(),
       catchError(error => {
         return this.handleError(error);
-      })
+      }),
+      retryBackoff(this.retryConfig)
     );
   }
 
@@ -132,6 +148,17 @@ export class BaseCrudService<T> {
       this.snack.open('Error: Unauthorized Request', 'Close', {
         duration: 5000
       });
+
+      return throwError(new UnauthorizedError(error));
+    }
+    if (error.status === 403) {
+      this.snack.open(
+        'Error: Forbidden Request, not enough privileges',
+        'Close',
+        {
+          duration: 5000
+        }
+      );
 
       return throwError(new UnauthorizedError(error));
     }

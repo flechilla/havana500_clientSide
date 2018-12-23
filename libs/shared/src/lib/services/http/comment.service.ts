@@ -6,6 +6,7 @@ import { HavanaEnvironment } from '../../models';
 import { BaseCrudService } from '../base';
 import { Observable } from 'rxjs';
 import { catchError, publishLast, refCount } from 'rxjs/operators';
+import { retryBackoff } from 'backoff-rxjs';
 
 @Injectable()
 export class CommentService extends BaseCrudService<CommentModel> {
@@ -37,7 +38,8 @@ export class CommentService extends BaseCrudService<CommentModel> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 }

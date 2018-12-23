@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, publishLast, refCount } from 'rxjs/operators';
 import { ImagesService } from './image.service';
+import { retryBackoff } from 'backoff-rxjs';
 
 @Injectable()
 export class MarketingImageService extends ImagesService {
@@ -40,7 +41,8 @@ export class MarketingImageService extends ImagesService {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -61,7 +63,8 @@ export class MarketingImageService extends ImagesService {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 }

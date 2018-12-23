@@ -5,6 +5,7 @@ import { Picture, HavanaEnvironment, PictureExtended } from '../../models';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, publishLast, refCount } from 'rxjs/operators';
+import { retryBackoff } from 'backoff-rxjs';
 
 @Injectable()
 export class ImagesService extends BaseCrudService<Picture> {
@@ -28,7 +29,8 @@ export class ImagesService extends BaseCrudService<Picture> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -51,7 +53,8 @@ export class ImagesService extends BaseCrudService<Picture> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -73,7 +76,8 @@ export class ImagesService extends BaseCrudService<Picture> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 
@@ -91,7 +95,8 @@ export class ImagesService extends BaseCrudService<Picture> {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 }

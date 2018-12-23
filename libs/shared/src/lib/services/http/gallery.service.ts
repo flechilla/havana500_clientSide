@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, publishLast, refCount } from 'rxjs/operators';
 import { ImagesService } from './image.service';
+import { retryBackoff } from 'backoff-rxjs';
 
 @Injectable()
 export class GalleryService extends ImagesService {
@@ -32,7 +33,8 @@ export class GalleryService extends ImagesService {
         refCount(),
         catchError(error => {
           return this.handleError(error);
-        })
+        }),
+        retryBackoff(this.retryConfig)
       );
   }
 }
