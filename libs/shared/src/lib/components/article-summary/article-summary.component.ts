@@ -3,6 +3,8 @@ import { ArticleExtended } from '../../models/article-extended';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { HavanaEnvironment } from '../../models';
+import { AntTranslateService } from '../../services';
+import { english, spanish, french } from './i18n';
 
 @Component({
   selector: 'ant-article-summary',
@@ -49,8 +51,9 @@ export class ArticleSummaryComponent implements OnInit {
   @Input()
   public isCreationDateVisible = true;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public translate: AntTranslateService) {
     this.env = environment;
+    this.translate.loadTranslations(english, spanish, french);
   }
 
   ngOnInit() {
