@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="start start">
+<div fxLayout="column" fxLayoutAlign="start start" class="second-level">
   <!-- HEADER -->
   <div id="secondary-header" fxLayout="row wrap">
     <!-- TITLE -->
@@ -28,14 +28,19 @@
   </div>
   <!-- / HEADER -->
 
-  <article fxFlexFill class="row">
+  <article fxFlexFill>
+    <!-- MAIN ARTICLE -->
     <section id="main-article-summary-container">
       <ant-article-summary
         [isCuriosityHomeArticle]="true"
         [article]="mostImportantArticle"
+        [isCardShadowMode]="false"
         class="col-md-3 col-xs-12"
       ></ant-article-summary>
     </section>
+    <!-- / MAIN ARTICLE -->
+
+    <!-- MARKETING -->
     <section id="marketing-container" class="col-12">
       <slideshow
         [minHeight]="'300px'"
@@ -50,21 +55,31 @@
       >
       </slideshow>
     </section>
-    <section id="sencond-most-important-article-summary-container">
+    <!-- / MARKETING -->
+
+    <!-- SECOND MOST IMPORTANT -->
+    <section class="second-most-important" fxLayout="row">
       <ant-article-summary
-        *ngFor="let article of secondMostImporatantArticles"
+        *ngFor="let article of secondMostImportantArticles"
         [article]="article"
+        [isCreationDateVisible]="false"
         class="col-md-6 col-xs-12"
       ></ant-article-summary>
     </section>
-    <section id="articles-summary-container">
+    <!-- / SECOND MOST IMPORTANT -->
+
+    <!-- EXTRA ARTICLES -->
+    <section class="extra-articles" fxLayout="row wrap">
       <ant-article-summary
         *ngFor="let article of articlesToRender"
         [article]="article"
-        class="col-md-3 col-xs-12"
+        [isCreationDateVisible]="false"
+        class="col-md-3 col-sm-4 col-xs-12"
       ></ant-article-summary>
     </section>
+    <!-- EXTRA ARTICLES -->
   </article>
+
   <div
     id="more-articles-btn-container"
     [ngClass]="{ 'hide-more-btn': isEndOfPage }"

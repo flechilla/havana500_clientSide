@@ -3,6 +3,10 @@
 
 $tags-container-color: #2aaae2;
 
+.second-level {
+  overflow: hidden;
+}
+
 #secondary-header {
   margin-top: 5.5rem;
 
@@ -14,13 +18,8 @@ $tags-container-color: #2aaae2;
 
   #section-name-container {
     align-self: flex-end;
-    // float: left;
-    // position: relative;
+
     .section-name {
-      // font-size: 9.2em;
-      // padding-top: 25% !important;
-      // float: right;
-      // padding-top: 15%;
       font-family: 'Roboto Black' !important;
       text-transform: uppercase;
       padding-bottom: 0;
@@ -30,8 +29,6 @@ $tags-container-color: #2aaae2;
   }
 
   #tags-outer-container {
-    float: right;
-    padding-left: 11.47%;
     max-height: 214px;
     width: stretch;
     max-width: 45%;
@@ -40,6 +37,8 @@ $tags-container-color: #2aaae2;
     justify-content: center;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    align-items: flex-start;
+    padding-left: 5%;
 
     #tags-title {
       color: white !important;
@@ -53,18 +52,6 @@ $tags-container-color: #2aaae2;
         text-align: center;
       }
     }
-  }
-}
-
-#sencond-most-important-article-summary-container {
-  ant-article-summary {
-    float: left;
-  }
-}
-
-#articles-summary-container {
-  ant-article-summary {
-    float: left;
   }
 }
 
@@ -83,6 +70,14 @@ $tags-container-color: #2aaae2;
     font-size: 2em;
     text-transform: uppercase;
   }
+}
+
+.second-most-important {
+  padding: 3rem 3%;
+}
+
+.extra-articles {
+  padding: 0 3%;
 }
 
 .hide-more-btn {
@@ -118,9 +113,14 @@ $tags-container-color: #2aaae2;
     text-align: right !important;
     vertical-align: middle !important;
     padding: 4px 5px !important;
-    margin-right: 5px !important;
+    margin-right: 3px !important;
+    margin-left: 2px !important;
     color: #ffffff !important;
     border-radius: 0 !important;
-    font-size: 1rem  !important;
+    font-size: 1rem !important;
+
+    .ng-value-label {
+      font-size: 1em !important;
+    }
   }
 }

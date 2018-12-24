@@ -13,7 +13,6 @@ import { Observable } from 'rxjs';
 import { english, spanish, french } from '../i18n';
 import { IImage } from 'ng-simple-slideshow';
 
-
 @Component({
   selector: 'hav-second-level-default',
   templateUrl: './second-level-default.component.html',
@@ -29,12 +28,10 @@ export class SecondLevelDefaultComponent implements OnInit {
   private currentPage = 0;
   sectionName: string;
   mostImportantArticle: Article;
-  secondMostImporatantArticles: Article[];
+  secondMostImportantArticles: Article[];
   private isEndOfPage = false;
   private marketingImages: Picture[];
   protected imageUrls: (string | IImage)[] = [];
-
-
 
   selectedItems: any[];
 
@@ -48,30 +45,31 @@ export class SecondLevelDefaultComponent implements OnInit {
 
   ngOnInit() {
     this.globalTags$ = this.contentTagService.getAll();
+    this.translateService.loadTranslations(english, spanish, french);
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.sectionName = params.get('sectionName');
+      this.getArticles();
+      this.getSecondLevelImages();
     });
-    this.translateService.loadTranslations(english, spanish, french);
-    this.getArticles();
-    this.getSecondLevelImages();
   }
 
   protected getArticles(tagIds: number[] = []): void {
-    this.secondMostImporatantArticles = [];
-    this.articleService.getArticlesBasicDataBySectionNameAndTagIds(
-      this.sectionName,
-      tagIds,
-      this.currentPage,
-      this.amountOfArticles
-    ).subscribe(articles=>{
+    this.secondMostImportantArticles = [];
+    this.articleService
+      .getArticlesBasicDataBySectionNameAndTagIds(
+        this.sectionName,
+        tagIds,
+        this.currentPage,
+        this.amountOfArticles
+      )
+      .subscribe(articles => {
         this.isEndOfPage = articles.length < this.amountOfArticles;
         this.mostImportantArticle = articles.shift();
-        this.secondMostImporatantArticles.push(articles.shift());
-        this.secondMostImporatantArticles.push(articles.shift());
+        this.secondMostImportantArticles.push(articles.shift());
+        this.secondMostImportantArticles.push(articles.shift());
         this.articlesToRender = articles;
-
-    });
+      });
   }
 
   public tagSelectFilter(term: string, item: ContentTag): boolean {
@@ -81,16 +79,18 @@ export class SecondLevelDefaultComponent implements OnInit {
    *  Includes more articles in the list to render them.
    * @returns void
    */
-  private loadMoreArticles(): void{
-    this.articleService.getArticlesBasicDataBySectionNameAndTagIds(
-      this.sectionName,
-      this.selectedItems,
-      ++this.currentPage,
-      this.amountOfActiclesToLoad
-    ).subscribe(articles=>{
+  private loadMoreArticles(): void {
+    this.articleService
+      .getArticlesBasicDataBySectionNameAndTagIds(
+        this.sectionName,
+        this.selectedItems,
+        ++this.currentPage,
+        this.amountOfActiclesToLoad
+      )
+      .subscribe(articles => {
         this.articlesToRender = this.articlesToRender.concat(articles);
         this.isEndOfPage = articles.length < this.amountOfActiclesToLoad;
-    });
+      });
   }
 
   tagSelectionChanged(selectedTags: any[]) {
