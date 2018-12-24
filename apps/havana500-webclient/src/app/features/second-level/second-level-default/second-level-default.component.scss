@@ -1,42 +1,53 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 @import '../../../../../../../libs/shared/src/lib/scss/ant.scss';
 
-$tags-container-color: #2AAAE2;
+$tags-container-color: #2aaae2;
 
 #secondary-header {
+  margin-top: 5.5rem;
+
   width: 100%;
   margin-bottom: 130px !important;
   box-sizing: border-box;
   position: relative;
-  
+  justify-content: flex-end;
+
   #section-name-container {
-    float: left;
-    position: relative;
+    align-self: flex-end;
+    // float: left;
+    // position: relative;
     .section-name {
-      font-size: 9.2em;
-      padding-top: 25% !important;
-      float: right;
-      padding-top: 15%;
-      font-family: "Roboto Black" !important;
+      // font-size: 9.2em;
+      // padding-top: 25% !important;
+      // float: right;
+      // padding-top: 15%;
+      font-family: 'Roboto Black' !important;
       text-transform: uppercase;
+      padding-bottom: 0;
+      padding-right: 6rem;
+      margin-bottom: 0 !important;
     }
   }
 
   #tags-outer-container {
-    background-color: $tags-container-color;
     float: right;
-    margin-top: 5.5rem;
     padding-left: 11.47%;
     max-height: 214px;
+    width: stretch;
+    max-width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 
-    #tags-title{
+    #tags-title {
       color: white !important;
       font-weight: 700;
-      font-size: 5.2em;
-      font-family: "Myriad Pro";//TODO: put the fonts local
+      font-size: 3.4em;
       text-transform: uppercase;
       max-width: 340px;
-      
+
       @include media-breakpoint-down('sm') {
         font-size: 2.25em;
         text-align: center;
@@ -45,7 +56,7 @@ $tags-container-color: #2AAAE2;
   }
 }
 
-#sencond-most-important-article-summary-container{
+#sencond-most-important-article-summary-container {
   ant-article-summary {
     float: left;
   }
@@ -57,7 +68,7 @@ $tags-container-color: #2AAAE2;
   }
 }
 
-#more-articles-btn-container{
+#more-articles-btn-container {
   position: relative;
   width: 100%;
   min-width: 100%;
@@ -78,6 +89,38 @@ $tags-container-color: #2AAAE2;
   display: none;
 }
 
-#marketing-container{
+#marketing-container {
   margin-bottom: 30px;
+}
+
+.ng-select.custom {
+  background-color: #fff !important;
+  width: fit-content;
+  max-width: 90%;
+
+  padding-bottom: 0 !important;
+  min-height: auto !important;
+
+  .ng-select-container {
+    min-height: auto !important;
+  }
+
+  .ng-arrow-wrapper {
+    color: #2aaae2 !important;
+
+    .ng-arrow {
+      color: #2aaae2 !important;
+    }
+  }
+
+  .ng-value {
+    background-color: $tags-container-color !important;
+    text-align: right !important;
+    vertical-align: middle !important;
+    padding: 4px 5px !important;
+    margin-right: 5px !important;
+    color: #ffffff !important;
+    border-radius: 0 !important;
+    font-size: 1rem  !important;
+  }
 }
