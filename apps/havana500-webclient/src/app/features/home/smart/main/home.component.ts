@@ -1,3 +1,4 @@
+import { CookiesService } from './../../../../core/services/cookies.service';
 import {
   Component,
   OnInit,
@@ -7,7 +8,6 @@ import {
 import { AntTranslateService, Article } from '@hav500workspace/shared';
 
 import { english, spanish, french } from '../../i18n';
-import { CookiesService } from 'apps/havana500-webclient/src/app/core/services/cookies.service';
 
 @Component({
   selector: 'hav-home',
@@ -17,16 +17,16 @@ import { CookiesService } from 'apps/havana500-webclient/src/app/core/services/c
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
-
   constructor(
     private translateService: AntTranslateService,
-    private cookiesService: CookiesService) {}
+    private cookiesService: CookiesService
+  ) {}
 
   ngOnInit() {
     this.translateService.loadTranslations(english, spanish, french);
   }
 
-  acceptCookies(): void{
+  acceptCookies(): void {
     this.cookiesService.acceptCookies();
   }
 
