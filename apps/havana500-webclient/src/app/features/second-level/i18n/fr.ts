@@ -3,11 +3,8 @@ import { Locale } from '@hav500workspace/shared';
 export const locale: Locale = {
   lang: 'fr',
   data: {
-    ENTERTAINMENT: 'AMUSEMENT',
-    SPORTS: 'SPORTS',
-    CINEMA: 'CINEMA',
-    LITERATURE: 'LITTÉRATURE',
-    CULTURE: 'CULTURE',
-    SEE_MORE: 'Voir Plus'
+    TAG_SELECTOR: 'Selector de Etiquetas',
+    SEE_MORE: 'Ver Más',
+    NO_ITEMS: 'NO HAY ELEMENTOS QUE COINCIDAN CON LOS PARAMETROS DE BUSQUEDA'
   }
 };
