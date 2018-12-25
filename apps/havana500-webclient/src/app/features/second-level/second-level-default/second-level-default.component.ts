@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectorRef
+} from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import {
   ArticleService,
@@ -12,6 +17,7 @@ import {
 import { Observable } from 'rxjs';
 import { english, spanish, french } from '../i18n';
 import { IImage } from 'ng-simple-slideshow';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'hav-second-level-default',
@@ -35,12 +41,17 @@ export class SecondLevelDefaultComponent implements OnInit {
 
   selectedItems: any[];
 
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
   constructor(
     private route: ActivatedRoute,
     private articleService: ArticleService,
     private contentTagService: ContentTagService,
     private translateService: AntTranslateService,
-    private marketingImageService: MarketingImageService
+    private marketingImageService: MarketingImageService,
+    public media: MediaMatcher,
+    public changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -52,6 +63,11 @@ export class SecondLevelDefaultComponent implements OnInit {
       this.getArticles();
       this.getSecondLevelImages();
     });
+
+    // Size detection
+    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   protected getArticles(tagIds: number[] = []): void {
@@ -113,5 +129,9 @@ export class SecondLevelDefaultComponent implements OnInit {
       });
     });
     console.log(this.imageUrls);
+  }
+
+  isMobile(): boolean {
+    return this.mobileQuery.matches;
   }
 }

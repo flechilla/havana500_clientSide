@@ -1,6 +1,11 @@
 <div fxLayout="column" fxLayoutAlign="start start" class="second-level">
   <!-- HEADER -->
-  <div id="secondary-header" fxLayout="row wrap">
+  <div
+    id="secondary-header"
+    fxLayout="row wrap"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+  >
     <!-- TITLE -->
     <div id="section-name-container">
       <h1 class="section-name">{{ sectionName }}</h1>
@@ -35,7 +40,7 @@
       *ngIf="mostImportantArticle; else: noItemsTemplate"
     >
       <ant-article-summary
-        [isCuriosityHomeArticle]="true"
+        [isCuriosityHomeArticle]="!isMobile()"
         [article]="mostImportantArticle"
         [isCardShadowMode]="false"
         class="col-md-3 col-xs-12"
@@ -43,7 +48,9 @@
     </section>
     <!-- / MAIN ARTICLE -->
 
-    <ng-template #noItemsTemplate> <h1 class="no-articles-message" translate>NO_ITEMS</h1> </ng-template>
+    <ng-template #noItemsTemplate>
+      <h1 class="no-articles-message" translate>NO_ITEMS</h1>
+    </ng-template>
 
     <!-- MARKETING -->
     <section id="marketing-container" class="col-12">
