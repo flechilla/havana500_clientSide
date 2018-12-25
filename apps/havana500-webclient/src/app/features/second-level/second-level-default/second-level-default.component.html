@@ -30,7 +30,10 @@
 
   <article fxFlexFill>
     <!-- MAIN ARTICLE -->
-    <section id="main-article-summary-container">
+    <section
+      class="main-article-summary-container"
+      *ngIf="mostImportantArticle; else: noItemsTemplate"
+    >
       <ant-article-summary
         [isCuriosityHomeArticle]="true"
         [article]="mostImportantArticle"
@@ -39,6 +42,8 @@
       ></ant-article-summary>
     </section>
     <!-- / MAIN ARTICLE -->
+
+    <ng-template #noItemsTemplate> <h1 class="no-articles-message" translate>NO_ITEMS</h1> </ng-template>
 
     <!-- MARKETING -->
     <section id="marketing-container" class="col-12">
@@ -58,7 +63,11 @@
     <!-- / MARKETING -->
 
     <!-- SECOND MOST IMPORTANT -->
-    <section class="second-most-important" fxLayout="row">
+    <section
+      class="second-most-important"
+      fxLayout="row"
+      *ngIf="mostImportantArticle && secondMostImportantArticles?.length > 0"
+    >
       <ant-article-summary
         *ngFor="let article of secondMostImportantArticles"
         [article]="article"
@@ -69,7 +78,11 @@
     <!-- / SECOND MOST IMPORTANT -->
 
     <!-- EXTRA ARTICLES -->
-    <section class="extra-articles" fxLayout="row wrap">
+    <section
+      class="extra-articles"
+      fxLayout="row wrap"
+      *ngIf="mostImportantArticle && articlesToRender?.length > 0"
+    >
       <ant-article-summary
         *ngFor="let article of articlesToRender"
         [article]="article"
