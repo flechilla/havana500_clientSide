@@ -1,63 +1,89 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 @import '../../../../../../../libs/shared/src/lib/scss/ant.scss';
 
-$tags-container-color: #2AAAE2;
+$tags-container-color: #2aaae2;
+
+.second-level {
+  overflow: hidden;
+}
+
+.no-articles-message {
+  text-align: center;
+}
+
+.main-article-summary-container {
+  padding-bottom: 6rem;
+}
 
 #secondary-header {
+  margin-top: 5.5rem;
+
   width: 100%;
-  margin-bottom: 130px !important;
+  margin-bottom: 130px;
   box-sizing: border-box;
   position: relative;
-  
+  justify-content: flex-end;
+
+  @include media-breakpoint-down('sm') {
+    margin-bottom: 0;
+  }
+
   #section-name-container {
-    float: left;
-    position: relative;
+    align-self: flex-end;
+
     .section-name {
-      font-size: 9.2em;
-      padding-top: 25% !important;
-      float: right;
-      padding-top: 15%;
-      font-family: "Roboto Black" !important;
+      font-family: 'Roboto Black' !important;
       text-transform: uppercase;
+      padding-bottom: 0;
+      padding-right: 6rem;
+      margin-bottom: 0 !important;
+    }
+
+    @include media-breakpoint-down('sm') {
+      align-self: center;
+
+      .section-name {
+        padding-right: 0rem;
+        padding: 0;
+        font-size: 4.7em;
+        word-break: break-all;
+      }
     }
   }
 
   #tags-outer-container {
-    background-color: $tags-container-color;
-    float: right;
-    margin-top: 5.5rem;
-    padding-left: 11.47%;
     max-height: 214px;
+    width: stretch;
+    max-width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    align-items: flex-start;
+    padding-left: 5%;
 
-    #tags-title{
+    #tags-title {
       color: white !important;
       font-weight: 700;
-      font-size: 5.2em;
-      font-family: "Myriad Pro";//TODO: put the fonts local
+      font-size: 3.4em;
       text-transform: uppercase;
       max-width: 340px;
-      
-      @include media-breakpoint-down('sm') {
-        font-size: 2.25em;
-        text-align: center;
+    }
+
+    @include media-breakpoint-down('sm') {
+      max-width: 100%;
+      padding-left: 15%;
+      #tags-title {
+        font-size: 2.5em;
+        max-width: 50%;
+        text-align: left;
       }
     }
   }
 }
 
-#sencond-most-important-article-summary-container{
-  ant-article-summary {
-    float: left;
-  }
-}
-
-#articles-summary-container {
-  ant-article-summary {
-    float: left;
-  }
-}
-
-#more-articles-btn-container{
+#more-articles-btn-container {
   position: relative;
   width: 100%;
   min-width: 100%;
@@ -74,10 +100,55 @@ $tags-container-color: #2AAAE2;
   }
 }
 
+.second-most-important {
+  padding: 3rem 3%;
+}
+
+.extra-articles {
+  padding: 0 3%;
+}
+
 .hide-more-btn {
   display: none;
 }
 
-#marketing-container{
+#marketing-container {
   margin-bottom: 30px;
+}
+
+.ng-select.custom {
+  background-color: #fff !important;
+  width: fit-content;
+  max-width: 90%;
+
+  padding-bottom: 0 !important;
+  min-height: auto !important;
+
+  .ng-select-container {
+    min-height: auto !important;
+  }
+
+  .ng-arrow-wrapper {
+    color: #2aaae2 !important;
+
+    .ng-arrow {
+      color: #2aaae2 !important;
+    }
+  }
+
+  .ng-value {
+    background-color: $tags-container-color !important;
+    text-align: right !important;
+    vertical-align: middle !important;
+    padding: 4px 5px !important;
+    margin-right: 3px !important;
+    margin-left: 2px !important;
+    color: #ffffff !important;
+    border-radius: 0 !important;
+    font-size: 1rem !important;
+
+    .ng-value-label {
+      font-size: 1em !important;
+    }
+  }
 }

@@ -1,39 +1,61 @@
 <article *ngIf="article" id="article-outer-container" class="container">
   <div id="article-header" class="row col-12">
     <div id="article-main-picture">
-      <img src="{{articleMainPicture.relativePath}}" alt="{{articleMainPicture.seoFileName}}">
+      <img
+        src="{{articleMainPicture.relativePath}}"
+        alt="{{articleMainPicture.seoFileName}}"
+      />
     </div>
-    <h1 id="article-title" class="col-10">{{article.title}}</h1>
+    <h1 id="article-title" class="col-10">{{ article.title }}</h1>
     <div id="article-info" class="col-4">
       <div id="article-reading-time" class="col-12">
-        <span id="article-reading-time-title " class="font-weight-700">Reading Time: </span>{{article.readingTime}}
+        <span id="article-reading-time-title " class="font-weight-700"
+          >Reading Time: </span
+        >{{ article.readingTime }}
       </div>
       <div id="article-writer" class="col-12 ">
-        <span id="article-write-title " class="font-weight-700">By: </span>Get the Article's writer and put it in here
+        <span
+          id="article-write-title "
+          class="font-weight-700"
+          translate
+          [translateParams]="{ value: article?.createdBy }"
+          >BY
+        </span>
       </div>
     </div>
   </div>
 
-  <section id="article-body" [innerHtml]="article.body" class="col-12 col-sm-11"></section>
-  
+  <section
+    id="article-body"
+    [innerHtml]="article.body"
+    class="col-12 col-sm-11"
+  ></section>
 
-
-  <!-- <mat-chip-list id="article-tags">
-    <mat-chip class="article-tag" *ngFor="let tag of article.tags" (click)="onSelectTag(tag.id)">{{tag.name}}</mat-chip>
-  </mat-chip-list> -->
+  <!--
+    <mat-chip-list id="article-tags">
+      <mat-chip class="article-tag" *ngFor="let tag of article.tags" (click)="onSelectTag(tag.id)">{{tag.name}}</mat-chip>
+    </mat-chip-list>
+  -->
 
   <mat-chip-list id="article-tags">
-      <span class="article-tag" *ngFor="let tag of article.tags" (click)="onSelectTag(tag.id)">
-        <img src="assets/images/tag-icon.png"/>
-        {{tag.name}}
-      </span>
-    </mat-chip-list>
+    <span
+      class="article-tag"
+      *ngFor="let tag of article.tags"
+      (click)="onSelectTag(tag.id)"
+    >
+      <img src="assets/images/tag-icon.png" /> {{ tag.name }}
+    </span>
+  </mat-chip-list>
 
   <div id="related-articles-outer-container">
     <h2 id="related-articles-header" translate>RELATED</h2>
 
     <div id="related-articles-cards-container" class="row">
-      <ant-article-summary *ngFor="let article of relatedArticles$ | async" [article]="article" class="col-xs-12 col-md-3"></ant-article-summary>
+      <ant-article-summary
+        *ngFor="let article of (relatedArticles$ | async)"
+        [article]="article"
+        class="col-xs-12 col-md-4"
+      ></ant-article-summary>
       <!-- for this try to use the grid-list from material -->
     </div>
   </div>
@@ -42,7 +64,5 @@
     <h2 id="comments-header" translate>COMMENTS</h2>
 
     <hav-comment-home [articleId]="article.id"></hav-comment-home>
-
-
   </div>
 </article>

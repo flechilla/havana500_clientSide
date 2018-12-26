@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectorRef
+} from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import {
   ArticleService,
@@ -9,10 +14,10 @@ import {
   MarketingImageService,
   Picture
 } from '@hav500workspace/shared';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { english, spanish, french } from '../i18n';
 import { IImage } from 'ng-simple-slideshow';
-
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'hav-second-level-default',
@@ -23,55 +28,75 @@ import { IImage } from 'ng-simple-slideshow';
 export class SecondLevelDefaultComponent implements OnInit {
   globalTags$: Observable<ContentTag[]>;
   articlesToRender: Article[];
-  private amountOfArticles = 11;
+  protected amountOfArticles: number;
   // this represent 2 rows of article's summaries
-  private amountOfActiclesToLoad = 8;
+  protected amountOfActiclesToLoad = 8;
   private currentPage = 0;
   sectionName: string;
   mostImportantArticle: Article;
-  secondMostImporatantArticles: Article[];
+  secondMostImportantArticles: Article[];
   private isEndOfPage = false;
   private marketingImages: Picture[];
   protected imageUrls: (string | IImage)[] = [];
 
-
+  protected articlesMobile$: BehaviorSubject<Article[]> = new BehaviorSubject(
+    []
+  );
 
   selectedItems: any[];
+
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
 
   constructor(
     private route: ActivatedRoute,
     private articleService: ArticleService,
     private contentTagService: ContentTagService,
     private translateService: AntTranslateService,
-    private marketingImageService: MarketingImageService
+    private marketingImageService: MarketingImageService,
+    public media: MediaMatcher,
+    public changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.globalTags$ = this.contentTagService.getAll();
+    this.translateService.loadTranslations(english, spanish, french);
+
+    // Size detection
+    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+
+    this.amountOfArticles = this.isMobile() ? 30 : 11;
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.sectionName = params.get('sectionName');
+      this.getArticles();
+      this.getSecondLevelImages();
     });
-    this.translateService.loadTranslations(english, spanish, french);
-    this.getArticles();
-    this.getSecondLevelImages();
   }
 
   protected getArticles(tagIds: number[] = []): void {
-    this.secondMostImporatantArticles = [];
-    this.articleService.getArticlesBasicDataBySectionNameAndTagIds(
-      this.sectionName,
-      tagIds,
-      this.currentPage,
-      this.amountOfArticles
-    ).subscribe(articles=>{
+    this.secondMostImportantArticles = [];
+    this.articleService
+      .getArticlesBasicDataBySectionNameAndTagIds(
+        this.sectionName,
+        tagIds,
+        this.currentPage,
+        this.amountOfArticles
+      )
+      .subscribe(articles => {
         this.isEndOfPage = articles.length < this.amountOfArticles;
         this.mostImportantArticle = articles.shift();
-        this.secondMostImporatantArticles.push(articles.shift());
-        this.secondMostImporatantArticles.push(articles.shift());
-        this.articlesToRender = articles;
 
-    });
+        if (!this.isMobile()) {
+          this.secondMostImportantArticles.push(articles.shift());
+          this.secondMostImportantArticles.push(articles.shift());
+        }
+
+        this.articlesToRender = articles;
+        this.articlesMobile$.next(this.articlesToRender);
+      });
   }
 
   public tagSelectFilter(term: string, item: ContentTag): boolean {
@@ -81,16 +106,18 @@ export class SecondLevelDefaultComponent implements OnInit {
    *  Includes more articles in the list to render them.
    * @returns void
    */
-  private loadMoreArticles(): void{
-    this.articleService.getArticlesBasicDataBySectionNameAndTagIds(
-      this.sectionName,
-      this.selectedItems,
-      ++this.currentPage,
-      this.amountOfActiclesToLoad
-    ).subscribe(articles=>{
+  public loadMoreArticles(): void {
+    this.articleService
+      .getArticlesBasicDataBySectionNameAndTagIds(
+        this.sectionName,
+        this.selectedItems,
+        ++this.currentPage,
+        this.amountOfActiclesToLoad
+      )
+      .subscribe(articles => {
         this.articlesToRender = this.articlesToRender.concat(articles);
         this.isEndOfPage = articles.length < this.amountOfActiclesToLoad;
-    });
+      });
   }
 
   tagSelectionChanged(selectedTags: any[]) {
@@ -113,5 +140,9 @@ export class SecondLevelDefaultComponent implements OnInit {
       });
     });
     console.log(this.imageUrls);
+  }
+
+  isMobile(): boolean {
+    return this.mobileQuery.matches;
   }
 }

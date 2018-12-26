@@ -20,6 +20,7 @@ import { UICarouselModule } from './modules/ui-carousel/ui-carousel.module';
 import { CountdownComponent } from './components/countdown/countdown.component';
 import { NgxImageGalleryModule } from 'ngx-image-gallery';
 import { PictureToGalleryPipe } from './pipes/picture-to-gallery.pipe';
+import { ExperienceArticleCardComponent } from './components/experience-article-card/experience-article-card.component';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { PictureToGalleryPipe } from './pipes/picture-to-gallery.pipe';
     ArticleMetadataComponent,
     LabelsBarComponent,
     CountdownComponent,
+    ExperienceArticleCardComponent,
 
     //Directives
     AntWidgetToggleDirective,
@@ -75,6 +77,7 @@ import { PictureToGalleryPipe } from './pipes/picture-to-gallery.pipe';
     ArticleMetadataComponent,
     LabelsBarComponent,
     CountdownComponent,
+    ExperienceArticleCardComponent,
 
     //Directives
     AntWidgetToggleDirective,

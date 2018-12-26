@@ -3,12 +3,11 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ArticleService } from '../../services/http/article.service';
 import { ArticleExtended } from '../../models/article-extended';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, take, map } from 'rxjs/operators';
 import { Article, Picture } from '../../models';
 import { CommentService, AntTranslateService } from '../../services';
 import { Observable } from 'rxjs';
 import { english, spanish, french } from './i18n';
-
 
 @Component({
   selector: 'ant-article',
@@ -43,7 +42,7 @@ export class ArticleComponent implements OnInit {
    *  Get the article with the given articleId that is in the route.
    */
   getArticle(id: number): void {
-    this.articleService.getWithTags(id).subscribe(art=>{
+    this.articleService.getWithTags(id).subscribe(art => {
       art.body = this.addStyleToArticleImages(art.body);
       this.article = art;
       this.articleMainPicture = this.article.mainPicture;
@@ -56,7 +55,9 @@ export class ArticleComponent implements OnInit {
    *  Get the related articles of the current article.
    */
   getRelatedArticles(id: number): void {
-    this.relatedArticles$ = this.articleService.getRelatedArticles(id);
+    this.relatedArticles$ = this.articleService
+      .getRelatedArticles(id)
+      .pipe(map((items: Article[]) => items.slice(0, 3)));
   }
 
   addStyleToArticleImages(articleBody: string): string {

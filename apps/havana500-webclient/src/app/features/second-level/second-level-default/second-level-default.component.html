@@ -1,28 +1,59 @@
-<div fxLayout="column" fxLayoutAlign="start start">
-  <div id="secondary-header" class="col-12">
-    <div id="section-name-container" class="col-12 col-sm-6">
-      <h1 class="section-name">{{sectionName}}</h1>
+<div fxLayout="column" fxLayoutAlign="start start" class="second-level">
+  <!-- HEADER -->
+  <div
+    id="secondary-header"
+    fxLayout="row wrap"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+  >
+    <!-- TITLE -->
+    <div id="section-name-container">
+      <h1 class="section-name">{{ sectionName }}</h1>
     </div>
-    <div id="tags-outer-container" class="col-12 col-sm-6">
+    <!-- /TITLE -->
+    <div id="tags-outer-container" class="mat-accent-500-bg">
       <h3 translate id="tags-title">TAG_SELECTOR</h3>
-      <!--TODO: translate this-->
+      <!-- TODO: translate this -->
       <div style="width: 100%">
-        <ng-select [items]="globalTags$ | async" [hideSelected]="true" bindLabel='name' [closeOnSelect]="false"
-          [multiple]="true" bindValue="id" [placeholder]="'Filter by Tags'" [searchFn]="tagSelectFilter" (change)="tagSelectionChanged($event)"
-          [(ngModel)]="selectedItems" style=" background-color: #fff !important; width: 40%; min-height: 38px !important;"></ng-select>
+        <ng-select
+          class="custom"
+          [items]="globalTags$ | async"
+          [hideSelected]="true"
+          bindLabel="name"
+          [closeOnSelect]="false"
+          [multiple]="true"
+          bindValue="id"
+          [placeholder]="'Filter by Tags'"
+          [searchFn]="tagSelectFilter"
+          (change)="tagSelectionChanged($event)"
+          [(ngModel)]="selectedItems"
+        ></ng-select>
       </div>
     </div>
   </div>
+  <!-- / HEADER -->
 
-
-
-
-  <article fxFlexFill class="row">
-    <section id="main-article-summary-container">
-      <ant-article-summary [isCuriosityHomeArticle]=true [article]="mostImportantArticle" class="col-md-3 col-xs-12"></ant-article-summary>
+  <article fxFlexFill>
+    <!-- MAIN ARTICLE -->
+    <section
+      class="main-article-summary-container"
+      *ngIf="mostImportantArticle; else: noItemsTemplate"
+    >
+      <ant-article-summary
+        [isCuriosityHomeArticle]="!isMobile()"
+        [article]="mostImportantArticle"
+        [isCardShadowMode]="false"
+      ></ant-article-summary>
     </section>
+    <!-- / MAIN ARTICLE -->
+
+    <ng-template #noItemsTemplate>
+      <h1 class="no-articles-message" translate>NO_ITEMS</h1>
+    </ng-template>
+
+    <!-- MARKETING -->
     <section id="marketing-container" class="col-12">
-        <slideshow
+      <slideshow
         [minHeight]="'300px'"
         [autoPlay]="true"
         [imageUrls]="imageUrls"
@@ -35,16 +66,65 @@
       >
       </slideshow>
     </section>
-    <section id="sencond-most-important-article-summary-container">
-      <ant-article-summary *ngFor="let article of secondMostImporatantArticles" [article]="article" class="col-md-6 col-xs-12"></ant-article-summary>
-    </section>
-    <section id="articles-summary-container">
-      <ant-article-summary *ngFor="let article of articlesToRender" [article]="article" class="col-md-3 col-xs-12"></ant-article-summary>
-    </section>
-  </article>
-<div id="more-articles-btn-container" [ngClass]="{'hide-more-btn': isEndOfPage}">
-  <button class="btn" (click)="loadMoreArticles()" translate="">SEE_MORE</button>
-</div>
+    <!-- / MARKETING -->
 
-<!-- <hav-outstanding-experiences></hav-outstanding-experiences> TODo: use this compoenent, but can't be imported in this module and the homeModule... -->
+    <!-- SECOND MOST IMPORTANT -->
+    <section
+      class="second-most-important"
+      fxLayout="row"
+      *ngIf="
+        !isMobile() &&
+        mostImportantArticle &&
+        secondMostImportantArticles?.length > 0
+      "
+    >
+      <ant-article-summary
+        *ngFor="let article of secondMostImportantArticles"
+        [article]="article"
+        [isCreationDateVisible]="false"
+        class="col-md-6 col-xs-12"
+      ></ant-article-summary>
+    </section>
+    <!-- / SECOND MOST IMPORTANT -->
+
+    <!-- EXTRA ARTICLES -->
+    <section
+      class="extra-articles"
+      fxLayout="row wrap"
+      *ngIf="
+        !isMobile() && mostImportantArticle && articlesToRender?.length > 0
+      "
+    >
+      <ant-article-summary
+        *ngFor="let article of articlesToRender"
+        [article]="article"
+        [isCreationDateVisible]="false"
+        class="col-md-3 col-sm-4 col-xs-12"
+      ></ant-article-summary>
+    </section>
+    <!-- EXTRA ARTICLES -->
+
+    <!-- EXTRA ARTICLES MOBILE -->
+    <ant-experience-article-card
+      *ngIf="isMobile()"
+      [articles$]="articlesMobile$.asObservable()"
+      [totalItems]="amountOfArticles"
+      [isMobile]="true"
+    ></ant-experience-article-card>
+    <!-- / EXTRA ARTICLES MOBILE -->
+  </article>
+
+  <div
+    *ngIf="!isMobile()"
+    id="more-articles-btn-container"
+    [ngClass]="{ 'hide-more-btn': isEndOfPage }"
+  >
+    <button class="btn" (click)="loadMoreArticles()" translate="">
+      SEE_MORE
+    </button>
+  </div>
+
+  <!--
+    <hav-outstanding-experiences></hav-outstanding-experiences> TODo: use this compoenent, but can't be imported in this module and the homeModule...
+  -->
 </div>
