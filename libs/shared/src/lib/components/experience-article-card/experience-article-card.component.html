@@ -1,0 +1,26 @@
+<!-- CARDS -->
+<div
+  *ngIf="(articles$ | async) as experiences"
+  fxLayout="row"
+  class="cards-container"
+>
+  <ant-article-summary
+    [isExperienceArticle]="!isMobile"
+    [isMetadataVisible]="true"
+    [article]="experiences[current]"
+    [isCreationDateVisible]="false"
+    [isCardShadowMode]="false"
+    [isAuthorVisible]="false"
+  >
+  </ant-article-summary>
+
+  <button
+    (click)="movePrevious()"
+    class="mat-accent-500-bg arrow previous-arrow"
+  >
+    <mat-icon class="arrow-icon">keyboard_arrow_left</mat-icon>
+  </button>
+  <button (click)="moveNext()" class="mat-accent-500-bg arrow next-arrow">
+    <mat-icon class="arrow-icon">keyboard_arrow_right</mat-icon>
+  </button>
+</div>

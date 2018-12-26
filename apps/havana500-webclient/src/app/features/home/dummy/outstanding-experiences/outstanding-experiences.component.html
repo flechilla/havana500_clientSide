@@ -17,44 +17,11 @@
       <h1 translate class="experiences-poster-title section-name">WHAT</h1>
       <h1 translate class="experiences-poster-title section-name">TODO</h1>
     </div>
-
-    <!-- CARDS -->
-    <div
-      *ngIf="(experiences$ | async) as experiences"
-      fxLayout="row"
-      class="cards-container"
-    >
-      <ant-article-summary
-        [isExperienceArticle]="!isMobile()"
-        [isMetadataVisible]="true"
-        [article]="experiences[current]"
-        [isCreationDateVisible]="false"
-        [isCardShadowMode]="false"
-        [isAuthorVisible]="false"
-      >
-      </ant-article-summary>
-
-      <!--
-        <div *ngFor="let curiosity of (experiences$ | async); let index = index">
-          <ant-article-summary
-            [isExperienceArticle]="true"
-            *ngIf="isIndexVisible(index)"
-            [article]="curiosity"
-          >
-          </ant-article-summary>
-        </div>
-      -->
-
-      <button
-        (click)="movePrevious()"
-        class="mat-accent-500-bg arrow previous-arrow"
-      >
-        <mat-icon class="arrow-icon">keyboard_arrow_left</mat-icon>
-      </button>
-      <button (click)="moveNext()" class="mat-accent-500-bg arrow next-arrow">
-        <mat-icon class="arrow-icon">keyboard_arrow_right</mat-icon>
-      </button>
-    </div>
+    <ant-experience-article-card
+      [articles$]="experiences$"
+      [isMobile]="isMobile()"
+      [totalItems]="totalItems"
+    ></ant-experience-article-card>
   </div>
 
   <a

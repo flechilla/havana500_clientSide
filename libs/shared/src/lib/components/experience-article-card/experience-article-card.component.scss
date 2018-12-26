@@ -1,0 +1,38 @@
+@import '../../scss/ant.scss';
+.arrow {
+  position: absolute;
+  top: 50%;
+  display: flex;
+
+  @include media-breakpoint-down('sm') {
+    top: 40%;
+  }
+}
+
+.arrow-icon {
+  @include media-breakpoint('xs') {
+    font-size: 1.2em;
+    padding: 0.5rem;
+  }
+  width: auto;
+  height: auto;
+  font-size: 3em;
+  padding: 1rem;
+}
+
+.previous-arrow {
+  left: 0%;
+}
+
+.next-arrow {
+  right: 0%;
+}
+
+.cards-container {
+  position: relative;
+  // flex-grow: 1;
+
+  .main-article-summary-content {
+    padding: 0 3rem !important;
+  }
+}

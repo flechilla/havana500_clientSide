@@ -27,24 +27,15 @@ export class OutstandingExperiencesComponent implements OnInit, OnDestroy {
   totalItems: number = 8;
   public experiences$: Observable<Article[]>;
 
-  private visibleIndexes: IndexesCircularLinkedList;
-
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
   constructor(
-    iconRegistry: MatIconRegistry,
-    sanitizer: DomSanitizer,
     protected articleService: ArticleService,
     public media: MediaMatcher,
     public changeDetectorRef: ChangeDetectorRef,
     public translate: AntTranslateService
   ) {
-    iconRegistry.addSvgIcon(
-      'arrow',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/images/arrow.svg')
-    );
-
     //Sets the media query listener
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -59,34 +50,6 @@ export class OutstandingExperiencesComponent implements OnInit, OnDestroy {
       0,
       this.totalItems
     );
-
-    this.visibleIndexes = new IndexesCircularLinkedList(this.totalItems);
-  }
-
-  isIndexVisible(index: number) {
-    return (
-      index === this.visibleIndexes.current ||
-      (!this.isMobile() && index === this.visibleIndexes.successor) ||
-      (!this.isMobile() && index === this.visibleIndexes.predecessor)
-    );
-  }
-
-  moveNext() {
-    this.visibleIndexes.moveNext();
-  }
-
-  movePrevious() {
-    this.visibleIndexes.moveBack();
-  }
-
-  public get current(): number {
-    return this.visibleIndexes.current;
-  }
-  public get predecessor(): number {
-    return this.visibleIndexes.predecessor;
-  }
-  public get successor(): number {
-    return this.visibleIndexes.successor;
   }
 
   isMobile(): boolean {
