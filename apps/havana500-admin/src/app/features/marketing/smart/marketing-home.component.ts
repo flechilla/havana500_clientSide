@@ -7,7 +7,8 @@ import {
   ContentTag,
   MarketingImageService,
   ContentTagService,
-  PictureExtended
+  PictureExtended,
+  PictureType
 } from '@hav500workspace/shared';
 import { MatDialog } from '@angular/material';
 import { CreateUpdateMarketingComponent } from '../dummy/create-update/create-update-marketing.component';
@@ -23,12 +24,20 @@ export class MarketingHomeComponent extends BaseTableContainerComponent<Picture>
   protected dialogRef: any;
   protected globalTags: ContentTag[];
 
+  // Alias
+  pictureTypes = PictureType;
+
   constructor(
     protected dialog: MatDialog,
     protected marketingService: MarketingImageService,
     protected contentTagService: ContentTagService
   ) {
-    super(['id', 'relativePath', 'pictureType', 'name', 'companyName', 'isActive'], marketingService, 'id, relativePath, pictureType, name, companyName, isActive', 'Pictures');
+    super(
+      ['id', 'relativePath', 'pictureType', 'name', 'companyName', 'isActive'],
+      marketingService,
+      'id, relativePath, pictureType, name, companyName, isActive',
+      'Pictures'
+    );
   }
 
   ngOnInit() {
