@@ -43,7 +43,6 @@
         [isCuriosityHomeArticle]="!isMobile()"
         [article]="mostImportantArticle"
         [isCardShadowMode]="false"
-        class="col-md-3 col-xs-12"
       ></ant-article-summary>
     </section>
     <!-- / MAIN ARTICLE -->
@@ -73,7 +72,11 @@
     <section
       class="second-most-important"
       fxLayout="row"
-      *ngIf="mostImportantArticle && secondMostImportantArticles?.length > 0"
+      *ngIf="
+        !isMobile() &&
+        mostImportantArticle &&
+        secondMostImportantArticles?.length > 0
+      "
     >
       <ant-article-summary
         *ngFor="let article of secondMostImportantArticles"
@@ -88,7 +91,9 @@
     <section
       class="extra-articles"
       fxLayout="row wrap"
-      *ngIf="mostImportantArticle && articlesToRender?.length > 0"
+      *ngIf="
+        !isMobile() && mostImportantArticle && articlesToRender?.length > 0
+      "
     >
       <ant-article-summary
         *ngFor="let article of articlesToRender"
@@ -98,9 +103,19 @@
       ></ant-article-summary>
     </section>
     <!-- EXTRA ARTICLES -->
+
+    <!-- EXTRA ARTICLES MOBILE -->
+    <ant-experience-article-card
+      *ngIf="isMobile()"
+      [articles$]="articlesMobile$.asObservable()"
+      [totalItems]="amountOfArticles"
+      [isMobile]="true"
+    ></ant-experience-article-card>
+    <!-- / EXTRA ARTICLES MOBILE -->
   </article>
 
   <div
+    *ngIf="!isMobile()"
     id="more-articles-btn-container"
     [ngClass]="{ 'hide-more-btn': isEndOfPage }"
   >

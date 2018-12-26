@@ -14,7 +14,7 @@ import {
   MarketingImageService,
   Picture
 } from '@hav500workspace/shared';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { english, spanish, french } from '../i18n';
 import { IImage } from 'ng-simple-slideshow';
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -28,9 +28,9 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class SecondLevelDefaultComponent implements OnInit {
   globalTags$: Observable<ContentTag[]>;
   articlesToRender: Article[];
-  private amountOfArticles = 11;
+  protected amountOfArticles: number;
   // this represent 2 rows of article's summaries
-  private amountOfActiclesToLoad = 8;
+  protected amountOfActiclesToLoad = 8;
   private currentPage = 0;
   sectionName: string;
   mostImportantArticle: Article;
@@ -38,6 +38,10 @@ export class SecondLevelDefaultComponent implements OnInit {
   private isEndOfPage = false;
   private marketingImages: Picture[];
   protected imageUrls: (string | IImage)[] = [];
+
+  protected articlesMobile$: BehaviorSubject<Article[]> = new BehaviorSubject(
+    []
+  );
 
   selectedItems: any[];
 
@@ -58,16 +62,18 @@ export class SecondLevelDefaultComponent implements OnInit {
     this.globalTags$ = this.contentTagService.getAll();
     this.translateService.loadTranslations(english, spanish, french);
 
+    // Size detection
+    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+
+    this.amountOfArticles = this.isMobile() ? 30 : 11;
+
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.sectionName = params.get('sectionName');
       this.getArticles();
       this.getSecondLevelImages();
     });
-
-    // Size detection
-    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   protected getArticles(tagIds: number[] = []): void {
@@ -82,9 +88,14 @@ export class SecondLevelDefaultComponent implements OnInit {
       .subscribe(articles => {
         this.isEndOfPage = articles.length < this.amountOfArticles;
         this.mostImportantArticle = articles.shift();
-        this.secondMostImportantArticles.push(articles.shift());
-        this.secondMostImportantArticles.push(articles.shift());
+
+        if (!this.isMobile()) {
+          this.secondMostImportantArticles.push(articles.shift());
+          this.secondMostImportantArticles.push(articles.shift());
+        }
+
         this.articlesToRender = articles;
+        this.articlesMobile$.next(this.articlesToRender);
       });
   }
 
@@ -95,7 +106,7 @@ export class SecondLevelDefaultComponent implements OnInit {
    *  Includes more articles in the list to render them.
    * @returns void
    */
-  private loadMoreArticles(): void {
+  public loadMoreArticles(): void {
     this.articleService
       .getArticlesBasicDataBySectionNameAndTagIds(
         this.sectionName,
