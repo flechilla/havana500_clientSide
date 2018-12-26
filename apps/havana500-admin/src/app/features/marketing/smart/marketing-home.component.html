@@ -82,7 +82,9 @@
             >Type</mat-header-cell
           >
           <mat-cell *matCellDef="let marketing">
-            <p class="text-truncate">{{ marketing.pictureType.toString() }}</p>
+            <p class="text-truncate">
+              {{ pictureTypes[marketing.pictureType.toString()] }}
+            </p>
           </mat-cell>
         </ng-container>
 
@@ -91,6 +93,7 @@
           <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
           <mat-cell *matCellDef="let marketing">
             <img
+              class="preview-image"
               src="{{marketing.relativePath}}"
               alt="{{marketing.seoFileName}}"
             />
@@ -99,30 +102,30 @@
 
         <!-- NAME Column -->
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-xs
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs
             >Name</mat-header-cell
           >
-          <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
+          <mat-cell *matCellDef="let marketing" fxHide.xs>
             <p class="category text-truncate">{{ marketing.name }}</p>
           </mat-cell>
         </ng-container>
 
         <!-- COMPANY NAME Column -->
         <ng-container matColumnDef="companyName">
-          <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-xs
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs
             >Company Name</mat-header-cell
           >
-          <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
+          <mat-cell *matCellDef="let marketing" fxHide.xs>
             <p class="category text-truncate">{{ marketing.companyName }}</p>
           </mat-cell>
         </ng-container>
 
         <!-- IS ACTIVE Column -->
         <ng-container matColumnDef="isActive">
-          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs
             >Is Active?</mat-header-cell
           >
-          <mat-cell *matCellDef="let marketing" fxHide fxShow.gt-xs>
+          <mat-cell *matCellDef="let marketing" fxHide.xs>
             <mat-icon
               *ngIf="marketing.isActive"
               class="active-icon mat-green-600-bg s-16"

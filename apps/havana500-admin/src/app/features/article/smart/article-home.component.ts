@@ -38,7 +38,8 @@ export class ArticleHomeComponent extends BaseTableContainerComponent<Article>
     super(
       [
         'id',
-        'title', // 'section',
+        'title',
+        'section',
         'allowComments',
         'allowAnonymousComments',
         'approvedCommentCount',

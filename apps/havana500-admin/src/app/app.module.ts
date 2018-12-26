@@ -1,3 +1,4 @@
+import { QuillModule } from 'ngx-quill';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import 'hammerjs';
@@ -33,6 +34,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+
     HttpClientModule,
     NxModule.forRoot(),
     RouterModule.forRoot(appRoutes, {
@@ -54,7 +56,8 @@ import { TranslateModule } from '@ngx-translate/core';
         allowedUrls: ['http://localhost:5000/api/'],
         sendAccessToken: true
       }
-    })
+    }),
+    QuillModule.forRoot()
   ],
   providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]

@@ -1,153 +1,227 @@
 <div id="articles" class="page-layout carded fullwidth articles-home-padded">
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+  <!-- / TOP BACKGROUND -->
 
-    <!-- TOP BACKGROUND -->
-    <div class="top-bg mat-accent-bg"></div>
-    <!-- / TOP BACKGROUND -->
+  <!-- CENTER -->
+  <div class="center">
+    <!-- HEADER -->
+    <div
+      class="header white-fg"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayout.gt-xs="row"
+      fxLayoutAlign.gt-xs="space-around center"
+    >
+      <!-- APP TITLE -->
+      <div
+        class="logo my-12 m-sm-0"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+      >
+        <mat-icon
+          class="logo-icon mr-16"
+          *antIfOnDom
+          [@animate]="{ value: '*', params: { delay: '50ms', scale: '0.2' } }"
+          >shopping_basket</mat-icon
+        >
+        <span
+          class="logo-text h1"
+          *antIfOnDom
+          [@animate]="{ value: '*', params: { delay: '100ms', x: '-25px' } }"
+          >Articles</span
+        >
+      </div>
+      <!-- / APP TITLE -->
 
-    <!-- CENTER -->
-    <div class="center">
+      <!-- SEARCH -->
+      <div
+        *hidden
+        class="search-input-wrapper mx-12 m-md-0"
+        fxFlex="1 0 auto"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+      >
+        <label for="search" class="mr-8">
+          <mat-icon class="secondary-text">search</mat-icon>
+        </label>
+        <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
+          <input id="search" matInput #filter placeholder="Search" />
+        </mat-form-field>
+      </div>
+      <!-- / SEARCH -->
 
-        <!-- HEADER -->
-        <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-            fxLayoutAlign.gt-xs="space-around center">
+      <!--
+        <button (click)="openCreateDialog()" mat-raised-button class="add-article-button mat-white-bg my-12 mt-sm-0">
+            <span>ADD NEW ARTICLE</span>
+        </button>
+      -->
 
-            <!-- APP TITLE -->
-            <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *antIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">shopping_basket</mat-icon>
-                <span class="logo-text h1" *antIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Articles</span>
-            </div>
-            <!-- / APP TITLE -->
-
-            <!-- SEARCH -->
-            <div *hidden class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-                <label for="search" class="mr-8">
-                    <mat-icon class="secondary-text">search</mat-icon>
-                </label>
-                <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
-                    <input id="search" matInput #filter placeholder="Search">
-                </mat-form-field>
-            </div>
-            <!-- / SEARCH -->
-
-            <!-- <button (click)="openCreateDialog()" mat-raised-button class="add-article-button mat-white-bg my-12 mt-sm-0">
-                <span>ADD NEW ARTICLE</span>
-            </button> -->
-
-            <button (click)="openCreateDialog()" mat-mini-fab color="warn">
-                <mat-icon aria-label="Add Article">add</mat-icon>
-            </button>
-
-        </div>
-        <!-- / HEADER -->
-
-        <!-- CONTENT CARD -->
-        <div class="content-card mat-white-bg">
-
-            <mat-table class="articles-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{value:'50'}">
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
-                    <mat-cell *matCellDef="let article">
-                        <p class="text-truncate">{{article.id}}</p>
-                    </mat-cell>
-                </ng-container>
-
-
-                <!-- Title Column -->
-                <ng-container matColumnDef="title">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
-                    <mat-cell *matCellDef="let article">
-                        <p class="text-truncate">{{article.title}}</p>
-                    </mat-cell>
-                </ng-container>
-
-                <!-- Section Column -->
-                <ng-container matColumnDef="section">
-                    <mat-header-cell *matHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Section</mat-header-cell>
-                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-md>
-                        <p class="category text-truncate">
-                            {{article.sectionId}}
-                        </p>
-                    </mat-cell>
-                </ng-container>
-
-                <!-- Allow Comments Column -->
-                <ng-container matColumnDef="allowComments">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Allow Comments</mat-header-cell>
-                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-xs>
-                        <mat-icon *ngIf="article.allowComments" class="active-icon mat-green-600-bg s-16">check</mat-icon>
-                        <mat-icon *ngIf="!article.allowComments" class="active-icon mat-red-500-bg s-16">close</mat-icon>
-                    </mat-cell>
-                </ng-container>
-
-                <!-- Allow Anonymous Comments Column -->
-                <ng-container matColumnDef="allowAnonymousComments">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Allow Anonymous Comments</mat-header-cell>
-                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-xs>
-                        <mat-icon *ngIf="article.allowAnonymousComments" class="active-icon mat-green-600-bg s-16">check</mat-icon>
-                        <mat-icon *ngIf="!article.allowAnonymousComments" class="active-icon mat-red-500-bg s-16">close</mat-icon>
-                    </mat-cell>
-                </ng-container>
-
-                <!-- Approved Comments Count Column -->
-                <ng-container matColumnDef="approvedCommentCount">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Approved Comments</mat-header-cell>
-                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-sm>
-
-                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-red-500-bg':article.approvedCommentCount <= 5, 'mat-amber-500-bg':article.approvedCommentCount > 5 && article.ApprovedCommentCount <= 25,'mat-green-600-bg':article.approvedCommentCount > 25}">
-                        </span>
-                        <span>
-                            {{article.approvedCommentCount}}
-                        </span>
-
-                    </mat-cell>
-                </ng-container>
-
-                <!-- Not Approved Comments Count Column -->
-                <ng-container matColumnDef="notApprovedCommentCount">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Not Approved Comments</mat-header-cell>
-                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-sm>
-
-                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-green-500-bg':article.notApprovedCommentCount <= 5, 'mat-amber-500-bg':article.notApprovedCommentCount > 5 && article.ApprovedCommentCount <= 25,'mat-red-600-bg':article.notApprovedCommentCount > 25}">
-                        </span>
-                        <span>
-                            {{article.notApprovedCommentCount}}
-                        </span>
-
-                    </mat-cell>
-                </ng-container>
-
-                <!-- Views Column -->
-                <ng-container matColumnDef="views">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Views</mat-header-cell>
-                    <mat-cell *matCellDef="let article" fxHide fxShow.gt-sm>
-
-                        <span class="quantity-indicator text-truncate" [ngClass]="{'mat-green-500-bg':article.views <= 5, 'mat-amber-500-bg':article.views > 5 && article.views <= 25,'mat-red-600-bg':article.views > 25}">
-                        </span>
-                        <span>
-                            {{article.views}}
-                        </span>
-
-                    </mat-cell>
-                </ng-container>
-
-
-
-                <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-
-                <mat-row *matRowDef="let article; columns: columnsToDisplay;" class="article" matRipple (click)="openCreateDialog(article)">
-                </mat-row>
-
-            </mat-table>
-
-            <mat-paginator #paginator [length]="dataSource.currentLength" [pageIndex]="0" [pageSize]="10"
-                [pageSizeOptions]="[5, 10, 25, 100]">
-
-            </mat-paginator>
-
-        </div>
-        <!-- / CONTENT CARD -->
+      <button (click)="openCreateDialog()" mat-mini-fab color="warn">
+        <mat-icon aria-label="Add Article">add</mat-icon>
+      </button>
     </div>
-    <!-- / CENTER -->
+    <!-- / HEADER -->
+
+    <!-- CONTENT CARD -->
+    <div class="content-card mat-white-bg">
+      <mat-table
+        class="articles-table"
+        #table
+        [dataSource]="dataSource"
+        matSort
+        [@animateStagger]="{ value: '50' }"
+      >
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >ID</mat-header-cell
+          >
+          <mat-cell *matCellDef="let article">
+            <p class="text-truncate">{{ article.id }}</p>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Title</mat-header-cell
+          >
+          <mat-cell *matCellDef="let article">
+            <p class="text-truncate">{{ article.title }}</p>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Section Column -->
+        <ng-container matColumnDef="section">
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.lt-md
+            >Section</mat-header-cell
+          >
+          <mat-cell *matCellDef="let article" fxHide.lt-md>
+            <p class="category text-truncate">{{ article.sectionId }}</p>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Allow Comments Column -->
+        <ng-container matColumnDef="allowComments">
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs
+            >Allow Comments</mat-header-cell
+          >
+          <mat-cell *matCellDef="let article" fxHide.xs>
+            <mat-icon
+              *ngIf="article.allowComments"
+              class="active-icon mat-green-600-bg s-16"
+              >check</mat-icon
+            >
+            <mat-icon
+              *ngIf="!article.allowComments"
+              class="active-icon mat-red-500-bg s-16"
+              >close</mat-icon
+            >
+          </mat-cell>
+        </ng-container>
+
+        <!-- Allow Anonymous Comments Column -->
+        <ng-container matColumnDef="allowAnonymousComments">
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.sm
+            >Allow Anonymous Comments</mat-header-cell
+          >
+          <mat-cell *matCellDef="let article" fxHide.sm>
+            <mat-icon
+              *ngIf="article.allowAnonymousComments"
+              class="active-icon mat-green-600-bg s-16"
+              >check</mat-icon
+            >
+            <mat-icon
+              *ngIf="!article.allowAnonymousComments"
+              class="active-icon mat-red-500-bg s-16"
+              >close</mat-icon
+            >
+          </mat-cell>
+        </ng-container>
+
+        <!-- Approved Comments Count Column -->
+        <ng-container matColumnDef="approvedCommentCount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs
+            >Approved Comments</mat-header-cell
+          >
+          <mat-cell *matCellDef="let article" fxHide.xs>
+            <span
+              class="quantity-indicator text-truncate"
+              [ngClass]="{
+                'mat-red-500-bg': article.approvedCommentCount <= 5,
+                'mat-amber-500-bg':
+                  article.approvedCommentCount > 5 &&
+                  article.ApprovedCommentCount <= 25,
+                'mat-green-600-bg': article.approvedCommentCount > 25
+              }"
+            >
+            </span>
+            <span> {{ article.approvedCommentCount }} </span>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Not Approved Comments Count Column -->
+        <ng-container matColumnDef="notApprovedCommentCount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs
+            >Not Approved Comments</mat-header-cell
+          >
+          <mat-cell *matCellDef="let article" fxHide.xs>
+            <span
+              class="quantity-indicator text-truncate"
+              [ngClass]="{
+                'mat-green-500-bg': article.notApprovedCommentCount <= 5,
+                'mat-amber-500-bg':
+                  article.notApprovedCommentCount > 5 &&
+                  article.ApprovedCommentCount <= 25,
+                'mat-red-600-bg': article.notApprovedCommentCount > 25
+              }"
+            >
+            </span>
+            <span> {{ article.notApprovedCommentCount }} </span>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Views Column -->
+        <ng-container matColumnDef="views">
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxShow fxHide.xs
+            >Views</mat-header-cell
+          >
+          <mat-cell *matCellDef="let article" fxShow fxHide.xs>
+            <span
+              class="quantity-indicator text-truncate"
+              [ngClass]="{
+                'mat-green-500-bg': article.views <= 5,
+                'mat-amber-500-bg': article.views > 5 && article.views <= 25,
+                'mat-red-600-bg': article.views > 25
+              }"
+            >
+            </span>
+            <span> {{ article.views }} </span>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+
+        <mat-row
+          *matRowDef="let article; columns: columnsToDisplay"
+          class="article"
+          matRipple
+          (click)="openCreateDialog(article)"
+        >
+        </mat-row>
+      </mat-table>
+
+      <mat-paginator
+        #paginator
+        [length]="dataSource.currentLength"
+        [pageIndex]="0"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+      >
+      </mat-paginator>
+    </div>
+    <!-- / CONTENT CARD -->
+  </div>
+  <!-- / CENTER -->
 </div>

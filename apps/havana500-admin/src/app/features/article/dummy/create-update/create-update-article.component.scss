@@ -1,4 +1,20 @@
 @import '../../../../core/scss/ant';
+#editor-container {
+  font-family: 'Roboto';
+}
+
+[quill-editor-element] {
+  font-family: 'Roboto';
+}
+
+/* Set dropdown font-families */
+[quill-editor-toolbar] .ql-font span[data-label='Roboto']::before {
+  font-family: 'Roboto';
+}
+
+// .ql-font-roboto {
+//   font-family: 'Roboto';
+// }
 
 .main-input__sized {
   width: 60%;
@@ -30,6 +46,10 @@
         text-overflow: ellipsis;
         overflow: hidden;
       }
+    }
+
+    .mat-form-field {
+      font-size: 1.5em;
     }
 
     .toolbar-bottom {

@@ -146,7 +146,7 @@
               "apps/havana500-admin/src/assets"
             ],
             "styles": ["apps/havana500-admin/src/styles.scss"],
-            "scripts": []
+            "scripts": ["node_modules/quill/dist/quill.min.js"]
           },
           "configurations": {
             "production": {

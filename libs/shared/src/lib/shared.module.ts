@@ -10,7 +10,7 @@ import { IfOnDomDirective } from './directives/ant-if-on-dom/if-on-dom.directive
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SquareFadeSpinnerComponent } from './components/squares-fade-spinner/square-fade-spinner.component';
-import { QuillModule } from 'ngx-quill';
+
 import { ArticleSummaryComponent } from './components/article-summary/article-summary.component';
 import { ArticleMetadataComponent } from './components/article-metadata/article-metadata.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -30,7 +30,6 @@ import { ExperienceArticleCardComponent } from './components/experience-article-
     FormsModule,
     ReactiveFormsModule,
     NgxChartsModule,
-    QuillModule,
     TranslateModule,
     UICarouselModule,
 
@@ -64,9 +63,7 @@ import { ExperienceArticleCardComponent } from './components/experience-article-
     MaterialModule,
     FlexLayoutModule,
     NgxChartsModule,
-    QuillModule,
     UICarouselModule,
-
     NgxImageGalleryModule,
 
     //Components

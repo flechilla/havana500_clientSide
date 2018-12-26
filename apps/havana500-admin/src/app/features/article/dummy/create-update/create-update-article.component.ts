@@ -34,6 +34,18 @@ import {
 import { startWith, map } from 'rxjs/operators';
 import { UploadService } from '../../../../core/services/http/upload.service';
 
+// add image resize module
+import * as QuillNamespace from 'quill';
+const Quill: any = QuillNamespace;
+import ImageResize from 'quill-image-resize-module';
+Quill.register('modules/imageResize', ImageResize);
+
+// Add fonts to whitelist
+// const Font = Quill.import('formats/font');
+// We do not add Aref Ruqaa since it is the default
+// Font.whitelist = ['roboto'];
+// Quill.register(Font, true);
+
 @Component({
   selector: 'admin-create-update-article',
   templateUrl: 'create-update-article.component.html',
@@ -50,6 +62,9 @@ export class CreateUpdateArticleComponent implements OnInit {
   tagName: FormControl;
   @ViewChild('mainPicture')
   mainPicture;
+
+  //QUILL CONFIG
+  modules = {};
 
   public form: FormGroup;
   public onEdit = false;
@@ -78,7 +93,23 @@ export class CreateUpdateArticleComponent implements OnInit {
     protected utilsService: AntUtilsService,
     protected articleService: ArticleService,
     private uploadService: UploadService
-  ) {}
+  ) {
+    this.modules = {
+      toolbar: {
+        container: [
+          [{ font: [] }],
+          [{ size: ['small', false, 'large', 'huge'] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ header: 1 }, { header: 2 }],
+          [{ color: [] }, { background: [] }],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          [{ align: [] }],
+          ['link', 'image']
+        ]
+      },
+      imageResize: {}
+    };
+  }
 
   ngOnInit() {
     this.loadForm();
