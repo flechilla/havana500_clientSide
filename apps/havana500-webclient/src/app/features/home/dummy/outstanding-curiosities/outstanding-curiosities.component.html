@@ -9,7 +9,7 @@
   <div fxLayout="row" fxLayoutAlign="center center">
     <div
       [@fadeInOut]="index === current ? 'visible' : 'invisible'"
-      *ngFor="let curiosity of (curiosities$ | async); let index = index"
+      *ngFor="let curiosity of curiosities; let index = index"
     >
       <ant-article-summary
         [isMetadataVisible]="true"

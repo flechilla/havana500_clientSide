@@ -49,6 +49,7 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
       .getArticlesBasicDataBySectionName('cine', 0, 4)
       .pipe(
         map(resp => {
+        resp.forEach(a => a.body = a.body.replace(/<\/?[^>]+(>|$)/g, ''));
           if (this.isMobile()) {
             return resp.slice(0, 1);
           } else {
@@ -61,6 +62,7 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
       .getArticlesBasicDataBySectionName('deportes', 0, 4)
       .pipe(
         map(resp => {
+          resp.forEach(a => a.body = a.body.replace(/<\/?[^>]+(>|$)/g, ''));
           if (this.isMobile()) {
             return resp.slice(0, 1);
           } else {
@@ -72,6 +74,7 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
       .getArticlesBasicDataBySectionName('cultura', 0, 4)
       .pipe(
         map(resp => {
+          resp.forEach(a => a.body = a.body.replace(/<\/?[^>]+(>|$)/g, ''));
           if (this.isMobile()) {
             return resp.slice(0, 1);
           } else {
@@ -83,6 +86,7 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
       .getArticlesBasicDataBySectionName('literatura', 0, 4)
       .pipe(
         map(resp => {
+          resp.forEach(a => a.body = a.body.replace(/<\/?[^>]+(>|$)/g, ''));
           if (this.isMobile()) {
             return resp.slice(0, 1);
           } else {

@@ -86,7 +86,7 @@ export class SecondLevelDefaultComponent implements OnInit {
         this.amountOfArticles
       )
       .subscribe(articles => {
-        articles.forEach(a => a.body = a.body.replace('<p>', ''));
+        articles.forEach(a => a.body = a.body.replace(/<\/?[^>]+(>|$)/g, ''));
         this.isEndOfPage = articles.length < this.amountOfArticles;
         this.mostImportantArticle = articles.shift();
 
@@ -116,7 +116,7 @@ export class SecondLevelDefaultComponent implements OnInit {
         this.amountOfActiclesToLoad
       )
       .subscribe(articles => {
-        articles.forEach(a => a.body = a.body.replace('<p>', ''));
+        articles.forEach(a => a.body = a.body.replace(/<\/?[^>]+(>|$)/g, ''));
         this.articlesToRender = this.articlesToRender.concat(articles);
         this.isEndOfPage = articles.length < this.amountOfActiclesToLoad;
       });

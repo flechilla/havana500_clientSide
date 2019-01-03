@@ -8,6 +8,7 @@ import { Article, Picture } from '../../models';
 import { CommentService, AntTranslateService } from '../../services';
 import { Observable } from 'rxjs';
 import { english, spanish, french } from './i18n';
+import { fadeInItems } from '@angular/material';
 
 @Component({
   selector: 'ant-article',
@@ -15,7 +16,7 @@ import { english, spanish, french } from './i18n';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
-  relatedArticles$: Observable<Article[]>;
+  relatedArticles: Article[];
   article: ArticleExtended;
   articleMainPicture: Picture;
 
@@ -55,9 +56,11 @@ export class ArticleComponent implements OnInit {
    *  Get the related articles of the current article.
    */
   getRelatedArticles(id: number): void {
-    this.relatedArticles$ = this.articleService
-      .getRelatedArticles(id)
-      .pipe(map((items: Article[]) => items.slice(0, 3)));
+    this.articleService
+      .getRelatedArticles(id).subscribe(items => {
+        items.forEach(a => a.body = a.body.replace(/<\/?[^>]+(>|$)/g, ''));
+        this.relatedArticles = items.slice(0, 3);
+      });
   }
 
   addStyleToArticleImages(articleBody: string): string {

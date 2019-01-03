@@ -26,7 +26,7 @@ import { english, spanish, french } from './i18n';
 export class OutstandingCuriositiesComponent implements OnInit, OnDestroy {
   @Input()
   totalItems: number = 8;
-  public curiosities$: Observable<Article[]>;
+  public curiosities: Article[];
 
   private visibleIndexes: IndexesCircularLinkedList;
 
@@ -47,11 +47,16 @@ export class OutstandingCuriositiesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.curiosities$ = this.articleService.getArticlesBasicDataBySectionName(
+     this.articleService.getArticlesBasicDataBySectionName(
       'deportes',
       0,
-      this.totalItems
-    );
+      this.totalItems          
+          ).subscribe(resp =>  
+            {
+              resp.forEach(a => a.body = a.body.replace(/<\/?[^>]+(>|$)/g, ''))
+              this.curiosities = resp;
+            }
+            );
 
     this.visibleIndexes = new IndexesCircularLinkedList(this.totalItems);
 
