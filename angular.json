@@ -18,6 +18,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "../ServerSide/src/Havana500.API/wwwroot",
+            "deleteOutputPath": false,
             "index": "apps/havana500-webclient/src/index.html",
             "main": "apps/havana500-webclient/src/main.ts",
             "polyfills": "apps/havana500-webclient/src/polyfills.ts",
