@@ -52,7 +52,7 @@
     </ng-template>
 
     <!-- MARKETING -->
-    <section id="marketing-container" class="col-12">
+    <section id="marketing-container" class="col-12" *ngIf="marketingImages && marketingImages.length > 0">
       <slideshow
         [minHeight]="'300px'"
         [autoPlay]="true"

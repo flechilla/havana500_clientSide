@@ -90,9 +90,11 @@ export class SecondLevelDefaultComponent implements OnInit {
         this.isEndOfPage = articles.length < this.amountOfArticles;
         this.mostImportantArticle = articles.shift();
 
-        if (!this.isMobile()) {
+        if (!this.isMobile() && articles.length > 0) {
           this.secondMostImportantArticles.push(articles.shift());
-          this.secondMostImportantArticles.push(articles.shift());
+          if (articles.length > 0){
+            this.secondMostImportantArticles.push(articles.shift());
+          }
         }
 
         this.articlesToRender = articles;
