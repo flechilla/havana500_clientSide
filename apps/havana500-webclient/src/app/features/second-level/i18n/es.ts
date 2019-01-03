@@ -5,6 +5,13 @@ export const locale: Locale = {
   data: {
     TAG_SELECTOR: 'Selector de Etiquetas',
     SEE_MORE: 'Ver Más',
-    NO_ITEMS: 'NO HAY ELEMENTOS QUE COINCIDAN CON LOS PARAMETROS DE BUSQUEDA'
+    NO_ITEMS: 'NO HAY ELEMENTOS QUE COINCIDAN CON LOS PARAMETROS DE BUSQUEDA',
+    literatura: 'literatura',
+    deportes: 'deportes',
+    galeria: 'Galería',
+    eventos: 'eventos',
+    experiencias: 'experiencias',
+    cine: 'cine',
+    cultura: 'cultura',
   }
 };
