@@ -58,7 +58,7 @@ export class ArticleComponent implements OnInit {
   getRelatedArticles(id: number): void {
     this.articleService
       .getRelatedArticles(id).subscribe(items => {
-        items.forEach(a => a.body = a.body.replace(/<\/?[^>]+(>|$)/g, ''));
+        items.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
         this.relatedArticles = items.slice(0, 3);
       });
   }

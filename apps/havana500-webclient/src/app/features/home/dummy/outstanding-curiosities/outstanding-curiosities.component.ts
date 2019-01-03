@@ -53,7 +53,7 @@ export class OutstandingCuriositiesComponent implements OnInit, OnDestroy {
       this.totalItems          
           ).subscribe(resp =>  
             {
-              resp.forEach(a => a.body = a.body.replace(/<\/?[^>]+(>|$)/g, ''))
+              resp.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); })
               this.curiosities = resp;
             }
             );
