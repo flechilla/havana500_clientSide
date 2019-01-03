@@ -9,11 +9,9 @@
     <h1 id="article-title" class="col-10">{{ article.title }}</h1>
     <div id="article-info" class="col-4">
       <div id="article-reading-time" class="col-12">
-        <span id="article-reading-time-title " class="font-weight-700"
-          >Reading Time: </span
-        >{{ article.readingTime }}
+        <span id="article-reading-time-title " class="font-weight-700" translate>READ_TIME</span>{{ article.readingTime }}
       </div>
-      <div id="article-writer" class="col-12 ">
+      <div id="article-writer" class="col-12 " *ngIf="article.createdBy">
         <span
           id="article-write-title "
           class="font-weight-700"

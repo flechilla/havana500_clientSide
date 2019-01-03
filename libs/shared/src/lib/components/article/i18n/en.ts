@@ -9,6 +9,7 @@ export const locale: Locale = {
     NAME: "NAME",
     EMAIL: "EMAIL",
     MESSAGE: "MESSAGE",
-    RELATED: 'RELATED'
+    RELATED: 'RELATED',
+    READ_TIME: ' Reading Time: '
   }
 };

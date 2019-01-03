@@ -11,6 +11,7 @@ export const locale: Locale = {
     MESSAGE: "MESSAGE",
     RELATED: 'RELATED',
     SEE_MORE: "MORE",
-    BODY_MSG_ERROR: "The body of the comment is required"
+    BODY_MSG_ERROR: "The body of the comment is required",
+    COMMENT: "Comment"
   }
 };

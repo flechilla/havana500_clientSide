@@ -11,6 +11,8 @@ export const locale: Locale = {
     NAME: "Nombre",
     EMAIL: "Email",
     MESSAGE: "Mensaje",
-    RELATED: 'RELACIONADOS'
+    RELATED: 'RELACIONADOS',
+    READ_TIME: 'Tiempo de lectura: '
+
   }
 };

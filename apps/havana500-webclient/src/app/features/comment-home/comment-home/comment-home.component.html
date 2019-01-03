@@ -15,12 +15,12 @@
       <div class="new-comment-body-container col-xs-12 col-md-12">
         <textarea type="text" [(ngModel)]="newComment.body" name="body" id="new-comment-body" class="col-12 form-control"
           #body="ngModel" required rows="10" cols="35"></textarea>
-        <div [hidden]="body.valid" class="alert alert-danger" translate="yes">
+        <div [hidden]="body.valid" class="alert alert-danger" translate>
           BODY_MSG_ERROR
         </div>
       </div>
       <button type="submit" class="btn btn-success" id="new-comment-post-btn" (click)="postNewComment(); newCommentForm.reset()"
-        [disabled]="!newCommentForm.form.valid">Comentar!</button>
+        [disabled]="!newCommentForm.form.valid" translate>COMMENT</button>
     </div>
   </form>
   <mat-card class="comment-container" *ngFor="let comment of commentsToRender">
@@ -31,6 +31,6 @@
     </mat-card-footer>
   </mat-card>
   <div id="more-comments-btn-container" [ngClass]="{'hide-more-btn': endOfComments}">
-    <button class="btn" (click)="loadMoreComments()" translate="yes">SEE_MORE</button>
+    <button class="btn" (click)="loadMoreComments()" translate>SEE_MORE</button>
   </div>
 </div>

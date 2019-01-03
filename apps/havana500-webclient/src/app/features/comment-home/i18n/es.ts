@@ -11,6 +11,8 @@ export const locale: Locale = {
     MESSAGE: "Mensaje",
     RELATED: 'RELACIONADOS',
     SEE_MORE: "MÁS",
-    BODY_MSG_ERROR: "El comentario es requerido"
+    BODY_MSG_ERROR: "El comentario es requerido",
+    COMMENT: "Comentar"
+
   }
 };
