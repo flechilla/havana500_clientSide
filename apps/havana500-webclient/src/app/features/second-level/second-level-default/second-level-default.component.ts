@@ -18,6 +18,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { english, spanish, french } from '../i18n';
 import { IImage } from 'ng-simple-slideshow';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'hav-second-level-default',
@@ -38,6 +39,7 @@ export class SecondLevelDefaultComponent implements OnInit {
   private isEndOfPage = false;
   private marketingImages: Picture[];
   protected imageUrls: (string | IImage)[] = [];
+  private tagsData: SafeHtml;
 
   protected articlesMobile$: BehaviorSubject<Article[]> = new BehaviorSubject(
     []
@@ -55,7 +57,8 @@ export class SecondLevelDefaultComponent implements OnInit {
     private translateService: AntTranslateService,
     private marketingImageService: MarketingImageService,
     public media: MediaMatcher,
-    public changeDetectorRef: ChangeDetectorRef
+    public changeDetectorRef: ChangeDetectorRef,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
@@ -128,6 +131,22 @@ export class SecondLevelDefaultComponent implements OnInit {
     // console.log(selectedTags);
     // console.log(this.selectedItems);
     this.getArticles(this.selectedItems);
+    // document.getElementById('tags-container').innerHTML = "";
+    // const tagContainer = document.getElementById('tags-container')
+    // selectedTags.forEach(tag =>{
+    //   tagContainer.append('<span class="tag-item">' + tag.name + '</span>')
+    // })
+    let tagsContainerDataString = '<mat-chip-list id="article-tags">';
+      selectedTags.forEach(tag =>{
+       tagsContainerDataString+= `<div
+       class="article-tag"
+       (click)="onSelectTag(tag.id)">
+       <img src="assets/images/tag-icon.png" />` 
+       + tag.name 
+       + `</div>`;
+    });
+    tagsContainerDataString += '</mat-chip-list>'
+    this.tagsData = this.sanitizer.bypassSecurityTrustHtml(tagsContainerDataString);
   }
 
   getSecondLevelImages(): void {
