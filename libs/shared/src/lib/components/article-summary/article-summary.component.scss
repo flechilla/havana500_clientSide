@@ -19,10 +19,11 @@ $article-summary-bColor: #ffffff;
   color: inherit;
   position: relative;
   height: auto;
-
+  margin: 0 3px;
   &:hover {
     text-decoration: none !important;
     // transform: scale(1.01);
+    box-shadow: 0 3px 6px 0px #00000069;
   }
 
   &:not(:last-child) {
