@@ -27,6 +27,7 @@ export class CommentHomeComponent implements OnInit {
   private emailPlaceholderText: string;
   private userNamePlaceholderText: string;
   private bodyPlaceholderText: string;
+  private validComment = false;
 
 
   constructor(private commentService: CommentService,private translateService: AntTranslateService) {
@@ -40,11 +41,17 @@ export class CommentHomeComponent implements OnInit {
 
     this.userEmail
     .valueChanges
-    .subscribe(email => this.newComment.userEmail = email);
+    .subscribe(email => {
+      this.newComment.userEmail = email;
+      this.validateNewCommentForm();
+    });
 
     this.body
     .valueChanges
-    .subscribe(body => this.newComment.body = body);
+    .subscribe(body => {
+      this.newComment.body = body;
+     this.validateNewCommentForm();
+    });
 
     this.newComment = new CommentModel();
 
@@ -112,5 +119,9 @@ export class CommentHomeComponent implements OnInit {
       .subscribe(value=>{
         this.bodyPlaceholderText = value;        
       });
+  }
+
+  validateNewCommentForm() : void{
+     this.validComment = this.body.valid && this.userEmail.valid;
   }
 }

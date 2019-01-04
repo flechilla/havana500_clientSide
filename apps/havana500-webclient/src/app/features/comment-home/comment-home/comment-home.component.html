@@ -9,8 +9,8 @@
       <div id="new-comment-user-metadata" class="col-12 form-group">
         <input type="text" [formControl]="userName" name="new-comment-username" id="new-comment-username"
           class="form-control col-12" placeholder="{{userNamePlaceholderText}}">
-        <input type="text" [formControl]="userEmail" name="new-comment-useremail" id="new-comment-useremail"
-          class="form-control col-12" placeholder="{{emailPlaceholderText}}" translate>
+        <input type="email" [formControl]="userEmail" name="new-comment-useremail" id="new-comment-useremail"
+          class="form-control col-12" placeholder="{{emailPlaceholderText}}" translate email="true">
       </div>
       <div class="new-comment-body-container col-xs-12 col-md-12">
         <textarea type="text" [formControl]="body" name="body" id="new-comment-body" class="col-12 form-control"
@@ -20,7 +20,7 @@
         </div> -->
       </div>
       <button type="submit" class="btn btn-success" id="new-comment-post-btn" (click)="postNewComment()"
-        [disabled]="!newCommentForm.form.valid" translate>COMMENT</button>
+        [disabled]="!validComment" translate>COMMENT</button>
     </div>
   </form>
   <mat-card class="comment-container" *ngFor="let comment of commentsToRender">
