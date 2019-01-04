@@ -67,8 +67,8 @@
   </article>
 
   <div *ngIf="!isMobile()" id="more-articles-btn-container" [ngClass]="{ 'hide-more-btn': isEndOfPage }">
-    <button class="btn" (click)="loadMoreArticles()" translate="">
-      SEE_MORE
+    <button class="btn" (click)="loadMoreArticles()">
+      <span translate> SEE_MORE</span>
     </button>
   </div>
 
