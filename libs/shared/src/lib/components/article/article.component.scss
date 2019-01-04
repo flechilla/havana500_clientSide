@@ -2,7 +2,7 @@
 @import "../../scss/ant.scss";
 
 //START variables declaration
-$related-articles-outer-container-bColor:  #eeeeee;
+$related-articles-outer-container-bColor: #eeeeee;
 $article-tag-bColor: #32A9E1;
 //END variables declaration
 
@@ -10,12 +10,6 @@ $article-tag-bColor: #32A9E1;
 .font-weight-700 {
   font-weight: 700;
 }
-
-#article-body img {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 0.2px solid black;
-  }
 
 #article-outer-container {
   margin-top: 50px;
@@ -31,11 +25,44 @@ $article-tag-bColor: #32A9E1;
   #article-header {
     margin-bottom: 50px;
     text-transform: uppercase;
+    margin-left: auto;
+    margin-right: auto;
+
+    #article-main-picture {
+      min-width: 100%;
+
+      img {
+        display: block;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+
+    #article-info {
+      padding: 0 !important;
+
+      #article-reading-time, #article-writer {
+        padding: 0 !important;
+      }
+      @include media-breakpoint-down('xs') {
+        margin: auto;
+        text-align: center;
+      }
+    }
   }
 
   #article-body {
     margin-bottom: 50px;
     font-size: 1.8em;
+
+    p::first-line{
+      text-indent: 5em;
+    }
+
+    @include media-breakpoint-down('xs') {
+      text-align: center;
+    }
 
     p img {
       margin-top: 10px;
@@ -57,28 +84,30 @@ $article-tag-bColor: #32A9E1;
       font-weight: 700;
     }
 
-    #related-articles-cards-container{
+    #related-articles-cards-container {
       margin: 0 !important;
     }
   }
 
-  #comments-outer-container{
-      margin-top: 30px;
+  #comments-outer-container {
+    margin-top: 30px;
 
-      #comments-header{
-          font-size: 3em;
-          text-align: center;
-          font-weight: 700;
-      }
+    #comments-header {
+      font-size: 3em;
+      text-align: center;
+      font-weight: 700;
+    }
   }
 }
 
-.comment-body{
+.comment-body {
   background-color: black;
 }
 
-#new-comment-outer-container{
-  input, textarea{
+#new-comment-outer-container {
+
+  input,
+  textarea {
     // border: 1px solid gray;
   }
 
