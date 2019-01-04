@@ -135,20 +135,19 @@ $tags-container-color: #2aaae2;
     }
   }
 
+  .ng-option{
+    font-weight: 600;
+    font-size: 1.2em;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .ng-dropdown-panel{
+    margin-top: 1.33em;
+  }
+
   .ng-value {
-    background-color: $tags-container-color !important;
-    text-align: right !important;
-    vertical-align: middle !important;
-    padding: 4px 5px !important;
-    margin-right: 3px !important;
-    margin-left: 2px !important;
-    color: #ffffff !important;
-    border-radius: 0 !important;
-    font-size: 1rem !important;
     display: none;
-    .ng-value-label {
-      font-size: 1em !important;
-    }
   }
 }
 
