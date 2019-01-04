@@ -19,7 +19,6 @@ $tags-container-color: #2aaae2;
   margin-top: 5.5rem;
 
   width: 100%;
-  margin-bottom: 130px;
   box-sizing: border-box;
   position: relative;
   justify-content: flex-end;
@@ -150,5 +149,16 @@ $tags-container-color: #2aaae2;
     .ng-value-label {
       font-size: 1em !important;
     }
+  }
+}
+
+#tags-container{
+  margin-bottom: 43px;
+  margin-left: 5em;
+  margin-top: 2em;
+  #article-tags{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
