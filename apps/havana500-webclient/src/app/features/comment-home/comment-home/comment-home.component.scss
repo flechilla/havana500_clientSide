@@ -25,6 +25,14 @@ $more-btn-color: #2AAAE2;
     background-color: $comment-container-bColor;
     position: relative;
 
+    button, input, textarea {
+      border-radius: 0;
+    }
+
+    input, textarea {
+      width: 100%;
+    }
+
     #new-comment-form-group-container {
       padding: 4%;
       position: relative;
@@ -37,6 +45,7 @@ $more-btn-color: #2AAAE2;
 
     #new-comment-username {
       margin-right: 4%;
+      margin-bottom: 4px;
     }
 
     #new-comment-post-btn {
@@ -44,6 +53,7 @@ $more-btn-color: #2AAAE2;
       float: right;
       margin-right: 14px;
       color: #ffffff;
+      margin: 8px;
     }
   }
 
@@ -58,6 +68,7 @@ $more-btn-color: #2AAAE2;
 
   .comment-container:not(:last-child) {
     margin-bottom: 3rem;
+    border-radius: 0;
   }
 
   .comment-container {

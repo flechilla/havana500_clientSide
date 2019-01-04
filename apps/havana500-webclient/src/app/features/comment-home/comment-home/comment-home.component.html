@@ -8,16 +8,16 @@
     <div id="new-comment-form-group-container">
       <div id="new-comment-user-metadata" class="col-12 form-group">
         <input type="text" [(ngModel)]="newComment.userName" name="new-comment-username" id="new-comment-username"
-          class="form-control col-12 col-sm-4" placeholder="Nombre">
+          class="form-control col-12" placeholder="Nombre">
         <input type="text" [(ngModel)]="newComment.userEmail" name="new-comment-useremail" id="new-comment-useremail"
-          class="form-control col-12 col-sm-4" placeholder="EMAIL" translate>
+          class="form-control col-12" placeholder="Email" translate>
       </div>
       <div class="new-comment-body-container col-xs-12 col-md-12">
         <textarea type="text" [(ngModel)]="newComment.body" name="body" id="new-comment-body" class="col-12 form-control"
           #body="ngModel" required rows="10" cols="35"></textarea>
-        <div [hidden]="body.valid" class="alert alert-danger" translate>
+        <!-- <div [hidden]="body.valid" class="alert alert-danger" translate>
           BODY_MSG_ERROR
-        </div>
+        </div> -->
       </div>
       <button type="submit" class="btn btn-success" id="new-comment-post-btn" (click)="postNewComment(); newCommentForm.reset()"
         [disabled]="!newCommentForm.form.valid" translate>COMMENT</button>
