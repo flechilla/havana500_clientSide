@@ -47,20 +47,19 @@ export class OutstandingCuriositiesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-     this.articleService.getArticlesBasicDataBySectionName(
-      'deportes',
-      0,
-      this.totalItems          
-          ).subscribe(resp =>  
-            {
-              resp.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); })
-              this.curiosities = resp;
-            }
-            );
+     this.getElements();
 
     this.visibleIndexes = new IndexesCircularLinkedList(this.totalItems);
 
     this.slideCuriosities();
+
+    this.translate.translate.onLangChange.subscribe(x=>{
+      this.translate
+      .useLanguage(this.translate.translate.currentLang)
+      .subscribe(_=>{
+          this.getElements();
+      });
+    });
   }
 
   public get current(): number {
@@ -87,5 +86,18 @@ export class OutstandingCuriositiesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  getElements(){
+    this.articleService.getArticlesBasicDataBySectionName(
+      'deportes',
+      0,
+      this.totalItems          
+          ).subscribe(resp =>  
+            {
+              resp.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); })
+              this.curiosities = resp;
+            }
+            );
   }
 }

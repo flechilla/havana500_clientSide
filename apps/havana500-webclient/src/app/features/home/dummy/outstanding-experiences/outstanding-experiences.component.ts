@@ -45,11 +45,15 @@ export class OutstandingExperiencesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.experiences$ = this.articleService.getArticlesBasicDataBySectionName(
-      'deportes',
-      0,
-      this.totalItems
-    );
+    this.experiences$ = this.getElements();
+
+    this.translate.translate.onLangChange.subscribe(_=>{
+      this.translate
+      .useLanguage(this.translate.translate.currentLang)
+      .subscribe(_=>{
+          this.getElements();
+      });
+    });
   }
 
   isMobile(): boolean {
@@ -58,5 +62,13 @@ export class OutstandingExperiencesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  getElements() {
+    return this.articleService.getArticlesBasicDataBySectionName(
+      'experiencias',
+      0,
+      this.totalItems
+    );
   }
 }

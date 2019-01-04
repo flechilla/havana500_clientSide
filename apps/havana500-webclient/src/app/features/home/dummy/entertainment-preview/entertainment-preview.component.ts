@@ -45,6 +45,26 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
+    this.getElements();
+
+    this.translate.translate.onLangChange.subscribe(x=>{
+      this.translate
+      .useLanguage(this.translate.translate.currentLang)
+      .subscribe(_=>{
+          this.getElements();
+      });
+    });
+  }
+
+  isMobile(): boolean {
+    return this.mobileQuery.matches;
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  getElements(){
     this.cinemaArticles = this.articleService
       .getArticlesBasicDataBySectionName('cine', 0, 4)
       .pipe(
@@ -70,6 +90,7 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
           }
         })
       );
+
     this.cultureArticles = this.articleService
       .getArticlesBasicDataBySectionName('cultura', 0, 4)
       .pipe(
@@ -82,6 +103,7 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
           }
         })
       );
+
     this.literatureArticles = this.articleService
       .getArticlesBasicDataBySectionName('literatura', 0, 4)
       .pipe(
@@ -94,13 +116,5 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
           }
         })
       );
-  }
-
-  isMobile(): boolean {
-    return this.mobileQuery.matches;
-  }
-
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 }

@@ -62,11 +62,16 @@ export class OutstandingGeneralArticlesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.topArticles$ = this.articleService.getArticlesBasicDataBySectionName(
-      'deportes',
-      0,
-      this.totalItems
-    );
+
+    this.translate.translate.onLangChange.subscribe(_=>{
+      this.translate
+      .useLanguage(this.translate.translate.currentLang)
+      .subscribe(_=>{
+          this.getElements();
+      });
+    });
+
+
 
     // this.topArticles$.subscribe(resp => {
     //   this.articles = resp;
@@ -114,5 +119,13 @@ export class OutstandingGeneralArticlesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  getElements() {
+    this.topArticles$ = this.articleService.getArticlesBasicDataBySectionName(
+      'deportes',
+      0,
+      this.totalItems
+    );
   }
 }

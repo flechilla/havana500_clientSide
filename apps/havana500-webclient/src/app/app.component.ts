@@ -13,8 +13,8 @@ export class AppComponent {
     // Add languages
     this.translateService.addLanguages(['en', 'es', 'fr']);
     // Set the default language
-    this.translateService.setDefaultLanguage('en');
+    this.translateService.setDefaultLanguage('es');
     // Use a language
-    this.translateService.useLanguage('en');
+    this.translateService.useLanguage('es').subscribe();
   }
 }

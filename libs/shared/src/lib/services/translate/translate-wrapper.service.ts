@@ -45,8 +45,7 @@ export class AntTranslateService {
    * Changes the lang currently used
    */
   useLanguage(lang: string): Observable<any> {
-    this.cookieService.setLanguageOnCookies(lang);
-    return this.translate.use(lang);
-
+    this.translate.use(lang).subscribe();
+    return this.cookieService.setLanguageOnCookies(lang);
   }
 }

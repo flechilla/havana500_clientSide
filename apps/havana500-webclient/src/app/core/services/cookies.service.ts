@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HavanaEnvironment } from 'libs/shared/src/lib/models';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,10 @@ export class CookiesService {
         this.acceptCookiesUrl = this.environment.apiUrl + "Cookies/AcceptCookies"
       }
 
-   setLanguageOnCookies(lang: string): void{
-    this.httpClient.post(this.setCookiesUrl, {
+   setLanguageOnCookies(lang: string): Observable<any> {
+    return this.httpClient.post(this.setCookiesUrl, {
       lang: lang
-    }).subscribe();
+    });
   }
 
   acceptCookies(): void{

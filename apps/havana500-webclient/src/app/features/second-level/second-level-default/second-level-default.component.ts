@@ -77,6 +77,14 @@ export class SecondLevelDefaultComponent implements OnInit {
       this.getArticles();
       this.getSecondLevelImages();
     });
+
+    this.translateService.translate.onLangChange.subscribe(x=>{
+      this.translateService
+      .useLanguage(this.translateService.translate.currentLang)
+      .subscribe(_=>{
+          this.getArticles();
+      });
+    });
   }
 
   protected getArticles(tagIds: number[] = []): void {
@@ -92,7 +100,8 @@ export class SecondLevelDefaultComponent implements OnInit {
         articles.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
         this.isEndOfPage = articles.length < this.amountOfArticles;
         this.mostImportantArticle = articles.shift();
-
+        
+        this.secondMostImportantArticles = [];
         if (!this.isMobile() && articles.length > 0) {
           this.secondMostImportantArticles.push(articles.shift());
           if (articles.length > 0){
