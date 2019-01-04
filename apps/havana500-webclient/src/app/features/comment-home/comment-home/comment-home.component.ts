@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommentService, AntTranslateService } from '@hav500workspace/shared';
 import { CommentModel } from '@hav500workspace/shared';
 import { english, spanish, french } from '../i18n';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -20,12 +21,39 @@ export class CommentHomeComponent implements OnInit {
   private endOfComments: boolean;
   private currentPage = 0;
   private page_size = 10;
+  private userName = new FormControl();
+  private userEmail = new FormControl();
+  private body = new FormControl();
+  private emailPlaceholderText: string;
+  private userNamePlaceholderText: string;
+  private bodyPlaceholderText: string;
 
 
   constructor(private commentService: CommentService,private translateService: AntTranslateService) {
     console.log(this.articleId);
     this.endOfComments = false;
     this.translateService.loadTranslations(english, spanish, french);
+
+    this.userName
+    .valueChanges
+    .subscribe(userName => this.newComment.userName = userName);
+
+    this.userEmail
+    .valueChanges
+    .subscribe(email => this.newComment.userEmail = email);
+
+    this.body
+    .valueChanges
+    .subscribe(body => this.newComment.body = body);
+
+    this.newComment = new CommentModel();
+
+    this.translateNewCommentPlaceholders();
+
+    this.translateService.translate.onLangChange
+    .subscribe(x=>{
+      this.translateNewCommentPlaceholders();
+    });
   }
 
   ngOnInit(): void {
@@ -61,9 +89,28 @@ export class CommentHomeComponent implements OnInit {
     this.newComment.articleId = this.articleId;
 
     this.commentService.create(this.newComment).subscribe(newComment => {
-      this.newComment = newComment;
-      this.commentsToRender.push(this.newComment);
-      this.newComment = null;
+      this.newComment = new CommentModel();
+      this.userEmail.reset();
+      this.userName.reset();
+      this.body.reset();
     });
+  }
+
+  translateNewCommentPlaceholders() : void {
+    this.translateService.translate
+      .get('EMAIL')
+      .subscribe(value=>{
+        this.emailPlaceholderText = value;        
+      });
+      this.translateService.translate
+      .get('NAME')
+      .subscribe(value=>{
+        this.userNamePlaceholderText = value;        
+      });
+      this.translateService.translate
+      .get('MESSAGE')
+      .subscribe(value=>{
+        this.bodyPlaceholderText = value;        
+      });
   }
 }

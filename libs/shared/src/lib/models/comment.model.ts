@@ -9,8 +9,8 @@ export class CommentModel implements UserContent {
    * @param  {string} userEmail?
    */
   constructor(
-    articleId: number,
-    body: string,
+    articleId?: number,
+    body?: string,
     userName?: string,
     userEmail?: string
   ) {
@@ -19,7 +19,6 @@ export class CommentModel implements UserContent {
     this.userName = userName;
     this.articleId = articleId;
   }
-
   ipAddress: string;
   isApproved: boolean;
   createdAt: Date;

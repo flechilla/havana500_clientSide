@@ -7,7 +7,7 @@ import { CookiesService } from 'apps/havana500-webclient/src/app/core/services/c
 
 @Injectable()
 export class AntTranslateService {
-  constructor(private translate: TranslateService, 
+  constructor(public translate: TranslateService, 
     private cookieService: CookiesService) {}
 
 
@@ -49,6 +49,4 @@ export class AntTranslateService {
     return this.translate.use(lang);
 
   }
-
-  
 }

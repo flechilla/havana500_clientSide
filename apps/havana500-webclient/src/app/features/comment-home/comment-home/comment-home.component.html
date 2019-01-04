@@ -4,22 +4,22 @@
   </div>
 </div> -->
 <div id="comments-outer-container" class="col-sm-8 col-12">
-  <form id="new-comment-outer-container" class="row" #newCommentForm="ngForm">
+  <form id="new-comment-outer-container" class="row">
     <div id="new-comment-form-group-container">
       <div id="new-comment-user-metadata" class="col-12 form-group">
-        <input type="text" [(ngModel)]="newComment.userName" name="new-comment-username" id="new-comment-username"
-          class="form-control col-12" placeholder="Nombre">
-        <input type="text" [(ngModel)]="newComment.userEmail" name="new-comment-useremail" id="new-comment-useremail"
-          class="form-control col-12" placeholder="Email" translate>
+        <input type="text" [formControl]="userName" name="new-comment-username" id="new-comment-username"
+          class="form-control col-12" placeholder="{{userNamePlaceholderText}}">
+        <input type="text" [formControl]="userEmail" name="new-comment-useremail" id="new-comment-useremail"
+          class="form-control col-12" placeholder="{{emailPlaceholderText}}" translate>
       </div>
       <div class="new-comment-body-container col-xs-12 col-md-12">
-        <textarea type="text" [(ngModel)]="newComment.body" name="body" id="new-comment-body" class="col-12 form-control"
-          #body="ngModel" required rows="10" cols="35"></textarea>
+        <textarea type="text" [formControl]="body" name="body" id="new-comment-body" class="col-12 form-control"
+           required rows="10" cols="35" placeholder="{{bodyPlaceholderText}}"></textarea>
         <!-- <div [hidden]="body.valid" class="alert alert-danger" translate>
           BODY_MSG_ERROR
         </div> -->
       </div>
-      <button type="submit" class="btn btn-success" id="new-comment-post-btn" (click)="postNewComment(); newCommentForm.reset()"
+      <button type="submit" class="btn btn-success" id="new-comment-post-btn" (click)="postNewComment()"
         [disabled]="!newCommentForm.form.valid" translate>COMMENT</button>
     </div>
   </form>
