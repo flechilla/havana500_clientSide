@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ArticleService } from '../../services/http/article.service';
@@ -9,6 +9,7 @@ import { CommentService, AntTranslateService } from '../../services';
 import { Observable } from 'rxjs';
 import { english, spanish, french } from './i18n';
 import { fadeInItems } from '@angular/material';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'ant-article',
@@ -20,18 +21,28 @@ export class ArticleComponent implements OnInit {
   article: ArticleExtended;
   articleMainPicture: Picture;
 
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
     private location: Location,
     private commentService: CommentService,
     private router: Router,
-    public translate: AntTranslateService
+    public translate: AntTranslateService,
+    public media: MediaMatcher,
+    public changeDetectorRef: ChangeDetectorRef
   ) {
     this.translate.loadTranslations(english, spanish, french);
   }
 
   ngOnInit() {
+    // Setting the changeDetector to detect when is on mobile
+    this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id: number = +params.get('id');
       this.getArticle(id);
@@ -56,11 +67,13 @@ export class ArticleComponent implements OnInit {
    *  Get the related articles of the current article.
    */
   getRelatedArticles(id: number): void {
-    this.articleService
-      .getRelatedArticles(id).subscribe(items => {
-        items.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
-        this.relatedArticles = items.slice(0, 3);
+    this.articleService.getRelatedArticles(id).subscribe(items => {
+      items.forEach(a => {
+        a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');
+        a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');
       });
+      this.relatedArticles = items.slice(0, this.isMobile() ? 1 : 3);
+    });
   }
 
   addStyleToArticleImages(articleBody: string): string {
@@ -74,5 +87,9 @@ export class ArticleComponent implements OnInit {
     }
 
     return articleBody;
+  }
+
+  isMobile(): boolean {
+    return this.mobileQuery.matches;
   }
 }
