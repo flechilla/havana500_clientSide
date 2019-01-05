@@ -62,16 +62,11 @@ export class OutstandingGeneralArticlesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
-    this.translate.translate.onLangChange.subscribe(_=>{
-      this.translate
-      .useLanguage(this.translate.translate.currentLang)
-      .subscribe(_=>{
-          this.getElements();
-      });
+    this.translate.translate.onLangChange.subscribe(_ => {
+      this.getElements();
     });
 
-
+    this.getElements();
 
     // this.topArticles$.subscribe(resp => {
     //   this.articles = resp;

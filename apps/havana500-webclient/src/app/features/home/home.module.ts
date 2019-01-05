@@ -6,7 +6,7 @@ import { SharedModule } from '@hav500workspace/shared';
 import { TranslateModule } from '@ngx-translate/core';
 import { HomeRoutingModule } from './home-routing.module';
 import { PrincipalSliderComponent } from './dummy/principal-slider/principal-slider.component';
-import { OutstandingExperiencesComponent } from './dummy/outstanding-experiences/outstanding-experiences.component';
+
 import { OutstandingCuriositiesComponent } from './dummy/outstanding-curiosities/outstanding-curiosities.component';
 import { EntertainmentComponent } from './dummy/entertainment-preview/entertainment-preview.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
@@ -29,7 +29,6 @@ import { OutstandingGalleryMediasComponent } from './dummy/outstanding-gallery-m
     PrincipalSliderComponent,
     OutstandingGeneralArticlesComponent,
     OutstandingGalleryMediasComponent,
-    OutstandingExperiencesComponent,
     OutstandingCuriositiesComponent,
     EntertainmentComponent,
     ImpactPortalComponent

@@ -32,14 +32,14 @@ export class SecondLevelDefaultComponent implements OnInit {
   protected amountOfArticles: number;
   // this represent 2 rows of article's summaries
   protected amountOfActiclesToLoad = 8;
-  private currentPage = 0;
+  protected currentPage = 0;
   sectionName: string;
   mostImportantArticle: Article;
   secondMostImportantArticles: Article[];
-  private isEndOfPage = false;
-  private marketingImages: Picture[];
+  protected isEndOfPage = false;
+  protected marketingImages: Picture[];
   protected imageUrls: (string | IImage)[] = [];
-  private tagsData: SafeHtml;
+  protected tagsData: SafeHtml;
 
   protected articlesMobile$: BehaviorSubject<Article[]> = new BehaviorSubject(
     []
@@ -78,12 +78,12 @@ export class SecondLevelDefaultComponent implements OnInit {
       this.getSecondLevelImages();
     });
 
-    this.translateService.translate.onLangChange.subscribe(x=>{
+    this.translateService.translate.onLangChange.subscribe(x => {
       this.translateService
-      .useLanguage(this.translateService.translate.currentLang)
-      .subscribe(_=>{
+        .useLanguage(this.translateService.translate.currentLang)
+        .subscribe(_ => {
           this.getArticles();
-      });
+        });
     });
   }
 
@@ -97,14 +97,17 @@ export class SecondLevelDefaultComponent implements OnInit {
         this.amountOfArticles
       )
       .subscribe(articles => {
-        articles.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
+        articles.forEach(a => {
+          a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');
+          a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');
+        });
         this.isEndOfPage = articles.length < this.amountOfArticles;
         this.mostImportantArticle = articles.shift();
-        
+
         this.secondMostImportantArticles = [];
         if (!this.isMobile() && articles.length > 0) {
           this.secondMostImportantArticles.push(articles.shift());
-          if (articles.length > 0){
+          if (articles.length > 0) {
             this.secondMostImportantArticles.push(articles.shift());
           }
         }
@@ -130,7 +133,10 @@ export class SecondLevelDefaultComponent implements OnInit {
         this.amountOfActiclesToLoad
       )
       .subscribe(articles => {
-        articles.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
+        articles.forEach(a => {
+          a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');
+          a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');
+        });
         this.articlesToRender = this.articlesToRender.concat(articles);
         this.isEndOfPage = articles.length < this.amountOfActiclesToLoad;
       });
@@ -146,20 +152,23 @@ export class SecondLevelDefaultComponent implements OnInit {
     //   tagContainer.append('<span class="tag-item">' + tag.name + '</span>')
     // })
     let tagsContainerDataString = '<mat-chip-list id="article-tags">';
-      selectedTags.forEach(tag =>{
-       tagsContainerDataString+= `<div
+    selectedTags.forEach(tag => {
+      tagsContainerDataString +=
+        `<div
        class="article-tag"
        (click)="onSelectTag(tag.id)">
-       <img src="assets/images/tag-icon.png" />` 
-       + tag.name 
-       + `</div>`;
+       <img src="assets/images/tag-icon.png" />` +
+        tag.name +
+        `</div>`;
     });
-    tagsContainerDataString += '</mat-chip-list>'
-    this.tagsData = this.sanitizer.bypassSecurityTrustHtml(tagsContainerDataString);
+    tagsContainerDataString += '</mat-chip-list>';
+    this.tagsData = this.sanitizer.bypassSecurityTrustHtml(
+      tagsContainerDataString
+    );
   }
 
   getSecondLevelImages(): void {
-    this.marketingImageService.getImagesByLevel(2, 5).subscribe(pics => {
+    this.marketingImageService.getImagesByLevel(1, 5).subscribe(pics => {
       this.marketingImages = pics;
       this.marketingImages.map(pic => {
         const imgUrl: IImage = {

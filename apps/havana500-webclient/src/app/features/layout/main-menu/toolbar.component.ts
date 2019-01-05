@@ -63,9 +63,9 @@ export class AntToolbarComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     this.languages = [
+      { id: 'es', title: 'ESPAÑOL', flag: 'es' },
       { id: 'en', title: 'English', flag: 'us' },
-      { id: 'fr', title: 'Francais', flag: 'fr' },
-      { id: 'es', title: 'ESPAÑOL', flag: 'es' }
+      { id: 'fr', title: 'Francais', flag: 'fr' }
     ];
     this.selectedLanguage = this.languages[0];
     this.translate.setDefaultLanguage(this.selectedLanguage);
