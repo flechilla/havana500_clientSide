@@ -1,3 +1,4 @@
+import { OutstandingExperiencesComponent } from './components/outstanding-experiences/outstanding-experiences.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -21,6 +22,7 @@ import { CountdownComponent } from './components/countdown/countdown.component';
 import { NgxImageGalleryModule } from 'ngx-image-gallery';
 import { PictureToGalleryPipe } from './pipes/picture-to-gallery.pipe';
 import { ExperienceArticleCardComponent } from './components/experience-article-card/experience-article-card.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -32,6 +34,7 @@ import { ExperienceArticleCardComponent } from './components/experience-article-
     NgxChartsModule,
     TranslateModule,
     UICarouselModule,
+    RouterModule,
 
     NgxImageGalleryModule
   ],
@@ -45,6 +48,7 @@ import { ExperienceArticleCardComponent } from './components/experience-article-
     LabelsBarComponent,
     CountdownComponent,
     ExperienceArticleCardComponent,
+    OutstandingExperiencesComponent,
 
     //Directives
     AntWidgetToggleDirective,
@@ -75,6 +79,7 @@ import { ExperienceArticleCardComponent } from './components/experience-article-
     LabelsBarComponent,
     CountdownComponent,
     ExperienceArticleCardComponent,
+    OutstandingExperiencesComponent,
 
     //Directives
     AntWidgetToggleDirective,

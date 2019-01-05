@@ -6,16 +6,13 @@ import {
   OnDestroy
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  Article,
-  IndexesCircularLinkedList,
-  ArticleService,
-  AntTranslateService
-} from '@hav500workspace/shared';
+
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { english, spanish, french } from './i18n';
+import { Article } from '../../models';
+import { ArticleService, AntTranslateService } from '../../services';
 
 @Component({
   selector: 'hav-outstanding-experiences',
@@ -25,6 +22,10 @@ import { english, spanish, french } from './i18n';
 export class OutstandingExperiencesComponent implements OnInit, OnDestroy {
   @Input()
   totalItems: number = 8;
+
+  @Input()
+  isViewMoreVisible: boolean = true;
+
   public experiences$: Observable<Article[]>;
 
   mobileQuery: MediaQueryList;
@@ -47,12 +48,8 @@ export class OutstandingExperiencesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.experiences$ = this.getElements();
 
-    this.translate.translate.onLangChange.subscribe(_=>{
-      this.translate
-      .useLanguage(this.translate.translate.currentLang)
-      .subscribe(_=>{
-          this.getElements();
-      });
+    this.translate.translate.onLangChange.subscribe(_ => {
+      this.getElements();
     });
   }
 
@@ -66,7 +63,7 @@ export class OutstandingExperiencesComponent implements OnInit, OnDestroy {
 
   getElements() {
     return this.articleService.getArticlesBasicDataBySectionName(
-      'experiencias',
+      'deportes',
       0,
       this.totalItems
     );
