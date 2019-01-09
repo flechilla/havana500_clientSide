@@ -1,3 +1,5 @@
+@import '../../scss/ant.scss';
+
 .metadata-icon {
   margin-right: 0.6rem;
   font-size: 2em !important;
@@ -12,6 +14,11 @@
   min-height: 5rem;
   width: 100%;
   font-size: 0.8em;
+
+  @include media-breakpoint-down('xs'){
+    min-height: 1rem !important;
+
+  }
 }
 
 .metadata-separator {

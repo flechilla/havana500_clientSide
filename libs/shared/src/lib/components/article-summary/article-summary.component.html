@@ -49,8 +49,8 @@
       <h4 *ngIf="isTitleVisible" class="article-summary-title">
         {{ article?.title }}
       </h4>
-      <div *ngIf="isAuthorVisible" class="article-author">
-        <h5 *ngIf="article.createdBy"
+      <div *ngIf="isAuthorVisible && article.createdBy" class="article-author">
+        <h5
           translate
           [translateParams]="{
             value: article?.createdBy

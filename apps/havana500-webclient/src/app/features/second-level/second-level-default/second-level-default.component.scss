@@ -79,13 +79,8 @@ $tags-container-color: #2aaae2;
     }
 
     @include media-breakpoint-down('sm') {
-      max-width: 100%;
-      padding-left: 15%;
-      #tags-title {
-        font-size: 2.5em;
-        max-width: 50%;
-        text-align: left;
-      }
+      max-width: 100% !important;
+      width: 92% !important;
     }
   }
 }
@@ -108,11 +103,23 @@ $tags-container-color: #2aaae2;
 }
 
 .second-most-important {
-  padding: 3rem 3%;
+  margin: 1% 5% !important;
+
+  ant-article-summary{
+    padding-top: 1% !important;
+  }
 }
 
 .extra-articles {
   padding: 0 3%;
+
+  ant-article-summary {
+    margin-bottom: 15px !important; 
+    .article-summary-body{
+      max-height: 200px !important;
+      overflow: hidden;
+    }
+  }
 }
 
 .hide-more-btn {

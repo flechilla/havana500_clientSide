@@ -146,6 +146,10 @@ $article-summary-bColor: #ffffff;
   line-height: 16px;
   font-weight: 300;
   overflow: hidden;
+
+  @include media-breakpoint-down('sm'){
+    max-height: 132px !important;
+  }
 }
 
 .article-author {
@@ -159,7 +163,7 @@ $article-summary-bColor: #ffffff;
 
 .article-image {
   width: 100%;
-  height: auto;
+  max-height: inherit !important;
 }
 
 .article-image__rounded {
@@ -196,9 +200,7 @@ $article-summary-bColor: #ffffff;
     flex-grow: 1;
 
     .article-image {
-      height: -webkit-fit-content;
-      height: -moz-fit-content;
-      height: fit-content;
+      height: inherit;
       width: 100%;
     }
   }
@@ -213,8 +215,10 @@ $article-summary-bColor: #ffffff;
   .article-summary-img-container {
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
-    flex-grow: 1;
-    width: 40%;
+    width: 48.5%;
+    position: relative;
+    height: auto !important;
+    max-height: 530px;
   }
   .summary-outer-container {
     width: 50%;
