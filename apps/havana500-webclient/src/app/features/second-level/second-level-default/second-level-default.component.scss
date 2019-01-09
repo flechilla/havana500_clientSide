@@ -28,14 +28,23 @@ $tags-container-color: #2aaae2;
   }
 
   #section-name-container {
-    align-self: flex-end;
+    align-self: center;
 
     .section-name {
-      font-family: 'Roboto Black' !important;
-      text-transform: uppercase;
-      padding-bottom: 0;
-      padding-right: 6rem;
+      font-family: 'Roboto' !important;
+      text-transform: uppercase !important;
+      padding-bottom: 0 !important;
       margin-bottom: 0 !important;
+
+      font-size: 6em !important;
+      text-align: center !important;
+      padding-top: .5rem !important;
+      padding: 0;
+      color: white !important;
+      font-weight: normal !important;
+      @include media-breakpoint-down('sm') {
+        font-size: 4em !important;
+      }
     }
 
     @include media-breakpoint-down('sm') {
@@ -52,15 +61,14 @@ $tags-container-color: #2aaae2;
 
   #tags-outer-container {
     max-height: 214px;
-    width: stretch;
-    max-width: 45%;
+    width: 48.5% !important;
+    max-width: 48.5% !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 2rem;
     padding-bottom: 2rem;
     align-items: flex-start;
-    padding-left: 5%;
+    margin: auto;
 
     #tags-title {
       color: white !important;
@@ -122,6 +130,7 @@ $tags-container-color: #2aaae2;
 
   padding-bottom: 0 !important;
   min-height: auto !important;
+  margin: auto !important;
 
   .ng-select-container {
     min-height: auto !important;
