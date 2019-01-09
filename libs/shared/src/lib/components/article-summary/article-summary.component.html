@@ -1,30 +1,19 @@
 <!-- NORMAL ARTICLE DISPLAY -->
-<a
-  class="article-summary-outer-container"
-  (click)="navigateTo(article?.id)"
-  [ngClass]="{
+<a class="article-summary-outer-container" (click)="navigateTo(article?.id)" [ngClass]="{
     'article-summary-outer-container__shadowed':
       !isTopArticle && isCardShadowMode,
     'top-article': isTopArticle,
     'curiosity-article': isCuriosityHomeArticle,
     'selected-curiosity': isCuriositySelected,
     'experience-article': isExperienceArticle
-  }"
->
-  <div class="article-summary-img-container">
-    <img
-      class="article-image"
-      src="{{article?.mainPicture?.relativePath}}"
-      alt="{{article?.mainPicture?.seoFileName}}"
-    />
+  }">
+  <div class="article-summary-img-outer-container">
+    <div class="article-summary-img-container">
+      <img class="article-image" src="{{article?.mainPicture?.relativePath}}" alt="{{article?.mainPicture?.seoFileName}}" />
+    </div>
   </div>
 
-  <div
-    *ngIf="isCreationDateVisible"
-    fxLayout="column"
-    fxLayoutAlign="center center"
-    class="article-creation-date"
-  >
+  <div *ngIf="isCreationDateVisible" fxLayout="column" fxLayoutAlign="center center" class="article-creation-date">
     <!--
       <h4>{{ article?.createdAt?.getDay() }}</h4>
       <h5>{{ article?.createdAt?.getMonth() }}</h5>
@@ -33,29 +22,20 @@
     <h5 class="creation-date-month">ABR</h5>
   </div>
 
-  <div
-    [ngClass]="{
+  <div [ngClass]="{
       'top-article-summary-content': isTopArticle,
       'main-article-summary-content__positioned': isEntertainmentArticle,
       'experience-article-summary-content': isExperienceArticle
     }"
-    class="summary-outer-container"
-  >
-    <div
-      class="main-article-summary-content"
-      fxLayout="column"
-      fxLayoutAlign="flex-start center"
-    >
+    class="summary-outer-container">
+    <div class="main-article-summary-content" fxLayout="column" fxLayoutAlign="flex-start center">
       <h4 *ngIf="isTitleVisible" class="article-summary-title">
         {{ article?.title }}
       </h4>
       <div *ngIf="isAuthorVisible && article.createdBy" class="article-author">
-        <h5
-          translate
-          [translateParams]="{
+        <h5 translate [translateParams]="{
             value: article?.createdBy
-          }"
-        >
+          }">
           BY
         </h5>
       </div>
@@ -65,10 +45,6 @@
       </p>
     </div>
 
-    <ant-article-summary-metadata
-      *ngIf="isMetadataVisible"
-      fxFlexAlign="stretch"
-      [article]="article"
-    ></ant-article-summary-metadata>
+    <ant-article-summary-metadata *ngIf="isMetadataVisible" fxFlexAlign="stretch" [article]="article"></ant-article-summary-metadata>
   </div>
 </a>
