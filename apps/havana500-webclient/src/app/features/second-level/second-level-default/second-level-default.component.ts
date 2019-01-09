@@ -112,7 +112,14 @@ export class SecondLevelDefaultComponent implements OnInit {
           }
         }
 
+        this.secondMostImportantArticles.forEach(a=>{
+          a.body = a.body.substr(0, a.body.lastIndexOf(' ', 1000)) + '...';
+        });
+
         this.articlesToRender = articles;
+        this.articlesToRender.forEach(a=>{
+          a.body = a.body.substr(0, a.body.lastIndexOf(' ', 400)) + '...';
+        })
         this.articlesMobile$.next(this.articlesToRender);
       });
   }
@@ -134,7 +141,7 @@ export class SecondLevelDefaultComponent implements OnInit {
       )
       .subscribe(articles => {
         articles.forEach(a => {
-          a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');
+          a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '').substr(0, a.body.lastIndexOf(' ', 400)) + '...';
           a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');
         });
         this.articlesToRender = this.articlesToRender.concat(articles);
