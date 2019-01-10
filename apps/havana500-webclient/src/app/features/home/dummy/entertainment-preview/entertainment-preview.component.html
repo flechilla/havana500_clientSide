@@ -5,75 +5,55 @@
 
   <mat-tab-group>
     <mat-tab>
-      <ng-template matTabLabel> <h4 translate>SPORTS</h4> </ng-template>
+      <ng-template matTabLabel>
+        <h4 translate>SPORTS</h4>
+      </ng-template>
       <ng-template matTabContent>
         <div class="row article-summary-container">
-          <ant-article-summary
-            [isTextVisible]="isMobile()"
-            [isMetadataVisible]="false"
-            [isCardShadowMode]="!isMobile()"
-            *ngFor="let article of (sportArticles | async)"
-            [article]="article"
-            class="col-6 w-auto entertainment-article"
-          ></ant-article-summary>
+          <ant-article-summary [isTextVisible]="isMobile()" [isMetadataVisible]="false" [isCardShadowMode]="!isMobile()"
+            *ngFor="let article of (sportArticles | async)" [article]="article" class="col-6 w-auto entertainment-article"></ant-article-summary>
         </div>
       </ng-template>
     </mat-tab>
     <mat-tab>
-      <ng-template matTabLabel><h4 translate>CINEMA</h4></ng-template>
+      <ng-template matTabLabel>
+        <h4 translate>CINEMA</h4>
+      </ng-template>
 
       <ng-template matTabContent>
         <div class="row article-summary-container">
-          <ant-article-summary
-            [isTextVisible]="isMobile()"
-            [isMetadataVisible]="false"
-            [isCardShadowMode]="!isMobile()"
-            *ngFor="let article of (cinemaArticles | async)"
-            [article]="article"
-            class="col-6 w-auto entertainment-article"
-          ></ant-article-summary>
+          <ant-article-summary [isTextVisible]="isMobile()" [isMetadataVisible]="false" [isCardShadowMode]="!isMobile()"
+            *ngFor="let article of (cinemaArticles | async)" [article]="article" class="col-6 w-auto entertainment-article"></ant-article-summary>
         </div>
       </ng-template>
     </mat-tab>
     <mat-tab>
-      <ng-template matTabLabel><h4 translate>LITERATURE</h4></ng-template>
+      <ng-template matTabLabel>
+        <h4 translate>LITERATURE</h4>
+      </ng-template>
 
       <ng-template matTabContent>
         <div class="row article-summary-container">
-          <ant-article-summary
-            [isTextVisible]="isMobile()"
-            [isMetadataVisible]="false"
-            [isCardShadowMode]="!isMobile()"
-            *ngFor="let article of (literatureArticles | async)"
-            [article]="article"
-            class="col-6 w-auto entertainment-article"
-          ></ant-article-summary>
+          <ant-article-summary [isTextVisible]="isMobile()" [isMetadataVisible]="false" [isCardShadowMode]="!isMobile()"
+            *ngFor="let article of (literatureArticles | async)" [article]="article" class="col-6 w-auto entertainment-article"></ant-article-summary>
         </div>
       </ng-template>
     </mat-tab>
     <mat-tab>
-      <ng-template matTabLabel><h4 translate>CULTURE</h4></ng-template>
+      <ng-template matTabLabel>
+        <h4 translate>CULTURE</h4>
+      </ng-template>
 
       <ng-template matTabContent>
         <div class="row article-summary-container">
-          <ant-article-summary
-            [isTextVisible]="isMobile()"
-            [isMetadataVisible]="false"
-            [isCardShadowMode]="!isMobile()"
-            *ngFor="let article of (cultureArticles | async)"
-            [article]="article"
-            class="col-6 w-auto entertainment-article"
-          ></ant-article-summary>
+          <ant-article-summary [isTextVisible]="isMobile()" [isMetadataVisible]="false" [isCardShadowMode]="!isMobile()"
+            *ngFor="let article of (cultureArticles | async)" [article]="article" class="col-6 w-auto entertainment-article"></ant-article-summary>
         </div>
       </ng-template>
     </mat-tab>
   </mat-tab-group>
 
-  <a
-    translate
-    class="see-more-section"
-    [routerLink]="'/section/entretenimiento'"
-    fxFlexAlign="center"
-    >SEE_MORE</a
-  >
+  <div class="more-elements-btn-container">
+    <a translate class="btn" [routerLink]="'/section/entretenimiento'" fxFlexAlign="center">SEE_MORE</a>
+  </div>
 </div>
