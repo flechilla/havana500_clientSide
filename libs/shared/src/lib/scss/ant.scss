@@ -31,6 +31,9 @@ $more-elemtents-container-color: #2aaae2;
     min-width: 100%;
     margin-top: 1%;
     margin-bottom: 3%;
+    :hover{
+      text-decoration: none !important;
+    }
     button,a  {
       background-color: $more-elemtents-container-color;
       margin-left: 48%;
@@ -39,5 +42,7 @@ $more-elemtents-container-color: #2aaae2;
       font-weight: 700;
       font-size: 2em;
       text-transform: uppercase;
+
+   
     }
   }
