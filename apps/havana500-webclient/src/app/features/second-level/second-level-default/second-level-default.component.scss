@@ -105,6 +105,10 @@ $tags-container-color: #2aaae2;
 .second-most-important {
   margin: 1% 5% !important;
 
+  .article-summary-img-outer-container{
+    padding-top: 100%;
+  }
+
   ant-article-summary{
     padding-top: 1% !important;
   }
