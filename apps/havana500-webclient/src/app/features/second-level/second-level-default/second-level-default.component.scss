@@ -134,6 +134,12 @@ $tags-container-color: #2aaae2;
   margin-bottom: 30px;
 }
 
+.ng-select.tag-selector {
+  .ng-value {
+    display: none !important;
+  }
+}
+
 .ng-select.custom {
   background-color: #fff !important;
   width: fit-content;
@@ -165,10 +171,13 @@ $tags-container-color: #2aaae2;
   .ng-dropdown-panel{
     margin-top: 1.33em;
   }
-
   .ng-value {
-    display: none;
+    font-weight: 500 !important;
+    font-size: 1.1rem !important;
+    text-align: center !important;
+    width: 100% !important;
   }
+ 
 }
 
 #tags-container{

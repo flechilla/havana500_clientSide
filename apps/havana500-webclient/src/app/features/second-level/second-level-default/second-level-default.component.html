@@ -12,13 +12,13 @@
       <!-- <h3 translate id="tags-title">TAG_SELECTOR</h3> -->
       <!-- TODO: translate this -->
       <div style="min-width: 100%; margin: auto;">
-        <ng-select class="custom" [items]="globalTags$ | async" [hideSelected]="true" bindLabel="name" [closeOnSelect]="false"
+        <ng-select class="custom tag-selector" [items]="globalTags$ | async" [hideSelected]="true" bindLabel="name" [closeOnSelect]="false"
           [multiple]="true" bindValue="id" [searchFn]="tagSelectFilter" (change)="tagSelectionChanged($event)"
           [(ngModel)]="selectedItems" placeholder="{{TAG_SELECTOR}}" style="float: left !important; margin-left: 4em !important; margin-bottom: 1em !important;"></ng-select>
 
-          <ng-select class="custom" [items]="orderByDateItems" [hideSelected]="true" bindLabel="name" [closeOnSelect]="true"
+          <ng-select class="custom" [items]="orderByDateItems" [hideSelected]="false" bindLabel="name" [closeOnSelect]="true"
           [multiple]="false" bindValue="id" [searchFn]="dateSelectFilter" (change)="dateSelectionChanged($event)"
-          [(ngModel)]="selectedDateOrder" placeholder="{{DATE_SELECTOR}}" style="float: right !important; margin-right: 4em !important;"></ng-select>
+          [(ngModel)]="selectedDateOrder" [clearable]="false" placeholder="{{DATE_SELECTOR}}" style="float: right !important; margin-right: 4em !important;"></ng-select>
       </div>
     </div>
   </div>
