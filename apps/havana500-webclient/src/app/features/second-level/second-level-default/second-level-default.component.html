@@ -18,7 +18,7 @@
 
           <ng-select class="custom" [items]="orderByDateItems" [hideSelected]="true" bindLabel="name" [closeOnSelect]="true"
           [multiple]="false" bindValue="id" [searchFn]="dateSelectFilter" (change)="dateSelectionChanged($event)"
-          [(ngModel)]="selectedDateOrdering" placeholder="{{DATE_SELECTOR}}" style="float: right !important; margin-right: 4em !important;"></ng-select>
+          [(ngModel)]="selectedDateOrder" placeholder="{{DATE_SELECTOR}}" style="float: right !important; margin-right: 4em !important;"></ng-select>
       </div>
     </div>
   </div>

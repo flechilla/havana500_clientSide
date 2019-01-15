@@ -49,7 +49,7 @@ export class SecondLevelDefaultComponent implements OnInit {
   );
 
   selectedItems: any[];
-  selectedDateOrdering: string;
+  selectedDateOrder: string;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -115,7 +115,8 @@ export class SecondLevelDefaultComponent implements OnInit {
         this.sectionName,
         tagIds,
         this.currentPage,
-        this.amountOfArticles
+        this.amountOfArticles,
+        this.selectedDateOrder
       )
       .subscribe(articles => {
         articles.forEach(a => {
@@ -171,7 +172,7 @@ export class SecondLevelDefaultComponent implements OnInit {
   }
 
   dateSelectionChanged(selectedDateFilter: string) {
-    console.log(this.selectedDateOrdering);
+    console.log(this.selectedDateOrder);
   }
 
   tagSelectionChanged(selectedTags: any[]) {
