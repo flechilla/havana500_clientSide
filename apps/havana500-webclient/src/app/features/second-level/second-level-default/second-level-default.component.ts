@@ -40,6 +40,7 @@ export class SecondLevelDefaultComponent implements OnInit {
   protected marketingImages: Picture[];
   protected imageUrls: (string | IImage)[] = [];
   protected tagsData: SafeHtml;
+  private TAG_SELECTOR: string;
 
   protected articlesMobile$: BehaviorSubject<Article[]> = new BehaviorSubject(
     []
@@ -78,11 +79,14 @@ export class SecondLevelDefaultComponent implements OnInit {
       this.getSecondLevelImages();
     });
 
+    this.localTranslate();
+
     this.translateService.translate.onLangChange.subscribe(x => {
       this.translateService
         .useLanguage(this.translateService.translate.currentLang)
         .subscribe(_ => {
           this.getArticles();
+          this.localTranslate();
         });
     });
   }
@@ -192,5 +196,13 @@ export class SecondLevelDefaultComponent implements OnInit {
 
   isMobile(): boolean {
     return this.mobileQuery.matches;
+  }
+
+  localTranslate() : void {
+    this.translateService.translate
+          .get('TAG_SELECTOR')
+          .subscribe(w=>{
+            this.TAG_SELECTOR = w;
+          });
   }
 }

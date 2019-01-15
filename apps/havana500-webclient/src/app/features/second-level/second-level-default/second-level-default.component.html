@@ -14,7 +14,7 @@
       <div style="width: 100%">
         <ng-select class="custom" [items]="globalTags$ | async" [hideSelected]="true" bindLabel="name" [closeOnSelect]="false"
           [multiple]="true" bindValue="id" [searchFn]="tagSelectFilter" (change)="tagSelectionChanged($event)"
-          [(ngModel)]="selectedItems"></ng-select>
+          [(ngModel)]="selectedItems" placeholder="{{TAG_SELECTOR}}"></ng-select>
       </div>
     </div>
   </div>
