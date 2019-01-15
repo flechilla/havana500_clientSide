@@ -106,7 +106,7 @@ $tags-container-color: #2aaae2;
   margin: 1% 5% !important;
 
   .article-summary-img-outer-container{
-    padding-top: 100%;
+    // padding-top: 100%;
   }
 
   ant-article-summary{
@@ -173,7 +173,8 @@ $tags-container-color: #2aaae2;
 
 #tags-container{
   margin-bottom: 43px;
-  margin-left: 5em;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 2em;
   #article-tags{
     display: flex;
