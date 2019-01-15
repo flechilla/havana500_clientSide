@@ -43,6 +43,7 @@ export class SecondLevelDefaultComponent implements OnInit {
   private TAG_SELECTOR: string;
   private DATE_SELECTOR: string;
   private orderByDateItems: any[];
+  private activeFilter = false;
 
   protected articlesMobile$: BehaviorSubject<Article[]> = new BehaviorSubject(
     []
@@ -174,6 +175,7 @@ export class SecondLevelDefaultComponent implements OnInit {
 
   dateSelectionChanged(selectedDateFilter: string) {
     console.log(this.selectedDateOrder);
+    this.activeFilter = this.selectedDateOrder !== 'NONE';
     this.getArticles(this.selectedItems)
   }
 
@@ -186,6 +188,8 @@ export class SecondLevelDefaultComponent implements OnInit {
     // selectedTags.forEach(tag =>{
     //   tagContainer.append('<span class="tag-item">' + tag.name + '</span>')
     // })
+
+    this.activeFilter = selectedTags.length > 0;
     let tagsContainerDataString = '<mat-chip-list id="article-tags">';
     selectedTags.forEach(tag => {
       tagsContainerDataString +=
