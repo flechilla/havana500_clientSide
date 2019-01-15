@@ -44,6 +44,7 @@ export class SecondLevelDefaultComponent implements OnInit {
   private DATE_SELECTOR: string;
   private orderByDateItems: any[];
   private activeFilter = false;
+  private atLeastOneArticle: boolean;
 
   protected articlesMobile$: BehaviorSubject<Article[]> = new BehaviorSubject(
     []
@@ -90,10 +91,14 @@ export class SecondLevelDefaultComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     this.amountOfArticles = this.isMobile() ? 30 : 11;
-    this.currentPage = 0;
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.sectionName = params.get('sectionName');
+      this.selectedItems = [];
+      this.selectedDateOrder = 'NONE';
+      this.currentPage = 0;
+      this.tagsData = '';
+      this.isFiltered();
       this.getArticles();
       this.getSecondLevelImages();
     });
@@ -104,6 +109,7 @@ export class SecondLevelDefaultComponent implements OnInit {
       this.translateService
         .useLanguage(this.translateService.translate.currentLang)
         .subscribe(_ => {
+       
           this.getArticles();
           this.localTranslate();
         });
@@ -121,6 +127,7 @@ export class SecondLevelDefaultComponent implements OnInit {
         this.selectedDateOrder
       )
       .subscribe(articles => {
+        this.atLeastOneArticle = articles.length > 0;
         articles.forEach(a => {
           a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');
           a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');

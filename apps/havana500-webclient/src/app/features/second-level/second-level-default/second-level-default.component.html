@@ -27,16 +27,17 @@
   <div id="tags-container" [innerHtml]="tagsData"></div>
 
   <article fxFlexFill>
+      <div *ngIf="!atLeastOneArticle">
+          <h1 class="no-articles-message" translate>NO_ITEMS</h1>
+        </div>
     <!-- MAIN ARTICLE -->
     <div *ngIf="!activeFilter">
-      <section class="main-article-summary-container" *ngIf="mostImportantArticle; else: noItemsTemplate">
+      <section class="main-article-summary-container" *ngIf="mostImportantArticle">
         <ant-article-summary [isCuriosityHomeArticle]="!isMobile()" [article]="mostImportantArticle" [isCardShadowMode]="false"></ant-article-summary>
       </section>
       <!-- / MAIN ARTICLE -->
 
-      <ng-template #noItemsTemplate>
-        <h1 class="no-articles-message" translate>NO_ITEMS</h1>
-      </ng-template>
+     
 
       <!-- MARKETING -->
       <section id="marketing-container" class="col-12" *ngIf="marketingImages && marketingImages.length > 0">
