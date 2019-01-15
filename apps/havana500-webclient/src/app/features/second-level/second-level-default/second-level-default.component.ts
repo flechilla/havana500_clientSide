@@ -223,38 +223,29 @@ export class SecondLevelDefaultComponent implements OnInit {
   }
 
   localTranslate() : void {
+    const translatedDateItems = [];
+    this.orderByDateItems.forEach((item, index) => {
+      this.translateService.translate
+      .get(item.id)
+      .subscribe(w=>{
+        item.name = w;
+      });
+      translatedDateItems.push(item);
+    });
+    this.orderByDateItems = translatedDateItems;
+
     this.translateService.translate
           .get('DATE_SELECTOR')
           .subscribe(w=>{
             this.DATE_SELECTOR = w;
           });
+    
     this.translateService.translate
           .get('TAG_SELECTOR')
           .subscribe(w=>{
             this.TAG_SELECTOR = w;
           });
-          this.translateService.translate
-          .get('ASC')
-          .subscribe(w=>{
-            this.orderByDateItems.find((v) => {
-              return v.id === 'ASC'
-            }).name = w;
-          }); 
-          this.translateService.translate
-          .get('DESC')
-          .subscribe(w=>{
-            this.orderByDateItems.find((v) => {
-              return v.id === 'DESC'
-            }).name = w;
-          });  
-          
-          this.translateService.translate
-          .get('NONE')
-          .subscribe(w=>{
-            this.orderByDateItems.find((v) => {
-              return v.id === 'NONE'
-            }).name = w;
-          });  
+         
    
         }
 }
