@@ -41,12 +41,15 @@ export class SecondLevelDefaultComponent implements OnInit {
   protected imageUrls: (string | IImage)[] = [];
   protected tagsData: SafeHtml;
   private TAG_SELECTOR: string;
+  private DATE_SELECTOR: string;
+  private orderByDateItems: any[];
 
   protected articlesMobile$: BehaviorSubject<Article[]> = new BehaviorSubject(
     []
   );
 
   selectedItems: any[];
+  selectedDateOrdering: string;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -63,6 +66,20 @@ export class SecondLevelDefaultComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.orderByDateItems = [
+     {
+       id:'DESC',
+      name: 'DESC'
+    },
+      {
+        id:'ASC',
+      name: 'ASC'
+    },
+    {
+      id:'NONE',
+    name: 'NONE'
+  }
+      ]
     this.globalTags$ = this.contentTagService.getAll();
     this.translateService.loadTranslations(english, spanish, french);
 
@@ -153,6 +170,10 @@ export class SecondLevelDefaultComponent implements OnInit {
       });
   }
 
+  dateSelectionChanged(selectedDateFilter: string) {
+    console.log(this.selectedDateOrdering);
+  }
+
   tagSelectionChanged(selectedTags: any[]) {
     // console.log(selectedTags);
     // console.log(this.selectedItems);
@@ -200,9 +221,37 @@ export class SecondLevelDefaultComponent implements OnInit {
 
   localTranslate() : void {
     this.translateService.translate
+          .get('DATE_SELECTOR')
+          .subscribe(w=>{
+            this.DATE_SELECTOR = w;
+          });
+    this.translateService.translate
           .get('TAG_SELECTOR')
           .subscribe(w=>{
             this.TAG_SELECTOR = w;
           });
-  }
+          this.translateService.translate
+          .get('ASC')
+          .subscribe(w=>{
+            this.orderByDateItems.find((v) => {
+              return v.id === 'ASC'
+            }).name = w;
+          }); 
+          this.translateService.translate
+          .get('DESC')
+          .subscribe(w=>{
+            this.orderByDateItems.find((v) => {
+              return v.id === 'DESC'
+            }).name = w;
+          });  
+          
+          this.translateService.translate
+          .get('NONE')
+          .subscribe(w=>{
+            this.orderByDateItems.find((v) => {
+              return v.id === 'NONE'
+            }).name = w;
+          });  
+   
+        }
 }

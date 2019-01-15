@@ -138,13 +138,13 @@ $tags-container-color: #2aaae2;
   background-color: #fff !important;
   width: fit-content;
   max-width: 90%;
+  min-width: 30%;
 
   padding-bottom: 0 !important;
-  min-height: auto !important;
   margin: auto !important;
 
   .ng-select-container {
-    min-height: auto !important;
+  min-height: 30px !important;
   }
 
   .ng-arrow-wrapper {
