@@ -12,11 +12,11 @@
       <!-- <h3 translate id="tags-title">TAG_SELECTOR</h3> -->
       <!-- TODO: translate this -->
       <div style="min-width: 100%; margin: auto;">
-        <ng-select class="custom tag-selector" [items]="globalTags$ | async" [hideSelected]="true" bindLabel="name" [closeOnSelect]="false"
-          [multiple]="true" bindValue="id" [searchFn]="tagSelectFilter" (change)="tagSelectionChanged($event)"
+        <ng-select class="custom tag-selector" [items]="globalTags$ | async" [hideSelected]="true" bindLabel="name"
+          [closeOnSelect]="false" [multiple]="true" bindValue="id" [searchFn]="tagSelectFilter" (change)="tagSelectionChanged($event)"
           [(ngModel)]="selectedItems" placeholder="{{TAG_SELECTOR}}" style="float: left !important; margin-left: 4em !important; margin-bottom: 1em !important;"></ng-select>
 
-          <ng-select class="custom" [items]="orderByDateItems" [hideSelected]="false" bindLabel="name" [closeOnSelect]="true"
+        <ng-select class="custom" [items]="orderByDateItems" [hideSelected]="false" bindLabel="name" [closeOnSelect]="true"
           [multiple]="false" bindValue="id" [searchFn]="dateSelectFilter" (change)="dateSelectionChanged($event)"
           [(ngModel)]="selectedDateOrder" [clearable]="false" placeholder="{{DATE_SELECTOR}}" style="float: right !important; margin-right: 4em !important;"></ng-select>
       </div>
@@ -28,33 +28,35 @@
 
   <article fxFlexFill>
     <!-- MAIN ARTICLE -->
-    <section class="main-article-summary-container" *ngIf="mostImportantArticle; else: noItemsTemplate">
-      <ant-article-summary [isCuriosityHomeArticle]="!isMobile()" [article]="mostImportantArticle" [isCardShadowMode]="false"></ant-article-summary>
-    </section>
-    <!-- / MAIN ARTICLE -->
+    <div *ngIf="!activeFilter">
+      <section class="main-article-summary-container" *ngIf="mostImportantArticle; else: noItemsTemplate">
+        <ant-article-summary [isCuriosityHomeArticle]="!isMobile()" [article]="mostImportantArticle" [isCardShadowMode]="false"></ant-article-summary>
+      </section>
+      <!-- / MAIN ARTICLE -->
 
-    <ng-template #noItemsTemplate>
-      <h1 class="no-articles-message" translate>NO_ITEMS</h1>
-    </ng-template>
+      <ng-template #noItemsTemplate>
+        <h1 class="no-articles-message" translate>NO_ITEMS</h1>
+      </ng-template>
 
-    <!-- MARKETING -->
-    <section id="marketing-container" class="col-12" *ngIf="marketingImages && marketingImages.length > 0">
-      <slideshow [minHeight]="'300px'" [autoPlay]="true" [imageUrls]="imageUrls" [lazyLoad]="imageUrls?.length > 1"
-        [autoPlayWaitForLazyLoad]="true" [showDots]="true" [dotColor]="'#32a9e1'" [showCaptions]="false" [showArrows]="false">
-      </slideshow>
-    </section>
-    <!-- / MARKETING -->
+      <!-- MARKETING -->
+      <section id="marketing-container" class="col-12" *ngIf="marketingImages && marketingImages.length > 0">
+        <slideshow [minHeight]="'300px'" [autoPlay]="true" [imageUrls]="imageUrls" [lazyLoad]="imageUrls?.length > 1"
+          [autoPlayWaitForLazyLoad]="true" [showDots]="true" [dotColor]="'#32a9e1'" [showCaptions]="false" [showArrows]="false">
+        </slideshow>
+      </section>
+      <!-- / MARKETING -->
 
-    <!-- SECOND MOST IMPORTANT -->
-    <section class="second-most-important" fxLayout="row" *ngIf="
+      <!-- SECOND MOST IMPORTANT -->
+      <section class="second-most-important" fxLayout="row" *ngIf="
         !isMobile() &&
         mostImportantArticle &&
         secondMostImportantArticles?.length > 0
       ">
-      <ant-article-summary *ngFor="let article of secondMostImportantArticles" [article]="article"
-        [isCreationDateVisible]="false" class="col-md-6 col-xs-12"></ant-article-summary>
-    </section>
-    <!-- / SECOND MOST IMPORTANT -->
+        <ant-article-summary *ngFor="let article of secondMostImportantArticles" [article]="article"
+          [isCreationDateVisible]="false" class="col-md-6 col-xs-12"></ant-article-summary>
+      </section>
+      <!-- / SECOND MOST IMPORTANT -->
+    </div>
 
     <!-- EXTRA ARTICLES -->
     <section class="extra-articles" fxLayout="row wrap" *ngIf="

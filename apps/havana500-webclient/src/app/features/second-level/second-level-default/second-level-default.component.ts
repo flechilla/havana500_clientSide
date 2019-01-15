@@ -90,6 +90,7 @@ export class SecondLevelDefaultComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     this.amountOfArticles = this.isMobile() ? 30 : 11;
+    this.currentPage = 0;
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.sectionName = params.get('sectionName');
@@ -125,19 +126,21 @@ export class SecondLevelDefaultComponent implements OnInit {
           a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');
         });
         this.isEndOfPage = articles.length < this.amountOfArticles;
-        this.mostImportantArticle = articles.shift();
+        if(!this.activeFilter) {
+          this.mostImportantArticle = articles.shift();
 
-        this.secondMostImportantArticles = [];
-        if (!this.isMobile() && articles.length > 0) {
-          this.secondMostImportantArticles.push(articles.shift());
-          if (articles.length > 0) {
+          this.secondMostImportantArticles = [];
+          if (!this.isMobile() && articles.length > 0) {
             this.secondMostImportantArticles.push(articles.shift());
+            if (articles.length > 0) {
+              this.secondMostImportantArticles.push(articles.shift());
+            }
           }
-        }
 
-        this.secondMostImportantArticles.forEach(a=>{
-          a.body = a.body.substr(0, a.body.lastIndexOf(' ', 1000)) + '...';
-        });
+          this.secondMostImportantArticles.forEach(a=>{
+            a.body = a.body.substr(0, a.body.lastIndexOf(' ', 1000)) + '...';
+          });
+        }
 
         this.articlesToRender = articles;
         this.articlesToRender.forEach(a=>{
@@ -176,12 +179,15 @@ export class SecondLevelDefaultComponent implements OnInit {
   dateSelectionChanged(selectedDateFilter: string) {
     console.log(this.selectedDateOrder);
     this.isFiltered();
+    this.currentPage = 0;
     this.getArticles(this.selectedItems)
   }
 
   tagSelectionChanged(selectedTags: any[]) {
     // console.log(selectedTags);
     // console.log(this.selectedItems);
+    this.isFiltered();
+    this.currentPage = 0;
     this.getArticles(this.selectedItems);
     // document.getElementById('tags-container').innerHTML = "";
     // const tagContainer = document.getElementById('tags-container')
@@ -189,7 +195,7 @@ export class SecondLevelDefaultComponent implements OnInit {
     //   tagContainer.append('<span class="tag-item">' + tag.name + '</span>')
     // })
 
-    this.isFiltered();
+    
     let tagsContainerDataString = '<mat-chip-list id="article-tags">';
     selectedTags.forEach(tag => {
       tagsContainerDataString +=
