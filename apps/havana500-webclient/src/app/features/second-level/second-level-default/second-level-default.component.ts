@@ -49,7 +49,7 @@ export class SecondLevelDefaultComponent implements OnInit {
     []
   );
 
-  selectedItems: any[];
+  selectedItems = [];
   selectedDateOrder: 'NONE';
 
   mobileQuery: MediaQueryList;
@@ -175,7 +175,7 @@ export class SecondLevelDefaultComponent implements OnInit {
 
   dateSelectionChanged(selectedDateFilter: string) {
     console.log(this.selectedDateOrder);
-    this.activeFilter = this.selectedDateOrder !== 'NONE';
+    this.isFiltered();
     this.getArticles(this.selectedItems)
   }
 
@@ -189,7 +189,7 @@ export class SecondLevelDefaultComponent implements OnInit {
     //   tagContainer.append('<span class="tag-item">' + tag.name + '</span>')
     // })
 
-    this.activeFilter = selectedTags.length > 0;
+    this.isFiltered();
     let tagsContainerDataString = '<mat-chip-list id="article-tags">';
     selectedTags.forEach(tag => {
       tagsContainerDataString +=
@@ -252,4 +252,8 @@ export class SecondLevelDefaultComponent implements OnInit {
          
    
         }
+
+  isFiltered(): void {
+    this.activeFilter = this.selectedDateOrder !== "NONE" || this.selectedItems.length > 0;
+  }
 }
