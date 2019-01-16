@@ -112,6 +112,21 @@ $tags-container-color: #2aaae2;
   ant-article-summary{
     padding-top: 1% !important;
   }
+
+  .article-summary-body{
+    min-height: 16em !important;
+    max-height: 16em !important;
+    overflow: hidden;
+    line-height: 1em;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    display: block;
+  
+    p {
+      margin-bottom: .03em !important;
+      text-align: justify;
+    }
+  }
 }
 
 .extra-articles {
