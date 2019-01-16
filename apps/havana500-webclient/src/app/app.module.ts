@@ -39,7 +39,8 @@ import { AgeModalComponent } from './features/age-modal/age-modal.component';
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, {
-      initialNavigation: 'enabled',
+      scrollPositionRestoration: 'enabled',
+      scrollOffset: [0,0],
       enableTracing: false
     }),
     StoreModule.forRoot(reducers, { metaReducers }),
