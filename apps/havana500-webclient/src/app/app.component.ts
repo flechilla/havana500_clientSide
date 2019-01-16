@@ -10,11 +10,12 @@ import { AgeModalComponent } from './features/age-modal/age-modal.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
  
   title = 'havana500-admin';
   private modalRef: BsModalRef;
   private isValidAge: boolean;
+  private displayMain
 
   constructor(private translateService: AntTranslateService, 
     private cookieService: CookiesService,
@@ -29,8 +30,10 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
     this.ageModalOn();
+    }, 1500);
   }
 
   setUserAgeCookie(result:  number) {
@@ -38,7 +41,7 @@ export class AppComponent implements OnInit {
       this.cookieService.setAgeOnCookie(result)
         .subscribe(r => {
             this.modalRef.hide();
-            this.ref.markForCheck();
+            this.isValidAge = true;
         });      
   }
 

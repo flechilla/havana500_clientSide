@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { AntTranslateService } from '@hav500workspace/shared';
 import { english, spanish, french } from './i18n';
-import { Subject } from 'rxjs';
+import { Subject, interval } from 'rxjs';
 
 
 @Component({
@@ -25,9 +25,9 @@ export class AgeModalComponent implements OnInit {
 
   ngOnInit() {
     this.userAgeFormControl.valueChanges.subscribe(v => {
-      this.userYearOfBirth = v;
-      this.validateAge();
-    });
+        this.userYearOfBirth = v;
+        this.validateAge();
+      });
 
     this.buttonTextKey = 'buttonTextAdult';
 
