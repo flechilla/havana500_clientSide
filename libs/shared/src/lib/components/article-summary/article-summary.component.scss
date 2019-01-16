@@ -155,10 +155,18 @@ $article-summary-bColor: #ffffff;
 .article-summary-body {
   text-align: justify;
   font-size: 1.62em;
-  line-height: 16px;
-  font-weight: 300;
+  min-height: 10em !important;
+  max-height: 10em !important;
   overflow: hidden;
-  max-height: 400px;
+  line-height: 1em;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  display: block;
+
+  p {
+    margin-bottom: .03em !important;
+    text-align: justify;
+  }
 
   * {
     text-align: justify !important;
