@@ -4,8 +4,13 @@
   </div>
   <div class="modal-body">
     Tiene que ser mayor de edad
+
+    <div class="form-container">
+      <input type="text" [formControl]="userAgeFormControl" name="userAge" id="user-age-input"
+      class="form-control col-12" placeholder="{{userAgePlaceholderText}}">
+    </div>
   </div>
-  <div class="modal-body">
-    <button type="button" class="btn" (click)="accept()"></button>
+  <div class="modal-footer">
+    <button type="button" class="btn" (click)="accept()">{{buttonText}}</button>
   </div>
 </div>
