@@ -129,7 +129,7 @@ export class SecondLevelDefaultComponent implements OnInit {
       .subscribe(articles => {
         this.atLeastOneArticle = articles.length > 0;
         articles.forEach(a => {
-          a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');
+          /*a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');*/
           a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');
         });
         this.isEndOfPage = articles.length < this.amountOfArticles;
@@ -175,7 +175,7 @@ export class SecondLevelDefaultComponent implements OnInit {
       )
       .subscribe(articles => {
         articles.forEach(a => {
-          a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '').substr(0, a.body.lastIndexOf(' ', 400)) + '...';
+         /* a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '').substr(0, a.body.lastIndexOf(' ', 400)) + '...';*/
           a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');
         });
         this.articlesToRender = this.articlesToRender.concat(articles);

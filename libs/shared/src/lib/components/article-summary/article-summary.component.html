@@ -40,8 +40,8 @@
         </h5>
       </div>
 
-      <p *ngIf="isTextVisible" class="article-summary-body">
-        {{ article?.body }}
+        
+      <p *ngIf="isTextVisible" class="article-summary-body" [innerHtml]="article.body">
       </p>
     </div>
 
