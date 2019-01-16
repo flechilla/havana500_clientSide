@@ -11,9 +11,11 @@
 
 .metadata-panel {
   // padding: 0 2rem;
-  min-height: 5rem;
   width: 100%;
-  font-size: 0.8em;
+  font-size: 0.85em;
+  height: auto;
+  padding: .8em 0;
+
 
   @include media-breakpoint-down('sm'){
     min-height: 1rem !important;
