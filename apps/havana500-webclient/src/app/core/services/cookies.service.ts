@@ -35,7 +35,8 @@ export class CookiesService {
   }
 
   hideCookieBanner() {
-    return !!this.cookieService.get(this.cookiesAcceptedCookie);
+    return true;
+    // return !!this.cookieService.get(this.cookiesAcceptedCookie);
   }
 
   isLegalAge(): boolean {
