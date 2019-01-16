@@ -36,3 +36,18 @@
     padding: 0 3rem !important;
   }
 }
+
+.article-summary-body{
+  min-height: 22em !important;
+  max-height: 22em !important;
+  overflow: hidden;
+  line-height: 1em;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  display: block;
+
+  p {
+    margin-bottom: .03em !important;
+    text-align: justify;
+  }
+}
