@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { HavanaEnvironment } from 'libs/shared/src/lib/models';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
-import { Agent } from 'http';
 
 @Injectable({
   providedIn: 'root'
