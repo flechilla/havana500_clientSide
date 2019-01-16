@@ -4,6 +4,7 @@ export const locale: Locale = {
   lang: 'en',
   data: {
     TAG_SELECTOR: 'Tags Selector',
+    DATE_SELECTOR: 'Order by Date',
     SEE_MORE: 'See More',
     NO_ITEMS: 'THERE ARE NOT ITEMS MATCHING THE SEARCH PARAMETERS',
     literatura: 'Literature',
@@ -13,5 +14,8 @@ export const locale: Locale = {
     experiencias: 'Experiences',
     cine: 'Cinema',
     cultura: 'Culture',
+    ASC: 'Oldest',
+    DESC: 'Newest',
+    NONE: 'Default'
   }
 };

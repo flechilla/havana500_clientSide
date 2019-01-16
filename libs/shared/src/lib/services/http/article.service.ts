@@ -129,7 +129,8 @@ export class ArticleService extends BaseCrudService<Article> {
     sectionName: string,
     tagIds: number[] = [],
     currentPage: number,
-    amountOfArticles: number
+    amountOfArticles: number,
+    selectedDateOrder: string
   ): Observable<Article[]> {
     let tagsParams = '';
     tagIds.forEach((t, i) => (tagsParams += '&tagsIds=' + t));
@@ -142,7 +143,9 @@ export class ArticleService extends BaseCrudService<Article> {
           '&currentPage=' +
           currentPage +
           '&amountOfArticles=' +
-          amountOfArticles
+          amountOfArticles +
+          '&selectedDateOrder=' +
+          selectedDateOrder
       )
       .pipe(
         publishLast(),

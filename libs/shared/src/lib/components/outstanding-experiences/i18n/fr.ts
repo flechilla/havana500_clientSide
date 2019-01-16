@@ -4,8 +4,8 @@ export const locale: Locale = {
   lang: 'fr',
   data: {
     EXPERIENCES: 'EXPERIENCES',
-    WHAT: 'QUAI',
-    TODO: 'FAIRE',
+    WALK: 'WALK',
+    HAVANA: 'THE HAVANA',
     SEE_MORE: 'Voir Plus'
   }
 };

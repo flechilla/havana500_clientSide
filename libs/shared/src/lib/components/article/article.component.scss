@@ -41,6 +41,8 @@ $article-tag-bColor: #32A9E1;
 
     #article-info {
       padding: 0 !important;
+      text-align: center;
+      font-size: 1.3em;
 
       #article-reading-time, #article-writer {
         padding: 0 !important;
@@ -55,6 +57,12 @@ $article-tag-bColor: #32A9E1;
   #article-body {
     margin-bottom: 50px;
     font-size: 1.8em;
+    font-weight: 400 !important;
+
+    P{
+    font-weight: 400 !important;
+
+    }
 
     p::first-line{
       text-indent: 5em;

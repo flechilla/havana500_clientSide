@@ -14,8 +14,8 @@
       fxLayout="column"
       fxLayoutAlign="center center"
     >
-      <h1 translate class="experiences-poster-title section-name">WHAT</h1>
-      <h1 translate class="experiences-poster-title section-name">TODO</h1>
+      <h1 translate class="experiences-poster-title section-name">WALK</h1>
+      <h1 translate class="experiences-poster-title section-name">HAVANA</h1>
     </div>
     <ant-experience-article-card
       [articles$]="experiences$"
@@ -24,12 +24,15 @@
     ></ant-experience-article-card>
   </div>
 
+  <div class="more-elements-btn-container">
+
   <a
     *ngIf="isViewMoreVisible"
     translate
-    class="see-more-section"
+    class="btn"
     [routerLink]="'/section/experiencias'"
     fxFlexAlign="center"
     >SEE_MORE</a
   >
+  </div>
 </div>

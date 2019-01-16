@@ -40,12 +40,18 @@ export class SecondLevelDefaultComponent implements OnInit {
   protected marketingImages: Picture[];
   protected imageUrls: (string | IImage)[] = [];
   protected tagsData: SafeHtml;
+  private TAG_SELECTOR: string;
+  private DATE_SELECTOR: string;
+  private orderByDateItems: any[];
+  private activeFilter = false;
+  private atLeastOneArticle: boolean;
 
   protected articlesMobile$: BehaviorSubject<Article[]> = new BehaviorSubject(
     []
   );
 
-  selectedItems: any[];
+  selectedItems = [];
+  selectedDateOrder: 'NONE';
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -62,6 +68,20 @@ export class SecondLevelDefaultComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.orderByDateItems = [
+     {
+       id:'DESC',
+      name: 'DESC'
+    },
+      {
+        id:'ASC',
+      name: 'ASC'
+    },
+    {
+      id:'NONE',
+    name: 'NONE'
+  }
+      ]
     this.globalTags$ = this.contentTagService.getAll();
     this.translateService.loadTranslations(english, spanish, french);
 
@@ -74,15 +94,24 @@ export class SecondLevelDefaultComponent implements OnInit {
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.sectionName = params.get('sectionName');
+      this.selectedItems = [];
+      this.selectedDateOrder = 'NONE';
+      this.currentPage = 0;
+      this.tagsData = '';
+      this.isFiltered();
       this.getArticles();
       this.getSecondLevelImages();
     });
+
+    this.localTranslate();
 
     this.translateService.translate.onLangChange.subscribe(x => {
       this.translateService
         .useLanguage(this.translateService.translate.currentLang)
         .subscribe(_ => {
+       
           this.getArticles();
+          this.localTranslate();
         });
     });
   }
@@ -94,25 +123,36 @@ export class SecondLevelDefaultComponent implements OnInit {
         this.sectionName,
         tagIds,
         this.currentPage,
-        this.amountOfArticles
+        this.amountOfArticles,
+        this.selectedDateOrder
       )
       .subscribe(articles => {
+        this.atLeastOneArticle = articles.length > 0;
         articles.forEach(a => {
-          a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');
+          /*a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');*/
           a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');
         });
         this.isEndOfPage = articles.length < this.amountOfArticles;
-        this.mostImportantArticle = articles.shift();
+        if(!this.activeFilter) {
+          this.mostImportantArticle = articles.shift();
 
-        this.secondMostImportantArticles = [];
-        if (!this.isMobile() && articles.length > 0) {
-          this.secondMostImportantArticles.push(articles.shift());
-          if (articles.length > 0) {
+          this.secondMostImportantArticles = [];
+          if (!this.isMobile() && articles.length > 0) {
             this.secondMostImportantArticles.push(articles.shift());
+            if (articles.length > 0) {
+              this.secondMostImportantArticles.push(articles.shift());
+            }
           }
+
+          // this.secondMostImportantArticles.forEach(a=>{
+          //   a.body = a.body.substr(0, a.body.lastIndexOf(' ', 1000)) + '...';
+          // });
         }
 
         this.articlesToRender = articles;
+        // this.articlesToRender.forEach(a=>{
+        //   a.body = a.body.substr(0, a.body.lastIndexOf(' ', 400)) + '...';
+        // })
         this.articlesMobile$.next(this.articlesToRender);
       });
   }
@@ -130,11 +170,12 @@ export class SecondLevelDefaultComponent implements OnInit {
         this.sectionName,
         this.selectedItems,
         ++this.currentPage,
-        this.amountOfActiclesToLoad
+        this.amountOfActiclesToLoad,
+        this.selectedDateOrder
       )
       .subscribe(articles => {
         articles.forEach(a => {
-          a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');
+         /* a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '').substr(0, a.body.lastIndexOf(' ', 400)) + '...';*/
           a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');
         });
         this.articlesToRender = this.articlesToRender.concat(articles);
@@ -142,15 +183,26 @@ export class SecondLevelDefaultComponent implements OnInit {
       });
   }
 
+  dateSelectionChanged(selectedDateFilter: string) {
+    console.log(this.selectedDateOrder);
+    this.isFiltered();
+    this.currentPage = 0;
+    this.getArticles(this.selectedItems)
+  }
+
   tagSelectionChanged(selectedTags: any[]) {
     // console.log(selectedTags);
     // console.log(this.selectedItems);
+    this.isFiltered();
+    this.currentPage = 0;
     this.getArticles(this.selectedItems);
     // document.getElementById('tags-container').innerHTML = "";
     // const tagContainer = document.getElementById('tags-container')
     // selectedTags.forEach(tag =>{
     //   tagContainer.append('<span class="tag-item">' + tag.name + '</span>')
     // })
+
+    
     let tagsContainerDataString = '<mat-chip-list id="article-tags">';
     selectedTags.forEach(tag => {
       tagsContainerDataString +=
@@ -185,5 +237,36 @@ export class SecondLevelDefaultComponent implements OnInit {
 
   isMobile(): boolean {
     return this.mobileQuery.matches;
+  }
+
+  localTranslate() : void {
+    const translatedDateItems = [];
+    this.orderByDateItems.forEach((item, index) => {
+      this.translateService.translate
+      .get(item.id)
+      .subscribe(w=>{
+        item.name = w;
+      });
+      translatedDateItems.push(item);
+    });
+    this.orderByDateItems = translatedDateItems;
+
+    this.translateService.translate
+          .get('DATE_SELECTOR')
+          .subscribe(w=>{
+            this.DATE_SELECTOR = w;
+          });
+    
+    this.translateService.translate
+          .get('TAG_SELECTOR')
+          .subscribe(w=>{
+            this.TAG_SELECTOR = w;
+          });
+         
+   
+        }
+
+  isFiltered(): void {
+    this.activeFilter = this.selectedDateOrder !== "NONE" || this.selectedItems.length > 0;
   }
 }
