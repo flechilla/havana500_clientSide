@@ -17,6 +17,7 @@ export class AgeModalComponent implements OnInit {
   private buttonText: string;
   private userAgePlaceholderText: string;
   private validAge = 18;
+  private isValidAge: boolean;
 
   constructor(private translateService: AntTranslateService) { }
 
@@ -37,14 +38,16 @@ export class AgeModalComponent implements OnInit {
   }
 
   accept() {
-
   }
 
   validateAge() {
+    if (this.userYearOfBirth < 1925) {
+      return;
+    }
     const currentYear = (new Date()).getFullYear();
-    const isValid = (currentYear - this.userYearOfBirth) > this.validAge;
+    this.isValidAge = (currentYear - this.userYearOfBirth) > this.validAge;
 
-    if (!isValid) {
+    if (!this.isValidAge) {
       this.buttonTextKey = 'buttonTextNotAdult';
     }
     else {
