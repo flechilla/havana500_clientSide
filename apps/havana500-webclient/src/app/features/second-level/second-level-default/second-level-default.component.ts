@@ -144,15 +144,15 @@ export class SecondLevelDefaultComponent implements OnInit {
             }
           }
 
-          this.secondMostImportantArticles.forEach(a=>{
-            a.body = a.body.substr(0, a.body.lastIndexOf(' ', 1000)) + '...';
-          });
+          // this.secondMostImportantArticles.forEach(a=>{
+          //   a.body = a.body.substr(0, a.body.lastIndexOf(' ', 1000)) + '...';
+          // });
         }
 
         this.articlesToRender = articles;
-        this.articlesToRender.forEach(a=>{
-          a.body = a.body.substr(0, a.body.lastIndexOf(' ', 400)) + '...';
-        })
+        // this.articlesToRender.forEach(a=>{
+        //   a.body = a.body.substr(0, a.body.lastIndexOf(' ', 400)) + '...';
+        // })
         this.articlesMobile$.next(this.articlesToRender);
       });
   }
