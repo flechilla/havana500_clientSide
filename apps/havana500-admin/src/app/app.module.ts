@@ -38,7 +38,7 @@ import { TranslateModule } from '@ngx-translate/core';
     HttpClientModule,
     NxModule.forRoot(),
     RouterModule.forRoot(appRoutes, {
-      initialNavigation: 'enabled',
+      scrollPositionRestoration: 'enabled',
       enableTracing: false
     }),
     StoreModule.forRoot(reducers, { metaReducers }),
