@@ -120,8 +120,18 @@ $tags-container-color: #2aaae2;
   ant-article-summary {
     margin-bottom: 15px !important; 
     .article-summary-body{
-      max-height: 200px !important;
+      min-height: 10em !important;
+      max-height: 10em !important;
       overflow: hidden;
+      line-height: 1em;
+      text-overflow: ellipsis;
+      word-break: break-word;
+      display: block;
+
+      p {
+        margin-bottom: .1em !important;
+        text-align: justify;
+      }
     }
   }
 }

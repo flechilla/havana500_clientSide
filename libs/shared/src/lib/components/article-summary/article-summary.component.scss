@@ -138,13 +138,13 @@ $article-summary-bColor: #ffffff;
   font-size: 2.85em;
   text-transform: uppercase;
   width: 100%;
-  word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1em;
+  min-height: 2em;
   max-height: 2em;
   display: block;
-  word-break: break-all;
+  word-break: break-word;
 
   @include media-breakpoint-down('sm') {
     font-size: 2.25em;
@@ -160,8 +160,8 @@ $article-summary-bColor: #ffffff;
   overflow: hidden;
   max-height: 400px;
 
-  ::after {
-    content: "...";
+  * {
+    text-align: justify !important;
   }
 
   @include media-breakpoint-down('sm') {
@@ -169,8 +169,12 @@ $article-summary-bColor: #ffffff;
   }
 }
 
-.article-summary-body::after {
-  content: "...";
+.article-summary-body {
+  p:last-child {
+    &::after{
+      content: "...";
+    }
+  }
 }
 
 .article-author {
