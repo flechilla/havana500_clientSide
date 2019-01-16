@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { AntTranslateService } from '@hav500workspace/shared';
 import { english, spanish, french } from './i18n';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class AgeModalComponent implements OnInit {
   private userAgePlaceholderText: string;
   private validAge = 18;
   private isValidAge: boolean;
+  public onClose: Subject<string>;
 
   constructor(private translateService: AntTranslateService) { }
 
@@ -35,9 +37,11 @@ export class AgeModalComponent implements OnInit {
     .subscribe(x=>{
       this.translateText();
     });
+    this.onClose = new Subject();
   }
 
   accept() {
+    this.onClose.next(this.userYearOfBirth.toString());
   }
 
   validateAge() {
