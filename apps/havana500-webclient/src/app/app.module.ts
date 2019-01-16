@@ -28,9 +28,10 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CookieService } from 'ngx-cookie-service';
+import { AgeModalComponent } from './features/age-modal/age-modal.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AgeModalComponent],
   imports: [
     CommonModule,
     BrowserModule,
