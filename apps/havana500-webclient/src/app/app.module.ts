@@ -26,12 +26,13 @@ import {
 import { LayoutModule } from './features/layout/layout.module';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CookieService } from 'ngx-cookie-service';
 import { AgeModalComponent } from './features/age-modal/age-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, AgeModalComponent],
+  declarations: [AppComponent, AgeModalComponent, AgeModalComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -51,6 +52,7 @@ import { AgeModalComponent } from './features/age-modal/age-modal.component';
     CoreModule,
     SharedModule,
     LayoutModule,
+    ModalModule.forRoot(),
     CarouselModule.forRoot()
 
     // OAuthModule.forRoot({
@@ -61,6 +63,6 @@ import { AgeModalComponent } from './features/age-modal/age-modal.component';
     // })
   ],
   providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }, CookieService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, AgeModalComponent]
 })
 export class AppModule {}
