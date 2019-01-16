@@ -72,7 +72,7 @@ export class CommentHomeComponent implements OnInit {
     console.log(this.newComment);
 
     this.commentService
-      .getArticleComments(this.articleId, 0, 10)
+      .getArticleCommentsForUsers(this.articleId, 0, 10)
       .subscribe(_comments => {
         this.commentsToRender = _comments;
           this.endOfComments = _comments.length < this.page_size;
@@ -82,7 +82,7 @@ export class CommentHomeComponent implements OnInit {
 
   private loadMoreComments(): void{
     this.commentService
-    .getArticleComments(this.articleId, ++this.currentPage, this.page_size)
+    .getArticleCommentsForUsers(this.articleId, ++this.currentPage, this.page_size)
     .subscribe(_comments => {
       this.commentsToRender = this.commentsToRender.concat(_comments);
       this.endOfComments = _comments.length < this.page_size;

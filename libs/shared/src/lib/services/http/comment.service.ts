@@ -42,4 +42,30 @@ export class CommentService extends BaseCrudService<CommentModel> {
         retryBackoff(this.retryConfig)
       );
   }
+
+  
+  public getArticleCommentsForUsers(
+    articleId: number,
+    pageNumber: number,
+    pageSize: number
+  ): Observable<CommentModel[]> {
+    return this.http
+      .get<CommentModel[]>(
+        this.url +
+          '/GetArticleCommentsForUsers?pageNumber=' +
+          pageNumber +
+          '&pageSize=' +
+          pageSize +
+          '&articleId=' +
+          articleId
+      )
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        }),
+        retryBackoff(this.retryConfig)
+      );
+  }
 }
