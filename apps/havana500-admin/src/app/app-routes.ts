@@ -20,5 +20,9 @@ export const appRoutes: Routes = [
     path: 'marketing',
     loadChildren: './features/marketing/marketing.module#MarketingModule'
   },
+  {
+    path: 'userManagement',
+    loadChildren: './features/user-management/user-management.module#UserManagementModule'
+  },
   { path: '**', redirectTo: 'dashboard' }
 ];

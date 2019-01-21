@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AddNewUserComponent } from './add-new-user/add-new-user.component';
+import { SharedModule } from '@hav500workspace/shared';
+import { UserManagementRoutingModule } from './user-management-routing.module';
 
 @NgModule({
   declarations: [AddNewUserComponent],
   imports: [
-    CommonModule
+    SharedModule,
+    UserManagementRoutingModule
   ]
 })
 export class UserManagementModule { }

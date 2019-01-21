@@ -27,6 +27,7 @@ import {
 } from '@ngrx/router-store';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { TranslateModule } from '@ngx-translate/core';
+import { UserManagementModule } from './features/user-management/user-management.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -57,7 +58,8 @@ import { TranslateModule } from '@ngx-translate/core';
         sendAccessToken: true
       }
     }),
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    UserManagementModule
   ],
   providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]
