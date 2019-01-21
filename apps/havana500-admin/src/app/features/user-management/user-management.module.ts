@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AddNewUserComponent } from './add-new-user/add-new-user.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [AddNewUserComponent],
   imports: [
     CommonModule
   ]
