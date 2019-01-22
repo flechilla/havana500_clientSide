@@ -41,7 +41,7 @@
               <ng-container matColumnDef="userName">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre de usuario</mat-header-cell>
                   <mat-cell *matCellDef="let user">
-                      <p class="text-truncate">{{user.username}}</p>
+                      <p class="text-truncate">{{user.userName}}</p>
                   </mat-cell>
               </ng-container>
 
@@ -60,6 +60,13 @@
                   </mat-cell>
               </ng-container>
 
+              <ng-container matColumnDef="role">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+                  <mat-cell *matCellDef="let user">
+                      <p class="text-truncate">{{user.role}}</p>
+                  </mat-cell>
+              </ng-container>
+
               <ng-container matColumnDef="email">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
                   <mat-cell *matCellDef="let user">
@@ -68,14 +75,14 @@
               </ng-container>
 
               <ng-container matColumnDef="phoneNumber">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>phonenumber</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Teléfono</mat-header-cell>
                   <mat-cell *matCellDef="let user">
                       <p class="text-truncate">{{user.phoneNumber}}</p>
                   </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="emailConfirmed">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>emailconfirmed</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Email confirmado</mat-header-cell>
                   <mat-cell *matCellDef="let user">
                       <p class="text-truncate">{{user.emailConfirmed}}</p>
                   </mat-cell>

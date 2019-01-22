@@ -20,7 +20,7 @@ implements OnInit, AfterViewInit {
 
   constructor(userService: UserService,
     protected dialog: MatDialog) {
-    super(['userName', 'firstName', 'lastName', 'email', 'phoneNumber', 'emailConfirmed'], userService);
+    super(['userName', 'firstName', 'lastName', 'email', 'phoneNumber', 'emailConfirmed', 'role'], userService);
    }
 
    ngOnInit() {
