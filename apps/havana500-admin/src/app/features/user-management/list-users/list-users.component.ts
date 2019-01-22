@@ -6,7 +6,6 @@ import { AddNewUserComponent } from '../add-new-user/add-new-user.component';
 import { MatDialog } from '@angular/material';
 import { antAnimations } from '@hav500workspace/shared';
 
-
 @Component({
   selector: 'admin-list-users',
   templateUrl: './list-users.component.html',
@@ -14,16 +13,25 @@ import { antAnimations } from '@hav500workspace/shared';
   animations: [antAnimations]
 })
 export class ListUsersComponent extends BaseTableContainerComponent<User>
-implements OnInit, AfterViewInit {
- 
+  implements OnInit, AfterViewInit {
   protected dialogRef: any;
 
-  constructor(userService: UserService,
-    protected dialog: MatDialog) {
-    super(['userName', 'firstName', 'lastName', 'email', 'phoneNumber', 'emailConfirmed', 'role'], userService);
-   }
+  constructor(userService: UserService, protected dialog: MatDialog) {
+    super(
+      [
+        'userName',
+        'firstName',
+        'lastName',
+        'email',
+        'phoneNumber',
+        'emailConfirmed',
+        'role'
+      ],
+      userService
+    );
+  }
 
-   ngOnInit() {
+  ngOnInit() {
     super.ngOnInit();
   }
 
@@ -36,5 +44,4 @@ implements OnInit, AfterViewInit {
       panelClass: 'add-new-user-dialog'
     });
   }
-
 }

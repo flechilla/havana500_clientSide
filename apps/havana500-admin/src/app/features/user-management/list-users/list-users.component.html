@@ -28,6 +28,9 @@
               </mat-form-field>
           </div>
           <!-- / SEARCH -->
+          <button (click)="createNewUser()" mat-mini-fab color="warn">
+            <mat-icon aria-label="Add User">add</mat-icon>
+          </button>
       </div>
       <!-- / HEADER -->
 
@@ -84,7 +87,16 @@
               <ng-container matColumnDef="emailConfirmed">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Email confirmado</mat-header-cell>
                   <mat-cell *matCellDef="let user">
-                      <p class="text-truncate">{{user.emailConfirmed}}</p>
+                    <mat-icon
+                    *ngIf="user.emailConfirmed"
+                    class="active-icon mat-green-600-bg s-16"
+                    >check</mat-icon
+                  >
+                  <mat-icon
+                    *ngIf="!user.emailConfirmed"
+                    class="active-icon mat-red-500-bg s-16"
+                    >close</mat-icon
+                  >
                   </mat-cell>
               </ng-container>
 
