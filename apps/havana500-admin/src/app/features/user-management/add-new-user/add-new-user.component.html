@@ -63,7 +63,7 @@
           </mat-form-field>
         </div>
 
-        <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+        <div *ngIf="userId" class="mb-24" fxLayout="row" fxLayoutAlign="start start">
           <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
           <mat-form-field class="userName-form" fxFlex>
             <input
@@ -118,7 +118,7 @@
     <!--
       TODO: This can be accesible when the user is created, so we have to create the user and the let the user to edit it
     -->
-    <input
+    <input *ngIf="userId"
       hidden
       #userImage
       accept="image/*"
@@ -126,7 +126,7 @@
       (change)="editUserImage(user?.id)"
     />
 
-    <button mat-raised-button (click)="userImage.click()" class="mat-accent">
+    <button *ngIf="userId" mat-raised-button (click)="userImage.click()" class="mat-accent">
       Imagen de usuario
     </button>
 

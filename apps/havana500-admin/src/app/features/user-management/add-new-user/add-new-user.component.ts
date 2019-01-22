@@ -23,6 +23,7 @@ import { Observable } from 'rxjs';
 import { antAnimations, User } from '@hav500workspace/shared';
 import { startWith, map } from 'rxjs/operators';
 import { UploadService } from '../../../core/services/http/upload.service';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'admin-add-new-user',
@@ -40,7 +41,8 @@ export class AddNewUserComponent implements OnInit {
       user$: Observable<User>;
       userId: string;
     },
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -61,6 +63,10 @@ export class AddNewUserComponent implements OnInit {
 
   save() {
     console.log(this.userForm.value);
+    const user = this.userForm.value as User;
+    this.userService
+    .create(user)
+    .subscribe();
   }
 
   close() {
