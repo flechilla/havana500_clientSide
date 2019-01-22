@@ -1,7 +1,7 @@
 import { AuditableAndTrackableEntity } from ".";
 
 /**
- *  Respresent a user in the system
+ *  Respresents a user in the system
  *
  * @export
  * @interface User
@@ -28,10 +28,10 @@ export interface IUser extends AuditableAndTrackableEntity<string> {
   /**
    *  Indicates that the user has confirmed the email
    *
-   * @type {string}
+   * @type {boolean}
    * @memberof User
    */
-  emailConfirmed: string;
+  emailConfirmed: boolean;
 
   phoneNumber: string;
 
@@ -59,7 +59,7 @@ export interface IUser extends AuditableAndTrackableEntity<string> {
 
 export class User implements IUser {
   userName: string;
-  emailConfirmed: string;
+  emailConfirmed: boolean;
   phoneNumber: string;
   firstName: string;
   lastName: string;
