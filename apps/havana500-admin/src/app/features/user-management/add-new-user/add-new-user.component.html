@@ -1,3 +1,143 @@
-<p>
-  add-new-user works!
-</p>
+<div class="dialog-content-wrapper">
+  <mat-toolbar color="primary" matDialogTitle class="mat-accent m-0">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <span tabindex="-1" class="title dialog-title">{{
+        userId || !onEdit ? 'Crear Usuario' : 'Editar Usuario'
+      }}</span>
+
+      <button
+        mat-button
+        class="mat-icon-button"
+        (click)="close()"
+        aria-label="Close dialog"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row *ngIf="user?.userImageHref" class="h-120">
+      <div class="user-image">
+        <img
+          src="{{user?.userImageHref}}"
+          alt="Imagen de usuario"
+        />
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-24 m-0">
+    <!-- FORM -->
+    <form [formGroup]="userForm">
+      <div>
+        <div hidden>
+          <input formControlName="id" type="text" class="form-control" />
+        </div>
+
+        <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+          <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+          <mat-form-field class="firstName-form" fxFlex>
+            <input
+              #firstName
+              name="firstName"
+              formControlName="firstName"
+              placeholder="Nombre de usuario"
+              matInput
+              required
+            />
+          </mat-form-field>
+        </div>
+
+      
+
+        <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+          <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+          <mat-form-field class="lastName-form" fxFlex>
+            <input
+              #lastName
+              name="lastName"
+              formControlName="lastName"
+              placeholder="Apellido de usuario"
+              matInput
+              required
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+          <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+          <mat-form-field class="userName-form" fxFlex>
+            <input
+              #userName
+              name="userName"
+              formControlName="userName"
+              placeholder="Apodo de usuario"
+              matInput
+            />
+          </mat-form-field>
+        </div>
+        
+        <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+          <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+          <mat-form-field class="email-form" fxFlex>
+            <input
+              #email
+              name="email"
+              formControlName="email"
+              placeholder="Email"
+              matInput
+              required
+              type="email"
+            />
+          </mat-form-field>
+        </div>
+        
+        <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+          <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+          <mat-form-field class="role-form" fxFlex>
+          <mat-select #role name="role" formControlName="role" required>
+            <mat-option value="Admin">Administrador</mat-option>
+            <mat-option value="Editor">Editor de contenido</mat-option>
+            <mat-option value="CommentModerator">Moderador de comentarios </mat-option>
+          </mat-select>
+          </mat-form-field>
+        </div>
+
+        
+      </div>
+    </form>
+    <!-- / FORM -->
+  </div>
+
+  <div
+    mat-dialog-actions
+    class="m-0 p-16"
+    fxLayout="row"
+    fxLayoutAlign="flex-end center"
+  >
+    <!-- TODO: how to change the name of the input btn?? -->
+    <!--
+      TODO: This can be accesible when the user is created, so we have to create the user and the let the user to edit it
+    -->
+    <input
+      hidden
+      #userImage
+      accept="image/*"
+      type="file"
+      (change)="editUserImage(user?.id)"
+    />
+
+    <button mat-raised-button (click)="userImage.click()" class="mat-accent">
+      Imagen de usuario
+    </button>
+
+    <button
+      mat-raised-button
+      (click)="save()"
+      class="save-button mat-accent"
+      [disabled]="userForm.invalid"
+      aria-label="SAVE "
+    >
+      Guardar
+    </button>
+  </div>
+</div>
