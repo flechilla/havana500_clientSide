@@ -2,7 +2,7 @@
   <mat-toolbar color="primary" matDialogTitle class="mat-accent m-0">
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
       <span tabindex="-1" class="title dialog-title">{{
-        userId || !onEdit ? 'Crear Usuario' : 'Editar Usuario'
+        !userId ? 'Crear Usuario' : 'Editar Usuario'
       }}</span>
 
       <button
@@ -65,6 +65,19 @@
 
         <div *ngIf="userId" class="mb-24" fxLayout="row" fxLayoutAlign="start start">
           <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+          <mat-form-field class="phoneNumber-form" fxFlex>
+            <input
+              #phoneNumber
+              name="phoneNumber"
+              formControlName="phoneNumber"
+              placeholder="Teléfono"
+              matInput
+            />
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="userId" class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+          <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
           <mat-form-field class="password-form" fxFlex>
             <input
               #password
@@ -80,10 +93,13 @@
                 Password is mandatory.
             </mat-error>
             <mat-error *ngIf="userForm.get('password').hasError('minlength')">
-                Password with less than 6 characters.
+                Debe contener más de 6 caracteres.
             </mat-error>
             <mat-error *ngIf="userForm.get('password').hasError('maxlength')">
-                Password with more than 24 characters.
+              Debe contener menos de 24 caracteres.
+            </mat-error>
+            <mat-error *ngIf="userForm.get('password').hasError('invalidChars')">
+                Debe contener al menos un número, una mayúscula y un caracter no alfanumérico
             </mat-error>
           </mat-form-field>
         </div>
@@ -100,7 +116,7 @@
               type="password"
               password
             />
-            <mat-error *ngIf="userForm.hasError('passwordsNotEqual')" >Passwords are different. They should be equal!</mat-error>
+            <mat-error *ngIf="userForm.get('passwordConfirmation').hasError('notSamePassword')" >Las contraseñas no coinciden</mat-error>
           </mat-form-field>
         </div>
         
@@ -118,10 +134,10 @@
               [email]=true
             />
             <mat-error *ngIf="userForm.get('email').hasError('required')">
-              E-mail is mandatory.
+              Es requerido
           </mat-error>
           <mat-error *ngIf="userForm.get('email').hasError('email')">
-              Incorrect E-mail.
+              E-mail incorrecto.
           </mat-error>
           </mat-form-field>
         </div>

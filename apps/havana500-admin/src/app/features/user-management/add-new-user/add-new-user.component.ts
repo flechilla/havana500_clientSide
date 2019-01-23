@@ -24,7 +24,12 @@ import { antAnimations, User } from '@hav500workspace/shared';
 import { startWith, map } from 'rxjs/operators';
 import { UploadService } from '../../../core/services/http/upload.service';
 import { UserService } from '../../../core/services/user.service';
-import { EmailValidation, PasswordValidation, RepeatPasswordValidator } from './formValidator';
+import {
+  EmailValidation,
+  PasswordValidation,
+  RepeatPasswordValidator
+} from './formValidator';
+import { UserUpdateModel } from '../../../core/models/userUpdateModel';
 
 @Component({
   selector: 'admin-add-new-user',
@@ -55,35 +60,62 @@ export class AddNewUserComponent implements OnInit {
 
   ngOnInit() {
     this.loadForm();
+
   }
 
   protected loadForm() {
-    this.userForm = this.fb.group({
-      id: this.userId? this.userId: '',
-      firstName: this.user? this.user.firstName: '',
-      lastName: this.user? this.user.lastName: '',
-      email: new FormControl(this.user? this.user.email: '', EmailValidation),
-      role: this.user? this.user.role: '',
-      userImageHref: '',
-      password: new FormControl('', PasswordValidation),
-      passwordConfirmation: ''
-    }, {validator: RepeatPasswordValidator});
+    this.userForm = this.fb.group(
+      {
+        id: this.userId ? this.userId : '',
+        firstName: this.user ? this.user.firstName : '',
+        lastName: this.user ? this.user.lastName : '',
+        phoneNumber: this.user ? this.user.phoneNumber : '',
+        email: new FormControl(
+          this.user ? this.user.email : '',
+          EmailValidation
+        ),
+        role: this.user ? this.user.role : '',
+        userImageHref: '',
+        password: new FormControl('', PasswordValidation),
+        passwordConfirmation: ''
+      },
+      { validator: RepeatPasswordValidator }
+    );
+
+    this.userForm.controls.passwordConfirmation.valueChanges.subscribe(() => {
+      if (this.userForm.controls.passwordConfirmation.value !== this.userForm.controls.password.value) {
+        this.userForm.controls.passwordConfirmation.setErrors({
+          notSamePassword: true
+        })
+      }
+      else {
+        this.userForm.controls.passwordConfirmation.setErrors({
+          notSamePassword: null
+        });
+        this.userForm.controls.passwordConfirmation.updateValueAndValidity();
+        this.userForm.updateValueAndValidity();
+
+      }
+    })
   }
 
   save() {
-    console.log(this.userForm.value);
+    if (this.userId && this.userId !== '') {
+      this.updateUserData();
+      return;
+    }
     this.dialogRef.close();
     const user = this.userForm.value as User;
-    this.userService
-    .create(user)
-    .subscribe();
+    this.userService.create(user).subscribe();
   }
 
-  validateForm() {
-    const result = this.userForm.get('password') === this.userForm.get('passwordConfirmation');
-  }
+  close() {}
 
-  close() {
-
+  updateUserData() {
+    console.log(this.userForm.value);
+    const user = this.userForm.value as UserUpdateModel;
+    
+    this.userService.update(user.id, user)
+      .subscribe();
   }
 }
