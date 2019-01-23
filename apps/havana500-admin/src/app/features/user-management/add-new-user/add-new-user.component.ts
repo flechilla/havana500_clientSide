@@ -27,7 +27,8 @@ import { UserService } from '../../../core/services/user.service';
 import {
   EmailValidation,
   PasswordValidation,
-  RepeatPasswordValidator
+  RepeatPasswordValidator,
+  validateSamePassWord
 } from './formValidator';
 import { UserUpdateModel } from '../../../core/models/userUpdateModel';
 import { AccountSandbox } from '../../../core/sandboxes/account-sandbox';
@@ -86,27 +87,9 @@ export class AddNewUserComponent implements OnInit {
       },
       { validator: RepeatPasswordValidator }
     );
+    this.userForm.controls.passwordConfirmation.valueChanges.subscribe(() => validateSamePassWord(this.userForm));
+    this.userForm.controls.password.valueChanges.subscribe(() => validateSamePassWord(this.userForm));
 
-    this.userForm.controls.passwordConfirmation.valueChanges.subscribe(() => {
-      if (
-        this.userForm.controls.passwordConfirmation.value !==
-        this.userForm.controls.password.value
-      ) {
-        this.userForm.controls.passwordConfirmation.setErrors({
-          notSamePassword: true
-        });
-      } else {
-        this.userForm.controls.passwordConfirmation.setErrors({
-          notSamePassword: null
-        });
-        this.userForm.controls.passwordConfirmation.updateValueAndValidity();
-        this.userForm.updateValueAndValidity();
-      }
-    });
-
-    this.userImageForm = this.fb.group({
-      userImage: ''
-    });
   }
 
   save() {
@@ -127,6 +110,7 @@ export class AddNewUserComponent implements OnInit {
 
     this.userService.update(user.id, user).subscribe((r) => {
       const loginModel = new LoginModel(r.email, user.password);
+      this.dialogRef.close();
       this.router.navigate(['/login']);
     });
   }

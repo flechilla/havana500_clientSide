@@ -19,3 +19,21 @@ export function RepeatPasswordValidator(group: FormGroup) {
 
   return password === passwordConfirmation ? null : { passwordsNotEqual: true }     
  }
+
+ export function validateSamePassWord(userForm: FormGroup) {
+      if (this.userForm.controls.passwordConfirmation.value.length>0 &&
+        this.userForm.controls.passwordConfirmation.value !==
+        this.userForm.controls.password.value
+      ) {
+        this.userForm.controls.passwordConfirmation.setErrors({
+          notSamePassword: true
+        });
+      } else {
+        this.userForm.controls.passwordConfirmation.setErrors({
+          notSamePassword: null
+        });
+        this.userForm.controls.passwordConfirmation.updateValueAndValidity();
+        this.userForm.updateValueAndValidity();
+      }
+  
+ }

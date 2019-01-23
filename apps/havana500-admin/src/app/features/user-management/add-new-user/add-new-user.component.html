@@ -98,9 +98,6 @@
             <mat-error *ngIf="userForm.get('password').hasError('maxlength')">
               Debe contener menos de 24 caracteres.
             </mat-error>
-            <mat-error *ngIf="userForm.get('password').hasError('invalidChars')">
-                Debe contener al menos un número, una mayúscula y un caracter no alfanumérico
-            </mat-error>
           </mat-form-field>
         </div>
 
@@ -169,17 +166,14 @@
     <!--
       TODO: This can be accesible when the user is created, so we have to create the user and the let the user to edit it
     -->
-    <div [formGroup]="userImageForm">
     <input *ngIf="userId"
     hidden
       #userImage
-      name="userImage" formControlName="userImage"
+      name="userImage"
       accept="image/*"
       type="file"
       (change)="editUserImage(user?.id)"
-      name="userImage"
-    />
-  </div>
+      name="userImage"/>
 
     <button *ngIf="userId" mat-raised-button (click)="loadNewImage()" class="mat-accent">
       Imagen de usuario
