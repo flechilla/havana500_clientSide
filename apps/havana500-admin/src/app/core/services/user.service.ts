@@ -32,7 +32,7 @@ export class UserService extends BaseCrudService<User> {
     return this.httpClient.get<any>(url);
   }
 
-  public update(userId: string, user: any) {
+  public update(userId: string, user: any): Observable<User> {
     return this.http.put<User>(this.url + '/put/' + userId, user as any).pipe(
       publishLast(),
       refCount(),
@@ -41,5 +41,9 @@ export class UserService extends BaseCrudService<User> {
       }),
       retryBackoff(this.retryConfig)
     );
+  }
+
+  public getUserInfo(): Observable<User> {
+    return this.httpClient.get<User>(this.url + '/getUserInfo');
   }
 }
