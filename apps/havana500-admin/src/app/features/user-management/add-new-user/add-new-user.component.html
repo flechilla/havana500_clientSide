@@ -65,18 +65,46 @@
 
         <div *ngIf="userId" class="mb-24" fxLayout="row" fxLayoutAlign="start start">
           <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
-          <mat-form-field class="userName-form" fxFlex>
+          <mat-form-field class="password-form" fxFlex>
             <input
-              #userName
-              name="userName"
-              formControlName="userName"
-              placeholder="Apodo de usuario"
+              #password
+              name="password"
+              formControlName="password"
+              placeholder="Contraseña"
               matInput
+              type="password"
+              password
             />
+            <mat-hint class="ac-form-field-description">Between 6 and 24 characters.</mat-hint>
+            <mat-error *ngIf="userForm.get('password').hasError('required')">
+                Password is mandatory.
+            </mat-error>
+            <mat-error *ngIf="userForm.get('password').hasError('minlength')">
+                Password with less than 6 characters.
+            </mat-error>
+            <mat-error *ngIf="userForm.get('password').hasError('maxlength')">
+                Password with more than 24 characters.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="userId" class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+          <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+          <mat-form-field class="passwordConfirmation-form" fxFlex>
+            <input
+              #passwordConfirmation
+              name="passwordConfirmation"
+              formControlName="passwordConfirmation"
+              placeholder="Confirme Contraseña"
+              matInput
+              type="password"
+              password
+            />
+            <mat-error *ngIf="userForm.hasError('passwordsNotEqual')" >Passwords are different. They should be equal!</mat-error>
           </mat-form-field>
         </div>
         
-        <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+        <div *ngIf="!userId" class="mb-24" fxLayout="row" fxLayoutAlign="start start">
           <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
           <mat-form-field class="email-form" fxFlex>
             <input
@@ -87,11 +115,18 @@
               matInput
               required
               type="email"
+              [email]=true
             />
+            <mat-error *ngIf="userForm.get('email').hasError('required')">
+              E-mail is mandatory.
+          </mat-error>
+          <mat-error *ngIf="userForm.get('email').hasError('email')">
+              Incorrect E-mail.
+          </mat-error>
           </mat-form-field>
         </div>
         
-        <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+        <div *ngIf="!userId" class="mb-24" fxLayout="row" fxLayoutAlign="start start">
           <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
           <mat-form-field class="role-form" fxFlex>
           <mat-select #role name="role" formControlName="role" required>
@@ -134,7 +169,7 @@
       mat-raised-button
       (click)="save()"
       class="save-button mat-accent"
-      [disabled]="userForm.invalid"
+      [disabled]="!userForm.valid"
       aria-label="SAVE "
     >
       Guardar
