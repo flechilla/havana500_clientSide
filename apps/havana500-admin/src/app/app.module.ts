@@ -40,7 +40,7 @@ import { UserManagementModule } from './features/user-management/user-management
     NxModule.forRoot(),
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: 'enabled',
-      enableTracing: false
+      enableTracing: true
     }),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
@@ -58,8 +58,7 @@ import { UserManagementModule } from './features/user-management/user-management
         sendAccessToken: true
       }
     }),
-    QuillModule.forRoot(),
-    UserManagementModule
+    QuillModule.forRoot()
   ],
   providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]
