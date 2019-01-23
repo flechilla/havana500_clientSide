@@ -29,4 +29,20 @@ export class UploadService extends BaseCrudService<any> {
         retryBackoff(this.retryConfig)
       );
   }
+
+  uploadUserImage(fileToUpload: any, userId: string) {
+    const input = new FormData();
+    input.append('file', fileToUpload);
+
+    return this.httpClient
+      .post(this.url + 'UploadUserImage?userId=' + userId, input)
+      .pipe(
+        publishLast(),
+        refCount(),
+        catchError(error => {
+          return this.handleError(error);
+        }),
+        retryBackoff(this.retryConfig)
+      );
+  }
 }

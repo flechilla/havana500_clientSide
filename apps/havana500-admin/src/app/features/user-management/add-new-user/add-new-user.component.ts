@@ -20,7 +20,7 @@ import {
   MatMenuTrigger
 } from '@angular/material';
 import { Observable } from 'rxjs';
-import { antAnimations, User } from '@hav500workspace/shared';
+import { antAnimations, User, Picture } from '@hav500workspace/shared';
 import { startWith, map } from 'rxjs/operators';
 import { UploadService } from '../../../core/services/http/upload.service';
 import { UserService } from '../../../core/services/user.service';
@@ -40,6 +40,9 @@ export class AddNewUserComponent implements OnInit {
   public userForm: FormGroup;
   public userId: string;
   private user: User;
+  private userImageForm: FormGroup;
+  @ViewChild('userImage')
+  userImage;
   constructor(
     protected fb: FormBuilder,
     public dialogRef: MatDialogRef<AddNewUserComponent>,
@@ -96,7 +99,11 @@ export class AddNewUserComponent implements OnInit {
         this.userForm.updateValueAndValidity();
 
       }
-    })
+    });
+
+    this.userImageForm = this.fb.group({
+      userImage: ''
+    });
   }
 
   save() {
@@ -117,5 +124,23 @@ export class AddNewUserComponent implements OnInit {
     
     this.userService.update(user.id, user)
       .subscribe();
+  }
+
+  editUserImage(userId: string) {
+    console.log('Before changing the user image');
+    const fi = this.userImage.nativeElement;
+    if (fi.files && fi.files[0]) {
+      const fileToUpload = fi.files[0];
+      this.uploadService
+        .uploadUserImage(fileToUpload, this.userId)
+        .subscribe((res: Picture) => {
+          //this.previewMainPicture(res);
+          console.log(res);
+        });
+    }
+  }
+
+  loadNewImage() {
+    this.userImage.nativeElement.click();
   }
 }

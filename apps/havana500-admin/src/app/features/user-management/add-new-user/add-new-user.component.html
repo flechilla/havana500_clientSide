@@ -169,15 +169,19 @@
     <!--
       TODO: This can be accesible when the user is created, so we have to create the user and the let the user to edit it
     -->
+    <div [formGroup]="userImageForm">
     <input *ngIf="userId"
-      hidden
+    hidden
       #userImage
+      name="userImage" formControlName="userImage"
       accept="image/*"
       type="file"
       (change)="editUserImage(user?.id)"
+      name="userImage"
     />
+  </div>
 
-    <button *ngIf="userId" mat-raised-button (click)="userImage.click()" class="mat-accent">
+    <button *ngIf="userId" mat-raised-button (click)="loadNewImage()" class="mat-accent">
       Imagen de usuario
     </button>
 
