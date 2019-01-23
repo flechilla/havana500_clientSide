@@ -5,5 +5,4 @@ export class UserUpdateModel {
     firstName: string;
     lastName: string;
     password: string;
-    userName: string;
 }

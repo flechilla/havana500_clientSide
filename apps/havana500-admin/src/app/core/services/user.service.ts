@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { environment } from 'libs/shared/src/lib/environments/environment';
 import { Observable } from 'rxjs';
+import { UserUpdateModel } from '../models/userUpdateModel';
+import { publishLast, refCount, catchError } from 'rxjs/operators';
+import { retryBackoff } from 'backoff-rxjs';
 
 @Injectable()
 export class UserService extends BaseCrudService<User> {
@@ -27,5 +30,16 @@ export class UserService extends BaseCrudService<User> {
     const url = this.checkCodeUrl + '?userId='
                 + userId + '&code=' + code;
     return this.httpClient.get<any>(url);
+  }
+
+  public update(userId: string, user: any) {
+    return this.http.put<User>(this.url + '/put/' + userId, user as any).pipe(
+      publishLast(),
+      refCount(),
+      catchError(error => {
+        return this.handleError(error);
+      }),
+      retryBackoff(this.retryConfig)
+    );
   }
 }
