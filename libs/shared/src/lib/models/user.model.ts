@@ -54,7 +54,7 @@ export interface IUser extends AuditableAndTrackableEntity<string> {
    * @type {string}
    * @memberof User
    */
-  roleName: string;
+  role: string;
 }
 
 export class User implements IUser {
@@ -64,7 +64,7 @@ export class User implements IUser {
   firstName: string;
   lastName: string;
   userImageHref: string;
-  roleName: string;
+  role: string;
   createdBy: string;
   modifiedBy: string;
   createdAt: Date;

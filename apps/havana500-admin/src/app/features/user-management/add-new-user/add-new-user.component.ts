@@ -33,17 +33,22 @@ import { UserService } from '../../../core/services/user.service';
 export class AddNewUserComponent implements OnInit {
   public userForm: FormGroup;
   public userId: string;
+  private user: User;
   constructor(
     protected fb: FormBuilder,
     public dialogRef: MatDialogRef<AddNewUserComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: {
-      user$: Observable<User>;
+      user: User;
       userId: string;
     },
     private uploadService: UploadService,
     private userService: UserService
-  ) {}
+  ) {
+    this.user = data.user;
+    this.userId = data.userId;
+
+  }
 
   ngOnInit() {
     this.loadForm();
@@ -51,12 +56,12 @@ export class AddNewUserComponent implements OnInit {
 
   protected loadForm() {
     this.userForm = this.fb.group({
-      id: '',
-      userName: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      role: '',
+      id: this.userId? this.userId: '',
+      userName: this.user? this.user.userName: '',
+      firstName: this.user? this.user.firstName: '',
+      lastName: this.user? this.user.lastName: '',
+      email: this.user? this.user.email: '',
+      role: this.user? this.user.role: '',
       userImageHref: ''
     });
   }

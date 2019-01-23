@@ -23,9 +23,9 @@ export class UserService extends BaseCrudService<User> {
     * @returns {Observable<boolean>}
     * @memberof UserService
     */
-   checkUserCode(userId: string, code: string): Observable<boolean> {
+   checkUserCode(userId: string, code: string): Observable<any> {
     const url = this.checkCodeUrl + '?userId='
                 + userId + '&code=' + code;
-    return this.httpClient.get<boolean>(url);
+    return this.httpClient.get<any>(url);
   }
 }
