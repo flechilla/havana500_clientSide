@@ -32,6 +32,7 @@ import { UserManagementModule } from './features/user-management/user-management
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    UserManagementModule,
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
