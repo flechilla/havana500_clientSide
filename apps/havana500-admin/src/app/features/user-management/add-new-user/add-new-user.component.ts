@@ -20,7 +20,7 @@ import {
   MatMenuTrigger
 } from '@angular/material';
 import { Observable } from 'rxjs';
-import { antAnimations, User, Picture } from '@hav500workspace/shared';
+import { antAnimations, User, Picture, LoginModel } from '@hav500workspace/shared';
 import { startWith, map } from 'rxjs/operators';
 import { UploadService } from '../../../core/services/http/upload.service';
 import { UserService } from '../../../core/services/user.service';
@@ -30,6 +30,8 @@ import {
   RepeatPasswordValidator
 } from './formValidator';
 import { UserUpdateModel } from '../../../core/models/userUpdateModel';
+import { AccountSandbox } from '../../../core/sandboxes/account-sandbox';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admin-add-new-user',
@@ -52,7 +54,8 @@ export class AddNewUserComponent implements OnInit {
       userId: string;
     },
     private uploadService: UploadService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.user = data.user;
     this.userId = data.userId;
@@ -63,7 +66,6 @@ export class AddNewUserComponent implements OnInit {
 
   ngOnInit() {
     this.loadForm();
-
   }
 
   protected loadForm() {
@@ -86,18 +88,19 @@ export class AddNewUserComponent implements OnInit {
     );
 
     this.userForm.controls.passwordConfirmation.valueChanges.subscribe(() => {
-      if (this.userForm.controls.passwordConfirmation.value !== this.userForm.controls.password.value) {
+      if (
+        this.userForm.controls.passwordConfirmation.value !==
+        this.userForm.controls.password.value
+      ) {
         this.userForm.controls.passwordConfirmation.setErrors({
           notSamePassword: true
-        })
-      }
-      else {
+        });
+      } else {
         this.userForm.controls.passwordConfirmation.setErrors({
           notSamePassword: null
         });
         this.userForm.controls.passwordConfirmation.updateValueAndValidity();
         this.userForm.updateValueAndValidity();
-
       }
     });
 
@@ -121,9 +124,11 @@ export class AddNewUserComponent implements OnInit {
   updateUserData() {
     console.log(this.userForm.value);
     const user = this.userForm.value as UserUpdateModel;
-    
-    this.userService.update(user.id, user)
-      .subscribe();
+
+    this.userService.update(user.id, user).subscribe((r) => {
+      const loginModel = new LoginModel(r.email, user.password);
+      this.router.navigate(['/login']);
+    });
   }
 
   editUserImage(userId: string) {
