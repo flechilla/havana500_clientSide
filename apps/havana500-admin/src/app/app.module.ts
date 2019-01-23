@@ -27,10 +27,12 @@ import {
 } from '@ngrx/router-store';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { TranslateModule } from '@ngx-translate/core';
+import { UserManagementModule } from './features/user-management/user-management.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    UserManagementModule,
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -39,7 +41,7 @@ import { TranslateModule } from '@ngx-translate/core';
     NxModule.forRoot(),
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: 'enabled',
-      enableTracing: false
+      enableTracing: true
     }),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
