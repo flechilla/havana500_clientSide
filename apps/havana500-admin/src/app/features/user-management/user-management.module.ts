@@ -4,9 +4,10 @@ import { SharedModule } from '@hav500workspace/shared';
 import { UserManagementRoutingModule } from './user-management-routing.module';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { UserService } from '../../core/services/user.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
-  declarations: [AddNewUserComponent, ListUsersComponent],
+  declarations: [AddNewUserComponent, ListUsersComponent, UserProfileComponent],
   imports: [
     SharedModule,
     UserManagementRoutingModule
