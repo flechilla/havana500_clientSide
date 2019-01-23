@@ -42,5 +42,10 @@ export class AppComponent {
     this.translateService.setDefaultLang('en');
     // Use a language
     this.translateService.use('en');
+
+    for (let i = 0; i < this.router.config.length; i++) {
+      const routePath:string = this.router.config[i].path;
+      console.log(routePath);
+  }
   }
 }
