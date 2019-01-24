@@ -1,12 +1,21 @@
-.gallery-img-container {
-    position: relative;
-    height: 100%;
-    width: 100%;
+#gallery-grid-container {
+  width: 92%;
+  margin-right: auto;
+  margin-left: auto;
 
-    img {
-        width: 100%;
-        height: 100%;
-        display: inline-block;
-        max-width: 100%;
-    }
+  .gallery-img-container {
+    position: relative;
+
+    // img {
+    //   width: 100%;
+    //   height: auto;
+    //   display: inline-block;
+    //   max-width: 100%;
+    // }
+  }
+}
+
+.masonry-item {
+    width: 23%;
+    margin: .5px;
 }

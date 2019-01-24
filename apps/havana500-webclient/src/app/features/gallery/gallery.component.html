@@ -1,7 +1,7 @@
-<mat-grid-list cols="3" rowHeight="20em">
-  <mat-grid-tile *ngFor="let img of galleryImages" [colspan]="1" [rowspan]="1">
-    <div class="gallery-img-container">
-      <img src="{{img.relativePath}}" alt="{{img.seoFileName}}">
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>
+  <ngx-masonry id="gallery-grid-container">
+    <ngxMasonryItem class="masonry-item" *ngFor="let img of galleryImages">
+        <div class="gallery-img-container" >
+            <img src="{{img.relativePath}}" alt="{{img.seoFileName}}" layout-fill>
+          </div>
+   </ngxMasonryItem>
+  </ngx-masonry>

@@ -9,6 +9,7 @@ import {
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ParamMap } from '@angular/router';
+import { NgxMasonryOptions } from 'ngx-masonry';
 
 @Component({
   selector: 'hav-gallery',
@@ -35,6 +36,15 @@ export class GalleryComponent implements OnInit {
 
   private galleryImages: Picture[];
   private totalAmountOfImages: number;
+  
+  public masonryOptions: NgxMasonryOptions = {
+		transitionDuration: '0.2s',
+		gutter: 20,
+		resize: true,
+		// initLayout: true,
+    fitWidth: true,
+    percentPosition: true
+  };
 
   ngOnInit() {
     // Size detection
@@ -68,72 +78,5 @@ export class GalleryComponent implements OnInit {
         this.galleryImages = result.entities;
         this.totalAmountOfImages = result.length;
       });
-  }
-
-  updateImgGridDimensions(): void {
-    switch (this.imgInternalIndex) {
-      case 0:
-        this.currentImgColSpan = this.currentImgRowSpan = 2;
-        break;
-      case 1:
-        this.currentImgColSpan = 1;
-        this.currentImgRowSpan = 1;
-        break;
-      case 2:
-        this.currentImgColSpan = 1;
-        this.currentImgRowSpan = 1;
-        break;
-      case 3:
-        this.currentImgColSpan = 1;
-        this.currentImgRowSpan = 1;
-        break;
-      case 4:
-        this.currentImgColSpan = 2;
-        this.currentImgRowSpan = 1;
-        break;
-      case 5:
-        this.currentImgColSpan = this.currentImgRowSpan = 1;
-        break;
-      case 6:
-        this.currentImgColSpan = 2;
-        this.currentImgRowSpan = 1;
-        break;
-      case 7:
-        this.currentImgColSpan = 1;
-        this.currentImgRowSpan = 1;
-        break;
-      case 8:
-        this.currentImgColSpan = 1;
-        this.currentImgRowSpan = 1;
-        break;
-      case 9:
-        this.currentImgColSpan = 1;
-        this.currentImgRowSpan = 1;
-        break;
-      case 10:
-        this.currentImgColSpan = 2;
-        this.currentImgRowSpan = 1;
-        break;
-      case 11:
-        this.currentImgColSpan = this.currentImgRowSpan = 2;
-        break;
-      case 12:
-        this.currentImgColSpan = 1;
-        this.currentImgRowSpan = 1;
-        break;
-      case 13:
-        this.currentImgColSpan = 2;
-        this.currentImgRowSpan = 1;
-        break;
-      case 14:
-        this.currentImgColSpan = 1;
-        this.currentImgRowSpan = 1;
-        this.imgInternalIndex = 0;
-        return;
-
-      default:
-        break;
-    }
-    this.imgInternalIndex++;
   }
 }
