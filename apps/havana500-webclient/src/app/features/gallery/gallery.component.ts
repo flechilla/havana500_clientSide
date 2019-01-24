@@ -1,8 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ImagesService } from 'libs/shared/src/lib/services/http/image.service';
 import {
   AntTranslateService,
-  MarketingImageService
+  MarketingImageService,
+  GalleryService,
+  Picture,
+  getPictureTypeNumber
 } from '@hav500workspace/shared';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -20,13 +22,15 @@ export class GalleryComponent implements OnInit {
   private _mobileQueryListener: () => void;
 
   constructor(
-    private imageService: ImagesService,
+    private galleryService: GalleryService,
     private translateService: AntTranslateService,
     private marketingImageService: MarketingImageService,
     public media: MediaMatcher,
     public changeDetectorRef: ChangeDetectorRef,
     private sanitizer: DomSanitizer
   ) {}
+
+  private galleryImages: Picture[];
 
   ngOnInit() {
     // Size detection
@@ -36,13 +40,18 @@ export class GalleryComponent implements OnInit {
 
     this.amountOfPictures = 16;
 
-    this.getImages();
+    this.getImages(); 
   }
   isMobile(): boolean {
     return this.mobileQuery.matches;
   }
 
   getImages() {
-    this.imageService.getWithPagAndSort(0, this.amountOfPictures, null, null);
+    const galleryType = getPictureTypeNumber('Galería');
+    const additionalFilter = 'PictureType = ' + galleryType;
+    this.galleryService.getWithPagAndSort(0, this.amountOfPictures, null, null, null, 'PIctures', additionalFilter)
+    .subscribe(r =>{
+      this.galleryImages = r;
+    });
   }
 }
