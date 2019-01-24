@@ -24,3 +24,9 @@ export const PictureEnumMapping = [
       return v.id === id
     })[0].value;
   } 
+
+  export function getPictureTypeNumber(value: string): number {
+    return PictureEnumMapping.filter(v => {
+      return v.value === value
+    })[0].id;
+  } 
