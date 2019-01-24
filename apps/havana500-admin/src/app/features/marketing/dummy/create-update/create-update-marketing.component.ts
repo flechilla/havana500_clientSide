@@ -14,7 +14,8 @@ import {
   AntUtilsService,
   MarketingImageService,
   PictureType,
-  PictureExtended
+  PictureExtended,
+  PictureEnumMapping
 } from '@hav500workspace/shared';
 import {
   MatMenuTrigger,
@@ -62,6 +63,8 @@ export class CreateUpdateMarketingComponent implements OnInit {
   filteredTags: Observable<ContentTag[]>;
 
   marketingType = PictureType;
+
+  imageTypes = PictureEnumMapping;
 
   constructor(
     protected fb: FormBuilder,
