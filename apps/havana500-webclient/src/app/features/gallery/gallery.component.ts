@@ -31,6 +31,7 @@ export class GalleryComponent implements OnInit {
   ) {}
 
   private galleryImages: Picture[];
+  private totalAmountOfImages: number;
 
   ngOnInit() {
     // Size detection
@@ -51,7 +52,9 @@ export class GalleryComponent implements OnInit {
     const additionalFilter = 'PictureType = ' + galleryType;
     this.galleryService.getWithPagAndSort(0, this.amountOfPictures, null, null, null, 'PIctures', additionalFilter)
     .subscribe(r =>{
-      this.galleryImages = r;
+      const result = r as any;
+      this.galleryImages = result.entities;
+      this.totalAmountOfImages = result.length;
     });
   }
 }
