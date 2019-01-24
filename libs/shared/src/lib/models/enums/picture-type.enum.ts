@@ -18,3 +18,9 @@ export const PictureEnumMapping = [
     { id: 6, value: 'Marketing 2do Nivel'}, 
     { id: 7, value: 'Marketing 3er nivel'}, 
   ]
+
+  export function getPictureTypeString(id: number): string {
+    return PictureEnumMapping.filter(v => {
+      return v.id === id
+    })[0].value;
+  } 
