@@ -66,7 +66,8 @@ export class BaseCrudService<T> {
     columnToSort: string,
     sortDir: string,
     columnsToReturn: string = '*',
-    tableToQuery: string = null
+    tableToQuery: string = null,
+    additionalFiter: string = null
   ): Observable<T[]> {
     const fUrl =
       this.url +
@@ -74,13 +75,14 @@ export class BaseCrudService<T> {
       pageNumber +
       '&pageSize=' +
       pageSize +
-      '&columnNameForSorting=' +
-      columnToSort +
-      '&sortingType=' +
-      sortDir +
-      '&columnsToReturn=' +
-      columnsToReturn +
-      (tableToQuery ? '&tableToQuery=' + tableToQuery : '');
+      (columnToSort ? '&columnNameForSorting=' +
+       columnToSort : '')  +
+      (sortDir ? '&sortingType=' +
+       sortDir : '')  +
+      (columnsToReturn ? '&columnsToReturn=' +
+       columnsToReturn : '')  +
+      (tableToQuery ? '&tableToQuery=' + tableToQuery : '') +
+      (additionalFiter ? '&additionalFilter=' + additionalFiter : '');
     return this.http.get<T[]>(fUrl).pipe(
       publishLast(),
       refCount(),
