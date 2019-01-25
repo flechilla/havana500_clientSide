@@ -18,7 +18,7 @@ import { AgeModalComponent } from './features/age-modal/age-modal.component';
 export class AppComponent implements AfterViewInit {
   title = 'havana500-admin';
   private modalRef: BsModalRef;
-  private isValidAge: boolean;
+  private isValidAge = true;
   private displayMain;
   private isDev = true;
 
