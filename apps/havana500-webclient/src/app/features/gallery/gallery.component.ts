@@ -25,6 +25,8 @@ export class GalleryComponent implements OnInit {
   private currentImgColSpan = 1;
   private currentImgRowSpan = 1;
   private imgInternalIndex = 0;
+  private isEndOfPage = false;
+  private currentPage = 0;
 
   constructor(
     private galleryService: GalleryService,
@@ -35,10 +37,10 @@ export class GalleryComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) {}
 
-  private galleryImages: Picture[];
+  private galleryImages: Picture[] = [];
   private totalAmountOfImages: number;
   private sectionName = 'Galeria';
-  private imageForPlugin: GALLERY_IMAGE[];
+  private imageForPlugin: GALLERY_IMAGE[] = [];
   @ViewChild(NgxImageGalleryComponent)
   ngxImageGallery: NgxImageGalleryComponent;
 
@@ -57,7 +59,7 @@ export class GalleryComponent implements OnInit {
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
-    this.amountOfPictures = 16;
+    this.amountOfPictures = 5;
 
     this.getImages();
   }
@@ -70,7 +72,7 @@ export class GalleryComponent implements OnInit {
     const additionalFilter = 'PictureType = ' + galleryType;
     this.galleryService
       .getWithPagAndSort(
-        0,
+        this.currentPage,
         this.amountOfPictures,
         null,
         null,
@@ -80,9 +82,11 @@ export class GalleryComponent implements OnInit {
       )
       .subscribe(r => {
         const result = r as any;
-        this.galleryImages = result.entities;
-        this.imageForPlugin = this.transformImages(this.galleryImages);
+        this.galleryImages = this.galleryImages.concat(result.entities);
+        this.imageForPlugin = this.imageForPlugin.concat(this.transformImages(this.galleryImages));
+        this.isEndOfPage = result.entities.length < this.amountOfPictures;
         this.totalAmountOfImages = result.length;
+        this.currentPage++;
       });
   }
 
@@ -94,5 +98,9 @@ export class GalleryComponent implements OnInit {
 
   openGallery(index: number) {
     this.ngxImageGallery.open(index);
+  }
+
+  loadMoreImages() {
+    this.getImages();
   }
 }
