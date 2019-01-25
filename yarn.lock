@@ -4235,7 +4235,7 @@ image-size@~0.5.0:
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
   integrity sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=
 
-imagesloaded@4.1.4, imagesloaded@^4.1.1:
+imagesloaded@^4.1.1, imagesloaded@^4.1.4:
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/imagesloaded/-/imagesloaded-4.1.4.tgz#1376efcd162bb768c34c3727ac89cc04051f3cc7"
   integrity sha512-ltiBVcYpc/TYTF5nolkMNsnREHW+ICvfQ3Yla2Sgr71YFwQ86bDwV9hgpFhFtrGPuwEx5+LqOHIrdXBdoWwwsA==
@@ -5281,7 +5281,7 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-masonry-layout@4.2.2, masonry-layout@^4.2.0:
+masonry-layout@^4.2.0, masonry-layout@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/masonry-layout/-/masonry-layout-4.2.2.tgz#d57b44af13e601bfcdc423f1dd8348b5524de348"
   integrity sha512-iGtAlrpHNyxaR19CvKC3npnEcAwszXoyJiI8ARV2ePi7fmYhIud25MHK8Zx4P0LCC4d3TNO9+rFa1KoK1OEOaA==
@@ -5643,6 +5643,11 @@ neo-async@^2.5.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
 
+ng-masonry-grid@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/ng-masonry-grid/-/ng-masonry-grid-1.3.0.tgz#4dede411a2ae8d4a19168af6b974e3ec204a219a"
+  integrity sha512-Hrt6wRZlfHnG+PWfi0N3AFbXU9eKRIQQ0bDX2+eyAEyN9FTUNZne4GISAPpVkwLd4famw2O5/+UJSoUt3idFQQ==
+
 ng-simple-slideshow@^1.2.6:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/ng-simple-slideshow/-/ng-simple-slideshow-1.2.6.tgz#58c1d4513d17dca8b63b68676b375f7387bd99a8"
@@ -5668,15 +5673,6 @@ ngx-image-gallery@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/ngx-image-gallery/-/ngx-image-gallery-1.3.1.tgz#5778e366282f982b43bbc48050a699953db80d23"
   integrity sha512-MhEKjxxFuxkqInONFFBTttoFZTbW5vylWnHMve8z4gf4OPUN5FPmFg1c7GmE1lQWIaWwKBuSOMG7mY6040F2jw==
-
-ngx-masonry-gallery@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-masonry-gallery/-/ngx-masonry-gallery-2.0.0.tgz#cb168e29f29906916e659e31b7ed9090310433cd"
-  integrity sha512-hBcXGrJQ/DaWtmFtwQzDLoLNUALT+eIg+VjrQnUd28URSxImPZiBerQboi9qtftc6q7h/R1EMyvFKgE6a+0TVQ==
-  dependencies:
-    imagesloaded "4.1.4"
-    masonry-layout "4.2.2"
-    tslib "^1.9.0"
 
 ngx-masonry@^1.1.2:
   version "1.1.2"
