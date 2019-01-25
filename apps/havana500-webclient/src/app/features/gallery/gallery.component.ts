@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import {
   AntTranslateService,
   MarketingImageService,
@@ -10,6 +10,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ParamMap } from '@angular/router';
 import { NgxMasonryOptions } from 'ngx-masonry';
+import { GALLERY_IMAGE, NgxImageGalleryComponent } from 'ngx-image-gallery';
 
 @Component({
   selector: 'hav-gallery',
@@ -37,6 +38,9 @@ export class GalleryComponent implements OnInit {
   private galleryImages: Picture[];
   private totalAmountOfImages: number;
   private sectionName = 'Galeria';
+  private imageForPlugin: GALLERY_IMAGE[];
+  @ViewChild(NgxImageGalleryComponent)
+  ngxImageGallery: NgxImageGalleryComponent;
 
   public masonryOptions: NgxMasonryOptions = {
 		transitionDuration: '0.2s',
@@ -77,7 +81,18 @@ export class GalleryComponent implements OnInit {
       .subscribe(r => {
         const result = r as any;
         this.galleryImages = result.entities;
+        this.imageForPlugin = this.transformImages(this.galleryImages);
         this.totalAmountOfImages = result.length;
       });
+  }
+
+  transformImages(pictures: Picture[]): GALLERY_IMAGE[] {
+    return pictures.map(a => {
+      return { url: a.relativePath };
+    });
+  }
+
+  openGallery(index: number) {
+    this.ngxImageGallery.open(index);
   }
 }
