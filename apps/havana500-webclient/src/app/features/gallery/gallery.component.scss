@@ -83,17 +83,16 @@ $tags-container-color: #2aaae2;
   .gallery-img-container {
     position: relative;
 
-    // img {
-    //   width: 100%;
-    //   height: auto;
-    //   display: inline-block;
-    //   max-width: 100%;
-    // }
+    img {
+      width: 100%;
+      max-width: 60vh;
+      height: auto;
+      display: inline-block;
+    }
   }
 }
 
 .masonry-item {
-    width: 23%;
     margin: .5px;
     cursor: pointer;
 }
