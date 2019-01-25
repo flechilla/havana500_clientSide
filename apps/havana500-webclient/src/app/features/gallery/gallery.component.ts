@@ -36,7 +36,8 @@ export class GalleryComponent implements OnInit {
 
   private galleryImages: Picture[];
   private totalAmountOfImages: number;
-  
+  private sectionName = 'Galeria';
+
   public masonryOptions: NgxMasonryOptions = {
 		transitionDuration: '0.2s',
 		gutter: 20,

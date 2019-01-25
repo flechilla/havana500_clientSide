@@ -1,3 +1,17 @@
+<div fxLayout="column" fxLayoutAlign="start start" class="second-level">
+    <!-- HEADER -->
+    <div id="secondary-header" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column">
+      <!-- TITLE -->
+  
+      <!-- /TITLE -->
+      <div id="tags-outer-container" class="mat-accent-500-bg">
+        <div id="section-name-container">
+          <h1 class="section-name" translate>{{ sectionName }}</h1>
+        </div>
+      </div>
+    </div>
+    <!-- / HEADER -->
+  
   <ngx-masonry id="gallery-grid-container">
     <ngxMasonryItem class="masonry-item" *ngFor="let img of galleryImages">
         <div class="gallery-img-container" >
