@@ -48,9 +48,8 @@ export class GalleryComponent implements OnInit {
 		transitionDuration: '0.2s',
 		gutter: 20,
 		resize: true,
-		// initLayout: true,
-    fitWidth: true,
-    percentPosition: true
+		initLayout: true,
+    fitWidth: true
   };
 
   ngOnInit() {
