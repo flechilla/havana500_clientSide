@@ -1,3 +1,7 @@
+<script>
+  console.log('Hello from the HTML');
+
+</script>
 <div fxLayout="column" fxLayoutAlign="start start" class="second-level">
   <!-- HEADER -->
   <div id="secondary-header" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column">
@@ -12,14 +16,22 @@
   </div>
   <!-- / HEADER -->
 
-  <ngx-masonry [options]="masonryOptions" id="gallery-grid-container">
+  <!-- <ngx-masonry [options]="masonryOptions" id="gallery-grid-container">
       <ngxMasonryItem class="masonry-item" *ngFor="let img of galleryImages" (click)="openGallery(i)">
         <div class="gallery-img-container">
           <img src="{{img.relativePath}}" alt="{{img.seoFileName}}" layout-fill>
         </div>
       </ngxMasonryItem>
-    </ngx-masonry>
-  <ngx-image-gallery [images]="imageForPlugin"></ngx-image-gallery>
+    </ngx-masonry>-->
+
+  <div id="gallery-grid-container">
+    <div class="grid-item gallery-img-container" *ngFor="let img of galleryImages"
+      (click)="openGallery(i)">
+      <img src="{{img.relativePath}}" alt="{{img.seoFileName}}" layout-fill>
+    </div>
+  </div>
+  <ngx-image-gallery [images]="imageForPlugin"></ngx-image-gallery> 
+
 
   <!-- <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 5 }" [useAnimation]="true"
     [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">

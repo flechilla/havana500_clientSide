@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import {
   AntTranslateService,
   MarketingImageService,
@@ -43,6 +43,8 @@ export class GalleryComponent implements OnInit {
   private imageForPlugin: GALLERY_IMAGE[] = [];
   @ViewChild(NgxImageGalleryComponent)
   ngxImageGallery: NgxImageGalleryComponent;
+  @ViewChild('gridContainer')
+  private grid: ElementRef;
 
   public masonryOptions: NgxMasonryOptions = {
 		transitionDuration: '0.2s',
