@@ -39,20 +39,10 @@ export class GalleryComponent implements OnInit {
 
   private galleryImages: Picture[] = [];
   private totalAmountOfImages: number;
-  private sectionName = 'Galeria';
+  private sectionName = 'Galería';
   private imageForPlugin: GALLERY_IMAGE[] = [];
   @ViewChild(NgxImageGalleryComponent)
   ngxImageGallery: NgxImageGalleryComponent;
-  @ViewChild('gridContainer')
-  private grid: ElementRef;
-
-  public masonryOptions: NgxMasonryOptions = {
-		transitionDuration: '0.2s',
-		gutter: 20,
-		resize: true,
-		initLayout: true,
-    fitWidth: true
-  };
 
   ngOnInit() {
     // Size detection
@@ -60,7 +50,7 @@ export class GalleryComponent implements OnInit {
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
-    this.amountOfPictures = 5;
+    this.amountOfPictures = 16;
 
     this.getImages();
   }
