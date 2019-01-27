@@ -32,7 +32,9 @@
               "./node_modules/bootstrap/dist/css/bootstrap.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
             ],
-            "scripts": []
+            "scripts": [
+              "apps/havana500-webclient/src/assets/masonry-layout/dist/masonry.pkgd.min.js"
+            ]
           },
           "configurations": {
             "production": {
