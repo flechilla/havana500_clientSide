@@ -11,6 +11,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ParamMap } from '@angular/router';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { GALLERY_IMAGE, NgxImageGalleryComponent } from 'ngx-image-gallery';
+import { english, spanish, french } from './i18n';
+
 
 @Component({
   selector: 'hav-gallery',
@@ -35,7 +37,9 @@ export class GalleryComponent implements OnInit {
     public media: MediaMatcher,
     public changeDetectorRef: ChangeDetectorRef,
     private sanitizer: DomSanitizer
-  ) {}
+  ) {
+    this.translateService.loadTranslations(english, spanish, french);
+  }
 
   private galleryImages: Picture[] = [];
   private totalAmountOfImages: number;
@@ -50,7 +54,7 @@ export class GalleryComponent implements OnInit {
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
-    this.amountOfPictures = 16;
+    this.amountOfPictures = 8;
 
     this.getImages();
   }
