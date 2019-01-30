@@ -2,3 +2,13 @@
 @import "variables/theme";
 // Mixins
 @import "mixins/breakpoints";
+
+.metadata-panel{
+    flex-wrap: wrap;
+}
+
+.summary-outer-container{
+    @include media-breakpoint('sm'){
+        min-width: 35%;
+    }
+}
