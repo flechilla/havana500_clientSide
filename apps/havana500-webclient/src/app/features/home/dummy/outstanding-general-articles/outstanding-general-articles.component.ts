@@ -118,7 +118,7 @@ export class OutstandingGeneralArticlesComponent implements OnInit, OnDestroy {
 
   getElements() {
     this.topArticles$ = this.articleService.getArticlesBasicDataBySectionName(
-      'deportes',
+      'general',
       0,
       this.totalItems
     );
