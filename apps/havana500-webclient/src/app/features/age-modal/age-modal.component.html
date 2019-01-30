@@ -1,16 +1,16 @@
-<div class="modal-outer-container">
-  <div class="modal-header">
-    Confirme la edad
-  </div>
+<div id="modal-outer-container">
   <div class="modal-body">
-    Tiene que ser mayor de edad
+    <div id="icon-container">
+      <mat-icon svgIcon="hav-500"></mat-icon>
+    </div>
+    <span id="main-message"> Debe ser mayor de edad para vsitar este sitio</span>
+    <span id="indication">Por favor introduzca su año de nacimiento</span>
 
     <div class="form-container">
-      <input type="text" [formControl]="userAgeFormControl" name="userAge" id="user-age-input"
-      class="form-control col-12" placeholder="{{userAgePlaceholderText}}">
+      <input type="text" [formControl]="userAgeFormControl" name="userAge" id="user-age-input" class="form-control col-4"
+        placeholder="{{userAgePlaceholderText}}">
+      <button type="button" class="btn btn-default col-4" (click)="accept()" [disabled]="!isValidAge">{{buttonText}}</button>
+
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn" (click)="accept()" [disabled]="!isValidAge">{{buttonText}}</button>
   </div>
 </div>
