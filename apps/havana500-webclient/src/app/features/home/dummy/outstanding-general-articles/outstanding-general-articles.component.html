@@ -12,7 +12,7 @@
       class="article-container top-article-container"
       fxFlex="1 1 100%"
       fxFlexAlign="center"
-      [@fadeInOut]="i === (currentIndex$ | async) ? 'visible' : 'invisible'"
+      [hidden]="i !== (currentIndex$ | async)"
       *ngFor="let article of (topArticles$ | async); let i = index"
     >
       <ant-article-summary
