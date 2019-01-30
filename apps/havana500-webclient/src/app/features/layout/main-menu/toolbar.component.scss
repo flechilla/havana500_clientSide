@@ -17,9 +17,29 @@ a:hover {
 }
 
 .hav500-icon {
-  height: 100%;
+  height: auto;
   width: auto;
   cursor: pointer;
+  max-width: 220px;
+  margin-left: 4%;
+
+  @include media-breakpoint-down('sm') {
+    margin-left: 0;
+  }
+
+  @include media-breakpoint-down('xs') {
+    display: none;
+  }
 }
 
+#icon-menu {
+  color: #808080;
+}
+
+.language-button{
+  @include media-breakpoint-down('xs') {
+    position: absolute;
+    right: 2%;
+  }
+}
 
