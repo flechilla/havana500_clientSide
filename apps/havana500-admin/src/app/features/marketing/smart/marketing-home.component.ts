@@ -8,7 +8,8 @@ import {
   MarketingImageService,
   ContentTagService,
   PictureExtended,
-  PictureType
+  PictureType,
+  getPictureTypeString
 } from '@hav500workspace/shared';
 import { MatDialog } from '@angular/material';
 import { CreateUpdateMarketingComponent } from '../dummy/create-update/create-update-marketing.component';
@@ -84,5 +85,9 @@ export class MarketingHomeComponent extends BaseTableContainerComponent<Picture>
           }
         }
       );
+  }
+
+  getPictureType(id: number): string {
+    return getPictureTypeString(id);
   }
 }

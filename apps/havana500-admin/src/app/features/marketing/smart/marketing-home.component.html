@@ -29,7 +29,7 @@
           class="logo-text h1"
           *antIfOnDom
           [@animate]="{ value: '*', params: { delay: '100ms', x: '-25px' } }"
-          >Marketing</span
+          >Imágenes</span
         >
       </div>
       <!-- / APP TITLE -->
@@ -83,7 +83,7 @@
           >
           <mat-cell *matCellDef="let marketing">
             <p class="text-truncate">
-              {{ pictureTypes[marketing.pictureType.toString()] }}
+              {{ getPictureType(marketing.pictureType) }}
             </p>
           </mat-cell>
         </ng-container>

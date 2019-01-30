@@ -23,6 +23,7 @@ import { NgxImageGalleryModule } from 'ngx-image-gallery';
 import { PictureToGalleryPipe } from './pipes/picture-to-gallery.pipe';
 import { ExperienceArticleCardComponent } from './components/experience-article-card/experience-article-card.component';
 import { RouterModule } from '@angular/router';
+import { MatGridListModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -35,7 +36,7 @@ import { RouterModule } from '@angular/router';
     TranslateModule,
     UICarouselModule,
     RouterModule,
-
+    MatGridListModule,
     NgxImageGalleryModule
   ],
   declarations: [
@@ -69,7 +70,7 @@ import { RouterModule } from '@angular/router';
     NgxChartsModule,
     UICarouselModule,
     NgxImageGalleryModule,
-
+    MatGridListModule, 
     //Components
     ConfirmDialogComponent,
     AntWidgetComponent,
@@ -88,7 +89,7 @@ import { RouterModule } from '@angular/router';
     //Pipes
     KeysPipe,
     KeysEasedPipe,
-    PictureToGalleryPipe
+    PictureToGalleryPipe   
   ]
 })
 export class SharedModule {}

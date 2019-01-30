@@ -30,17 +30,20 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CookieService } from 'ngx-cookie-service';
 import { AgeModalComponent } from './features/age-modal/age-modal.component';
+import { GalleryModule } from './features/gallery/gallery.module';
+
 
 @NgModule({
-  declarations: [AppComponent, AgeModalComponent, AgeModalComponent],
+  declarations: [AppComponent, AgeModalComponent],
   imports: [
+
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: 'enabled',
-      scrollOffset: [0,0],
+      scrollOffset: [0, 0],
       enableTracing: false
     }),
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -53,6 +56,7 @@ import { AgeModalComponent } from './features/age-modal/age-modal.component';
     CoreModule,
     SharedModule,
     LayoutModule,
+    GalleryModule,
     ModalModule.forRoot(),
     CarouselModule.forRoot()
 
@@ -63,7 +67,10 @@ import { AgeModalComponent } from './features/age-modal/age-modal.component';
     //   }
     // })
   ],
-  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }, CookieService],
+  providers: [
+    { provide: RouterStateSerializer, useClass: CustomSerializer },
+    CookieService
+  ],
   bootstrap: [AppComponent, AgeModalComponent]
 })
 export class AppModule {}

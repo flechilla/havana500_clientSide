@@ -78,8 +78,8 @@
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
                         <mat-select [compareWith]="utilsService.enumComparer" formControlName="pictureType" id="pictureType"
-                            placeholder="Select a Marketing Level" required>
-                            <mat-option *ngFor="let option of marketingType | keys" [value]="option.key">
+                            placeholder="Seleccione el tipo de imagen" required>
+                            <mat-option *ngFor="let option of imageTypes" [value]="option.id">
                                 {{option.value}}
                             </mat-option>
                         </mat-select>
