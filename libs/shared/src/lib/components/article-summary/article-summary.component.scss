@@ -179,7 +179,7 @@ $article-summary-bColor: #ffffff;
 
 .article-summary-body {
   p:last-child {
-    &::after{
+    &::after {
       content: "...";
     }
   }
@@ -196,6 +196,7 @@ $article-summary-bColor: #ffffff;
 
 .article-summary-img-container {
   position: relative;
+
   // height: 0 !important;
   .article-image {
     width: 100%;
@@ -229,23 +230,29 @@ $article-summary-bColor: #ffffff;
     background: white;
     right: 0;
     margin: auto;
-    max-width: 25%;
+    max-width: 20%;
     top: 0;
     bottom: 0;
-    max-height: fit-content;
-    padding-bottom: 3rem;
+    height: 100%;
+    max-height: 300px;
   }
 
-  .article-summary-img-container {
-    -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
+  .article-summary-img-outer-container {
+    width: 100%;
 
-    .article-image {
-      height: inherit;
-      width: 100%;
+    .article-summary-img-container {
+      -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      width: 100% !important;
+
+      .article-image {
+        height: inherit;
+        width: 100%;
+      }
     }
   }
+
 }
 
 // CURIOSITY ARTICLE STYLES
