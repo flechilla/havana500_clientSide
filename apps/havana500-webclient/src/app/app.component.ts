@@ -20,7 +20,7 @@ export class AppComponent implements AfterViewInit {
   private modalRef: BsModalRef;
   private isValidAge = true;
   private displayMain;
-  private isDev = true;
+  private isDev = false;
 
   constructor(
     private translateService: AntTranslateService,
