@@ -1,21 +1,67 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+
 .footer-content {
   min-height: 64px;
   padding: 30px 0;
 }
 
-#footer-text-container{
+#footer-text-container {
   text-align: center;
-}
-#footer-icons-container{
-  margin-right: 50%;
-    margin-left: 50%;
-    width: auto;
-    min-width: 120px;
-    margin-bottom: 20px;
 
-    img{
-      max-width: 30px;
-      max-height: 30px;
+  #rights-container{
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .comp-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  a {
+    color: rgb(177, 177, 177);
+    font-weight: 400;
+  }
+
+
+
+  #footer-links {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+
+    #links-header {
+      height: 10px;
+      margin-top: auto;
+      margin-bottom: auto;
+      text-align: right;
+      justify-self: right;
+      font-size: 1.1rem;
+      font-weight: 500;
     }
+
+    ul {
+      list-style: none;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      justify-content: left;
+      text-align: left;
+      padding-left: 10px;
+
+    }
+  }
 }
 
+#footer-icons-container {
+  margin-right: 50%;
+  margin-left: 50%;
+  width: auto;
+  min-width: 120px;
+  margin-bottom: 20px;
+
+  img {
+    max-width: 30px;
+    max-height: 30px;
+  }
+}

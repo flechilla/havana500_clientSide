@@ -1,2 +1,51 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '../../core/scss/ant.scss';
+
+$main-blue-color: #2AAAE2;
+
+#modal-outer-container {
+  text-align: center;
+
+  #icon-container {
+    width: 100%;
+    height: auto;
+    margin-bottom: 3rem;
+    margin-top: 2.5rem;
+
+    .mat-icon {
+      min-width: 400px;
+      height: auto;
+    }
+  }
+
+  #main-message,
+  #indication {
+    display: block;
+  }
+
+  #indication {
+    font-size: 1.5rem;
+  }
+
+  #main-message {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .form-container {
+    margin-top: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    button {
+      background-color: $main-blue-color;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: white;
+    }
+  }
+}

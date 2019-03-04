@@ -3,6 +3,8 @@ import { FormControl } from '@angular/forms';
 import { AntTranslateService } from '@hav500workspace/shared';
 import { english, spanish, french } from './i18n';
 import { Subject, interval } from 'rxjs';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -21,7 +23,14 @@ export class AgeModalComponent implements OnInit {
   private isValidAge: boolean;
   public onClose: Subject<string>;
 
-  constructor(private translateService: AntTranslateService) { }
+  constructor(private translateService: AntTranslateService, 
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+      'hav-500',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/500-hav.svg')
+    );
+   }
 
   ngOnInit() {
     this.userAgeFormControl.valueChanges.subscribe(v => {

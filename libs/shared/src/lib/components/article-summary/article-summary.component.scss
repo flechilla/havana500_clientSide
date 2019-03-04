@@ -230,11 +230,15 @@ $article-summary-bColor: #ffffff;
     background: white;
     right: 0;
     margin: auto;
-    max-width: 20%;
+    max-width: 25%;
     top: 0;
     bottom: 0;
     height: 100%;
     max-height: 300px;
+
+    @include media-breakpoint('xl') {
+      min-width: 10%;
+    }
   }
 
   .article-summary-img-outer-container {
