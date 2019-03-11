@@ -213,7 +213,12 @@ $tags-container-color: #2aaae2;
 }
 
 .second-most-important {
-  margin: 1% 5% !important;
+  margin: 1% 0 !important;
+  justify-content: center;
+
+  ant-article-summary:first-child {
+    margin-right: 6%;
+  }
 
   .article-summary-img-outer-container {
     // padding-top: 100%;
@@ -221,6 +226,10 @@ $tags-container-color: #2aaae2;
 
   ant-article-summary {
     padding-top: 1% !important;
+    width: 37%;
+    padding: 0;
+    max-width: 37%;
+    min-width: 37%;
   }
 
   .article-summary-body {
