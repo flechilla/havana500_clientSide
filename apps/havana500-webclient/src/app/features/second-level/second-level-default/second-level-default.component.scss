@@ -15,12 +15,16 @@ $tags-container-color: #2aaae2;
   padding-bottom: 6rem;
 
   .article-summary-img-outer-container {
-    max-width: 48.5%;
+    @include media-breakpoint-up('sm') {
+      max-width: 48.5%;
+    }
   }
 
   .main-article-summary-content {
-    padding-left: 4rem !important;
-    padding-right: 1rem !important;
+    @include media-breakpoint-up('sm') {
+      padding-left: 4rem !important;
+      padding-right: 1rem !important;
+    }
   }
 }
 
