@@ -249,10 +249,21 @@ $tags-container-color: #2aaae2;
 }
 
 .extra-articles {
-  padding: 0 3%;
+  // padding: 0 3%;
+  justify-content: center;
+
+ 
 
   ant-article-summary {
     margin-bottom: 15px !important;
+    margin-right: 2.7%;
+    width: 18%;
+    max-width: 18%;
+    min-width: 18%;
+    padding: 0;
+    &:nth-child(4n) {
+      margin-right: 0 !important;
+    }
 
     .article-summary-body {
       min-height: 10em !important;
