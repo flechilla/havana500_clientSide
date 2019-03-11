@@ -36,11 +36,16 @@
   min-height: 50vh;
 }
 
+ant-experience-article-card {
+  width: 48.5%;
+}
+
 .experiences-poster {
   @include media-breakpoint('xs') {
     min-width: 33%;
   }
-  min-width: 30%;
+  min-width: 26.5%;
+  max-width: 26.5%;
 }
 
 .experiences-poster-title {
