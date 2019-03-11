@@ -27,34 +27,116 @@ $tags-container-color: #2aaae2;
     margin-bottom: 0;
   }
 
-  #section-name-container {
-    align-self: center;
+  #tags-outer-container {
+    max-height: 214px;
+    width: 48.5% !important;
+    max-width: 48.5% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 2rem;
+    align-items: flex-start;
+    margin: auto;
 
-    .section-name {
-      font-family: 'Roboto' !important;
-      text-transform: uppercase !important;
-      padding-bottom: 0 !important;
-      margin-bottom: 0 !important;
-
-      font-size: 6em !important;
-      text-align: center !important;
-      padding-top: .5rem !important;
-      padding: 0;
+    #tags-title {
       color: white !important;
-      font-weight: normal !important;
-      @include media-breakpoint-down('sm') {
-        font-size: 4em !important;
-      }
+      font-weight: 700;
+      font-size: 3.4em;
+      text-transform: uppercase;
+      max-width: 340px;
     }
 
     @include media-breakpoint-down('sm') {
+      max-width: 100% !important;
+      width: 92% !important;
+    }
+
+    #section-name-container {
       align-self: center;
 
       .section-name {
-        padding-right: 0rem;
+        font-family: 'Roboto' !important;
+        text-transform: uppercase !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+
+        font-size: 6em !important;
+        text-align: center !important;
+        padding-top: .5rem !important;
         padding: 0;
-        font-size: 4.7em;
-        word-break: break-all;
+        color: white !important;
+        font-weight: normal !important;
+
+        @include media-breakpoint-down('sm') {
+          font-size: 4em !important;
+        }
+      }
+
+      @include media-breakpoint-down('sm') {
+        align-self: center;
+
+        .section-name {
+          padding-right: 0rem;
+          padding: 0;
+          font-size: 4.7em;
+          word-break: break-all;
+        }
+      }
+    }
+
+    #selectors-container {
+      margin: auto;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+      .ng-select.tag-selector {
+        .ng-value {
+          display: none !important;
+        }
+      }
+      
+      .ng-select.custom {
+        background-color: #fff !important;
+        width: 30%;
+        padding-bottom: 0 !important;
+      
+        .ng-select-container {
+          min-height: 30px !important;
+      
+          .ng-placeholder {
+            font-size: 1.2rem;
+            top: 7px;
+          }
+        }
+      
+        .ng-arrow-wrapper {
+          color: #2aaae2 !important;
+      
+          .ng-arrow {
+            color: #2aaae2 !important;
+          }
+        }
+      
+        .ng-option {
+          font-weight: 600;
+          font-size: 1.2em;
+          text-align: center;
+          letter-spacing: 0.05em;
+        }
+      
+        .ng-dropdown-panel {
+          margin-top: 1.33em;
+        }
+      
+        .ng-value {
+          font-weight: 500 !important;
+          font-size: 1.1rem !important;
+          text-align: center !important;
+          width: 100% !important;
+        }
+      
       }
     }
   }
@@ -91,6 +173,7 @@ $tags-container-color: #2aaae2;
   min-width: 100%;
   margin-top: 3.5%;
   margin-bottom: 3%;
+
   button {
     background-color: $tags-container-color;
     margin-left: 48%;
@@ -105,15 +188,15 @@ $tags-container-color: #2aaae2;
 .second-most-important {
   margin: 1% 5% !important;
 
-  .article-summary-img-outer-container{
+  .article-summary-img-outer-container {
     // padding-top: 100%;
   }
 
-  ant-article-summary{
+  ant-article-summary {
     padding-top: 1% !important;
   }
 
-  .article-summary-body{
+  .article-summary-body {
     min-height: 16em !important;
     max-height: 16em !important;
     overflow: hidden;
@@ -121,7 +204,7 @@ $tags-container-color: #2aaae2;
     text-overflow: ellipsis;
     word-break: break-word;
     display: block;
-  
+
     p {
       margin-bottom: .03em !important;
       text-align: justify;
@@ -133,8 +216,9 @@ $tags-container-color: #2aaae2;
   padding: 0 3%;
 
   ant-article-summary {
-    margin-bottom: 15px !important; 
-    .article-summary-body{
+    margin-bottom: 15px !important;
+
+    .article-summary-body {
       min-height: 10em !important;
       max-height: 10em !important;
       overflow: hidden;
@@ -159,60 +243,22 @@ $tags-container-color: #2aaae2;
   margin-bottom: 30px;
 }
 
-.ng-select.tag-selector {
-  .ng-value {
-    display: none !important;
-  }
-}
 
-.ng-select.custom {
-  background-color: #fff !important;
-  width: fit-content;
-  max-width: 90%;
-  min-width: 30%;
 
-  padding-bottom: 0 !important;
-  margin: auto !important;
-
-  .ng-select-container {
-  min-height: 30px !important;
-  }
-
-  .ng-arrow-wrapper {
-    color: #2aaae2 !important;
-
-    .ng-arrow {
-      color: #2aaae2 !important;
-    }
-  }
-
-  .ng-option{
-    font-weight: 600;
-    font-size: 1.2em;
-    text-align: center;
-    letter-spacing: 0.05em;
-  }
-
-  .ng-dropdown-panel{
-    margin-top: 1.33em;
-  }
-  .ng-value {
-    font-weight: 500 !important;
-    font-size: 1.1rem !important;
-    text-align: center !important;
-    width: 100% !important;
-  }
- 
-}
-
-#tags-container{
+#tags-container {
   margin-bottom: 43px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2em;
-  #article-tags{
+
+  #article-tags {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
   }
+}
+
+.sep-5 {
+  min-width: 4%;
+  display: block;
 }
