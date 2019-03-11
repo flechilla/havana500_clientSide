@@ -86,57 +86,70 @@ $tags-container-color: #2aaae2;
 
     #selectors-container {
       margin: auto;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
 
       .ng-select.tag-selector {
         .ng-value {
           display: none !important;
         }
       }
-      
+
       .ng-select.custom {
         background-color: #fff !important;
         width: 30%;
         padding-bottom: 0 !important;
-      
+
+        .ng-has-value .ng-placeholder {
+          transform: none !important;
+        }
+
+        .ng-clear-wrapper {
+          z-index: 100000;
+        }
+
         .ng-select-container {
           min-height: 30px !important;
-      
+          max-height: 30px !important;
+
           .ng-placeholder {
             font-size: 1.2rem;
             top: 7px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
           }
         }
-      
+
         .ng-arrow-wrapper {
           color: #2aaae2 !important;
-      
+
           .ng-arrow {
             color: #2aaae2 !important;
           }
         }
-      
+
         .ng-option {
           font-weight: 600;
           font-size: 1.2em;
           text-align: center;
           letter-spacing: 0.05em;
         }
-      
+
         .ng-dropdown-panel {
           margin-top: 1.33em;
         }
-      
+
         .ng-value {
           font-weight: 500 !important;
           font-size: 1.1rem !important;
           text-align: center !important;
           width: 100% !important;
         }
-      
+
       }
     }
   }
