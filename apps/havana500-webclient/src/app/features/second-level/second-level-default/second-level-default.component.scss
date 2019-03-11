@@ -13,6 +13,15 @@ $tags-container-color: #2aaae2;
 
 .main-article-summary-container {
   padding-bottom: 6rem;
+
+  .article-summary-img-outer-container {
+    max-width: 48.5%;
+  }
+
+  .main-article-summary-content {
+    padding-left: 4rem !important;
+    padding-right: 1rem !important;
+  }
 }
 
 #secondary-header {
