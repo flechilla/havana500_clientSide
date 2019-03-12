@@ -62,9 +62,16 @@ export class CreateUpdateMarketingComponent implements OnInit {
 
   filteredTags: Observable<ContentTag[]>;
 
-  marketingType = PictureType;
+  fileMediaType = PictureType;
 
   imageTypes = PictureEnumMapping;
+
+  /**
+   * Indicates that the user is creating or editing a video file
+   *
+   * @memberof CreateUpdateMarketingComponent
+   */
+  isVideoFile = false;
 
   constructor(
     protected fb: FormBuilder,
@@ -112,6 +119,11 @@ export class CreateUpdateMarketingComponent implements OnInit {
       startWith(''),
       map(value => this._filterTags(value))
     );
+
+    this.form
+      .get('marketing')
+      .get('pictureType')
+      .valueChanges.subscribe(v => this.changeMediaType(v));
   }
 
   protected loadForm() {
@@ -283,5 +295,20 @@ export class CreateUpdateMarketingComponent implements OnInit {
     return this.globalTags.filter(tag =>
       tag.name.toLowerCase().includes(filterValue)
     );
+  }
+
+  /**
+   * To know when the media file the user is editing or
+   * creating is a video file
+   *
+   * @private
+   * @param {*} type The type of media file selected by the user.
+   * @memberof CreateUpdateMarketingComponent
+   */
+  private changeMediaType(type) {
+    this.fileMediaType = type;
+    if (type.id === 8) {
+      this.isVideoFile = true;
+    }
   }
 }
