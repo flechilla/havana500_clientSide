@@ -2,7 +2,8 @@ export enum PictureType {
   Gallery,
   HomePageCarousel,
   MainMarketing,
-  SecondaryMarketing
+  SecondaryMarketing,
+  Video
 }
 
 /**
@@ -17,6 +18,7 @@ export const PictureEnumMapping = [
     { id: 5, value: 'Carrusel del Home'}, 
     { id: 6, value: 'Marketing 2do Nivel'}, 
     { id: 7, value: 'Marketing 3er nivel'}, 
+    { id: 8, value: 'Video de Galería'}, 
   ]
 
   export function getPictureTypeString(id: number): string {
