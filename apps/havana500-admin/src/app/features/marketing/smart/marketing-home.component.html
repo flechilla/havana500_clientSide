@@ -6,42 +6,17 @@
   <!-- CENTER -->
   <div class="center">
     <!-- HEADER -->
-    <div
-      class="header white-fg"
-      fxLayout="column"
-      fxLayoutAlign="center center"
-      fxLayout.gt-xs="row"
-      fxLayoutAlign.gt-xs="space-around center"
-    >
+    <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+      fxLayoutAlign.gt-xs="space-around center">
       <!-- APP TITLE -->
-      <div
-        class="logo my-12 m-sm-0"
-        fxLayout="row"
-        fxLayoutAlign="start center"
-      >
-        <mat-icon
-          class="logo-icon mr-16"
-          *antIfOnDom
-          [@animate]="{ value: '*', params: { delay: '50ms', scale: '0.2' } }"
-          >shopping_basket</mat-icon
-        >
-        <span
-          class="logo-text h1"
-          *antIfOnDom
-          [@animate]="{ value: '*', params: { delay: '100ms', x: '-25px' } }"
-          >Imágenes</span
-        >
+      <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+        <mat-icon class="logo-icon mr-16" *antIfOnDom [@animate]="{ value: '*', params: { delay: '50ms', scale: '0.2' } }">shopping_basket</mat-icon>
+        <span class="logo-text h1" *antIfOnDom [@animate]="{ value: '*', params: { delay: '100ms', x: '-25px' } }">Imágenes</span>
       </div>
       <!-- / APP TITLE -->
 
       <!-- SEARCH -->
-      <div
-        *hidden
-        class="search-input-wrapper mx-12 m-md-0"
-        fxFlex="1 0 auto"
-        fxLayout="row"
-        fxLayoutAlign="start center"
-      >
+      <div *hidden class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
         <label for="search" class="mr-8">
           <mat-icon class="secondary-text">search</mat-icon>
         </label>
@@ -59,18 +34,10 @@
 
     <!-- CONTENT CARD -->
     <div class="content-card mat-white-bg">
-      <mat-table
-        class="articles-table"
-        #table
-        [dataSource]="dataSource"
-        matSort
-        [@animateStagger]="{ value: '50' }"
-      >
+      <mat-table class="articles-table" #table [dataSource]="dataSource" matSort [@animateStagger]="{ value: '50' }">
         <!-- ID Column -->
         <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef mat-sort-header
-            >ID</mat-header-cell
-          >
+          <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
           <mat-cell *matCellDef="let marketing">
             <p class="text-truncate">{{ marketing.id }}</p>
           </mat-cell>
@@ -78,9 +45,7 @@
 
         <!-- Type -->
         <ng-container matColumnDef="pictureType">
-          <mat-header-cell *matHeaderCellDef mat-sort-header
-            >Type</mat-header-cell
-          >
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
           <mat-cell *matCellDef="let marketing">
             <p class="text-truncate">
               {{ getPictureType(marketing.pictureType) }}
@@ -90,21 +55,18 @@
 
         <!-- IMAGE Column -->
         <ng-container matColumnDef="relativePath">
-          <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Previous</mat-header-cell>
           <mat-cell *matCellDef="let marketing">
-            <img
-              class="preview-image"
-              src="{{marketing.relativePath}}"
-              alt="{{marketing.seoFileName}}"
-            />
+            <img class="preview-image" src="{{marketing.relativePath}}" alt="{{marketing.seoFileName}}" *ngIf="marketing.pictureType !== 8"/>
+              <iframe *ngIf="marketing.pictureType === 8" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:100px;width:100%;border:none;overflow:hidden;"
+              src="{{marketing.relativePath}}" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </mat-cell>
         </ng-container>
 
         <!-- NAME Column -->
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs
-            >Name</mat-header-cell
-          >
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>Name</mat-header-cell>
           <mat-cell *matCellDef="let marketing" fxHide.xs>
             <p class="category text-truncate">{{ marketing.name }}</p>
           </mat-cell>
@@ -112,9 +74,7 @@
 
         <!-- COMPANY NAME Column -->
         <ng-container matColumnDef="companyName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs
-            >Company Name</mat-header-cell
-          >
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>Company Name</mat-header-cell>
           <mat-cell *matCellDef="let marketing" fxHide.xs>
             <p class="category text-truncate">{{ marketing.companyName }}</p>
           </mat-cell>
@@ -122,41 +82,20 @@
 
         <!-- IS ACTIVE Column -->
         <ng-container matColumnDef="isActive">
-          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs
-            >Is Active?</mat-header-cell
-          >
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>Is Active?</mat-header-cell>
           <mat-cell *matCellDef="let marketing" fxHide.xs>
-            <mat-icon
-              *ngIf="marketing.isActive"
-              class="active-icon mat-green-600-bg s-16"
-              >check</mat-icon
-            >
-            <mat-icon
-              *ngIf="!marketing.isActive"
-              class="active-icon mat-red-500-bg s-16"
-              >close</mat-icon
-            >
+            <mat-icon *ngIf="marketing.isActive" class="active-icon mat-green-600-bg s-16">check</mat-icon>
+            <mat-icon *ngIf="!marketing.isActive" class="active-icon mat-red-500-bg s-16">close</mat-icon>
           </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
 
-        <mat-row
-          *matRowDef="let marketing; columns: columnsToDisplay"
-          class="marketing"
-          matRipple
-          (click)="openCreateDialog(marketing)"
-        >
+        <mat-row *matRowDef="let marketing; columns: columnsToDisplay" class="marketing" matRipple (click)="openCreateDialog(marketing)">
         </mat-row>
       </mat-table>
 
-      <mat-paginator
-        #paginator
-        [length]="dataSource.currentLength"
-        [pageIndex]="0"
-        [pageSize]="10"
-        [pageSizeOptions]="[5, 10, 25, 100]"
-      >
+      <mat-paginator #paginator [length]="dataSource.currentLength" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
       </mat-paginator>
     </div>
     <!-- / CONTENT CARD -->

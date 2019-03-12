@@ -4,7 +4,8 @@ import {
   MarketingImageService,
   GalleryService,
   Picture,
-  getPictureTypeNumber
+  getPictureTypeNumber,
+  SafeUrlPipe
 } from '@hav500workspace/shared';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -64,7 +65,7 @@ export class GalleryComponent implements OnInit {
 
   getImages() {
     const galleryType = getPictureTypeNumber('Galería');
-    const additionalFilter = 'PictureType = ' + galleryType;
+    const additionalFilter = 'PictureType IN (4, 8)';
     this.galleryService
       .getWithPagAndSort(
         this.currentPage,
@@ -97,5 +98,9 @@ export class GalleryComponent implements OnInit {
 
   loadMoreImages() {
     this.getImages();
+  }
+
+  getVideoUrl(media) {
+    return this.sanitizer.bypassSecurityTrustUrl(media.relativePath);
   }
 }

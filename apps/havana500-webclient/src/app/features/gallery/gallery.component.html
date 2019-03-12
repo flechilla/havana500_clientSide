@@ -18,13 +18,10 @@
 
 <div id="gallery-grid-container">
   <div class="grid-item gallery-img-container" *ngFor="let img of galleryImages" (click)="openGallery(i)">
-    <img src="{{img.relativePath}}" alt="{{img.seoFileName}}" layout-fill>
-  </div>
-
-  <div class="grid-item gallery-img-container" *ngFor="let item of [1,2,3]">
-    <iframe onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:200px;width:100%;border:none;overflow:hidden;"
-      src="https://www.youtube.com/embed/DrLRGWDYkRA" frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <img src="{{img.relativePath}}" alt="{{img.seoFileName}}" layout-fill *ngIf="img.pictureType !== 8">
+    <iframe *ngIf="img.pictureType === 8" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:auto;width:100%;border:none;overflow:hidden;"
+              [src]="img.relativePath | safeUrl" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </div>
 <ngx-image-gallery [images]="imageForPlugin"></ngx-image-gallery>
