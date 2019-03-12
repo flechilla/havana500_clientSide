@@ -24,6 +24,7 @@ import { PictureToGalleryPipe } from './pipes/picture-to-gallery.pipe';
 import { ExperienceArticleCardComponent } from './components/experience-article-card/experience-article-card.component';
 import { RouterModule } from '@angular/router';
 import { MatGridListModule } from '@angular/material';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 
 @NgModule({
   imports: [
@@ -58,7 +59,8 @@ import { MatGridListModule } from '@angular/material';
     //Pipes
     KeysPipe,
     KeysEasedPipe,
-    PictureToGalleryPipe
+    PictureToGalleryPipe,
+    SafeUrlPipe
   ],
   exports: [
     //Modules
@@ -89,7 +91,8 @@ import { MatGridListModule } from '@angular/material';
     //Pipes
     KeysPipe,
     KeysEasedPipe,
-    PictureToGalleryPipe   
+    PictureToGalleryPipe,
+    SafeUrlPipe
   ]
 })
 export class SharedModule {}
