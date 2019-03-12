@@ -307,8 +307,14 @@ export class CreateUpdateMarketingComponent implements OnInit {
    */
   private changeMediaType(type) {
     this.fileMediaType = type;
-    if (type.id === 8) {
+    if (type === 8) {
       this.isVideoFile = true;
+      this.form.get('marketing').get('hRef').disable();
+      this.form.get('marketing').get('relativePath').setValidators([Validators.required])
+    } else {
+      this.isVideoFile = false;
+      this.form.get('marketing').get('hRef').enable();
+      this.form.get('marketing').get('relativePath').clearValidators();
     }
   }
 }

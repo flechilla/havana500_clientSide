@@ -84,10 +84,10 @@
                     </mat-form-field>
                 </div>
 
-                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start" *ngIf="!isVideoFile">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <input type="url" name="href" formControlName="hRef" placeholder="URL de destino" matInput required>
+                        <input type="url" name="href" formControlName="hRef" placeholder="URL de destino" matInput required="!isVideoFile">
                     </mat-form-field>
                 </div>
 
@@ -104,17 +104,24 @@
                     </mat-slide-toggle>
                 </div>
 
-                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start" *ngIf="!isVideoFile">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
                         <input name="seoFileName" formControlName="seoFileName" placeholder="Nombre de objeto para el SEO" matInput>
                     </mat-form-field>
                 </div>
 
-                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start" *ngIf="!isVideoFile">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
                         <input name="companyName" formControlName="companyName" placeholder="Nombre de Compañía" matInput>
+                    </mat-form-field>
+                </div>
+
+                <div class="mb-24" fxLayout="row" fxLayoutAlign="start start" *ngIf="isVideoFile">
+                    <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
+                    <mat-form-field fxFlex>
+                        <input name="relativePath" formControlName="relativePath" placeholder="Link embebido a Youtube" matInput>
                     </mat-form-field>
                 </div>
 
@@ -129,7 +136,7 @@
         <!-- TODO: This can be accesible when the article is created, so we have to create the article and the let the user to edit it -->
         <input hidden #mainPicture accept="image/*" type="file" (change)="addMainPicture(marketing?.id)" />
 
-        <button mat-raised-button (click)="mainPicture.click()" class="mat-accent">Subir imagen</button>
+        <button mat-raised-button (click)="mainPicture.click()" class="mat-accent" *ngIf="!isVideoFile">Subir imagen</button>
 
         <button mat-raised-button (click)="save()" class="save-button mat-accent" [disabled]="form.invalid" aria-label="SAVE ">
             Salvar
