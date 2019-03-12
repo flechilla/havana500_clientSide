@@ -14,8 +14,7 @@
         </mat-form-field>
 
         <button style="margin: 1rem;" mat-raised-button (click)="tagAutocompleteTrigger.closePanel()" class="mat-accent"
-            aria-label="Add Tag" [disabled]="!newTagForm.valid">Add
-            Tag</button>
+            aria-label="Add Tag" [disabled]="!newTagForm.valid">Añadir etiqueta</button>
     </form>
 
 </mat-menu>
@@ -30,8 +29,7 @@
                 <mat-icon>label</mat-icon>
             </button>
 
-            <span tabindex="-1" class="title dialog-title">{{(isTemporary || !onEdit) ?"Create Marketing":"Edit
-                Marketing"}}</span>
+            <span tabindex="-1" class="title dialog-title">{{(isTemporary || !onEdit) ?"Crear archivo media":"Editar archivo media"}}</span>
 
             <button mat-button class="mat-icon-button" (click)="close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
@@ -70,7 +68,7 @@
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <input #name name="name" formControlName="name" placeholder="Marketing Name" matInput required>
+                        <input #name name="name" formControlName="name" placeholder="Nombre archivo media" matInput required>
                     </mat-form-field>
                 </div>
 
@@ -89,7 +87,7 @@
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <input type="url" name="href" formControlName="hRef" placeholder="HRef" matInput required>
+                        <input type="url" name="href" formControlName="hRef" placeholder="URL de destino" matInput required>
                     </mat-form-field>
                 </div>
 
@@ -97,26 +95,26 @@
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
 
                     <mat-form-field class="article-field__size-md" fxFlex>
-                        <input type="number" name="weight" formControlName="weight" matInput placeholder="Marketing Weight">
+                        <input type="number" max="10" min="1" name="weight" formControlName="weight" matInput placeholder="Peso a asignar para importancia">
                     </mat-form-field>
 
                     <mat-slide-toggle [ngStyle.xs]="'height: 5rem;'" name="isActive" formControlName="isActive" class="mr-24 article-field__size-xl"
                         aria-label="Is Active">
-                        Is Active
+                        Está activo
                     </mat-slide-toggle>
                 </div>
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <input name="seoFileName" formControlName="seoFileName" placeholder="SEO File Name" matInput>
+                        <input name="seoFileName" formControlName="seoFileName" placeholder="Nombre de objeto para el SEO" matInput>
                     </mat-form-field>
                 </div>
 
                 <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
                     <mat-icon fxHide fxShow.gt-sm class="mr-12 mt-12"></mat-icon>
                     <mat-form-field fxFlex>
-                        <input name="companyName" formControlName="companyName" placeholder="Company Name" matInput>
+                        <input name="companyName" formControlName="companyName" placeholder="Nombre de Compañía" matInput>
                     </mat-form-field>
                 </div>
 
@@ -131,10 +129,10 @@
         <!-- TODO: This can be accesible when the article is created, so we have to create the article and the let the user to edit it -->
         <input hidden #mainPicture accept="image/*" type="file" (change)="addMainPicture(marketing?.id)" />
 
-        <button mat-raised-button (click)="mainPicture.click()" class="mat-accent">Guardar imagen</button>
+        <button mat-raised-button (click)="mainPicture.click()" class="mat-accent">Subir imagen</button>
 
         <button mat-raised-button (click)="save()" class="save-button mat-accent" [disabled]="form.invalid" aria-label="SAVE ">
-            SAVE
+            Salvar
         </button>
     </div>
 </div>
