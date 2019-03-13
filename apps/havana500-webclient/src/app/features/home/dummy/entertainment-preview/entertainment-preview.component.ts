@@ -26,6 +26,7 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
   protected literatureArticles: Observable<Article[]>;
   protected cultureArticles: Observable<Article[]>;
   protected cinemaArticles: Observable<Article[]>;
+  protected articles: Observable<Article[]>;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -65,8 +66,8 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
   }
 
   getElements(){
-    this.cinemaArticles = this.articleService
-      .getArticlesBasicDataBySectionName('cine', 0, 4)
+    this.articles = this.articleService
+      .getArticlesBasicDataBySectionName('entretenimiento', 0, 4)
       .pipe(
         map(resp => {
         resp.forEach(a => {     /*a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');*/     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
@@ -78,43 +79,43 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
         })
       );
 
-    this.sportArticles = this.articleService
-      .getArticlesBasicDataBySectionName('deportes', 0, 4)
-      .pipe(
-        map(resp => {
-          resp.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
-          if (this.isMobile()) {
-            return resp.slice(0, 1);
-          } else {
-            return resp;
-          }
-        })
-      );
+    // this.sportArticles = this.articleService
+    //   .getArticlesBasicDataBySectionName('deportes', 0, 4)
+    //   .pipe(
+    //     map(resp => {
+    //       resp.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
+    //       if (this.isMobile()) {
+    //         return resp.slice(0, 1);
+    //       } else {
+    //         return resp;
+    //       }
+    //     })
+    //   );
 
-    this.cultureArticles = this.articleService
-      .getArticlesBasicDataBySectionName('cultura', 0, 4)
-      .pipe(
-        map(resp => {
-          resp.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
-          if (this.isMobile()) {
-            return resp.slice(0, 1);
-          } else {
-            return resp;
-          }
-        })
-      );
+    // this.cultureArticles = this.articleService
+    //   .getArticlesBasicDataBySectionName('cultura', 0, 4)
+    //   .pipe(
+    //     map(resp => {
+    //       resp.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
+    //       if (this.isMobile()) {
+    //         return resp.slice(0, 1);
+    //       } else {
+    //         return resp;
+    //       }
+    //     })
+    //   );
 
-    this.literatureArticles = this.articleService
-      .getArticlesBasicDataBySectionName('literatura', 0, 4)
-      .pipe(
-        map(resp => {
-          resp.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
-          if (this.isMobile()) {
-            return resp.slice(0, 1);
-          } else {
-            return resp;
-          }
-        })
-      );
+    // this.literatureArticles = this.articleService
+    //   .getArticlesBasicDataBySectionName('literatura', 0, 4)
+    //   .pipe(
+    //     map(resp => {
+    //       resp.forEach(a => {     a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
+    //       if (this.isMobile()) {
+    //         return resp.slice(0, 1);
+    //       } else {
+    //         return resp;
+    //       }
+    //     })
+    //   );
   }
 }
