@@ -83,9 +83,9 @@
   // grid-auto-rows: minmax(28rem, auto);
   // grid-template-columns: repeat( 4, minmax(250px, 1fr) );
   column-width: 40em;
-	column-gap: 10px;
+  column-gap: 10px;
   width: 95%;
-	// max-width: 1500x;
+  // max-width: 1500x;
   margin: auto;
   margin-top: 5rem;
 
@@ -94,7 +94,10 @@
     box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
     margin-bottom: 10px;
     display: inline-block;
+    width: 100%;
+    position: relative;
     cursor: pointer;
+
     :hover {
       opacity: .9;
       transition: opacity .4s ease-in-out;
@@ -106,10 +109,18 @@
       height: auto;
       display: inline-block;
     }
+
+    iframe {
+      width: 100%;
+      height: auto;
+      border: none;
+      overflow: hidden;
+      min-height: 275px;
+    }
   }
 }
 
 .masonry-item {
-    margin: .5px;
-    cursor: pointer;
+  margin: .5px;
+  cursor: pointer;
 }

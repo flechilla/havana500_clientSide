@@ -19,7 +19,7 @@
 <div id="gallery-grid-container">
   <div class="grid-item gallery-img-container" *ngFor="let img of galleryImages" (click)="openGallery(i)">
     <img src="{{img.relativePath}}" alt="{{img.seoFileName}}" layout-fill *ngIf="img.pictureType !== 8">
-    <iframe *ngIf="img.pictureType === 8" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:auto;width:100%;border:none;overflow:hidden;"
+    <iframe *ngIf="img.pictureType === 8" class="youtube-video" 
               [src]="img.relativePath | safeUrl" frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
