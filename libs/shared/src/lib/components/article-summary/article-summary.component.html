@@ -6,7 +6,7 @@
     'curiosity-article': isCuriosityHomeArticle,
     'selected-curiosity': isCuriositySelected,
     'experience-article': isExperienceArticle
-  }">
+  }" *ngIf="article">
   <div class="article-summary-img-outer-container">
     <div class="article-summary-img-container">
       <img class="article-image" src="{{article?.mainPicture?.relativePath}}" alt="{{article?.mainPicture?.seoFileName}}" />
