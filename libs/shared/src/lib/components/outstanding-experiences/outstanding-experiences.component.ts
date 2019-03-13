@@ -63,7 +63,7 @@ export class OutstandingExperiencesComponent implements OnInit, OnDestroy {
 
   getElements() {
     return this.articleService.getArticlesBasicDataBySectionName(
-      'deportes',
+      'experiencias',
       0,
       this.totalItems
     );

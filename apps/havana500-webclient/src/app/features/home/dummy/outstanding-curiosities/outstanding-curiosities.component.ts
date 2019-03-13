@@ -90,7 +90,7 @@ export class OutstandingCuriositiesComponent implements OnInit, OnDestroy {
 
   getElements(){
     this.articleService.getArticlesBasicDataBySectionName(
-      'deportes',
+      'curiosidades',
       0,
       this.totalItems          
           ).subscribe(resp =>  
