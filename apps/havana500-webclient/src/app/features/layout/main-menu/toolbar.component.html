@@ -3,66 +3,43 @@
     <mat-icon id="icon-menu">menu</mat-icon>
   </button>
 
-  <mat-icon
-    [routerLink]="['home']"
-    class="hav500-icon"
-    svgIcon="hav500"
-  ></mat-icon>
+  <mat-icon [routerLink]="['home']" class="hav500-icon" svgIcon="hav500"></mat-icon>
 
-  <div
-    fxHide.xs
-    class="main-nav-link-container"
-    fxFlex
-    fxLayout="row"
-    fxLayoutAlign="space-evenly center"
-  >
-    <a mat-button [routerLink]="['/section/eventos']"
-      ><div translate>EVENTS</div></a
-    >
-    <a mat-button [routerLink]="['/section/experiencias']"
-      ><div translate>EXPERIENCES</div></a
-    >
-    <a mat-button [routerLink]="['/section/galeria']"
-      ><div translate>GALLERY</div></a
-    >
-    <a mat-button [matMenuTriggerFor]="entertainment">
-      <div fxLayout="row" fxLayoutAlign="center center">
-        <div translate>ENTERTAINMENT</div>
-        <mat-icon>keyboard_arrow_down</mat-icon>
-      </div>
+  <div fxHide.xs class="main-nav-link-container" fxFlex fxLayout="row" fxLayoutAlign="space-evenly center">
+    <a mat-button [routerLink]="['/section/eventos']">
+      <div translate>EVENTS</div>
+    </a>
+    <a mat-button [routerLink]="['/section/experiencias']">
+      <div translate>EXPERIENCES</div>
+    </a>
+    <a mat-button [routerLink]="['/section/galeria']">
+      <div translate>GALLERY</div>
+    </a>
+    <a mat-button [routerLink]="['/section/entretenimiento']">
+      <div translate>ENTERTAINMENT</div>
     </a>
   </div>
 
   <button mat-button class="language-button" [matMenuTriggerFor]="languageMenu">
     <div fxLayout="row" fxLayoutAlign="center center">
-      <img
-        class="flag mr-8"
-        [src]="'assets/images/flags/' + selectedLanguage.flag + '.png'"
-      />
+      <img class="flag mr-8" [src]="'assets/images/flags/' + selectedLanguage.flag + '.png'" />
       <span class="iso text-uppercase">{{ selectedLanguage.id }}</span>
     </div>
   </button>
 
   <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
-    <button
-      mat-menu-item
-      *ngFor="let lang of languages"
-      (click)="setLanguage(lang)"
-    >
+    <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
       <div fxLayout="row" fxLayoutAlign="start center">
-        <img
-          class="flag mr-16"
-          [src]="'assets/images/flags/' + lang.flag + '.png'"
-        />
+        <img class="flag mr-16" [src]="'assets/images/flags/' + lang.flag + '.png'" />
         <span class="iso">{{ lang.title }}</span>
       </div>
     </button>
   </mat-menu>
 </nav>
 
-<mat-menu #entertainment="matMenu" id="entertainment" [overlapTrigger]="false">
+<!-- <mat-menu #entertainment="matMenu" id="entertainment" [overlapTrigger]="false">
   <a mat-menu-item [routerLink]="['/section/literatura']">Literatura</a>
   <a mat-menu-item [routerLink]="['/section/deportes']">Deportes</a>
   <a mat-menu-item [routerLink]="['/section/cine']">Cine</a>
   <a mat-menu-item [routerLink]="['/section/cultura']">Cultura</a>
-</mat-menu>
+</mat-menu> -->
