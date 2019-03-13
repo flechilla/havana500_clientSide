@@ -173,4 +173,8 @@ export interface Article extends AuditableAndTrackableEntity<number> {
   mainPicture: Picture;
 
   mainPictureId: number;
+
+  creationDay: string;
+
+  creationMonth: string;
 }

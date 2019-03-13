@@ -18,8 +18,8 @@
       <h4>{{ article?.createdAt?.getDay() }}</h4>
       <h5>{{ article?.createdAt?.getMonth() }}</h5>
     -->
-    <h4 class="creation-date-day">29</h4>
-    <h5 class="creation-date-month">ABR</h5>
+    <h4 class="creation-date-day">{{article.creationDay}}</h4>
+    <h5 class="creation-date-month">{{article.creationMonth}}</h5>
   </div>
 
   <div [ngClass]="{
