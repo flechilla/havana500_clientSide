@@ -57,6 +57,7 @@ export class AppComponent implements AfterViewInit {
 
   ageModalOn(): any {
     if (!this.cookieService.isLegalAge()) {
+      this.modalRef.setClass('custom-modal');
       this.modalService.config.backdrop = 'static';
       this.modalService.config.keyboard = false;
       this.modalRef = this.modalService.show(AgeModalComponent);
