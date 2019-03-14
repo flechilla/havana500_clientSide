@@ -36,7 +36,6 @@ import { GalleryModule } from './features/gallery/gallery.module';
 @NgModule({
   declarations: [AppComponent, AgeModalComponent],
   imports: [
-
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -71,6 +70,7 @@ import { GalleryModule } from './features/gallery/gallery.module';
     { provide: RouterStateSerializer, useClass: CustomSerializer },
     CookieService
   ],
-  bootstrap: [AppComponent, AgeModalComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AgeModalComponent]
 })
 export class AppModule {}
