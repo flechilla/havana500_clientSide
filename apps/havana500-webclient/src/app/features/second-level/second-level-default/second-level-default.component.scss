@@ -16,7 +16,8 @@ $tags-container-color: #2aaae2;
 
   .article-summary-img-outer-container {
     @include media-breakpoint-up('sm') {
-      max-width: 48.5%;
+      min-width: 48.5%;
+      width: fit-content;
     }
   }
 
@@ -42,8 +43,8 @@ $tags-container-color: #2aaae2;
 
   #tags-outer-container {
     max-height: 214px;
-    width: 48.5% !important;
-    max-width: 48.5% !important;
+    width: fit-content;
+    min-width: 48.5% !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -170,8 +171,8 @@ $tags-container-color: #2aaae2;
 
   #tags-outer-container {
     max-height: 214px;
-    width: 48.5% !important;
-    max-width: 48.5% !important;
+    width: fit-content !important;
+    min-width: 48.5% !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
