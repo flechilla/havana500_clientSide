@@ -24,8 +24,8 @@ export class AgeModalComponent implements OnInit {
   public onClose: Subject<string>;
 
   constructor(private translateService: AntTranslateService, 
-    private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer) {
+     iconRegistry: MatIconRegistry,
+     sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(
       'hav-500',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/500-hav.svg')
