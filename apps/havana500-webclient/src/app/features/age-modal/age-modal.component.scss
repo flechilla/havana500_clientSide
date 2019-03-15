@@ -1,7 +1,7 @@
-@import "~bootstrap/dist/css/bootstrap.css";
+@import '~bootstrap/dist/css/bootstrap.css';
 @import '../../core/scss/ant.scss';
 
-$main-blue-color: #2AAAE2;
+$main-blue-color: #2aaae2;
 
 #modal-outer-container {
   text-align: center;
@@ -15,6 +15,10 @@ $main-blue-color: #2AAAE2;
     .mat-icon {
       min-width: 400px;
       height: auto;
+
+      @include media-breakpoint-down('sm') {
+        min-width: 30rem;
+      }
     }
   }
 
