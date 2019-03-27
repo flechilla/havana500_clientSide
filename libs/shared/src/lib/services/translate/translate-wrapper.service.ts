@@ -1,15 +1,15 @@
 import { Locale } from '../../models/system-misc/locale-lang.model';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CookiesService } from './cookies.service';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { CookiesService } from 'apps/havana500-webclient/src/app/core/services/cookies.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AntTranslateService {
-  constructor(public translate: TranslateService, 
-    private cookieService: CookiesService) {}
-
+  constructor(
+    public translate: TranslateService,
+    private cookieService: CookiesService
+  ) {}
 
   /**
    * Append local translations to system

@@ -7,7 +7,7 @@ import { BaseCrudService } from '../base';
 import { Article, HavanaEnvironment, ArticleExtended } from '../../models';
 import { retryBackoff } from 'backoff-rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ArticleService extends BaseCrudService<Article> {
   constructor(
     private environment: HavanaEnvironment,

@@ -15,7 +15,7 @@ import { Article } from '@hav500workspace/shared';
 import { MatSnackBar } from '@angular/material';
 import { retryBackoff } from 'backoff-rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class StatsService extends BaseCrudService<number> {
   constructor(private httpClient: HttpClient, protected snack: MatSnackBar) {
     super(environment.apiUrl + 'stats', httpClient, snack);

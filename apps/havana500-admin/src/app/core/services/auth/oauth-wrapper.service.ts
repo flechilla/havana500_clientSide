@@ -2,7 +2,7 @@ import { OAuthService } from "angular-oauth2-oidc";
 import { Injectable } from "@angular/core";
 import { authPasswordFlowConfig } from "../../configs/auth-password-flow.config";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class OAuthWrapperService {
   constructor(protected oauthService: OAuthService) {
     // Tweak config for password flow
@@ -42,13 +42,13 @@ export class OAuthWrapperService {
   get givenName() {
     const claims = this.oauthService.getIdentityClaims();
     if (!claims) return null;
-    return claims["given_name"];
+    return claims['given_name'];
   }
 
   get familyName() {
     const claims = this.oauthService.getIdentityClaims();
     if (!claims) return null;
-    return claims["family_name"];
+    return claims['family_name'];
   }
 
   // loginWithPassword(loginForm: LoginModel) {

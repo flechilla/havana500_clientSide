@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { catchError, publishLast, refCount } from 'rxjs/operators';
 import { retryBackoff } from 'backoff-rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CommentService extends BaseCrudService<CommentModel> {
   constructor(
     private environment: HavanaEnvironment,

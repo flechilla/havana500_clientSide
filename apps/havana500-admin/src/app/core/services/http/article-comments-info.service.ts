@@ -9,7 +9,7 @@ import { BaseCrudService } from '@hav500workspace/shared';
 import { MatSnackBar } from '@angular/material';
 import { retryBackoff } from 'backoff-rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ArticleCommentsInfoService extends BaseCrudService<
   ArticleCommentsInfo
 > {

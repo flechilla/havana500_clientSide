@@ -1,13 +1,16 @@
-import { Injectable } from "@angular/core";
-import { HavanaEnvironment, LoginModel, User, RegisterModel } from "@hav500workspace/shared";
-import { HttpClient } from "@angular/common/http";
-import { APP_USER } from "../../configs/configuration-const.config";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import {
+  HavanaEnvironment,
+  LoginModel,
+  User,
+  RegisterModel
+} from '@hav500workspace/shared';
+import { HttpClient } from '@angular/common/http';
+import { APP_USER } from '../../configs/configuration-const.config';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-
-
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   public token: string;
   public apiUrl: string;

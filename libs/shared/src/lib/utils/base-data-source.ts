@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { BaseEntity, PaginationResult } from '../models';
 import { BaseCrudService } from '../services';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class BaseDataSource<T extends BaseEntity<any>> extends DataSource<T> {
   protected data$: BehaviorSubject<T[]>;
 

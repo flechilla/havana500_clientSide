@@ -8,7 +8,7 @@ import { catchError, publishLast, refCount } from 'rxjs/operators';
 import { ImagesService } from './image.service';
 import { retryBackoff } from 'backoff-rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class GalleryService extends ImagesService {
   constructor(
     protected environment: HavanaEnvironment,

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { HavanaEnvironment, Section } from '../../models';
 import { BaseCrudService } from '../base';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SectionService extends BaseCrudService<Section> {
   constructor(
     private environment: HavanaEnvironment,

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../environments/environment';
 
 import {
   ActivatedRouteSnapshot,
@@ -9,12 +8,8 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable()
-export default class ProjectsDashboardService implements Resolve<any> {
-
- 
-
-
+@Injectable({ providedIn: 'root' })
+export class ProjectsDashboardService implements Resolve<any> {
   //#region MockData
   projects = [
     {
@@ -120,20 +115,19 @@ export default class ProjectsDashboardService implements Resolve<any> {
         H: 'Histórico'
       },
       mainChart: {
-        T: [ ],
+        T: [],
         TW: [],
         LM: [],
-        H: [ ]
+        H: []
       },
       supporting: {
         created: {
           label: 'CREATED',
           count: {
-            'T': 48,
+            T: 48,
             TW: 46,
             LM: 54,
             H: 54
-
           },
           chart: {
             '2W': [
@@ -1765,8 +1759,6 @@ export default class ProjectsDashboardService implements Resolve<any> {
   // projects: any[];
   // widgets: any;
 
-
-
   constructor(private http: HttpClient) {}
 
   /**
@@ -1799,8 +1791,4 @@ export default class ProjectsDashboardService implements Resolve<any> {
       resolve(this.widgets);
     });
   }
-
-
-
- 
 }

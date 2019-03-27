@@ -10,7 +10,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable, of } from 'rxjs';
 import * as routerActions from '../store/actions/router.actions';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthenticatedGuard implements CanActivate {
   constructor(
     private store$: Store<fromRoot.State>,

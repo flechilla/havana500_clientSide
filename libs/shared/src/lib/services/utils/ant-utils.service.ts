@@ -4,7 +4,7 @@ import { List } from 'immutable';
 import { isNullOrUndefined } from 'util';
 import { BaseEntity } from '../../models';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AntUtilsService {
   constructor() {}
 

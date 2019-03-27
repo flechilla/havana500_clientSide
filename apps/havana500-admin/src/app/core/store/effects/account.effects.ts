@@ -31,7 +31,7 @@ import { LoginModel } from '@hav500workspace/shared';
  * RxJS 5 Operators By Example: https://gist.github.com/btroncone/d6cf141d6f2c00dc6b35
  */
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AccountEffects {
   constructor(
     private actions$: Actions,

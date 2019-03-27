@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BaseCrudService } from '../base';
 import { ContentTag, HavanaEnvironment } from '../../models';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ContentTagService extends BaseCrudService<ContentTag> {
   constructor(
     private environment: HavanaEnvironment,
