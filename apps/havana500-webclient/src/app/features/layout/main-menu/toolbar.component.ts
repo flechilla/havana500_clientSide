@@ -30,8 +30,6 @@ import { spanish, french, english } from './i18n';
 })
 export class AntToolbarComponent implements OnInit {
   @ViewChild(MatMenuTrigger)
-  private menuTrigger: MatMenuTrigger;
-
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
@@ -43,8 +41,8 @@ export class AntToolbarComponent implements OnInit {
 
   constructor(
     private sectionService: SectionService,
-    private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
     public media: MediaMatcher,
     public changeDetectorRef: ChangeDetectorRef,
     protected dialog: MatDialog,

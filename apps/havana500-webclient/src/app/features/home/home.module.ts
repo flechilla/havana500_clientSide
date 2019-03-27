@@ -20,7 +20,6 @@ import { OutstandingGalleryMediasComponent } from './dummy/outstanding-gallery-m
     TranslateModule.forChild(),
     HomeRoutingModule,
     SlideshowModule,
-    MatTabsModule,
     CarouselModule
   ],
   exports: [],

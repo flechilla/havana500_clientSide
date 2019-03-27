@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { AntTranslateService } from '@hav500workspace/shared';
 
 @Component({
   selector: 'hav-layout',

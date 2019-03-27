@@ -39,16 +39,14 @@ export class SecondLevelDefaultComponent implements OnInit {
   protected isEndOfPage = false;
   protected marketingImages: Picture[];
   protected imageUrls: (string | IImage)[] = [];
-  protected tagsData: SafeHtml;
-  private TAG_SELECTOR: string;
+  public tagsData: SafeHtml;
+  public TAG_SELECTOR: string;
   private DATE_SELECTOR: string;
-  private orderByDateItems: any[];
-  private activeFilter = false;
-  private atLeastOneArticle: boolean;
+  public orderByDateItems: any[];
+  public activeFilter = false;
+  public atLeastOneArticle: boolean;
 
-  protected articlesMobile$: BehaviorSubject<Article[]> = new BehaviorSubject(
-    []
-  );
+  public articlesMobile$: BehaviorSubject<Article[]> = new BehaviorSubject([]);
 
   selectedItems = [];
   selectedDateOrder: 'NONE';
@@ -69,19 +67,19 @@ export class SecondLevelDefaultComponent implements OnInit {
 
   ngOnInit() {
     this.orderByDateItems = [
-     {
-       id:'DESC',
-      name: 'DESC'
-    },
       {
-        id:'ASC',
-      name: 'ASC'
-    },
-    {
-      id:'NONE',
-    name: 'NONE'
-  }
-      ]
+        id: 'DESC',
+        name: 'DESC'
+      },
+      {
+        id: 'ASC',
+        name: 'ASC'
+      },
+      {
+        id: 'NONE',
+        name: 'NONE'
+      }
+    ];
     this.globalTags$ = this.contentTagService.getAll();
     this.translateService.loadTranslations(english, spanish, french);
 
@@ -109,7 +107,6 @@ export class SecondLevelDefaultComponent implements OnInit {
       this.translateService
         .useLanguage(this.translateService.translate.currentLang)
         .subscribe(_ => {
-       
           this.getArticles();
           this.localTranslate();
         });
@@ -133,7 +130,7 @@ export class SecondLevelDefaultComponent implements OnInit {
           a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');
         });
         this.isEndOfPage = articles.length < this.amountOfArticles;
-        if(!this.activeFilter) {
+        if (!this.activeFilter) {
           this.mostImportantArticle = articles.shift();
 
           this.secondMostImportantArticles = [];
@@ -175,7 +172,7 @@ export class SecondLevelDefaultComponent implements OnInit {
       )
       .subscribe(articles => {
         articles.forEach(a => {
-         /* a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '').substr(0, a.body.lastIndexOf(' ', 400)) + '...';*/
+          /* a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '').substr(0, a.body.lastIndexOf(' ', 400)) + '...';*/
           a.title = a.title.replace(/<\/?[^>]+(>|$)/g, '');
         });
         this.articlesToRender = this.articlesToRender.concat(articles);
@@ -187,7 +184,7 @@ export class SecondLevelDefaultComponent implements OnInit {
     console.log(this.selectedDateOrder);
     this.isFiltered();
     this.currentPage = 0;
-    this.getArticles(this.selectedItems)
+    this.getArticles(this.selectedItems);
   }
 
   tagSelectionChanged(selectedTags: any[]) {
@@ -202,7 +199,6 @@ export class SecondLevelDefaultComponent implements OnInit {
     //   tagContainer.append('<span class="tag-item">' + tag.name + '</span>')
     // })
 
-    
     let tagsContainerDataString = '<mat-chip-list id="article-tags">';
     selectedTags.forEach(tag => {
       tagsContainerDataString +=
@@ -239,34 +235,27 @@ export class SecondLevelDefaultComponent implements OnInit {
     return this.mobileQuery.matches;
   }
 
-  localTranslate() : void {
+  localTranslate(): void {
     const translatedDateItems = [];
     this.orderByDateItems.forEach((item, index) => {
-      this.translateService.translate
-      .get(item.id)
-      .subscribe(w=>{
+      this.translateService.translate.get(item.id).subscribe(w => {
         item.name = w;
       });
       translatedDateItems.push(item);
     });
     this.orderByDateItems = translatedDateItems;
 
-    this.translateService.translate
-          .get('DATE_SELECTOR')
-          .subscribe(w=>{
-            this.DATE_SELECTOR = w;
-          });
-    
-    this.translateService.translate
-          .get('TAG_SELECTOR')
-          .subscribe(w=>{
-            this.TAG_SELECTOR = w;
-          });
-         
-   
-        }
+    this.translateService.translate.get('DATE_SELECTOR').subscribe(w => {
+      this.DATE_SELECTOR = w;
+    });
+
+    this.translateService.translate.get('TAG_SELECTOR').subscribe(w => {
+      this.TAG_SELECTOR = w;
+    });
+  }
 
   isFiltered(): void {
-    this.activeFilter = this.selectedDateOrder !== "NONE" || this.selectedItems.length > 0;
+    this.activeFilter =
+      this.selectedDateOrder !== 'NONE' || this.selectedItems.length > 0;
   }
 }

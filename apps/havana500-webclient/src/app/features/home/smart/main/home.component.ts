@@ -1,11 +1,14 @@
-import { CookiesService } from './../../../../core/services/cookies.service';
 import {
   Component,
   OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { AntTranslateService, Article } from '@hav500workspace/shared';
+import {
+  AntTranslateService,
+  Article,
+  CookiesService
+} from '@hav500workspace/shared';
 
 import { english, spanish, french } from '../../i18n';
 
