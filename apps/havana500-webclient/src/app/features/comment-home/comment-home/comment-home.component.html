@@ -1,36 +1,74 @@
-<!-- <div id="comments-outer-container">
-  <div class="comment-container" *ngFor="let comment of comments">
-    <hav-comment [comment]="comment" class="comment-inner-container row"></hav-comment>    
+<!--
+  <div id="comments-outer-container">
+    <div class="comment-container" *ngFor="let comment of comments">
+      <hav-comment [comment]="comment" class="comment-inner-container row"></hav-comment>
+    </div>
   </div>
-</div> -->
+-->
 <div id="comments-outer-container" class="col-sm-8 col-12">
   <form id="new-comment-outer-container" class="row">
     <div id="new-comment-form-group-container">
       <div id="new-comment-user-metadata" class="col-12 form-group">
-        <input type="text" [formControl]="userName" name="new-comment-username" id="new-comment-username"
-          class="form-control col-12" placeholder="{{userNamePlaceholderText}}">
-        <input type="email" [formControl]="userEmail" name="new-comment-useremail" id="new-comment-useremail"
-          class="form-control col-12" placeholder="{{emailPlaceholderText}}" translate email="true">
+        <input
+          type="text"
+          [formControl]="userName"
+          name="new-comment-username"
+          id="new-comment-username"
+          class="form-control col-12"
+          placeholder="{{userNamePlaceholderText}}"
+        />
+        <input
+          type="email"
+          [formControl]="userEmail"
+          name="new-comment-useremail"
+          id="new-comment-useremail"
+          class="form-control col-12"
+          placeholder="{{emailPlaceholderText}}"
+          translate
+          email="true"
+        />
       </div>
       <div class="new-comment-body-container col-xs-12 col-md-12">
-        <textarea type="text" [formControl]="body" name="body" id="new-comment-body" class="col-12 form-control"
-           required rows="10" cols="35" placeholder="{{bodyPlaceholderText}}"></textarea>
-        <!-- <div [hidden]="body.valid" class="alert alert-danger" translate>
-          BODY_MSG_ERROR
-        </div> -->
+        <textarea
+          type="text"
+          [formControl]="body"
+          name="body"
+          id="new-comment-body"
+          class="col-12 form-control"
+          required
+          rows="10"
+          cols="35"
+          placeholder="{{bodyPlaceholderText}}"
+        ></textarea>
+        <!--
+          <div [hidden]="body.valid" class="alert alert-danger" translate>
+            BODY_MSG_ERROR
+          </div>
+        -->
       </div>
-      <button type="submit" class="btn btn-success" id="new-comment-post-btn" (click)="postNewComment()"
-        [disabled]="!validComment" translate>COMMENT</button>
+      <button
+        type="submit"
+        class="btn btn-success"
+        id="new-comment-post-btn"
+        (click)="postNewComment()"
+        [disabled]="!validComment"
+        translate
+      >
+        COMMENT
+      </button>
     </div>
   </form>
   <mat-card class="comment-container" *ngFor="let comment of commentsToRender">
-    <mat-card-content class="comment-body">{{comment.body}}</mat-card-content>
+    <mat-card-content class="comment-body">{{ comment.body }}</mat-card-content>
     <mat-card-footer class="comment-details">
-      <span class="comment-date">{{comment.createdAtHumanized}}</span>
-      <span class="comment-user">{{comment.userName}}</span>
+      <span class="comment-date">{{ comment.createdAtHumanized }}</span>
+      <span class="comment-user">{{ comment.userName }}</span>
     </mat-card-footer>
   </mat-card>
-  <div id="more-comments-btn-container" [ngClass]="{'hide-more-btn': endOfComments}">
+  <div
+    id="more-comments-btn-container"
+    [ngClass]="{ 'hide-more-btn': endOfComments }"
+  >
     <button class="btn" (click)="loadMoreComments()" translate>SEE_MORE</button>
   </div>
 </div>

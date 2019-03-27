@@ -4,7 +4,6 @@ import { CommentModel } from '@hav500workspace/shared';
 import { english, spanish, french } from '../i18n';
 import { FormControl } from '@angular/forms';
 
-
 @Component({
   selector: 'hav-comment-home',
   templateUrl: './comment-home.component.html',
@@ -14,51 +13,48 @@ export class CommentHomeComponent implements OnInit {
   // Represents the Article that is the container of the Comments
   @Input()
   articleId: number;
+
   private newComment: CommentModel;
 
-  private comments: CommentModel[];
-  private commentsToRender: CommentModel[];
-  private endOfComments: boolean;
+  public comments: CommentModel[];
+  public commentsToRender: CommentModel[];
+  public endOfComments: boolean;
   private currentPage = 0;
   private page_size = 10;
-  private userName = new FormControl();
-  private userEmail = new FormControl();
-  private body = new FormControl();
-  private emailPlaceholderText: string;
-  private userNamePlaceholderText: string;
-  private bodyPlaceholderText: string;
-  private validComment = false;
+  public userName = new FormControl();
+  public userEmail = new FormControl();
+  public body = new FormControl();
+  public emailPlaceholderText: string;
+  public userNamePlaceholderText: string;
+  public bodyPlaceholderText: string;
+  public validComment = false;
 
-
-  constructor(private commentService: CommentService,private translateService: AntTranslateService) {
-    console.log(this.articleId);
+  constructor(
+    private commentService: CommentService,
+    private translateService: AntTranslateService
+  ) {
     this.endOfComments = false;
     this.translateService.loadTranslations(english, spanish, french);
 
-    this.userName
-    .valueChanges
-    .subscribe(userName => this.newComment.userName = userName);
+    this.userName.valueChanges.subscribe(
+      userName => (this.newComment.userName = userName)
+    );
 
-    this.userEmail
-    .valueChanges
-    .subscribe(email => {
+    this.userEmail.valueChanges.subscribe(email => {
       this.newComment.userEmail = email;
       this.validateNewCommentForm();
     });
 
-    this.body
-    .valueChanges
-    .subscribe(body => {
+    this.body.valueChanges.subscribe(body => {
       this.newComment.body = body;
-     this.validateNewCommentForm();
+      this.validateNewCommentForm();
     });
 
     this.newComment = new CommentModel();
 
     this.translateNewCommentPlaceholders();
 
-    this.translateService.translate.onLangChange
-    .subscribe(x=>{
+    this.translateService.translate.onLangChange.subscribe(x => {
       this.translateNewCommentPlaceholders();
     });
   }
@@ -75,18 +71,21 @@ export class CommentHomeComponent implements OnInit {
       .getArticleCommentsForUsers(this.articleId, 0, 10)
       .subscribe(_comments => {
         this.commentsToRender = _comments;
-          this.endOfComments = _comments.length < this.page_size;
-
+        this.endOfComments = _comments.length < this.page_size;
       });
   }
 
-  private loadMoreComments(): void{
+  loadMoreComments(): void {
     this.commentService
-    .getArticleCommentsForUsers(this.articleId, ++this.currentPage, this.page_size)
-    .subscribe(_comments => {
-      this.commentsToRender = this.commentsToRender.concat(_comments);
-      this.endOfComments = _comments.length < this.page_size;
-    });
+      .getArticleCommentsForUsers(
+        this.articleId,
+        ++this.currentPage,
+        this.page_size
+      )
+      .subscribe(_comments => {
+        this.commentsToRender = this.commentsToRender.concat(_comments);
+        this.endOfComments = _comments.length < this.page_size;
+      });
   }
   /**
    *  Post a new comment to the server and add it to the list of comments.
@@ -103,25 +102,19 @@ export class CommentHomeComponent implements OnInit {
     });
   }
 
-  translateNewCommentPlaceholders() : void {
-    this.translateService.translate
-      .get('EMAIL')
-      .subscribe(value=>{
-        this.emailPlaceholderText = value;        
-      });
-      this.translateService.translate
-      .get('NAME')
-      .subscribe(value=>{
-        this.userNamePlaceholderText = value;        
-      });
-      this.translateService.translate
-      .get('MESSAGE')
-      .subscribe(value=>{
-        this.bodyPlaceholderText = value;        
-      });
+  translateNewCommentPlaceholders(): void {
+    this.translateService.translate.get('EMAIL').subscribe(value => {
+      this.emailPlaceholderText = value;
+    });
+    this.translateService.translate.get('NAME').subscribe(value => {
+      this.userNamePlaceholderText = value;
+    });
+    this.translateService.translate.get('MESSAGE').subscribe(value => {
+      this.bodyPlaceholderText = value;
+    });
   }
 
-  validateNewCommentForm() : void{
-     this.validComment = this.body.valid && this.userEmail.valid;
+  validateNewCommentForm(): void {
+    this.validComment = this.body.valid && this.userEmail.valid;
   }
 }
