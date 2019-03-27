@@ -20,8 +20,7 @@ import { InternalServerError } from '../../error-handling/internal-server.error'
 
 import { retryBackoff, RetryBackoffConfig } from 'backoff-rxjs';
 
-@Injectable()
-export class BaseCrudService<T> {
+export abstract class BaseCrudService<T> {
   public url: string;
 
   protected readonly retryConfig: RetryBackoffConfig = {
@@ -75,12 +74,9 @@ export class BaseCrudService<T> {
       pageNumber +
       '&pageSize=' +
       pageSize +
-      (columnToSort ? '&columnNameForSorting=' +
-       columnToSort : '')  +
-      (sortDir ? '&sortingType=' +
-       sortDir : '')  +
-      (columnsToReturn ? '&columnsToReturn=' +
-       columnsToReturn : '')  +
+      (columnToSort ? '&columnNameForSorting=' + columnToSort : '') +
+      (sortDir ? '&sortingType=' + sortDir : '') +
+      (columnsToReturn ? '&columnsToReturn=' + columnsToReturn : '') +
       (tableToQuery ? '&tableToQuery=' + tableToQuery : '') +
       (additionalFiter ? '&additionalFilter=' + additionalFiter : '');
     return this.http.get<T[]>(fUrl).pipe(

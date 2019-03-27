@@ -11,8 +11,7 @@ import { BaseEntity } from '../../models';
 import { MatSnackBar } from '@angular/material';
 import { publishLast, refCount, catchError } from 'rxjs/operators';
 
-@Injectable()
-export class BaseResolverService<T extends BaseEntity<any>>
+export abstract class BaseResolverService<T extends BaseEntity<any>>
   extends BaseCrudService<T>
   implements Resolve<T[]> {
   public initialData: T[] = [];
