@@ -17,10 +17,10 @@ import { english, spanish, french } from './i18n';
   styleUrls: ['outstanding-gallery-medias.component.scss']
 })
 export class OutstandingGalleryMediasComponent implements OnInit {
-  protected galleryImages$: Observable<Picture[]>;
-  protected galleryImages: Picture[] = [];
+  public galleryImages$: Observable<Picture[]>;
+  public galleryImages: Picture[] = [];
 
-  protected secondGallery: GALLERY_IMAGE[] = [];
+  public secondGallery: GALLERY_IMAGE[] = [];
   protected galleryId: 'hav-gallery';
 
   mobileQuery: MediaQueryList;

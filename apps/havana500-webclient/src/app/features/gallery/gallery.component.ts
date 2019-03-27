@@ -28,7 +28,7 @@ export class GalleryComponent implements OnInit {
   private currentImgColSpan = 1;
   private currentImgRowSpan = 1;
   private imgInternalIndex = 0;
-  private isEndOfPage = false;
+  public isEndOfPage = false;
   private currentPage = 0;
 
   constructor(
@@ -42,10 +42,10 @@ export class GalleryComponent implements OnInit {
     this.translateService.loadTranslations(english, spanish, french);
   }
 
-  private galleryImages: Picture[] = [];
+  public galleryImages: Picture[] = [];
   private totalAmountOfImages: number;
   private sectionName = 'Galería';
-  private imageForPlugin: GALLERY_IMAGE[] = [];
+  public imageForPlugin: GALLERY_IMAGE[] = [];
   @ViewChild(NgxImageGalleryComponent)
   ngxImageGallery: NgxImageGalleryComponent;
 
@@ -79,7 +79,9 @@ export class GalleryComponent implements OnInit {
       .subscribe(r => {
         const result = r as any;
         this.galleryImages = this.galleryImages.concat(result.entities);
-        this.imageForPlugin = this.imageForPlugin.concat(this.transformImages(this.galleryImages));
+        this.imageForPlugin = this.imageForPlugin.concat(
+          this.transformImages(this.galleryImages)
+        );
         this.isEndOfPage = result.entities.length < this.amountOfPictures;
         this.totalAmountOfImages = result.length;
         this.currentPage++;

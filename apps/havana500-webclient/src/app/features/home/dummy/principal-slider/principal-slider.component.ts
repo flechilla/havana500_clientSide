@@ -12,7 +12,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class PrincipalSliderComponent implements OnInit {
   private firstLevelImages: Picture[];
 
-  protected imageUrls: (string | IImage)[] = [];
+  public imageUrls: (string | IImage)[] = [];
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;

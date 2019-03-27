@@ -26,7 +26,7 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
   protected literatureArticles: Observable<Article[]>;
   protected cultureArticles: Observable<Article[]>;
   protected cinemaArticles: Observable<Article[]>;
-  protected articles: Observable<Article[]>;
+  public articles: Observable<Article[]>;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -48,12 +48,12 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
 
     this.getElements();
 
-    this.translate.translate.onLangChange.subscribe(x=>{
+    this.translate.translate.onLangChange.subscribe(x => {
       this.translate
-      .useLanguage(this.translate.translate.currentLang)
-      .subscribe(_=>{
+        .useLanguage(this.translate.translate.currentLang)
+        .subscribe(_ => {
           this.getElements();
-      });
+        });
     });
   }
 
@@ -65,12 +65,17 @@ export class EntertainmentComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  getElements(){
+  getElements() {
     this.articles = this.articleService
       .getArticlesBasicDataBySectionName('entretenimiento', 0, 4)
       .pipe(
         map(resp => {
-        resp.forEach(a => {     /*a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');*/     a.title = a.title.replace(/<\/?[^>]+(>|$)/g, ''); });
+          resp.forEach(a => {
+            /*a.body = a.body.replace(/<\/?[^>]+(>|$)/g, '');*/ a.title = a.title.replace(
+              /<\/?[^>]+(>|$)/g,
+              ''
+            );
+          });
           if (this.isMobile()) {
             return resp.slice(0, 1);
           } else {

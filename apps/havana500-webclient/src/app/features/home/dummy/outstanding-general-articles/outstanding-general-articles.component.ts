@@ -39,10 +39,10 @@ export class OutstandingGeneralArticlesComponent implements OnInit, OnDestroy {
   @Input()
   carouselTime: number = 3000;
 
-  protected topArticles$: Observable<Article[]>;
-  protected currentArticle$: Observable<Article>;
+  public topArticles$: Observable<Article[]>;
+  public currentArticle$: Observable<Article>;
 
-  protected currentIndex$: BehaviorSubject<number> = new BehaviorSubject(0);
+  public currentIndex$: BehaviorSubject<number> = new BehaviorSubject(0);
 
   protected articles: Article[];
 
