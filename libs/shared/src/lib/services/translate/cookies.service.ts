@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { HavanaEnvironment } from './../../models/system-misc/environment-type';
+
 import { HttpClient } from '@angular/common/http';
-import { HavanaEnvironment } from 'libs/shared/src/lib/models';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -12,25 +13,25 @@ export class CookiesService {
   private acceptCookiesUrl: string;
   private setAgeCookieUrl: string;
   private readonly cookiesAcceptedCookie = 'CookiesAccepted';
-  private readonly aboveAge = 'IsLegalAge'
-  
-    constructor(
-      private environment: HavanaEnvironment,  
-      private httpClient: HttpClient,
-      private cookieService: CookieService) 
-      {
-        this.setAgeCookieUrl = this.environment.apiUrl + "Cookies/SetAge"
-        this.setCookiesUrl = this.environment.apiUrl + "Cookies/SetLanguage"
-        this.acceptCookiesUrl = this.environment.apiUrl + "Cookies/AcceptCookies"
-      }
+  private readonly aboveAge = 'IsLegalAge';
 
-   setLanguageOnCookies(lang: string): Observable<any> {
+  constructor(
+    private httpClient: HttpClient,
+    private cookieService: CookieService,
+    private environment: HavanaEnvironment
+  ) {
+    this.setAgeCookieUrl = environment.apiUrl + 'Cookies/SetAge';
+    this.setCookiesUrl = environment.apiUrl + 'Cookies/SetLanguage';
+    this.acceptCookiesUrl = environment.apiUrl + 'Cookies/AcceptCookies';
+  }
+
+  setLanguageOnCookies(lang: string): Observable<any> {
     return this.httpClient.post(this.setCookiesUrl, {
       lang: lang
     });
   }
 
-  acceptCookies(): void{
+  acceptCookies(): void {
     this.httpClient.get(this.acceptCookiesUrl).subscribe();
   }
 
@@ -52,4 +53,3 @@ export class CookiesService {
     });
   }
 }
-
