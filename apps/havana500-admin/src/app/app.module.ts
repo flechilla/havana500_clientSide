@@ -20,7 +20,6 @@ import {
 } from './core/store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './core/store/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {
   StoreRouterConnectingModule,
   RouterStateSerializer
@@ -41,7 +40,7 @@ import { UserManagementModule } from './features/user-management/user-management
     NxModule.forRoot(),
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: 'enabled',
-      enableTracing: true
+      enableTracing: false
     }),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
