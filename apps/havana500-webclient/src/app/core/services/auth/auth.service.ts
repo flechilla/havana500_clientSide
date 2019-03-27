@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { map, publishLast, refCount } from 'rxjs/operators';
 import { APP_USER } from '../../configs/configuration-const.config';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   public token: string;
   public apiUrl: string;

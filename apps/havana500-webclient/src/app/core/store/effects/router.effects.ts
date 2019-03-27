@@ -5,7 +5,7 @@ import * as actions from '../actions/router.actions';
 import { tap, map } from 'rxjs/operators';
 import { RouteModel } from '@hav500workspace/shared';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RouterEffects {
   constructor(private actions$: Actions, private router: Router) {}
 

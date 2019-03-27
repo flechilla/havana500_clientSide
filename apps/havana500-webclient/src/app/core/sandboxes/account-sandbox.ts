@@ -16,7 +16,7 @@
 //  * @export
 //  * @class AccountSandbox
 //  */
-// @Injectable()
+// @Injectable({ providedIn: 'root' })
 // export class AccountSandbox {
 //   constructor(
 //     protected store$: Store<fromRoot.State>,
