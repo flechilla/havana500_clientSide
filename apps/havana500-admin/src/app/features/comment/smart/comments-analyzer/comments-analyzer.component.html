@@ -17,7 +17,7 @@
 
     <!-- BODY -->
     <div mat-dialog-content class="p-24 m-0" fxLayout="column" fxLayoutAlign="start center">
-        <admin-comment-moderate-card @slideInLeft style="min-width: 80%;" [comment]="comment" (wasApproved)="approveComment(comment)"
+        <admin-comment-moderate-card @enterRightLeaveLeft style="min-width: 80%;" [comment]="comment" (wasApproved)="approveComment(comment)"
             (wasDenied)="dennyComment(comment)" *ngFor="let comment of comments">
         </admin-comment-moderate-card>
 
