@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ArticleComponent } from '@hav500workspace/shared';
+import { ArticleComponent } from './article/article.component';
 
 const articlesRoutes: Routes = [{ path: '', component: ArticleComponent }];
 

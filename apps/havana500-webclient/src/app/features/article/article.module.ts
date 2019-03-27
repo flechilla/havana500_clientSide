@@ -3,12 +3,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArticleRoutingModule } from './article-routing.module';
 import { SharedModule } from '@hav500workspace/shared';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { ArticleComponent } from '@hav500workspace/shared';
-import { ArticleService } from '@hav500workspace/shared';
 import { CommentHomeComponent } from '../comment-home/comment-home/comment-home.component';
 import { CommentComponent } from '../comment-home/comment/comment.component';
 import { FormsModule } from '@angular/forms';
+import { CommentHomeModule } from '../comment-home/comment-home.module';
+import { ArticleComponent } from './article/article.component';
 
 @NgModule({
   imports: [
@@ -16,10 +15,9 @@ import { FormsModule } from '@angular/forms';
     ArticleRoutingModule,
     SharedModule,
     TranslateModule.forChild(),
-    FlexLayoutModule,
-    FormsModule
+    CommentHomeModule
   ],
-  declarations: [ArticleComponent, CommentHomeComponent, CommentComponent],
+  declarations: [ArticleComponent],
   providers: []
 })
 export class ArticleModule {}

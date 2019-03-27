@@ -1,11 +1,10 @@
-@import "~bootstrap/dist/css/bootstrap.css";
-@import "../../scss/ant.scss";
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '../../../core/scss/ant.scss';
 
 //START variables declaration
 $related-articles-outer-container-bColor: #eeeeee;
-$article-tag-bColor: #32A9E1;
+$article-tag-bColor: #32a9e1;
 //END variables declaration
-
 
 .font-weight-700 {
   font-weight: 700;
@@ -19,7 +18,6 @@ $article-tag-bColor: #32A9E1;
     margin-top: 30px;
     font-size: 4em;
     text-align: center;
-
   }
 
   #article-header {
@@ -44,7 +42,8 @@ $article-tag-bColor: #32A9E1;
       text-align: center;
       font-size: 1.3em;
 
-      #article-reading-time, #article-writer {
+      #article-reading-time,
+      #article-writer {
         padding: 0 !important;
       }
       @include media-breakpoint-down('xs') {
@@ -59,12 +58,11 @@ $article-tag-bColor: #32A9E1;
     font-size: 1.8em;
     font-weight: 400 !important;
 
-    P{
-    font-weight: 400 !important;
-
+    p {
+      font-weight: 400 !important;
     }
 
-    p::first-line{
+    p::first-line {
       text-indent: 5em;
     }
 
@@ -78,8 +76,6 @@ $article-tag-bColor: #32A9E1;
       border: 0.2px solid black;
     }
   }
-
-
 
   #related-articles-outer-container {
     margin-top: 30px;
@@ -113,7 +109,6 @@ $article-tag-bColor: #32A9E1;
 }
 
 #new-comment-outer-container {
-
   input,
   textarea {
     // border: 1px solid gray;

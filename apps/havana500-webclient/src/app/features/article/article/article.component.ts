@@ -1,15 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { ArticleService } from '../../services/http/article.service';
-import { ArticleExtended } from '../../models/article-extended';
-import { switchMap, take, map } from 'rxjs/operators';
-import { Article, Picture } from '../../models';
-import { CommentService, AntTranslateService } from '../../services';
-import { Observable } from 'rxjs';
 import { english, spanish, french } from './i18n';
-import { fadeInItems } from '@angular/material';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { Article, ArticleExtended, Picture, ArticleService, CommentService, AntTranslateService } from '@hav500workspace/shared';
 
 @Component({
   selector: 'ant-article',

@@ -1,3 +1,3 @@
-import { Locale } from '../../../models/system-misc/locale-lang.model';
+import { Locale } from '@hav500workspace/shared';
 
 export const locale: Locale = { lang: 'fr', data: { BY: 'par: {{value}}' } };
