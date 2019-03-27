@@ -75,7 +75,7 @@ export class CreateUpdateArticleComponent implements OnInit {
 
   public article: ArticleExtended;
 
-  protected isTemporary: boolean;
+  public isTemporary: boolean;
 
   filteredTags: Observable<ContentTag[]>;
 
@@ -90,7 +90,7 @@ export class CreateUpdateArticleComponent implements OnInit {
       isTemporary: boolean;
     },
     protected contentTagService: ContentTagService,
-    protected utilsService: AntUtilsService,
+    public utilsService: AntUtilsService,
     protected articleService: ArticleService,
     private uploadService: UploadService
   ) {

@@ -32,7 +32,6 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
-import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'admin-create-update-marketing',
@@ -56,9 +55,9 @@ export class CreateUpdateMarketingComponent implements OnInit {
 
   protected globalTags: ContentTag[];
 
-  protected marketing: PictureExtended;
+  public marketing: PictureExtended;
 
-  protected isTemporary: boolean;
+  public isTemporary: boolean;
 
   filteredTags: Observable<ContentTag[]>;
 
@@ -83,8 +82,8 @@ export class CreateUpdateMarketingComponent implements OnInit {
       isTemporary: boolean;
     },
     protected contentTagService: ContentTagService,
-    protected utilsService: AntUtilsService,
-    protected marketingService: MarketingImageService
+    public utilsService: AntUtilsService,
+    public marketingService: MarketingImageService
   ) {}
 
   public get pictureTypeSelected(): PictureType {
@@ -309,12 +308,24 @@ export class CreateUpdateMarketingComponent implements OnInit {
     this.fileMediaType = type;
     if (type === 8) {
       this.isVideoFile = true;
-      this.form.get('marketing').get('hRef').disable();
-      this.form.get('marketing').get('relativePath').setValidators([Validators.required])
+      this.form
+        .get('marketing')
+        .get('hRef')
+        .disable();
+      this.form
+        .get('marketing')
+        .get('relativePath')
+        .setValidators([Validators.required]);
     } else {
       this.isVideoFile = false;
-      this.form.get('marketing').get('hRef').enable();
-      this.form.get('marketing').get('relativePath').clearValidators();
+      this.form
+        .get('marketing')
+        .get('hRef')
+        .enable();
+      this.form
+        .get('marketing')
+        .get('relativePath')
+        .clearValidators();
     }
   }
 }

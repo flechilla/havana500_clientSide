@@ -1,4 +1,3 @@
-import { GalleryService } from './../../../../../libs/shared/src/lib/services/http/gallery.service';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import {
   AntTranslateService,
@@ -8,7 +7,8 @@ import {
   ContentTagService,
   SectionService,
   HavanaEnvironment,
-  MarketingImageService
+  MarketingImageService,
+  GalleryService
 } from '@hav500workspace/shared';
 import { environment } from '../../environments/environment';
 
@@ -17,14 +17,14 @@ import { environment } from '../../environments/environment';
   exports: [],
   declarations: [],
   providers: [
-    AntUtilsService,
-    ArticleService,
-    CommentService,
-    ContentTagService,
-    SectionService,
-    AntTranslateService,
-    MarketingImageService,
-    GalleryService,
+    // AntUtilsService,
+    // ArticleService,
+    // CommentService,
+    // ContentTagService,
+    // SectionService,
+    // AntTranslateService,
+    // MarketingImageService,
+    // GalleryService,
     { provide: HavanaEnvironment, useValue: environment }
   ]
 })

@@ -17,7 +17,6 @@ import {
 } from './core/store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './core/store/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {
   StoreRouterConnectingModule,
   RouterStateSerializer

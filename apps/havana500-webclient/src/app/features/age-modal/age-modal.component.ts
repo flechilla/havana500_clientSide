@@ -13,37 +13,37 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./age-modal.component.scss']
 })
 export class AgeModalComponent implements OnInit {
-
-  private userAgeFormControl = new FormControl();
+  public userAgeFormControl = new FormControl();
   private userYearOfBirth: number;
   private buttonTextKey: string;
-  private buttonText: string;
-  private userAgePlaceholderText: string;
+  public buttonText: string;
+  public userAgePlaceholderText: string;
   private validAge = 18;
-  private isValidAge: boolean;
+  public isValidAge: boolean;
   public onClose: Subject<string>;
 
-  constructor(private translateService: AntTranslateService, 
-     iconRegistry: MatIconRegistry,
-     sanitizer: DomSanitizer) {
+  constructor(
+    private translateService: AntTranslateService,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer
+  ) {
     iconRegistry.addSvgIcon(
       'hav-500',
       sanitizer.bypassSecurityTrustResourceUrl('assets/images/500-hav.svg')
     );
-   }
+  }
 
   ngOnInit() {
     this.userAgeFormControl.valueChanges.subscribe(v => {
-        this.userYearOfBirth = v;
-        this.validateAge();
-      });
+      this.userYearOfBirth = v;
+      this.validateAge();
+    });
 
     this.buttonTextKey = 'buttonTextAdult';
 
     this.translateService.loadTranslations(english, spanish, french);
     this.translateText();
-    this.translateService.translate.onLangChange
-    .subscribe(x=>{
+    this.translateService.translate.onLangChange.subscribe(x => {
       this.translateText();
     });
     this.onClose = new Subject();
@@ -57,27 +57,25 @@ export class AgeModalComponent implements OnInit {
     if (this.userYearOfBirth < 1925) {
       return;
     }
-    const currentYear = (new Date()).getFullYear();
-    this.isValidAge = (currentYear - this.userYearOfBirth) > this.validAge;
+    const currentYear = new Date().getFullYear();
+    this.isValidAge = currentYear - this.userYearOfBirth > this.validAge;
 
     if (!this.isValidAge) {
       this.buttonTextKey = 'buttonTextNotAdult';
-    }
-    else {
-      this.buttonTextKey = 'buttonTextAdult'
+    } else {
+      this.buttonTextKey = 'buttonTextAdult';
     }
     this.translateText();
   }
 
   translateText(): void {
-    this.translateService.translate.get(this.buttonTextKey)
-        .subscribe(v => {
-          this.buttonText = v;
-        });
-    this.translateService.translate.get('userAgePlaceholderText')
-        .subscribe(v => {
-          this.userAgePlaceholderText = v;
-        });
+    this.translateService.translate.get(this.buttonTextKey).subscribe(v => {
+      this.buttonText = v;
+    });
+    this.translateService.translate
+      .get('userAgePlaceholderText')
+      .subscribe(v => {
+        this.userAgePlaceholderText = v;
+      });
   }
-
 }

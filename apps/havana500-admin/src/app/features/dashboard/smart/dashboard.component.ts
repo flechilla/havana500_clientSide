@@ -1,11 +1,8 @@
-import { AntUtilsService } from './../../../../../../../libs/shared/src/lib/services/utils/ant-utils.service';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import * as shape from 'd3-shape';
-import ProjectsDashboardService from '../../../core/services/http/dashboard.service';
-import { antAnimations } from '@hav500workspace/shared';
+import { antAnimations, AntUtilsService } from '@hav500workspace/shared';
 import { StatsService } from '../../../core/services/http/stats.service';
-import { List } from 'immutable';
-import { Article } from '@hav500workspace/shared';
+import { ProjectsDashboardService } from '../../../core/services/http/dashboard.service';
 
 @Component({
   selector: 'admin-dashboard',

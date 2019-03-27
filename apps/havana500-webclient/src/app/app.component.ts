@@ -4,10 +4,9 @@ import {
   AfterViewInit,
   OnInit
 } from '@angular/core';
-import { AntTranslateService } from '@hav500workspace/shared';
+import { AntTranslateService, CookiesService } from '@hav500workspace/shared';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { CookiesService } from './core/services/cookies.service';
 import { AgeModalComponent } from './features/age-modal/age-modal.component';
 
 @Component({

@@ -15,7 +15,6 @@ import { TranslateModule } from '@ngx-translate/core';
     AccountRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    FlexLayoutModule,
     TranslateModule.forChild()
   ],
   declarations: [LoginComponent, RegisterComponent],

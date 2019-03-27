@@ -5,8 +5,6 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import { AccountSandbox } from '../../../../core/sandboxes/account-sandbox';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { antAnimations } from '@hav500workspace/shared';
 
 @Component({
@@ -19,11 +17,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   registerFormErrors: any;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private accountSandbox: AccountSandbox,
-    private oauthService: OAuthService
-  ) {
+  constructor(private formBuilder: FormBuilder) {
     this.registerFormErrors = {
       userName: {},
       email: {},

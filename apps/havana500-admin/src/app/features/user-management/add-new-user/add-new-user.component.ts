@@ -1,27 +1,12 @@
-import {
-  Component,
-  OnInit,
-  Inject,
-  ViewEncapsulation,
-  ViewChild,
-  ElementRef
-} from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators,
-  NgForm,
   FormControl
 } from '@angular/forms';
 
-import {
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-  MatMenuTrigger
-} from '@angular/material';
-import { Observable } from 'rxjs';
-import { antAnimations, User, Picture, LoginModel } from '@hav500workspace/shared';
-import { startWith, map } from 'rxjs/operators';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { User, Picture, LoginModel } from '@hav500workspace/shared';
 import { UploadService } from '../../../core/services/http/upload.service';
 import { UserService } from '../../../core/services/user.service';
 import {
@@ -31,7 +16,6 @@ import {
   validateSamePassWord
 } from './formValidator';
 import { UserUpdateModel } from '../../../core/models/userUpdateModel';
-import { AccountSandbox } from '../../../core/sandboxes/account-sandbox';
 import { Router } from '@angular/router';
 
 @Component({
@@ -42,7 +26,7 @@ import { Router } from '@angular/router';
 export class AddNewUserComponent implements OnInit {
   public userForm: FormGroup;
   public userId: string;
-  private user: User;
+  public user: User;
   private userImageForm: FormGroup;
   @ViewChild('userImage')
   userImage;
@@ -87,9 +71,12 @@ export class AddNewUserComponent implements OnInit {
       },
       { validator: RepeatPasswordValidator }
     );
-    this.userForm.controls.passwordConfirmation.valueChanges.subscribe(() => validateSamePassWord(this.userForm));
-    this.userForm.controls.password.valueChanges.subscribe(() => validateSamePassWord(this.userForm));
-
+    this.userForm.controls.passwordConfirmation.valueChanges.subscribe(() =>
+      validateSamePassWord(this.userForm)
+    );
+    this.userForm.controls.password.valueChanges.subscribe(() =>
+      validateSamePassWord(this.userForm)
+    );
   }
 
   save() {
@@ -108,7 +95,7 @@ export class AddNewUserComponent implements OnInit {
     console.log(this.userForm.value);
     const user = this.userForm.value as UserUpdateModel;
 
-    this.userService.update(user.id, user).subscribe((r) => {
+    this.userService.update(user.id, user).subscribe(r => {
       const loginModel = new LoginModel(r.email, user.password);
       this.dialogRef.close();
       this.router.navigate(['/login']);

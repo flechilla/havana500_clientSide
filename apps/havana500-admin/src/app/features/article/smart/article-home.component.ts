@@ -12,7 +12,6 @@ import {
 } from '@hav500workspace/shared';
 import { BaseTableContainerComponent } from '../../../shared/components/base-table-container.component';
 import { CreateUpdateArticleComponent } from '../dummy/create-update/create-update-article.component';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'admin-article-home',

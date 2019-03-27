@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { BaseTableContainerComponent } from '../../../shared/components/base-table-container.component';
 import {
-  MarketingContent,
   Picture,
   antAnimations,
   ContentTag,
